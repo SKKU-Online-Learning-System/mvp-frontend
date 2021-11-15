@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 interface LoginModalProps{
   show: boolean;
-  onClose: any;
+  onClose: Function;
   children?: React.ReactNode;
 }
 
