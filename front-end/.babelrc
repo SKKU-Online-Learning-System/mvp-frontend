@@ -8,9 +8,10 @@
       {
         "root": ["./"],
         "alias": {
-        "@src": "./src"
-      },
-      "extensions": [".js", ".jsx", ".tsx"]
+          "@components": "./components",
+          "@interfaces": "./interfaces"
+        },
+        "extensions": [".js", ".jsx", ".tsx"]
       }
     ]
   ]
