@@ -11,7 +11,6 @@ const Tag = styled.div`
   font-weight: 800;
   font-size: 14px;
   line-height: 140.62%;
-  /* identical to box height, or 20px */
   display: flex;
   justify-content: center;
   align-items: center;

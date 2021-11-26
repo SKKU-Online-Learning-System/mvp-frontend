@@ -11,7 +11,7 @@ const DetailsPage = () => (
         <ContentSet />
         <Footer />
     </Layout>
-    
+
 )
 
 export default DetailsPage;

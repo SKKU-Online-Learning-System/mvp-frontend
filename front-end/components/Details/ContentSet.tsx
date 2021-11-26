@@ -8,7 +8,7 @@ const ContentSet = () => {
             <Curriculum></Curriculum>
         </div>
 
-  );
+    );
 }
 
 

@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import BannerDescription from '@components/Details/BannerDescription'
 const Banner = () => {
-    return (
-        <BannerLayout>
-            <BannerImg></BannerImg>
-            <BannerDescription></BannerDescription>
+  return (
+    <BannerLayout>
+      <BannerImg></BannerImg>
+      <BannerDescription></BannerDescription>
 
-        </BannerLayout>
+    </BannerLayout>
   );
 }
 const BannerLayout = styled.div`

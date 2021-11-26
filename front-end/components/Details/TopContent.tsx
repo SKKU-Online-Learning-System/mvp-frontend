@@ -2,17 +2,17 @@ import styled from 'styled-components'
 import LearningState from '@components/Details/LearningState'
 import LectureIntroduction from '@components/Details/LectureIntroduction'
 const TopContent = () => {
-    return (
-        <TopContainer>
-            <LeftContainer>
-                <LearningState />
-                <LectureIntroduction />
-            </LeftContainer>
-            <RightContainer>
-                <Text>최근 질문</Text>
-            </RightContainer>
-        </TopContainer>
-    );
+  return (
+    <TopContainer>
+      <LeftContainer>
+        <LearningState />
+        <LectureIntroduction />
+      </LeftContainer>
+      <RightContainer>
+        <Text>최근 질문</Text>
+      </RightContainer>
+    </TopContainer>
+  );
 }
 
 

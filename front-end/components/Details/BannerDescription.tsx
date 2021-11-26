@@ -1,25 +1,25 @@
 import styled from 'styled-components'
 import Tag from '@components/Details/Tag'
 const BannerDescription = () => {
-    return (
-      <DescContainer>
-        <DescCategory>개발 프로그래밍 {'>'} 웹 개발</DescCategory>
-        <Margin></Margin>
-        <DescSubject>실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발</DescSubject>
-        <Margin></Margin>
-        <DescName>
-          <img style={{ marginRight: '10px' }} src="images/details_profile.png" alt="" />
-          홍길동
-        </DescName>
-        <Margin></Margin>
-        <TagContainer>
-          <Tag>#JAVA</Tag>
-          <Tag>#Spring Boot</Tag>
-          <Tag>#Back-End</Tag>
-          <Tag>#웹앱</Tag>
-          <Tag>#Spring</Tag>
-        </TagContainer>
-      </DescContainer>
+  return (
+    <DescContainer>
+      <DescCategory>개발 프로그래밍 {'>'} 웹 개발</DescCategory>
+      <Margin></Margin>
+      <DescSubject>실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발</DescSubject>
+      <Margin></Margin>
+      <DescName>
+        <img style={{ marginRight: '10px' }} src="images/details_profile.png" alt="" />
+        홍길동
+      </DescName>
+      <Margin></Margin>
+      <TagContainer>
+        <Tag>#JAVA</Tag>
+        <Tag>#Spring Boot</Tag>
+        <Tag>#Back-End</Tag>
+        <Tag>#웹앱</Tag>
+        <Tag>#Spring</Tag>
+      </TagContainer>
+    </DescContainer>
   );
 }
 

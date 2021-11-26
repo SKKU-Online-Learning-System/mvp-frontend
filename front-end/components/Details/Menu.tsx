@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 const Menu = () => {
-    return (
-        <MenuContainer>
-            <TextContainer>
-                <UnederLine>대시 보드</UnederLine>                
-                <MenuText>강의 소개</MenuText>
-            </TextContainer>
-        </MenuContainer>
+  return (
+    <MenuContainer>
+      <TextContainer>
+        <UnederLine>대시 보드</UnederLine>
+        <MenuText>강의 소개</MenuText>
+      </TextContainer>
+    </MenuContainer>
   );
 }
 const MenuContainer = styled.div`

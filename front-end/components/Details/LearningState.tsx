@@ -1,14 +1,14 @@
 import styled from 'styled-components'
 const LearningState = () => {
-    return (
-        <LearningContainer>
-            <Text>내 학습 상황</Text>
-            <LearningInformation>
-                <StateBox state={'14/36'} desc={'완료 수업'}/>
-                <StateBox state={'2h53m'} desc={'총 학습 시간'}/>
-                <StateBox state={'37%'} desc={'학습 달성률'}/>
-            </LearningInformation>
-        </LearningContainer>
+  return (
+    <LearningContainer>
+      <Text>내 학습 상황</Text>
+      <LearningInformation>
+        <StateBox state={'14/36'} desc={'완료 수업'} />
+        <StateBox state={'2h53m'} desc={'총 학습 시간'} />
+        <StateBox state={'37%'} desc={'학습 달성률'} />
+      </LearningInformation>
+    </LearningContainer>
   );
 }
 const LearningContainer = styled.div`
@@ -24,7 +24,7 @@ interface StateProps {
   desc: string;
 }
 
-const StateBox = ({state, desc}: StateProps) => (
+const StateBox = ({ state, desc }: StateProps) => (
   <div>
     <Box>{state}</Box>
     <Desc>{desc}</Desc>
