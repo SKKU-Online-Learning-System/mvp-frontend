@@ -29,7 +29,6 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <style>{`body { margin: 0 } /* custom! */`}</style>
-          <title>온라인 명륜당</title>
         </Head>
         <body>
           <Main />
