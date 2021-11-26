@@ -8,4 +8,5 @@ const LectureBody = () => {
 		</div>
 	);
 };
+
 export default LectureBody;

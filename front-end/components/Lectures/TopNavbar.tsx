@@ -1,4 +1,4 @@
-import ContentMenu from "./ContentMenu";
+import ContentMenu from './ContentMenu';
 const TopNavbar = () => {
 	return (
 		<div>

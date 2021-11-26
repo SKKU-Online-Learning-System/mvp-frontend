@@ -1,15 +1,15 @@
-import Layout from "@components/Layout";
-import SidebarLeft from "@components/Lectures/SidebarLeft";
-import LectureBody from "@components/Lectures/LectureBody";
+import Layout from '@components/Layout';
+import SidebarLeft from '@components/Lectures/SidebarLeft';
+import LectureBody from '@components/Lectures/LectureBody';
 const LecturesPage = () => (
 	<Layout>
 		{/* 화면 전체 */}
 		<div
 			style={{
-				width: "100%",
-				display: "flex",
-				flexDirection: "row",
-				padding: "2rem 0",
+				width: '100%',
+				display: 'flex',
+				flexDirection: 'row',
+				padding: '2rem 0',
 			}}
 		>
 			{/* 왼쪽 sidebar 전체 */}

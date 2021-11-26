@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 interface CardProps {
 	title: string;
 	type: string[];
@@ -6,7 +6,7 @@ interface CardProps {
 // <>(fragment)를 붙이지 않으면, Element[]가 return됐다고 나오면서 error생김. 한개씩 리턴해야함.
 const ContentCard = ({ title, type }: CardProps) => {
 	console.log(title);
-	return title === "" ? (
+	return title === '' ? (
 		<>
 			{type.map((x) => (
 				<Card>{x}</Card>
@@ -37,4 +37,5 @@ const Card = styled.div`
 	font-weight: 600;
 	color: #595959;
 `;
+
 export default ContentCard;

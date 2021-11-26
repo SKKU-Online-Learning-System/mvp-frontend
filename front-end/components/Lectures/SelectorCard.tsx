@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 interface CardProps {
 	title: string;
 	type: string[];
@@ -6,10 +6,10 @@ interface CardProps {
 
 const SelectorCard = ({ title, type }: CardProps) => {
 	return (
-		<div style={{ justifyContent: "center", alignItems: "center" }}>
+		<div style={{ justifyContent: 'center', alignItems: 'center' }}>
 			<TypeHeader>{title}</TypeHeader>
 			{type.map((x) => (
-				<div style={{ color: "rgb(120, 120, 120)" }}>
+				<div style={{ color: 'rgb(120, 120, 120)' }}>
 					<input type="checkbox" /> {x}
 				</div>
 			))}

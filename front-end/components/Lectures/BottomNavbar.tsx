@@ -1,4 +1,4 @@
-import SelectorList from "./SelectorList";
+import SelectorList from './SelectorList';
 const BottomNavbar = () => {
 	return <SelectorList />;
 };
