@@ -9,7 +9,7 @@ const SelectorCard = ({ title, type }: CardProps) => {
 		<div style={{ justifyContent: 'center', alignItems: 'center' }}>
 			<TypeHeader>{title}</TypeHeader>
 			{type.map((x) => (
-				<div style={{ color: 'rgb(120, 120, 120)' }}>
+				<div key={x} style={{ color: 'rgb(120, 120, 120)' }}>
 					<input type="checkbox" /> {x}
 				</div>
 			))}

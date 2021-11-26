@@ -5,17 +5,17 @@ interface CardProps {
 }
 // <>(fragment)를 붙이지 않으면, Element[]가 return됐다고 나오면서 error생김. 한개씩 리턴해야함.
 const ContentCard = ({ title, type }: CardProps) => {
-	console.log(title);
 	return title === '' ? (
 		<>
 			{type.map((x) => (
-				<Card>{x}</Card>
+				<Card key={x}>{x}</Card>
 			))}
 		</>
 	) : (
 		<CardTop>{title}</CardTop>
 	);
 };
+// key 줄때 unique & 연속되는 숫자로 주는게 좋음.
 //맨 첫번쨰 컴포넌트만 border-top 주고싶은데, 방법을 모르겠음.
 const CardTop = styled.div`
 	display: flex;

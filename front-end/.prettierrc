@@ -3,8 +3,6 @@
 	"semi": true,
 	"useTabs": true,
 	"tabWidth": 2,
-	"requireConfig": false,
 	"trailingComma": "all",
 	"printWidth": 80
 }
-	
