@@ -1,17 +1,31 @@
 import React from 'react';
 
 import Header from './Header';
-import style from './Layout.module.scss';
+import styled from 'styled-components';
 
 interface LayoutProps{
   children?: React.ReactNode;
 }
 
 const Layout = ({children} : LayoutProps) => (
-  <div className={style.layout}>
+  <LayoutBox>
     <Header/>
     {children}
-  </div>
+  </LayoutBox>
 );
+
+const LayoutBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  @media only screen and (min-width: 1440px) {
+    width: 1650px;
+  }
+  @media only screen and (max-width: 1440px) {
+    width: 100vw;
+  }
+`;
 
 export default Layout;

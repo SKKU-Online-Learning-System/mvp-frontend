@@ -9,7 +9,7 @@ const linkStyle = {
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
   return (
-    <div>
+    <div style={{width: '100%'}}>
       <Link href="/"><a style={linkStyle}>LOGO</a></Link>
       <Link href="/lectures"><a style={linkStyle}>강의</a></Link>
       <Link href="/community"><a style={linkStyle}>커뮤니티</a></Link>
