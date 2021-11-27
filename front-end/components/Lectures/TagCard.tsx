@@ -6,7 +6,7 @@ const TagCard = ({ name }: CardProps) => {
 	return (
 		<>
 			{name.map((x) => {
-				return <Card>{x}</Card>;
+				return <Card key={x}>{x}</Card>;
 			})}
 		</>
 	);
