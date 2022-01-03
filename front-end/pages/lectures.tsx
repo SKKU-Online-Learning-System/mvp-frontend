@@ -2,7 +2,7 @@ import Layout from '@components/Layout';
 import SidebarLeft from '@components/Lectures/SidebarLeft';
 import LectureBody from '@components/Lectures/LectureBody';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { addLectureType } from '../feature/lecture/lectureSlice';
 
