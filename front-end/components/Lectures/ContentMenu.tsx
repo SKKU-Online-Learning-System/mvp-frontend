@@ -1,19 +1,18 @@
 import ContentCard from './ContentCard';
+import { useAppSelector } from '../../app/hooks';
+import { RootState } from 'app/store';
+
 const ContentMenu = () => {
+	const { lectureType } = useAppSelector((state: RootState) => state.lecture);
 	return (
-		<div style={{ padding: '0 2vw' }}>
-			<ContentCard title={'전체 강의'} type={[]} />
-			<ContentCard
-				title={''}
-				type={[
-					'개발 · 프로그래밍',
-					'보안 · 네트워크',
-					'데이터 사이언스',
-					'크리에이티브',
-					'직무 · 마케팅',
-				]}
-			/>
-		</div>
+		<>
+			{lectureType && (
+				<div style={{ padding: '0 2vw' }}>
+					<ContentCard title={'전체 강의'} type={[]} />
+					<ContentCard title={''} type={lectureType} />
+				</div>
+			)}
+		</>
 	);
 };
 

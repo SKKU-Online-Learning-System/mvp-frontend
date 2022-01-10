@@ -1,18 +1,37 @@
 import styled from 'styled-components';
+import { useAppDispatch } from '../../app/hooks';
+import { setClickedId } from '../../feature/lecture/lectureSlice';
 interface CardProps {
 	title: string;
-	type: string[];
+	type: string[][];
 }
+
 // <>(fragment)를 붙이지 않으면, Element[]가 return됐다고 나오면서 error생김. 한개씩 리턴해야함.
 const ContentCard = ({ title, type }: CardProps) => {
+	const dispatch = useAppDispatch();
+
 	return title === '' ? (
 		<>
-			{type.map((x) => (
-				<Card key={x}>{x}</Card>
-			))}
+			{type[0] &&
+				type[0].map((category) => (
+					<Card
+						onClick={() => {
+							dispatch(setClickedId(category.id));
+						}}
+						key={category.id}
+					>
+						{category.categoryName}
+					</Card>
+				))}
 		</>
 	) : (
-		<CardTop>{title}</CardTop>
+		<CardTop
+			onClick={() => {
+				dispatch(setClickedId(0));
+			}}
+		>
+			{title}
+		</CardTop>
 	);
 };
 // key 줄때 unique & 연속되는 숫자로 주는게 좋음.
@@ -20,7 +39,7 @@ const ContentCard = ({ title, type }: CardProps) => {
 const CardTop = styled.div`
 	display: flex;
 	border: 1px solid #e4e4e4;
-
+	cursor: pointer;
 	padding: 0.85rem;
 	background: #fafafa;
 	font-weight: 600;
@@ -31,7 +50,7 @@ const Card = styled.div`
 	border-bottom: 1px solid #e4e4e4;
 	border-right: 1px solid #e4e4e4;
 	border-left: 1px solid #e4e4e4;
-
+	cursor: pointer;
 	padding: 0.85rem;
 	background: #fafafa;
 	font-weight: 600;
