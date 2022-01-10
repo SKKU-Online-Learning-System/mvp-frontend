@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { RootState } from 'app/store';
+
+import { BASE_URL } from 'shared/constants/constant';
 const LectureList = () => {
 	// local state로 저장
 	const dispatch = useAppDispatch();
@@ -13,13 +15,15 @@ const LectureList = () => {
 
 	useEffect(() => {
 		if (clickedId === 0) {
+			// 전체보기
 			axios
-				.post('http://52.78.92.40:3000/api/lectures')
+				.post(`${BASE_URL}/api/lectures`)
 				.then((res) => setLectureList(res.data.results))
 				.catch((err) => console.log(err));
 		} else {
+			// 카테고리 보기
 			axios
-				.post('http://52.78.92.40:3000/api/findLectures/category/parent', {
+				.post(`${BASE_URL}/api/findLectures/category/parent`, {
 					parentCategoryId: clickedId,
 				})
 				.then((res) => setLectureList(res.data))
@@ -36,6 +40,7 @@ const LectureList = () => {
 
 const LectureHeader = styled.div`
 	display: flex;
+	cursor: pointer;
 	flex-flow: row wrap;
 `;
 export default LectureList;

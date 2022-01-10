@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch } from '../../app/hooks';
 import { setClickedId } from '../../feature/lecture/lectureSlice';
 interface CardProps {
 	title: string;
@@ -39,7 +39,7 @@ const ContentCard = ({ title, type }: CardProps) => {
 const CardTop = styled.div`
 	display: flex;
 	border: 1px solid #e4e4e4;
-
+	cursor: pointer;
 	padding: 0.85rem;
 	background: #fafafa;
 	font-weight: 600;
@@ -50,7 +50,7 @@ const Card = styled.div`
 	border-bottom: 1px solid #e4e4e4;
 	border-right: 1px solid #e4e4e4;
 	border-left: 1px solid #e4e4e4;
-
+	cursor: pointer;
 	padding: 0.85rem;
 	background: #fafafa;
 	font-weight: 600;
