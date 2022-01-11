@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
+import LoginForm from "./LoginForm";
 
-interface LoginModalProps{
+interface LoginModalProps {
   show: boolean;
   onClose: Function;
   children?: React.ReactNode;
@@ -14,7 +15,7 @@ function LoginModal({ show, onClose, children }: LoginModalProps) {
   useEffect(() => {
     setIsBrowser(true);
   }, []);
-  
+
   const handleCloseClick = (e: any) => {
     e.preventDefault();
     onClose();
@@ -28,7 +29,8 @@ function LoginModal({ show, onClose, children }: LoginModalProps) {
             x
           </a>
         </StyledModalHeader>
-        <StyledModalBody>{children}</StyledModalBody>
+
+        <StyledModalBody><LoginForm /></StyledModalBody>
       </StyledModal>
     </StyledModalOverlay>
   ) : null;
@@ -37,7 +39,7 @@ function LoginModal({ show, onClose, children }: LoginModalProps) {
     const portalDiv = document.getElementById("modal-root")!;
     return ReactDOM.createPortal(
       modalContent,
-      portalDiv 
+      portalDiv
     );
   } else {
     return null;
