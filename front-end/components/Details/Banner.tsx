@@ -4,8 +4,8 @@ import BannerDescription from '@components/Details/BannerDescription';
 const Banner = () => {
 	return (
 		<BannerLayout>
-			<BannerImg></BannerImg>
-			<BannerDescription></BannerDescription>
+			<BannerImg />
+			<BannerDescription />
 		</BannerLayout>
 	);
 };
