@@ -8,10 +8,12 @@ const BannerDescription = () => {
 	useEffect(() => {
 		// if (clickedId === 0) {
 		// 	// 전체보기
-		axios
-			.post(`${BASE_URL}/api/lectures`)
-			.then((res) => console.log(res.data.results))
-			.catch((err) => console.log(err));
+		// axios
+		// 	.post(`${BASE_URL}/api/findLectures/category/parent`, {
+		// 		parentCategoryId: 1,
+		// 	})
+		// 	.then((res) => console.log(res))
+		// 	.catch((err) => console.log(err));
 		// } else {
 		// 	// 카테고리 보기
 		// 	axios
@@ -21,6 +23,13 @@ const BannerDescription = () => {
 		// 		.then((res) => setLectureList(res.data))
 		// 		.catch((err) => console.log(err));
 		// }
+		axios
+			.post(`${BASE_URL}/api/findLectures/category/parent`, {
+				parent: 1,
+				parentCategoryId: 13,
+			})
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(err));
 	}, []);
 	return (
 		<DescContainer>
