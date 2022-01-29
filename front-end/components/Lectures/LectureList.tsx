@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { RootState } from 'app/store';
 
-import { BASE_URL } from 'shared/constants/constant';
+import { BASE_URL } from 'shared/constants/apis';
 const LectureList = () => {
 	// local state로 저장
 	const dispatch = useAppDispatch();
