@@ -4,11 +4,12 @@ import LectureBody from '@components/Lectures/LectureBody';
 
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { GET_ALL_PARENT_CATEGORIES_API } from 'shared/constants/apis';
 import { addLectureType } from '../feature/lecture/lectureSlice';
 
 import axios from 'axios';
 import { RootState } from 'app/store';
-import { BASE_URL } from 'shared/constants/constant';
+import { BASE_URL } from 'shared/constants/apis';
 //52.78.92.40:3000/api/category/parent
 const LecturesPage = () => {
 	const dispatch = useAppDispatch();
@@ -17,7 +18,7 @@ const LecturesPage = () => {
 	useEffect(() => {
 		if (lectureType.length === 0) {
 			axios
-				.post(`${BASE_URL}/api/category/parent`)
+				.post(GET_ALL_PARENT_CATEGORIES_API)
 				.then((res) => dispatch(addLectureType(res.data)))
 				.catch((err) => console.log(err));
 		}
