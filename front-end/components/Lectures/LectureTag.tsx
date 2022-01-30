@@ -1,5 +1,6 @@
+import React from 'react';
 import TagCard from './TagCard';
-import { SerchButton } from './TopSearchbar';
+import styled from 'styled-components';
 const LectureTag = () => {
 	let tags = ['Python', 'Java'];
 	for (var i = 0; i < 20; i++) {
@@ -31,4 +32,13 @@ const LectureTag = () => {
 		</div>
 	);
 };
-export default LectureTag;
+
+export const SerchButton = styled.button`
+	border: 1px solid #dedede;
+	height: 36px;
+	background-color: #1dc078;
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 600;
+`;
+export default React.memo(LectureTag); // 태그들은 렌더링 되지 않음.

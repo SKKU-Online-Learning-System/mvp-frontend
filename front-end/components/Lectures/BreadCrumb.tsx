@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 const BreadCrumb = () => {
 	return (
@@ -29,4 +30,4 @@ const Selector = styled.select`
 	outline: none; // 선택 후 마우스 다른곳으로 옮기면 선택 테두리 사라짐
 	font-weight: 500;
 `;
-export default BreadCrumb;
+export default React.memo(BreadCrumb);

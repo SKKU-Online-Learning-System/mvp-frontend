@@ -40,7 +40,6 @@ const LectureList = () => {
 
 const LectureHeader = styled.div`
 	display: flex;
-	cursor: pointer;
 	flex-flow: row wrap;
 `;
 export default LectureList;

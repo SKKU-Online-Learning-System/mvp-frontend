@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { useAppDispatch } from '../../app/hooks';
 import { setClickedId } from '../../feature/lecture/lectureSlice';
@@ -57,4 +58,4 @@ const Card = styled.div`
 	color: #595959;
 `;
 
-export default ContentCard;
+export default React.memo(ContentCard);

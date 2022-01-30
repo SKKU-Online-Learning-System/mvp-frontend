@@ -7,7 +7,10 @@ const LectureCard = ({ lectureInfo }: CardProps) => {
 		<>
 			{lectureInfo.map((i) => {
 				return (
-					<div key={i.id} style={{ flex: '0 1 25%', padding: '1rem' }}>
+					<div
+						key={i.id}
+						style={{ flex: '0 1 25%', padding: '1rem', cursor: 'pointer' }}
+					>
 						<img style={{ width: '100%' }} src="images/card_img.png" alt="no" />
 						<div
 							style={{
