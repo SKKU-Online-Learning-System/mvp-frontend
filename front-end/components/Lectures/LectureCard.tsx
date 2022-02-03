@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
-
-interface CardProps {
-	lectureInfo: string[];
-}
-
-const LectureCard = ({ lectureInfo }: CardProps) => {
+import { useAppSelector } from 'app/hooks';
+import { RootState } from 'app/store';
+const LectureCard = () => {
 	const router = useRouter();
+	const { lectures } = useAppSelector((state: RootState) => state.lecture);
+
 	const handleClick = (id: number) => {
 		//router.push(`/details/${id}`);
 		router.push(`/details`);
@@ -13,7 +12,7 @@ const LectureCard = ({ lectureInfo }: CardProps) => {
 
 	return (
 		<>
-			{lectureInfo.map((i) => {
+			{lectures.map((i) => {
 				return (
 					<div
 						onClick={(event: React.MouseEvent<HTMLElement>) =>

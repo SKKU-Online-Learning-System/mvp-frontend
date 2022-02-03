@@ -4,11 +4,13 @@ import { RootState } from '../../app/store';
 export type lectureState = {
 	lectureType: string[][];
 	clickedId: number;
+	lectures: object[];
 };
 
 const initialState: lectureState = {
 	lectureType: [],
 	clickedId: 0,
+	lectures: [],
 };
 
 export const lectureSlice = createSlice({
@@ -21,10 +23,14 @@ export const lectureSlice = createSlice({
 		setClickedId: (state, action: PayloadAction<number>) => {
 			state.clickedId = action.payload;
 		},
+		setLectures: (state, action: PayloadAction<object[]>) => {
+			state.lectures = action.payload;
+		},
 	},
 });
 
-export const { addLectureType, setClickedId } = lectureSlice.actions;
+export const { addLectureType, setClickedId, setLectures } =
+	lectureSlice.actions;
 
 // calling the above actions would be useless if we could not access the data in the state. So, we use something called a selector which allows us to select a value from the state.
 //export const selectCount = (state: RootState) => state.counter.value;
