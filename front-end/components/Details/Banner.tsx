@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import BannerDescription from '@components/Details/BannerDescription';
-
-const Banner = () => {
+interface DataProps {
+	data: any;
+}
+const Banner = ({ data }: DataProps) => {
 	return (
 		<BannerLayout>
-			<BannerImg />
-			<BannerDescription />
+			<BannerImg src={data.mainimg} />
+			<BannerDescription data={data} />
 		</BannerLayout>
 	);
 };
@@ -16,7 +18,7 @@ const BannerLayout = styled.div`
 	display: flex;
 	align-items: center;
 `;
-const BannerImg = styled.div`
+const BannerImg = styled.img`
 	background-color: #000000;
 	width: 515px;
 	height: 301px;
