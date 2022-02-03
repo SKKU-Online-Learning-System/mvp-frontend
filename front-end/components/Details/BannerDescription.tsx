@@ -28,7 +28,9 @@ const BannerDescription = ({ data }: DataProps) => {
 					src={data.profileimg ? data.profileimg : 'images/details_profile.png'}
 					alt=""
 				/>
-				{data.name}
+				<a href="#" style={{ color: 'inherit' }}>
+					{data.name}
+				</a>
 			</DescName>
 			<Margin></Margin>
 			<TagContainer>
