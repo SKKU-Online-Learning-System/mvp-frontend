@@ -7,18 +7,20 @@ import ThumbnailList from '@components/Home/ThumbnailList';
 
 import { useEffect, useState } from 'react';
 
-import { BASE_URL } from 'shared/constants/constant';
+import {
+	GET_ALL_LECTURE_LISTS_API,
+	SIGNUP_API,
+} from 'shared/constants/apis';
 import { getDiffDays } from 'shared/utils/getDiffDays';
+import axios from 'axios';
 
 const Index = () => {
 	const [lectureInfo, setLectureInfo] = useState<any[]>([]);
 	const [newLectures, setNewLectures] = useState<any[]>([]);
 	const [basicLectures, setBasicLectures] = useState<any[]>([]);
 
-	const LectureURL = `${BASE_URL}/api/lectures`;
-
 	const getLectures = () => {
-		fetch(LectureURL, {
+		fetch(GET_ALL_LECTURE_LISTS_API, {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
@@ -28,6 +30,25 @@ const Index = () => {
 			.then((data) => setLectureInfo([...lectureInfo, data]))
 			.catch((err) => console.error(err));
 	};
+
+	const Test = () => {
+		axios
+			.post(SIGNUP_API, {
+				id: 'rbals',
+				pw: '1234?',
+				name: 'hkm',
+				sex: '1',
+				phone: '010-2222-1394',
+				birth: '2005-02-02',
+				desc: 'test',
+			})
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
+	};
+
+	useEffect(() => {
+		Test();
+	}, []);
 
 	const getNewLectures = (lectureArray: any) => {
 		let res = [];

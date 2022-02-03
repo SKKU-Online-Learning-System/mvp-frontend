@@ -1,6 +1,7 @@
 import Layout from '@components/Layout';
 import Banner from '@components/Details/Banner';
 import Menu from '@components/Details/Menu';
+import ContentSet from '@components/Details/ContentSet';
 import Footer from '@components/Details/Footer';
 
 const DUMMY_DATA = {
@@ -29,6 +30,7 @@ const DetailsPage = () => (
 	<Layout>
 		<Banner data={DUMMY_DATA} />
 		<Menu />
+		<ContentSet />
 		<Footer />
 	</Layout>
 );
