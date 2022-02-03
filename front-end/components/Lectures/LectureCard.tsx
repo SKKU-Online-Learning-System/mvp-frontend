@@ -1,13 +1,26 @@
-interface CardProps {
-	lectureInfo: string[];
-}
+import { useRouter } from 'next/router';
+import { useAppSelector } from 'app/hooks';
+import { RootState } from 'app/store';
+const LectureCard = () => {
+	const router = useRouter();
+	const { lectures } = useAppSelector((state: RootState) => state.lecture);
 
-const LectureCard = ({ lectureInfo }: CardProps) => {
+	const handleClick = (id: number) => {
+		//router.push(`/details/${id}`);
+		router.push(`/details`);
+	};
+
 	return (
 		<>
-			{lectureInfo.map((i) => {
+			{lectures.map((i) => {
 				return (
-					<div key={i.id} style={{ flex: '0 1 25%', padding: '1rem' }}>
+					<div
+						onClick={(event: React.MouseEvent<HTMLElement>) =>
+							handleClick(i.id)
+						}
+						key={i.id}
+						style={{ flex: '0 1 25%', padding: '1rem', cursor: 'pointer' }}
+					>
 						<img style={{ width: '100%' }} src="images/card_img.png" alt="no" />
 						<div
 							style={{

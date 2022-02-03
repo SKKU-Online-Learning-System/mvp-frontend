@@ -30,7 +30,6 @@ const DetailsPage = () => (
 	<Layout>
 		<Banner data={DUMMY_DATA} />
 		<Menu />
-		<ContentSet />
 		<Footer />
 	</Layout>
 );

@@ -1,3 +1,4 @@
+import React from 'react';
 import SelectorCard from './SelectorCard';
 const SelectorList = () => {
 	return (
@@ -6,5 +7,4 @@ const SelectorList = () => {
 		</div>
 	);
 };
-
 export default SelectorList;

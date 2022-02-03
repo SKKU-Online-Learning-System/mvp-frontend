@@ -1,6 +1,7 @@
 import ContentCard from './ContentCard';
 import { useAppSelector } from '../../app/hooks';
 import { RootState } from 'app/store';
+import React from 'react';
 
 const ContentMenu = () => {
 	const { lectureType } = useAppSelector((state: RootState) => state.lecture);
@@ -15,5 +16,4 @@ const ContentMenu = () => {
 		</>
 	);
 };
-
 export default ContentMenu;

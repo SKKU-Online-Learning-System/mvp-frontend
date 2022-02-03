@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 interface CardProps {
 	name: string[];
@@ -27,4 +28,5 @@ const Card = styled.div`
 	margin-left: 1rem;
 	font-size: 1rem;
 `;
+//export default React.memo(TagCard);
 export default TagCard;

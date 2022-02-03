@@ -7,10 +7,7 @@ import ThumbnailList from '@components/Home/ThumbnailList';
 
 import { useEffect, useState } from 'react';
 
-import {
-	GET_ALL_LECTURE_LISTS_API,
-	SIGNUP_API,
-} from 'shared/constants/apis';
+import { GET_ALL_LECTURE_LISTS_API, SIGNUP_API } from 'shared/constants/apis';
 import { getDiffDays } from 'shared/utils/getDiffDays';
 import axios from 'axios';
 
@@ -59,6 +56,7 @@ const Index = () => {
 		// object shallow copy때문에 값이 같이 바뀌는 문제
 
 		for (let i = 0; i < 4; i++) {
+			if (temp[i] === undefined) continue;
 			const copiedObj = JSON.parse(JSON.stringify(temp[i]));
 			copiedObj.lectureName += ' 신규(NEW)';
 			res.push(copiedObj);

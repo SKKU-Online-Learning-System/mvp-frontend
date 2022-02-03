@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 interface CardProps {
 	title: string;
@@ -5,12 +6,16 @@ interface CardProps {
 }
 
 const SelectorCard = ({ title, type }: CardProps) => {
+	const handleClicked = (e: React.ChangeEvent<HTMLInputElement>) => {
+		console.log(e.target.name);
+		console.log(e.target.checked);
+	};
 	return (
 		<div style={{ justifyContent: 'center', alignItems: 'center' }}>
 			<TypeHeader>{title}</TypeHeader>
 			{type.map((x) => (
 				<div key={x} style={{ color: 'rgb(120, 120, 120)' }}>
-					<input type="checkbox" /> {x}
+					<input type="checkbox" onChange={handleClicked} name={x} /> {x}
 				</div>
 			))}
 		</div>

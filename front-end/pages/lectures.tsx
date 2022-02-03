@@ -9,7 +9,7 @@ import { addLectureType } from '../feature/lecture/lectureSlice';
 
 import axios from 'axios';
 import { RootState } from 'app/store';
-import { BASE_URL } from 'shared/constants/apis';
+
 //52.78.92.40:3000/api/category/parent
 const LecturesPage = () => {
 	const dispatch = useAppDispatch();
