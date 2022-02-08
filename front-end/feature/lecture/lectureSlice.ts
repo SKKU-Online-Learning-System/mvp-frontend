@@ -5,12 +5,14 @@ export type lectureState = {
 	lectureType: string[][];
 	clickedId: number;
 	lectures: object[];
+	allLectures: object[]; // (임시) 검색용 전체 결과 리스트
 };
 
 const initialState: lectureState = {
 	lectureType: [],
 	clickedId: 0,
 	lectures: [],
+	allLectures: [],
 };
 
 export const lectureSlice = createSlice({
@@ -26,10 +28,13 @@ export const lectureSlice = createSlice({
 		setLectures: (state, action: PayloadAction<object[]>) => {
 			state.lectures = action.payload;
 		},
+		setAllLectures: (state, action: PayloadAction<object[]>) => {
+			state.allLectures = action.payload;
+		},
 	},
 });
 
-export const { addLectureType, setClickedId, setLectures } =
+export const { addLectureType, setClickedId, setLectures, setAllLectures } =
 	lectureSlice.actions;
 
 // calling the above actions would be useless if we could not access the data in the state. So, we use something called a selector which allows us to select a value from the state.

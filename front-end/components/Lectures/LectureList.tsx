@@ -3,7 +3,7 @@ import LectureCard from './LectureCard';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useState, useEffect } from 'react';
-import { setLectures } from 'feature/lecture/lectureSlice';
+import { setLectures, setAllLectures } from 'feature/lecture/lectureSlice';
 import axios from 'axios';
 import { RootState } from 'app/store';
 
@@ -21,7 +21,10 @@ const LectureList = () => {
 			// 전체보기
 			axios
 				.post(`${BASE_URL}/api/lectures`)
-				.then((res) => dispatch(setLectures(res.data.results)))
+				.then((res) => {
+					dispatch(setLectures(res.data.results));
+					dispatch(setAllLectures(res.data.results)); // 검색 결과 임시로 전체 저장
+				})
 				.catch((err) => console.log(err));
 		} else if (clickedId !== -1) {
 			// 카테고리 보기
