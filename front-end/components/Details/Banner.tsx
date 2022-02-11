@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 import BannerDescription from '@components/Details/BannerDescription';
 interface DataProps {
 	data: any;
@@ -6,7 +7,9 @@ interface DataProps {
 const Banner = ({ data }: DataProps) => {
 	return (
 		<BannerLayout>
-			<BannerImg src={data.mainimg} />
+			<Link href="/lecturePlayer">
+				<BannerImg src={data.mainimg} />
+			</Link>
 			<BannerDescription data={data} />
 		</BannerLayout>
 	);
