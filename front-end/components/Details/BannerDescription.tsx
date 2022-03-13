@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Tag from '@components/Details/Tag';
-import { BASE_URL } from 'shared/constants/constant';
 import { useEffect } from 'react';
 import axios from 'axios';
 interface DataProps {

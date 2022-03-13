@@ -10,34 +10,32 @@ const TopSearchbar = () => {
 	const { allLectures } = useAppSelector((state: RootState) => state.lecture);
 
 	const handleSearch = (e: any) => {
-		console.log(inputRef.current.value);
-		//검색내용 store에 넣기.
-		dispatch(setClickedId(-1)); // 이게 없으면 useEffect에서 전체클릭 -> 검색 -> 전체클릭 시 useEffect가 작동하지 않음.
-		if (inputRef.current.value === '없음') {
-			dispatch(setLectures([{ id: -1 }]));
-		} else {
-			let searchResults = allLectures.filter(
-				(elem: any) =>
-					elem.lectureName
-						.toUpperCase()
-						.includes(inputRef.current.value.toUpperCase()) ||
-					elem.lectureIntro
-						.toUpperCase()
-						.includes(inputRef.current.value.toUpperCase()),
-			);
-
-			if (searchResults.length === 0) {
-				dispatch(setLectures([{ id: -1 }]));
-			} else {
-				dispatch(setLectures(searchResults));
-			}
-		}
-
-		e.preventDefault();
+		// console.log(inputRef.current.value);
+		// //검색내용 store에 넣기.
+		// dispatch(setClickedId(-1)); // 이게 없으면 useEffect에서 전체클릭 -> 검색 -> 전체클릭 시 useEffect가 작동하지 않음.
+		// if (inputRef.current.value === '없음') {
+		// 	dispatch(setLectures([{ id: -1 }]));
+		// } else {
+		// 	let searchResults = allLectures.filter(
+		// 		(elem: any) =>
+		// 			elem.lectureName
+		// 				.toUpperCase()
+		// 				.includes(inputRef.current.value.toUpperCase()) ||
+		// 			elem.lectureIntro
+		// 				.toUpperCase()
+		// 				.includes(inputRef.current.value.toUpperCase()),
+		// 	);
+		// 	if (searchResults.length === 0) {
+		// 		dispatch(setLectures([{ id: -1 }]));
+		// 	} else {
+		// 		dispatch(setLectures(searchResults));
+		// 	}
+		// }
+		// e.preventDefault();
 	};
 
 	const handleInput = (e: any) => {
-		inputRef.current.value = e.target.value;
+		// inputRef.current.value = e.target.value;
 	};
 
 	return (

@@ -4,7 +4,6 @@ import LectureBody from '@components/Lectures/LectureBody';
 
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { GET_ALL_PARENT_CATEGORIES_API } from 'shared/constants/apis';
 import { addLectureType } from '../feature/lecture/lectureSlice';
 
 import axios from 'axios';
@@ -17,10 +16,10 @@ const LecturesPage = () => {
 
 	useEffect(() => {
 		if (lectureType.length === 0) {
-			axios
-				.post(GET_ALL_PARENT_CATEGORIES_API)
-				.then((res) => dispatch(addLectureType(res.data)))
-				.catch((err) => console.log(err));
+			// axios
+			// 	.post(GET_ALL_PARENT_CATEGORIES_API)
+			// 	.then((res) => dispatch(addLectureType(res.data)))
+			// 	.catch((err) => console.log(err));
 		}
 	}, []);
 
