@@ -1,23 +1,23 @@
 import dynamic from 'next/dynamic';
-// import ReactPlayer from 'react-player/lazy';
+import ReactPlayer from 'react-player/lazy';
 
 import Layout from '@components/Layout';
-// import { EditorProps } from '@toast-ui/react-editor';
+import { EditorProps } from '@toast-ui/react-editor';
 
-// import '@toast-ui/editor/dist/toastui-editor.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
 import styled from 'styled-components';
 
-// const Editor = dynamic<EditorProps>(
-// 	() => import('@toast-ui/react-editor').then((m) => m.Editor),
-// 	{ ssr: false },
-// );
+const Editor = dynamic<EditorProps>(
+	() => import('@toast-ui/react-editor').then((m) => m.Editor),
+	{ ssr: false },
+);
 
 const LecturePlayer = () => {
 	return (
 		<Layout>
 			<LecturePlayerWrapper>
 				<div className="player-wrapper">
-					{/* <ReactPlayer
+					<ReactPlayer
 						className="react-player"
 						url={
 							'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
@@ -41,7 +41,7 @@ const LecturePlayer = () => {
 						toolbarItems={[]}
 						height="768px"
 						initialEditType="markdown"
-					/> */}
+					/>
 				</div>
 			</LecturePlayerWrapper>
 		</Layout>
