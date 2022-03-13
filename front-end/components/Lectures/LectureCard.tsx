@@ -12,7 +12,7 @@ const LectureCard = () => {
 
 	return (
 		<>
-			{lectures.map((i) => {
+			{/* {lectures.map((i) => {
 				return (
 					<div
 						onClick={(event: React.MouseEvent<HTMLElement>) =>
@@ -41,7 +41,7 @@ const LectureCard = () => {
 						</div>
 					</div>
 				);
-			})}
+			})} */}
 		</>
 	);
 };

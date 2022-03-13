@@ -13,7 +13,7 @@ const ContentCard = ({ title, type }: CardProps) => {
 
 	return title === '' ? (
 		<>
-			{type[0] &&
+			{/* {type[0] &&
 				type[0].map((category) => (
 					<Card
 						onClick={() => {
@@ -23,7 +23,7 @@ const ContentCard = ({ title, type }: CardProps) => {
 					>
 						{category.categoryName}
 					</Card>
-				))}
+				))} */}
 		</>
 	) : (
 		<CardTop
