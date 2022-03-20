@@ -4,7 +4,7 @@ import { RootState } from '../../app/store';
 export type lectureState = {
 	lectureType: string[][];
 	clickedId: number;
-	lectures: object[];
+	lectures: any;
 	allLectures: object[]; // (임시) 검색용 전체 결과 리스트
 };
 
@@ -25,7 +25,7 @@ export const lectureSlice = createSlice({
 		setClickedId: (state, action: PayloadAction<number>) => {
 			state.clickedId = action.payload;
 		},
-		setLectures: (state, action: PayloadAction<object[]>) => {
+		setLectures: (state, action: PayloadAction<any>) => {
 			state.lectures = action.payload;
 		},
 		setAllLectures: (state, action: PayloadAction<object[]>) => {
