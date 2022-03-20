@@ -14,7 +14,7 @@ const CardList = ({ data }: Data) => {
 			}}
 		>
 			{data.map((res: any, index: number) => (
-				<Card key={index} title={res.lectureName} author={res.lecturerId} />
+				<Card key={index} title={res.title} description={res.description} />
 			))}
 		</div>
 	);

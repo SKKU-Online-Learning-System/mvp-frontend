@@ -9,56 +9,35 @@ import { useEffect, useState } from 'react';
 
 import { getDiffDays } from 'shared/utils/getDiffDays';
 import axios from 'axios';
+import { fetchLectureLists } from 'shared/apis/lectureApi';
 
 const Index = () => {
 	const [lectureInfo, setLectureInfo] = useState<any[]>([]);
 	const [newLectures, setNewLectures] = useState<any[]>([]);
 	const [basicLectures, setBasicLectures] = useState<any[]>([]);
 
-	// const getLectures = () => {
-	// 	fetch(GET_ALL_LECTURE_LISTS_API, {
-	// 		method: 'post',
-	// 		headers: {
-	// 			'Content-Type': 'application/x-www-form-urlencoded',
-	// 		},
-	// 	})
-	// 		.then((res) => res.json())
-	// 		.then((data) => setLectureInfo([...lectureInfo, data]))
-	// 		.catch((err) => console.error(err));
-	// };
-
-	// const Test = () => {
-
-	// 	axios
-	// 		.post(SIGNUP_API, {
-	// 			id: 'rbals',
-	// 			pw: '1234?',
-	// 			name: 'hkm',
-	// 			sex: '1',
-	// 			phone: '010-2222-1394',
-	// 			birth: '2005-02-02',
-	// 			desc: 'test',
-	// 		})
-	// 		.then((res) => console.log(res))
-	// 		.catch((err) => console.log(err));
-	// };
-
-	useEffect(() => {
-		// Test();
-	}, []);
+	const getLectures = () => {
+		fetchLectureLists()
+			.then((res) => {
+				setLectureInfo([...lectureInfo, ...res.data.records]);
+			})
+			.catch((err) => console.error(err));
+	};
 
 	const getNewLectures = (lectureArray: any) => {
 		let res = [];
-		let temp = lectureArray[0].results.filter(
-			(data: any) => getDiffDays(data.time) <= 30,
+		console.log(lectureArray);
+		let temp = lectureArray.filter(
+			(data: any) => getDiffDays(data.created_at) <= 30,
 		);
+		console.log(temp);
 		// let res = temp.slice(0, 4);
 		// object shallow copy때문에 값이 같이 바뀌는 문제
 
 		for (let i = 0; i < 4; i++) {
 			if (temp[i] === undefined) continue;
 			const copiedObj = JSON.parse(JSON.stringify(temp[i]));
-			copiedObj.lectureName += ' 신규(NEW)';
+			copiedObj.title += ' 신규(NEW)';
 			res.push(copiedObj);
 		}
 
@@ -66,10 +45,8 @@ const Index = () => {
 	}; // 새 강의
 
 	const getBasicLectures = (lectureArray: any) => {
-		let temp = lectureArray[0].results.filter(
-			(data: any) => data.difficulty === 1,
-		);
-
+		console.log(lectureArray);
+		let temp = lectureArray.filter((data: any) => data.difficulty === 1);
 		temp = temp.slice(0, 4);
 
 		return temp;
@@ -78,7 +55,7 @@ const Index = () => {
 	const getRecentPlayedLectures = (lectureArray: any) => {}; // 최근 재생한 강의
 
 	useEffect(() => {
-		// getLectures();
+		getLectures();
 	}, []);
 
 	useEffect(() => {
