@@ -9,16 +9,15 @@ const LectureCard = () => {
 		//router.push(`/details/${id}`);
 		router.push(`/details`);
 	};
-
 	return (
 		<>
-			{/* {lectures.map((i) => {
+			{lectures.map((elem: any) => {
 				return (
 					<div
 						onClick={(event: React.MouseEvent<HTMLElement>) =>
-							handleClick(i.id)
+							handleClick(elem.id)
 						}
-						key={i.id}
+						key={elem.id}
 						style={{ flex: '0 1 25%', padding: '1rem', cursor: 'pointer' }}
 					>
 						<img style={{ width: '100%' }} src="images/card_img.png" alt="no" />
@@ -27,7 +26,7 @@ const LectureCard = () => {
 								fontWeight: 700,
 							}}
 						>
-							{i.lectureName}
+							{elem.title}
 						</div>
 						<div
 							style={{
@@ -37,11 +36,11 @@ const LectureCard = () => {
 								height: '100px',
 							}}
 						>
-							{i.lectureIntro}
+							{elem.description}
 						</div>
 					</div>
 				);
-			})} */}
+			})}
 		</>
 	);
 };
