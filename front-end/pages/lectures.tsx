@@ -5,21 +5,21 @@ import LectureBody from '@components/Lectures/LectureBody';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { addLectureType } from '../feature/lecture/lectureSlice';
-
+import { fetchAllLectureCategories } from 'shared/apis/lectureApi';
 import axios from 'axios';
 import { RootState } from 'app/store';
 
 //52.78.92.40:3000/api/category/parent
 const LecturesPage = () => {
+	console.log(process.env.NEXT_PUBLIC_API_SERVER);
 	const dispatch = useAppDispatch();
 	const { lectureType } = useAppSelector((state: RootState) => state.lecture);
 
 	useEffect(() => {
 		if (lectureType.length === 0) {
-			// axios
-			// 	.post(GET_ALL_PARENT_CATEGORIES_API)
-			// 	.then((res) => dispatch(addLectureType(res.data)))
-			// 	.catch((err) => console.log(err));
+			fetchAllLectureCategories()
+				.then((res: any) => dispatch(addLectureType(res.data)))
+				.catch((err: any) => console.log(err));
 		}
 	}, []);
 

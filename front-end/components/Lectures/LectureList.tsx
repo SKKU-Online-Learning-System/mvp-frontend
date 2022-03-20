@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { setLectures, setAllLectures } from 'feature/lecture/lectureSlice';
 import axios from 'axios';
 import { RootState } from 'app/store';
+import { fetchLectureLists } from 'shared/apis/lectureApi';
 
 const LectureList = () => {
 	// local state로 저장
@@ -17,34 +18,34 @@ const LectureList = () => {
 	useEffect(() => {
 		console.log('Test');
 		if (clickedId === 0) {
-			// 전체보기
-			// axios
-			// 	.post(`${BASE_URL}/api/lectures`)
-			// 	.then((res) => {
-			// 		dispatch(setLectures(res.data.results));
-			// 		dispatch(setAllLectures(res.data.results)); // 검색 결과 임시로 전체 저장
-			// 	})
-			// 	.catch((err) => console.log(err));
+			//전체보기
+			fetchLectureLists()
+				.then((res) => {
+					console.log(res.data.records);
+					dispatch(setLectures(res.data.records));
+					dispatch(setAllLectures(res.data.records)); // 검색 결과 임시로 전체 저장
+				})
+				.catch((err) => console.log(err));
 		} else if (clickedId !== -1) {
 			// 카테고리 보기
-			// axios
-			// 	.post(`${BASE_URL}/api/findLectures/category/parent`, {
-			// 		parentCategoryId: clickedId,
-			// 	})
-			// 	.then((res) => dispatch(setLectures(res.data)))
-			// 	.catch((err) => console.log(err));
+			fetchLectureLists()
+				.then((res) => {
+					dispatch(setLectures(res.data.records));
+					dispatch(setAllLectures(res.data.records)); // 검색 결과 임시로 전체 저장
+				})
+				.catch((err) => console.log(err));
 		}
 	}, [clickedId]);
 
 	return (
 		<LectureHeader>
-			{/* {lectures.length === 0 ? (
+			{lectures.length === 0 ? (
 				<div>강의 로딩중...</div>
 			) : lectures[0].id !== -1 ? (
 				<LectureCard />
 			) : (
 				<div>검색 결과가 없습니다!!!</div>
-			)} */}
+			)}
 		</LectureHeader>
 	);
 };

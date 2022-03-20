@@ -13,17 +13,17 @@ const ContentCard = ({ title, type }: CardProps) => {
 
 	return title === '' ? (
 		<>
-			{/* {type[0] &&
-				type[0].map((category) => (
+			{type[0] &&
+				type[0].map((category: any) => (
 					<Card
 						onClick={() => {
 							dispatch(setClickedId(category.id));
 						}}
 						key={category.id}
 					>
-						{category.categoryName}
+						{category.name}
 					</Card>
-				))} */}
+				))}
 		</>
 	) : (
 		<CardTop
