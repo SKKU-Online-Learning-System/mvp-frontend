@@ -19,7 +19,7 @@ const LectureList = () => {
 		console.log('Test');
 		if (clickedId === 0) {
 			//전체보기
-			fetchLectureLists()
+			fetchLectureLists('')
 				.then((res) => {
 					console.log(res.data.records);
 					dispatch(setLectures(res.data.records));
@@ -28,7 +28,7 @@ const LectureList = () => {
 				.catch((err) => console.log(err));
 		} else if (clickedId !== -1) {
 			// 카테고리 보기
-			fetchLectureLists()
+			fetchLectureLists('')
 				.then((res) => {
 					dispatch(setLectures(res.data.records));
 					dispatch(setAllLectures(res.data.records)); // 검색 결과 임시로 전체 저장

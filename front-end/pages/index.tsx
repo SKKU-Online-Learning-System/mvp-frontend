@@ -17,7 +17,7 @@ const Index = () => {
 	const [basicLectures, setBasicLectures] = useState<any[]>([]);
 
 	const getLectures = () => {
-		fetchLectureLists()
+		fetchLectureLists('')
 			.then((res) => {
 				setLectureInfo([...lectureInfo, ...res.data.records]);
 			})
