@@ -16,12 +16,10 @@ const LectureList = () => {
 	);
 	// TODO : 검색후에 돌아왔을때, 다시 강의를 새로 불러오는 문제, 원래 페이지가 나와야함.
 	useEffect(() => {
-		console.log('Test');
 		if (clickedId === 0) {
 			//전체보기
 			fetchLectureLists('')
 				.then((res) => {
-					console.log(res.data.records);
 					dispatch(setLectures(res.data.records));
 					dispatch(setAllLectures(res.data.records)); // 검색 결과 임시로 전체 저장
 				})
@@ -39,13 +37,12 @@ const LectureList = () => {
 
 	return (
 		<LectureHeader>
-			{lectures.length === 0 ? (
-				<div>강의 로딩중...</div>
-			) : lectures[0].id !== -1 ? (
-				<LectureCard />
-			) : (
-				<div>검색 결과가 없습니다!!!</div>
-			)}
+			{lectures &&
+				(lectures.length === 0 ? (
+					<div>검색 결과가 없습니다!!!</div>
+				) : (
+					<LectureCard />
+				))}
 		</LectureHeader>
 	);
 };

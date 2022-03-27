@@ -3,24 +3,36 @@ import styled from 'styled-components';
 interface CardProps {
 	title: string;
 	type: string[];
+	setCheckList: any;
+	checkList: boolean[];
 }
 
-const SelectorCard = ({ title, type }: CardProps) => {
-	const handleClicked = (e: React.ChangeEvent<HTMLInputElement>) => {
-		console.log(e.target.name);
-		console.log(e.target.checked);
+const SelectorCard = ({ setCheckList, checkList, title, type }: CardProps) => {
+	const handleClicked = (index: number) => {
+		setCheckList((prev: boolean[]) =>
+			prev.map((elem: boolean, idx: number) => (idx === index ? !elem : elem)),
+		);
 	};
 	return (
-		<div style={{ justifyContent: 'center', alignItems: 'center' }}>
+		<Wrapper>
 			<TypeHeader>{title}</TypeHeader>
-			{type.map((x) => (
+			{type.map((x, index) => (
 				<div key={x} style={{ color: 'rgb(120, 120, 120)' }}>
-					<input type="checkbox" onChange={handleClicked} name={x} /> {x}
+					<input
+						type="checkbox"
+						onClick={() => handleClicked(index)}
+						name={x}
+					/>{' '}
+					{x}
 				</div>
 			))}
-		</div>
+		</Wrapper>
 	);
 };
+const Wrapper = styled.div`
+	justify-content: center;
+	align-items: center;
+`;
 
 const TypeHeader = styled.div`
 	font-weight: 700;
