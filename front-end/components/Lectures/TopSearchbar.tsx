@@ -3,39 +3,32 @@ import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { setLectures, setClickedId } from 'feature/lecture/lectureSlice';
 import { RootState } from 'app/store';
+import { fetchSearchedData } from '../../shared/apis/lectureApi';
 
-const TopSearchbar = () => {
-	const inputRef = useRef(null);
+interface Props {
+	checkList: boolean[];
+}
+
+const TopSearchbar = ({ checkList }: Props) => {
+	const inputRef = useRef<any>(null);
 	const dispatch = useAppDispatch();
 	const { allLectures } = useAppSelector((state: RootState) => state.lecture);
 
-	const handleSearch = (e: any) => {
-		// console.log(inputRef.current.value);
-		// //검색내용 store에 넣기.
-		// dispatch(setClickedId(-1)); // 이게 없으면 useEffect에서 전체클릭 -> 검색 -> 전체클릭 시 useEffect가 작동하지 않음.
-		// if (inputRef.current.value === '없음') {
-		// 	dispatch(setLectures([{ id: -1 }]));
-		// } else {
-		// 	let searchResults = allLectures.filter(
-		// 		(elem: any) =>
-		// 			elem.lectureName
-		// 				.toUpperCase()
-		// 				.includes(inputRef.current.value.toUpperCase()) ||
-		// 			elem.lectureIntro
-		// 				.toUpperCase()
-		// 				.includes(inputRef.current.value.toUpperCase()),
-		// 	);
-		// 	if (searchResults.length === 0) {
-		// 		dispatch(setLectures([{ id: -1 }]));
-		// 	} else {
-		// 		dispatch(setLectures(searchResults));
-		// 	}
-		// }
-		// e.preventDefault();
+	const handleSearch = async (e: any) => {
+		e.preventDefault();
+		let res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
+		let str = res.filter((elem) => elem).join();
+
+		try {
+			let result = await fetchSearchedData(inputRef.current.value, str);
+			dispatch(setLectures(result.data.records));
+		} catch (e: any) {
+			console.error(e);
+		}
 	};
 
 	const handleInput = (e: any) => {
-		// inputRef.current.value = e.target.value;
+		inputRef.current.value = e.target.value;
 	};
 
 	return (
