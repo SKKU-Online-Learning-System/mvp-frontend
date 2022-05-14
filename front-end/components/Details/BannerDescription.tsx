@@ -7,7 +7,6 @@ interface DataProps {
 	data: any;
 }
 const BannerDescription = ({ data }: DataProps) => {
-	console.log(data);
 	// useEffect(() => {
 	// 	axios
 	// 		.post(`${BASE_URL}/api/findLectures/category/parent`, {

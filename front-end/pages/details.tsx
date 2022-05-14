@@ -3,6 +3,7 @@ import Banner from '@components/Details/Banner';
 import Menu from '@components/Details/Menu';
 import ContentSet from '@components/Details/ContentSet';
 import Footer from '@components/Details/Footer';
+import Progress from '@components/Details/Progress';
 
 const DUMMY_DATA = {
 	category: ['개발 프로그래밍', '웹 개발'],
@@ -26,8 +27,10 @@ const DUMMY_DATA = {
 		],
 	},
 };
+const PROGRESS_DATA = { totalCourse: 36, completeCourse: 14, runTime: 173 };
 const DetailsPage = () => (
 	<Layout>
+		{/* <Progress data={PROGRESS_DATA} /> */}
 		<Banner data={DUMMY_DATA} />
 		<Menu />
 		<ContentSet />
