@@ -2,6 +2,7 @@ import React from 'react';
 
 import Header from './Header';
 import styled from 'styled-components';
+import Footer from './Footer';
 
 interface LayoutProps {
 	children?: React.ReactNode;
@@ -11,6 +12,7 @@ const Layout = ({ children }: LayoutProps) => (
 	<LayoutBox>
 		<Header />
 		{children}
+		<Footer />
 	</LayoutBox>
 );
 
