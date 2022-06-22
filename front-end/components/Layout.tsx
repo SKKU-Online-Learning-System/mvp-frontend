@@ -23,7 +23,8 @@ const LayoutBox = styled.div`
 	margin-left: auto;
 	margin-right: auto;
 	@media only screen and (min-width: 1440px) {
-		width: 1650px;
+		/* width: 1650px; */
+		width: 100vw;
 	}
 	@media only screen and (max-width: 1440px) {
 		width: 100vw;
