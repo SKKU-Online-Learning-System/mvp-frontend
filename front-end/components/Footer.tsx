@@ -22,9 +22,11 @@ const Footer = () => {
 				<p>소프트웨어융합대학 Copyrght ⓒ 2022 S</p>
 			</InfoBox>
 			<InfoBox>
-				<a>이메일 무단수집거부</a>
+				<a href="https://www.skku.edu/skku/etc/pop_email.do">
+					이메일 무단수집거부
+				</a>
 				<span> | </span>
-				<a>개인정보처리방침</a>
+				<a href="https://www.skku.edu/skku/etc/private.do">개인정보처리방침</a>
 				<span> | </span>
 				<a>Contact us</a>
 			</InfoBox>
@@ -44,4 +46,11 @@ const Container = styled.div`
 `;
 const InfoBox = styled.div`
 	margin: 34px;
+	& a {
+		color: #fefefe;
+		text-decoration: none;
+	}
+	& a:hover {
+		color: #c2d45e;
+	}
 `;
