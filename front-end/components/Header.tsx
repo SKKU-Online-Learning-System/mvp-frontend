@@ -3,7 +3,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import LoginModal from '@components/modals/LoginModal';
 import { useRouter } from 'next/router';
-
+interface LinkProps {
+	isThisPage: boolean;
+}
 const linkStyle = {
 	margin: '34px 1rem',
 	cursor: 'pointer',
@@ -18,6 +20,7 @@ const menuData = [
 	{ id: 2, name: '커뮤니티', path: '/community' },
 	{ id: 3, name: 'MY최근강의', path: '/details' },
 ];
+
 const Header = () => {
 	const [showModal, setShowModal] = useState(false);
 	const router = useRouter();
@@ -27,17 +30,9 @@ const Header = () => {
 				return (
 					<li key={menu.id} style={{ display: 'inline' }}>
 						<Link href={menu.path}>
-							<a
-								style={{
-									textDecoration: 'none',
-									fontWeight: 'bold',
-									margin: '34px 1rem',
-									cursor: 'pointer',
-									color: menu.path === router.pathname ? '#f5af1a' : 'black',
-								}}
-							>
+							<LinkMenu isThisPage={menu.path === router.pathname}>
 								{menu.name}
-							</a>
+							</LinkMenu>
 						</Link>
 					</li>
 				);
@@ -48,7 +43,7 @@ const Header = () => {
 		<Container>
 			<div style={{ display: 'flex', alignItems: 'center' }}>
 				<a href="https://www.skku.edu/">
-					<img src="images/main_logo.png" />
+					<img src="images/main_logo.png" style={{ zoom: '80%' }} />
 				</a>
 				<Link href="/">
 					<span
@@ -67,13 +62,17 @@ const Header = () => {
 					placeholder="배우고 싶은 지식을 입력하세요."
 					style={textBoxStyle}
 				/>
+				<SearchButton />
+
 				{menuBar}
 			</div>
 
 			<div>
 				<button onClick={() => setShowModal(true)}>로그인</button>
 				<Link href="/signup">
-					<a style={linkStyle}>회원가입</a>
+					<LinkMenu isThisPage={'/signup' === router.pathname}>
+						회원가입
+					</LinkMenu>
 				</Link>
 			</div>
 
@@ -92,4 +91,28 @@ const Container = styled.div`
 	align-items: center;
 	margin: 10px;
 	padding: 0 10px 0 45px;
+`;
+const LinkMenu = styled.a<LinkProps>`
+	color: ${(props) => (props.isThisPage ? '#f5af1a' : 'black')};
+	text-decoration: none;
+	font-weight: bold;
+	margin: 34px 1rem;
+	cursor: pointer;
+	&:hover {
+		color: #f5af1a;
+	}
+`;
+const SearchButton = styled.button`
+	background: none;
+	background-image: url('images/search_btn.png');
+	background-size: cover;
+	margin-left: -40px;
+	border: none;
+	width: 30px;
+	height: 30px;
+	&:focus {
+		outline: none;
+	}
+	padding: none;
+	cursor: pointer;
 `;
