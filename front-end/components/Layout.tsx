@@ -18,6 +18,7 @@ const Layout = ({ children }: LayoutProps) => (
 
 const LayoutBox = styled.div`
 	display: flex;
+	white-space: nowrap;
 	flex-direction: column;
 	align-items: center;
 	margin-left: auto;
