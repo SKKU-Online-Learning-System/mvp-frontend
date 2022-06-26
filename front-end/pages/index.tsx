@@ -70,7 +70,7 @@ const Index = () => {
 		<>
 			<Layout>
 				<img
-					style={{ height: '300px', marginBottom: '60px' }}
+					style={{ height: '300px', marginBottom: '60px', width: '100%' }}
 					src="images/banner_img.png"
 				/>
 				<HomeSearch />
@@ -85,10 +85,6 @@ const Index = () => {
 					data={newLectures}
 				/>
 			</Layout>
-			<img
-				style={{ width: '100vw', marginTop: '200px' }}
-				src="images/random_img.png"
-			/>
 		</>
 	);
 };
