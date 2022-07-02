@@ -17,7 +17,6 @@ const Layout = ({ children }: LayoutProps) => (
 const LayoutBox = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	margin-left: auto;
 	margin-right: auto;
 	@media only screen and (min-width: 1440px) {
