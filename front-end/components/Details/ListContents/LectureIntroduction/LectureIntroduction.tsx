@@ -59,6 +59,7 @@ const Container = styled.div`
 	border-color: #dfdfdf;
 	& li {
 		border-bottom: solid;
+		border-color: #dfdfdf;
 		color: #393939;
 		font-size: 0.95rem;
 		margin: 3px 0;
