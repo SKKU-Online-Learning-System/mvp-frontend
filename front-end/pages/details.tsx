@@ -1,3 +1,4 @@
+import Curriculum from '@components/Details/ListContents/Curriculum/Curriculum';
 import LearningStatus from '@components/Details/ListContents/LearningStatus/LearningStatus';
 import LectureIntroduction from '@components/Details/ListContents/LectureIntroduction/LectureIntroduction';
 import MainBanner from '@components/Details/MainBanner/MainBanner';
@@ -7,9 +8,10 @@ const DetailsPage = () => (
 	<Layout>
 		<MainBanner />
 		<div>{/* <LearningStatus /> */}</div>
-		<div>
-			<LectureIntroduction />
-		</div>
+		<div>{/* <LectureIntroduction /> */}</div>
+		<span>
+			<Curriculum />
+		</span>
 	</Layout>
 );
 
