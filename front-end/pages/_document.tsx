@@ -36,9 +36,9 @@ export default class MyDocument extends Document {
 			<Html>
 				<Head>
 					<link
-						href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap"
+						href="https://fonts.googleapis.com/css2?family=Gugi&family=Noto+Sans+KR:wght@500&display=swap"
 						rel="stylesheet"
-					></link>
+					/>
 					<style>{`body { margin: 0 } /* custom! */`}</style>
 				</Head>
 				<body>
