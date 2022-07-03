@@ -16,7 +16,7 @@ export default MainBanner;
 const Container = styled.div`
 	display: flex;
 	width: 100%;
-	height: 25vw;
+	height: 500px;
 	//TO DO:  responsible
 	background-color: #063f80;
 	padding: 0 40px 0 40px;

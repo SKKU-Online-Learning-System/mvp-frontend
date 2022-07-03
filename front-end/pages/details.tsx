@@ -8,10 +8,14 @@ import Layout from '@components/Layout';
 const DetailsPage = () => (
 	<Layout>
 		<MainBanner />
-		<div>{/* <LearningStatus /> */}</div>
-		<div>{/* <LectureIntroduction /> */}</div>
-		<span>{/* <Curriculum /> */}</span>
-		<CurrentQnA />
+		<div style={{ display: 'flex', margin: '63px auto' }}>
+			<div style={{ margin: '0 56px 0 0' }}>
+				<LearningStatus />
+				<LectureIntroduction />
+			</div>
+			<CurrentQnA />
+		</div>
+		<Curriculum />
 	</Layout>
 );
 
