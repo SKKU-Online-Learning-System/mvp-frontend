@@ -35,11 +35,13 @@ export default class MyDocument extends Document {
 		return (
 			<Html>
 				<Head>
+
 					<link
 						href="https://fonts.googleapis.com/css2?family=Gugi&family=Noto+Sans+KR:wght@500&display=swap"
 						rel="stylesheet"
 					/>
 					<style>{`body { margin: 0 } /* custom! */`}</style>
+
 				</Head>
 				<body>
 					<Main />
