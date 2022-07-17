@@ -64,7 +64,7 @@ const Container = styled.div`
 const NoticeWrapper = styled.div`
 	max-width: 1650px;
 	display: flex;
-	padding: 40px;
+	padding: 40px 40px 40px 50px;
 `;
 // w:302 h:213
 const TextCardWrapper = styled.div`

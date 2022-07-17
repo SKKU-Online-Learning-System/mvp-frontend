@@ -78,7 +78,7 @@ const DashboardWrapper = styled.div`
 	display: flex;
 	background-color: #e7eaee;
 	width: 100%;
-	padding: 30px 30px;
+	padding: 30px 50px;
 `;
 
 const FlexColumnWrapper = styled.div`

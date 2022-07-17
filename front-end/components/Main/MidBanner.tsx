@@ -11,18 +11,28 @@ const MidBanner = () => {
 				}}
 				src={'/images/lightball.png'}
 			></img>
-			<div style={{ padding: '30px' }}>
-				<h1 style={{ margin: 0, padding: 0 }}>온라인 명륜당?</h1>
-				<p>
-					온라인 명륜당은 성균관대 소프트웨어 융합대학에서 개발한 모두를 위한
-					학습 플랫폼입니다.
-				</p>
-				<p>
-					온라인 명륜당은 성균관대 소프트웨어 융합대학에서 개발했고 당신의
-					성장을 도와드립니다.
-				</p>
+			<div style={{ padding: '30px 30px 30px 180px' }}>
 				<div
 					style={{
+						margin: 0,
+						padding: '0 0 10px 0',
+						fontFamily: 'Gugi',
+						fontSize: '2.5rem',
+					}}
+				>
+					온라인 명륜당?
+				</div>
+				<div>
+					온라인 명륜당은 성균관대 소프트웨어 융합대학에서 개발한 모두를 위한
+					학습 플랫폼입니다.
+				</div>
+				<div>
+					온라인 명륜당은 성균관대 소프트웨어 융합대학에서 개발했고 당신의
+					성장을 도와드립니다.
+				</div>
+				<div
+					style={{
+						marginTop: '20px',
 						textAlign: 'center',
 						width: '80px',
 						color: 'white',
