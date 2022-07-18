@@ -18,7 +18,7 @@ const textBoxStyle = {
 const menuData = [
 	{ id: 1, name: '강좌 List', path: '/lectures' },
 	{ id: 2, name: '커뮤니티', path: '/community' },
-	{ id: 3, name: 'MY최근강의', path: '/mypage' },
+	{ id: 3, name: 'MY최근강의', path: '/details' },
 ];
 
 const Header = () => {
