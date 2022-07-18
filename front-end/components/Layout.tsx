@@ -20,7 +20,6 @@ const LayoutBox = styled.div`
 	display: flex;
 	white-space: nowrap;
 	flex-direction: column;
-	align-items: center;
 	margin-left: auto;
 	margin-right: auto;
 	@media only screen and (min-width: 1440px) {
