@@ -4,15 +4,17 @@ import Head from 'next/head';
 import GlobalStyles from 'styles/GlobalStyles';
 import { Provider } from 'react-redux';
 import { store } from '../app/store';
-
+import Layout from '@components/Layout';
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
 	return (
 		<Provider store={store}>
-			<Head>
-				<title>온라인 명륜당</title>
-			</Head>
-			<GlobalStyles />
-			<Component {...pageProps} />
+			<Layout>
+				<Head>
+					<title>온라인 명륜당</title>
+				</Head>
+				<GlobalStyles />
+				<Component {...pageProps} />
+			</Layout>
 		</Provider>
 	);
 };

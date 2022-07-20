@@ -29,7 +29,7 @@ const LecturesPage = () => {
 	return (
 		<>
 			{lectureType && (
-				<Layout>
+				<>
 					{/* 화면 전체 */}
 					<Wrapper>
 						{/* 왼쪽 sidebar 전체 */}
@@ -58,7 +58,7 @@ const LecturesPage = () => {
 							<LectureList />
 						</LectureBody>
 					</Wrapper>
-				</Layout>
+				</>
 			)}
 		</>
 	);
