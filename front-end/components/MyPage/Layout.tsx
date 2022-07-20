@@ -10,7 +10,7 @@ interface LinkProps {
 }
 const myPage = '/my-page';
 const MENU = [
-	{ title: 'DASHBOARD', path: myPage + '/dashboard' },
+	{ title: 'DASHBOARD', path: myPage },
 	{ title: '내 알림보기/알림 설정', path: myPage + '/notification' },
 	{ title: '최근 내 질문', path: myPage + '/question' },
 	{ title: '최근 학습중인 강좌/강의', path: myPage + '/learning' },
