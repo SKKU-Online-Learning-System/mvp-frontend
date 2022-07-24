@@ -1,11 +1,9 @@
 import Layout from '@components/Layout';
 
 const SignupPage = () => (
-  <Layout>
-    <div>
-      <h2>회원가입 페이지 입니다.</h2>
-    </div>
-  </Layout>
-)
+	<div>
+		<h2>회원가입 페이지 입니다.</h2>
+	</div>
+);
 
 export default SignupPage;

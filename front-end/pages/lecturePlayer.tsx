@@ -14,7 +14,7 @@ const Editor = dynamic<EditorProps>(
 
 const LecturePlayer = () => {
 	return (
-		<Layout>
+		<>
 			<LecturePlayerWrapper>
 				<div className="player-wrapper">
 					<ReactPlayer
@@ -44,7 +44,7 @@ const LecturePlayer = () => {
 					/>
 				</div>
 			</LecturePlayerWrapper>
-		</Layout>
+		</>
 	);
 };
 
