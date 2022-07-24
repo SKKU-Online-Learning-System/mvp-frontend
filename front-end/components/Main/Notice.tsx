@@ -71,6 +71,6 @@ const TextCardWrapper = styled.div`
 	display: flex;
 	max-width: 300px;
 	flex-direction: column;
-
+	white-space: nowrap;
 	padding: 0 20px;
 `;
