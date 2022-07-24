@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CardList } from './CardList';
-
-const imageUrlLists = [
-	'images/test1.png',
-	'images/test2.png',
-	'images/test3.png',
-	'images/test4.png',
-	'images/test5.png',
-];
+import { fetchBannerImgUrls } from 'shared/apis/Main/bannerApi';
 
 const MainBanner = () => {
+	const [imageUrl, setImageUrl] = useState<string[]>([]);
+
+	const makeFullUrlLists = (fileName: string[]) => {
+		let tempFullUrlLists: string[] = [];
+		fileName.forEach((elem) =>
+			tempFullUrlLists.push(`${process.env.NEXT_PUBLIC_API_SERVER}${elem}`),
+		);
+		setImageUrl(tempFullUrlLists);
+	};
+
+	useEffect(() => {
+		fetchBannerImgUrls()
+			.then((res) => makeFullUrlLists(res.data))
+			.catch((err) => console.log(err));
+	}, []);
+
 	return (
 		<Container>
-			<CardList imageUrlLists={imageUrlLists} />
+			{imageUrl.length > 0 && <CardList imageUrlLists={imageUrl} />}
 		</Container>
 	);
 };

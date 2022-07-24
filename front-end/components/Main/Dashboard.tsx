@@ -53,6 +53,7 @@ const CategoryCard = ({ header }) => {
 					padding: '20px 20px 10px 20px',
 					fontSize: '24px',
 					fontWeight: 'bold',
+					whiteSpace: 'nowrap',
 				}}
 			>
 				<img
