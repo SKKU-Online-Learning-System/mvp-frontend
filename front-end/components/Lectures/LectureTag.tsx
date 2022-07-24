@@ -26,7 +26,7 @@ const LectureTag = () => {
 						color: '#5f5f5f',
 					}}
 				/>
-				<SerchButton>검색</SerchButton>
+				<SerchButton type="submit">검색</SerchButton>
 			</div>
 			<TagCard name={tags} />
 		</div>

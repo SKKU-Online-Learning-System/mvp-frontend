@@ -20,7 +20,7 @@ const SelectorCard = ({ setCheckList, checkList, title, type }: CardProps) => {
 				<div key={x} style={{ color: 'rgb(120, 120, 120)' }}>
 					<input
 						type="checkbox"
-						onClick={() => handleClicked(index)}
+						onClick={() => {handleClicked(index); console.log(checkList)}}
 						name={x}
 					/>{' '}
 					{x}
