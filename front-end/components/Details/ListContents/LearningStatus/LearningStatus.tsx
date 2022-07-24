@@ -4,24 +4,17 @@ import styled from 'styled-components';
 const LearningStatus = () => {
 	return (
 		<Container>
-			<div style={{ color: '#9a9a9a', fontSize: '2.5px', fontWeight: 'bold' }}>
+			<div style={{ color: '#9a9a9a', fontSize: '0.5rem', fontWeight: 'bold' }}>
 				progress in learning
 			</div>
-			<div style={{ color: '#fff', fontSize: '20px', fontWeight: 'bold' }}>
+			<div style={{ color: '#fff', fontSize: '1rem', fontWeight: 'bold' }}>
 				나의 학습 상황
 			</div>
 			<div style={{ display: 'flex', justifyContent: 'space-around' }}>
 				<ContentBox>
 					<div style={{ display: 'flex', textAlign: 'center' }}>
-						<img
-							src="/images/complete-course.png"
-							style={{
-								width: '41px',
-								height: '42px',
-								margin: '0 13px 0 0',
-							}}
-						/>
-						<div style={{ fontSize: '2rem' }}>
+						<img src="/images/complete-course.png" className="badge" />
+						<div className="badge-text">
 							<span style={{ fontWeight: 'bold' }}>14</span> / 36
 						</div>
 					</div>
@@ -29,15 +22,8 @@ const LearningStatus = () => {
 				</ContentBox>
 				<ContentBox>
 					<div style={{ display: 'flex', textAlign: 'center' }}>
-						<img
-							src="/images/total-learning-time.png"
-							style={{
-								width: '41px',
-								height: '42px',
-								margin: '0 13px 0 0',
-							}}
-						/>
-						<div style={{ fontSize: '2rem' }}>
+						<img src="/images/total-learning-time.png" className="badge" />
+						<div className="badge-text">
 							<span style={{ fontWeight: 'bold' }}>2</span>h{' '}
 							<span style={{ fontWeight: 'bold' }}>53</span>m
 						</div>
@@ -46,15 +32,8 @@ const LearningStatus = () => {
 				</ContentBox>
 				<ContentBox>
 					<div style={{ display: 'flex', textAlign: 'center' }}>
-						<img
-							src="/images/complete-rate.png"
-							style={{
-								width: '41px',
-								height: '42px',
-								margin: '0 13px 0 0',
-							}}
-						/>
-						<div style={{ fontSize: '2rem' }}>
+						<img src="/images/complete-rate.png" className="badge" />
+						<div className="badge-text">
 							{' '}
 							<span style={{ fontWeight: 'bold' }}>53 </span>%
 						</div>
@@ -69,12 +48,18 @@ const LearningStatus = () => {
 export default LearningStatus;
 
 const Container = styled.div`
-	width: 605px;
-	height: 171px;
+	.badge {
+		margin: 0 13px 0 0;
+		width: 2rem;
+		height: 2rem;
+	}
+	.badge-text {
+		font-size: 1.3rem;
+	}
+	width: 100%;
 	padding: 18px 23px;
 	background-color: #343535;
 	color: white;
-	/* margin: 64px 0 0 78px; */
 	font-family: 'Noto Sans KR';
 	font-weight: 100;
 `;

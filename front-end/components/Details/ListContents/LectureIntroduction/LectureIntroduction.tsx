@@ -51,7 +51,8 @@ const LectureIntroduction = () => {
 export default LectureIntroduction;
 
 const Container = styled.div`
-	width: 605px;
+	/* width: 605px; */
+	width: 100%;
 	/* height: 171px; */
 	padding: 18px 23px;
 	font-family: 'Noto Sans KR';
