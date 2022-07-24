@@ -1,11 +1,26 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 const MainText = () => {
+	const [courseData, setCourseData] = useState({});
+	useEffect(() => {
+		const courceId = 1;
+		const getCourse = async () => {
+			const response = await axios.get(
+				'http://3.35.134.196:3000/courses/' + courceId,
+			);
+			const data = await response.data;
+			setCourseData(data);
+			console.log(data);
+		};
+		getCourse();
+	}, []);
+
 	return (
 		<Container>
-			<h1>실전! 스프링 부트와 JPA 활용1</h1>
-			<h3>#스프링부트를 활용한 웹 애플리케이션 개발</h3>
-			<p>강사: 홍길동</p>
+			<h1>{courseData.title}</h1>
+			<h3>{courseData.description}</h3>
+			<p>{`강사: ${courseData.instructor}`}</p>
 		</Container>
 	);
 };
