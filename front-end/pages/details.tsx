@@ -26,11 +26,11 @@ export default DetailsPage;
 const Container = styled.div`
 	.leftBox {
 		margin: 0 56px 0 0;
-		width: 40%;
+		width: 50%;
 	}
 	margin: 0 auto;
-	@media only screen and (min-width: 1200px) {
+	@media only screen and (min-width: 1300px) {
 		/* width: 1650px; */
-		width: 1200px;
+		width: 1300px;
 	}
 `;
