@@ -57,12 +57,14 @@ const LayoutBox = styled.div`
 		list-style: none;
 		border: solid;
 		border-color: #e2e2e2;
+		border-width: thin;
 		padding: 0;
 		height: 100%;
 	}
 	li {
 		border-bottom: solid;
 		border-color: #e2e2e2;
+		border-width: thin;
 	}
 	a {
 		display: block;
