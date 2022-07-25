@@ -22,8 +22,10 @@ const LectureCard = () => {
 						key={elem.id}
 						style={{ flex: '0 1 25%', padding: '1rem', cursor: 'pointer' }}
 					>
-					
 						<img style={{ width: '300px' }} src="images/card_img.png" alt="no" />
+						<div style={{ display: 'flex', flexFlow: 'row wrap' }}>
+							<TagCard name={elem.hashtag} />
+						</div>
 						<div
 							style={{
 								fontWeight: 700,
