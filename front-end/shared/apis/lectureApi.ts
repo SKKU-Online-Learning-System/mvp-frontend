@@ -1,17 +1,18 @@
 import axiosInstance from '.';
 
 export const fetchAllLectureCategories = () => {
-	return axiosInstance.get(`/api/courses/cat1`);
+	return axiosInstance.get(`http://3.35.134.196:3000/courses/categories`);
 };
 
 export const fetchLectureLists = (category: string) => {
-	return axiosInstance.get(`/api/courses`);
+	return axiosInstance.get(`api/courses`);
 };
 
 export const fetchSearchedData = (name: string, difficulty: string) => {
 	if (difficulty) {
-		return axiosInstance.get(`/api/courses?s=${name}&difficulty=${difficulty}`);
+		return axiosInstance.get(`courses?s=${name}&difficulty=${difficulty}`);
 	} else {
-		return axiosInstance.get(`/api/courses?s=${name}`);
+		console.log(name)
+		return axiosInstance.get(`http://3.35.134.196:3000/courses/search?keyword=${name}`);
 	}
 };

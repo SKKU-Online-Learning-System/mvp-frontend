@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+import {debounce} from 'lodash';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { setLectures, setClickedId } from 'feature/lecture/lectureSlice';
@@ -11,6 +12,7 @@ interface Props {
 
 const TopSearchbar = ({ checkList }: Props) => {
 	const inputRef = useRef<any>(null);
+	const [Key , setKey] = useState()
 	const dispatch = useAppDispatch();
 	const { allLectures } = useAppSelector((state: RootState) => state.lecture);
 
@@ -21,15 +23,22 @@ const TopSearchbar = ({ checkList }: Props) => {
 
 		try {
 			let result = await fetchSearchedData(inputRef.current.value, str);
-			dispatch(setLectures(result.data.records));
+			dispatch(setLectures(result.data));
+			//no such thing as .records in this api
+			console.log(result.data)
 		} catch (e: any) {
 			console.error(e);
 		}
 	};
 
-	const handleInput = (e: any) => {
+	const handleInput = debounce((e: any) => {
 		inputRef.current.value = e.target.value;
-	};
+		setKey(e.target.value)
+	}, 5000);
+
+	function check(){
+		console.log(Key)
+	}
 
 	return (
 		<div>
@@ -39,13 +48,14 @@ const TopSearchbar = ({ checkList }: Props) => {
 					type="text"
 					placeholder="강의 검색하기"
 					onChange={handleInput}
+					onClick={check}
 					style={{
 						flex: '0 1 300px',
 						border: '1px solid #dedede',
 						height: '36px',
 					}}
 				/>
-				<SerchButton type="submit">검색</SerchButton>
+				<SerchButton type="submit" onClick={handleSearch}>검색</SerchButton>
 			</Searchbar>
 			<BottomLine />
 		</div>

@@ -15,6 +15,7 @@ const TagCard = ({ name }: CardProps) => {
 
 const Card = styled.div`
 	display: flex;
+	width: 100px;
 	height: 36px;
 	border-radius: 4px;
 	justify-content: center;
