@@ -1,16 +1,18 @@
 import { useRouter } from 'next/router';
 import { useAppSelector } from 'app/hooks';
 import { RootState } from 'app/store';
+import { setClickedId } from '../../feature/lecture/lectureSlice';
 import TagCard from './TagCard';
 
 const LectureCard = () => {
 	const router = useRouter();
-	const { lectures } = useAppSelector((state: RootState) => state.lecture);
+	const { clickedId, lectures } = useAppSelector((state: RootState) => state.lecture);
 
 	const handleClick = (id: number) => {
 		//router.push(`/details/${id}`);
 		router.push(`/details`);
 	};
+
 	return (
 		<>
 			{lectures.map((elem: any) => {

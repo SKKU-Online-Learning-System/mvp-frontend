@@ -3,6 +3,7 @@ import TopSearchbar from '@components/Lectures/TopSearchbar';
 import BreadCrumb from '@components/Lectures/BreadCrumb';
 import LectureTag from '@components/Lectures/LectureTag';
 import LectureList from '@components/Lectures/LectureList';
+import LectureMove from '@components/Lectures/LectureMove';
 
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
@@ -56,6 +57,7 @@ const LecturesPage = () => {
 							<LectureTag />
 							{/* 강의 보여주는 부분 */}
 							<LectureList />
+							<LectureMove />
 						</LectureBody>
 					</Wrapper>
 				</>

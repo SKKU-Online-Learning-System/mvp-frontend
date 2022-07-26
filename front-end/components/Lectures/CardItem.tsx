@@ -22,16 +22,17 @@ const CardItem = ({id, item , collapse}: SubProps) => {
 	const str1 = "", str2 = "";
 	const showLecture = async(e:any) => {
 		e.preventDefault();
-		
+		dispatch(setClickedId(id));
+		/*
+		console.log(clickedId)
 		try {
 			let result = await fetchSearchedData(str1, str2, id);
 			dispatch(setLectures(result.data));
-			console.log(lectures)
-			//no such thing as .records in this api
-			console.log(result.data)
 		} catch (e: any) {
 			console.error(e);
 		}
+
+		*/
 	}
 	return (
         <div  >
@@ -45,7 +46,7 @@ const CardItem = ({id, item , collapse}: SubProps) => {
 const SubCard = styled.div`
     border: 0.1px #e4e4e4;
 	cursor: pointer;
-	padding: 0.8rem;
+	padding: 0.8rem 0.8rem 0.8rem 1.5rem;
 	background: #fafafa;
 	font-weight: 400;
 	color: #595959;
