@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import GlobalStyles from 'styles/GlobalStyles';
 import { Provider } from 'react-redux';
-import { store } from '../app/store';
+import { store } from 'store/app/store';
 import Layout from '@components/Layout';
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
 	return (

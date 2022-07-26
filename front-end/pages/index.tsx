@@ -8,16 +8,27 @@ import Dashboard from '@components/Main/Dashboard';
 import LectureList from '@components/Main/LectureList';
 import MidBanner from '@components/Main/MidBanner';
 import MidCategory from '@components/Main/MidCategory';
+import axios from 'axios';
 
 const Index = () => {
+	useEffect(() => {
+		axios
+			.get(`${process.env.NEXT_PUBLIC_API_SERVER}auth/temp-login`)
+			.then((res) => console.log(res.data));
+	}, []);
+
+	console.log(process.env.NEXT_PUBLIC_API_SERVER);
 	return (
 		<Wrapper>
 			<MainBanner />
 			<Notice />
-			<Dashboard />
-			<LectureList headerText={'내가 찜한 강의'} headerColor={'red'} />
+			{/* <Dashboard /> */}
+			<LectureList
+				headerText={'추천 강의(카테고리 무관)'}
+				headerColor={'red'}
+			/>
 			<MidBanner />
-			<LectureList headerText={'최근 강의 이어보기'} headerColor={'orange'} />
+			{/* <LectureList headerText={'최근 강의 이어보기'} headerColor={'orange'} /> */}
 			<MidCategory />
 			<LectureList
 				headerText={'프로그래밍 분야 인기 강의 모음'}

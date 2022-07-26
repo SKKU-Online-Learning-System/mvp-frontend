@@ -1,18 +1,19 @@
 // .babelrc
 {
-  "presets": ["next/babel"],
-  "plugins": [
-    ["styled-components", { "ssr": true }],
-    [
-      "module-resolver",
-      {
-        "root": ["./"],
-        "alias": {
-          "@components": "./components",
-          "@interfaces": "./interfaces"
-        },
-        "extensions": [".js", ".jsx", ".tsx"]
-      }
-    ]
-  ]
+	"presets": ["next/babel"],
+	"plugins": [
+		["styled-components", { "ssr": true }],
+		[
+			"module-resolver",
+			{
+				"root": ["./"],
+				"alias": {
+					"@components": "./components",
+					"@interfaces": "./interfaces",
+					"@apis": "apis"
+				},
+				"extensions": [".js", ".jsx", ".tsx"]
+			}
+		]
+	]
 }

@@ -1,11 +1,10 @@
-import React from 'react'
-import {useState} from 'react'
+import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { setClickedId } from '../../feature/lecture/lectureSlice';
+import { useAppDispatch, useAppSelector } from 'store/app/hooks';
+import { setClickedId } from 'store/feature/lecture/lectureSlice';
 import CardItem from './CardItem';
-import { RootState } from 'app/store';
-
+import { RootState } from 'store/app/store';
 
 interface CardProps {
 	title: string;
@@ -16,13 +15,15 @@ interface CardProps {
 // <>(fragment)를 붙이지 않으면, Element[]가 return됐다고 나오면서 error생김. 한개씩 리턴해야함.
 const ContentCard = ({ title, type, index }: CardProps) => {
 	const dispatch = useAppDispatch();
-	const { clickedId, lectureType } = useAppSelector((state: RootState) => state.lecture);
+	const { clickedId, lectureType } = useAppSelector(
+		(state: RootState) => state.lecture,
+	);
 	const [collapsed, setCollapsed] = useState(false);
 
 	function toggleCollapse() {
-		setCollapsed(preValue => !preValue);
-	}			
-	
+		setCollapsed((preValue) => !preValue);
+	}
+
 	return title === '' ? (
 		<>
 			{type[0] &&
@@ -39,20 +40,22 @@ const ContentCard = ({ title, type, index }: CardProps) => {
 		</>
 	) : (
 		<>
-				<CardTop
-					onClick={ () => {
-							toggleCollapse()
-						}
-					}
-				>
-					{title}
-					
-				</CardTop>
-				{lectureType[0][index].category2s.map((subItem: any) =>
-        			<CardItem id = {subItem.id} item={subItem.name} collapse={collapsed} key={subItem.id}/>
-				)}
+			<CardTop
+				onClick={() => {
+					toggleCollapse();
+				}}
+			>
+				{title}
+			</CardTop>
+			{lectureType[0][index].category2s.map((subItem: any) => (
+				<CardItem
+					id={subItem.id}
+					item={subItem.name}
+					collapse={collapsed}
+					key={subItem.id}
+				/>
+			))}
 		</>
-
 	);
 };
 // key 줄때 unique & 연속되는 숫자로 주는게 좋음.
@@ -76,6 +79,5 @@ const Card = styled.div`
 	font-weight: 600;
 	color: #595959;
 `;
-
 
 export default React.memo(ContentCard);
