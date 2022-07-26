@@ -37,6 +37,7 @@ function LoginModal({ show, onClose, children }: LoginModalProps) {
 
   if (isBrowser) {
     const portalDiv = document.getElementById("modal-root")!;
+    console.log(portalDiv)
     return ReactDOM.createPortal(
       modalContent,
       portalDiv

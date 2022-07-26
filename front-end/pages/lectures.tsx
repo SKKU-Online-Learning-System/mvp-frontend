@@ -41,10 +41,10 @@ const LecturesPage = () => {
 									setCheckList={setCheckList}
 									title={'난이도'}
 									type={['입문', '초급', '중급이상']}
+									
 								/>
 							</SelectCardWrapper>
 						</SidebarLeft>
-
 						{/* 오른쪽 전체, 그 안에서 위(검색창) 아래(강의 리스트) 나눔*/}
 
 						<LectureBody>
