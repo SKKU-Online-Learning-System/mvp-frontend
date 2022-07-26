@@ -7,7 +7,6 @@ import {
 	setLectures,
 	setAllLectures,
 } from 'store/feature/lecture/lectureSlice';
-import axios from 'axios';
 import { RootState } from 'store/app/store';
 import { fetchLectureLists, fetchSearchedData } from 'apis/Lectures/lectureApi';
 
