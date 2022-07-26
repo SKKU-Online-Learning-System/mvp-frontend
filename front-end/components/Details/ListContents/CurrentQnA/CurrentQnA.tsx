@@ -5,7 +5,7 @@ import QnABox from './QnABox';
 const CurrentQnA = () => {
 	const courceId = 1;
 	const [qna, setQna] = useState([
-		{ contents: '', answers: [{ contents: '' }] },
+		{ id: 0, contents: '', answers: [{ contents: '' }] },
 	]);
 	useEffect(() => {
 		const getQnA = async () => {
@@ -15,7 +15,6 @@ const CurrentQnA = () => {
 			const data = await response.data;
 			if (data.length > 3) setQna(data.slice(0, 3));
 			else setQna(data);
-			console.log(data);
 		};
 		getQnA();
 	}, []);
@@ -34,7 +33,11 @@ const CurrentQnA = () => {
 			</header>
 			{qna.map((ele) => {
 				return (
-					<QnABox question={ele.contents} answer={ele.answers[0].contents} />
+					<QnABox
+						key={ele.id}
+						question={ele.contents}
+						answer={ele.answers[0].contents}
+					/>
 				);
 			})}
 		</Container>

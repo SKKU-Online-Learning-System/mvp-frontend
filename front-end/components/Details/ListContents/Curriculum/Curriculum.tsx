@@ -12,7 +12,6 @@ const Curriculum = () => {
 				'http://3.35.134.196:3000/courses/' + courceId + '/lectures',
 			);
 			const data = await response.data;
-			console.log(data);
 			setLectureData(data);
 		};
 		getLecture();

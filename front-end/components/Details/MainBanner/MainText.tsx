@@ -18,7 +18,6 @@ const MainText = () => {
 			);
 			const data = await response.data;
 			setCourseData(data);
-			console.log(data);
 		};
 		getCourse();
 	}, []);
@@ -31,7 +30,7 @@ const MainText = () => {
 			<p>{`강사: ${courseData.instructor}`}</p>
 			<div>
 				{courseData.hashtag.map((ele) => {
-					return <div className="hashtag">{`#${ele}`}</div>;
+					return <div key={ele} className="hashtag">{`#${ele}`}</div>;
 				})}
 			</div>
 		</Container>
