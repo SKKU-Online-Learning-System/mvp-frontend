@@ -8,9 +8,10 @@ const MainText = () => {
 		instructor: '',
 		category1: '',
 		category2: '',
+		hashtag: [],
 	});
 	useEffect(() => {
-		const courceId = 2;
+		const courceId = 1;
 		const getCourse = async () => {
 			const response = await axios.get(
 				'http://3.35.134.196:3000/courses/' + courceId,
@@ -28,9 +29,10 @@ const MainText = () => {
 			<h2>{courseData.title}</h2>
 			<h4>{courseData.description}</h4>
 			<p>{`강사: ${courseData.instructor}`}</p>
-			<div className="hashtag-container">
-				<div className="hashtag">#asdf</div>
-				<div className="hashtag">asdf</div>
+			<div>
+				{courseData.hashtag.map((ele) => {
+					return <div className="hashtag">{`#${ele}`}</div>;
+				})}
 			</div>
 		</Container>
 	);
@@ -52,13 +54,13 @@ const Container = styled.div`
 		margin: 5px;
 	}
 	.hashtag-container {
-		display: flex;
 	}
 	.hashtag {
+		display: inline;
 		background-color: #f0f0f0;
 		color: #696969;
 		width: 100%;
-		padding-left: 0.5rem;
+		padding: 0 0.8rem;
 		border-radius: 3rem;
 		margin: 0.2rem;
 		font-weight: bold;
