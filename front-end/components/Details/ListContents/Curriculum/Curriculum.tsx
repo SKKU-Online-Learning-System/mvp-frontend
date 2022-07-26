@@ -1,4 +1,5 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 const DUMMY_DATA = [
 	{ header: '스프링부트 이해와 실전' },
@@ -114,6 +115,30 @@ const DUMMY_DATA = [
 	},
 ];
 const Curriculum = () => {
+	const courceId = 1;
+	const [lectureData, setLectureData] = useState([
+		{ title: '', lectures: [{ title: '', duration: 0, id: '', teacher: '' }] },
+	]);
+	useEffect(() => {
+		const getLecture = async () => {
+			const response = await axios.get(
+				'http://3.35.134.196:3000/courses/' + courceId + '/lectures',
+			);
+			const data = await response.data;
+			console.log(data);
+			setLectureData(data);
+		};
+		getLecture();
+	}, []);
+	function leadingZeros(n, digits) {
+		var zero = '';
+		n = n.toString();
+
+		if (n.length < digits) {
+			for (var i = 0; i < digits - n.length; i++) zero += '0';
+		}
+		return zero + n;
+	}
 	return (
 		<Container>
 			<header>
@@ -124,27 +149,37 @@ const Curriculum = () => {
 				</div>
 				<h2>강의 커리큘럼</h2>
 			</header>
-
 			<table>
-				{DUMMY_DATA.map((ele) => {
-					if (ele.header)
-						return (
+				{lectureData.map((ele) => {
+					return (
+						<>
 							<thead>
 								<tr>
-									<th colSpan={5}>{ele.header}</th>
+									<th colSpan={5}>{ele.title}</th>
 								</tr>
 							</thead>
-						);
-					else
-						return (
-							<tr>
-								<td>{ele.id}</td>
-								<td>{ele.title}</td>
-								<td>{ele.teacher}</td>
-								<td>{ele.time}</td>
-								<td>버튼</td>
-							</tr>
-						);
+							<tbody>
+								{ele.lectures.map((lecture) => {
+									const hour =
+										lecture.duration / 3600 < 1
+											? ''
+											: `${lecture.duration / 3600}:`;
+									const duration = `${hour}${
+										lecture.duration / 60
+									}:${leadingZeros(lecture.duration % 60, 2)}`;
+									return (
+										<tr>
+											<td>{`${lecture.id}강`}</td>
+											<td>{lecture.title}</td>
+											<td>{lecture.teacher || '강사이름'}</td>
+											<td>{duration}</td>
+											<td>{`버튼`}</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</>
+					);
 				})}
 			</table>
 		</Container>

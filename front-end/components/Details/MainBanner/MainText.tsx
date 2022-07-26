@@ -2,7 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 const MainText = () => {
-	const [courseData, setCourseData] = useState({});
+	const [courseData, setCourseData] = useState({
+		title: '',
+		description: '',
+		instructor: '',
+	});
 	useEffect(() => {
 		const courceId = 1;
 		const getCourse = async () => {
