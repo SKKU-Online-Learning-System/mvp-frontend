@@ -7,7 +7,7 @@ import TagCard from './TagCard';
 const LectureCard = () => {
 	const router = useRouter();
 	const { clickedId, lectures } = useAppSelector((state: RootState) => state.lecture);
-
+	console.log(lectures)
 	const handleClick = (id: number) => {
 		//router.push(`/details/${id}`);
 		router.push(`/details`);
@@ -15,7 +15,7 @@ const LectureCard = () => {
 
 	return (
 		<>
-			{lectures.map((elem: any) => {
+			{lectures.courses.map((elem: any) => {
 				return (
 					<div
 						onClick={(event: React.MouseEvent<HTMLElement>) =>

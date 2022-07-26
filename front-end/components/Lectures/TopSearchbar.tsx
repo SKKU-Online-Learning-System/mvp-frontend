@@ -1,10 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react';
-import {debounce} from 'lodash';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { setLectures, setClickedId } from 'feature/lecture/lectureSlice';
+import { setLectures, setPageNum } from 'feature/lecture/lectureSlice';
 import { RootState } from 'app/store';
-import { fetchSearchedData } from '../../shared/apis/lectureApi';
+import { fetchSearchedData, fetchAllLecturesPerPage } from '../../shared/apis/lectureApi';
 
 interface Props {
 	checkList: boolean[];
@@ -14,7 +13,8 @@ const TopSearchbar = ({ checkList }: Props) => {
 	const inputRef = useRef<any>(null);
 	const [Key , setKey] = useState()
 	const dispatch = useAppDispatch();
-	const { allLectures } = useAppSelector((state: RootState) => state.lecture);
+	const { pageNum } = useAppSelector((state: RootState) => state.lecture);
+	let p_num = 1;
 	const handleSearch = async (e: any) => {
 		e.preventDefault();
 		let res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
@@ -24,16 +24,15 @@ const TopSearchbar = ({ checkList }: Props) => {
 			let result = await fetchSearchedData(inputRef.current.value, str);
 			dispatch(setLectures(result.data));
 			//no such thing as .records in this api
-			console.log(result.data)
 		} catch (e: any) {
 			console.error(e);
 		}
 	};
 
-	const handleInput = debounce((e: any) => {
+	const handleInput = (e: any) => {
 		inputRef.current.value = e.target.value;
 		setKey(e.target.value)
-	}, 5000);
+	};
 
 	function check(){
 		console.log(Key)

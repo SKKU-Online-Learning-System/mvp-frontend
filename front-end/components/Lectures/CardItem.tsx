@@ -3,7 +3,7 @@ import { $CombinedState } from 'redux';
 import {useState} from 'react';
 import styled from 'styled-components';
 import { setLectures, setClickedId } from 'feature/lecture/lectureSlice';
-import { fetchSearchedData } from '../../shared/apis/lectureApi';
+import { fetchLectureLists } from '../../shared/apis/lectureApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { RootState } from 'app/store';
 
@@ -19,20 +19,15 @@ const CardItem = ({id, item , collapse}: SubProps) => {
 	const { clickedId, lectures } = useAppSelector(
 		(state: RootState) => state.lecture,
 	);
-	const str1 = "", str2 = "";
 	const showLecture = async(e:any) => {
 		e.preventDefault();
 		dispatch(setClickedId(id));
-		/*
+		fetchLectureLists(clickedId.toString())
+				.then((res) => {
+					dispatch(setLectures(res.data));
+				})
+				.catch((err) => console.log(err));
 		console.log(clickedId)
-		try {
-			let result = await fetchSearchedData(str1, str2, id);
-			dispatch(setLectures(result.data));
-		} catch (e: any) {
-			console.error(e);
-		}
-
-		*/
 	}
 	return (
         <div  >
