@@ -1,17 +1,20 @@
 import axiosInstance from '.';
 
 export const fetchAllLectureCategories = () => {
-	return axiosInstance.get(`/api/courses/cat1`);
+	return axiosInstance.get(`http://3.35.134.196:3000/courses/categories`);
 };
 
 export const fetchLectureLists = (category: string) => {
-	return axiosInstance.get(`/api/courses`);
+	return axiosInstance.get(`api/courses`);
 };
 
-export const fetchSearchedData = (name: string, difficulty: string) => {
+export const fetchSearchedData = (name: string, difficulty: string, id: number) => {
 	if (difficulty) {
-		return axiosInstance.get(`/api/courses?s=${name}&difficulty=${difficulty}`);
-	} else {
-		return axiosInstance.get(`/api/courses?s=${name}`);
+		return axiosInstance.get(`courses?s=${name}&difficulty=${difficulty}`);
+	} else if(!id){
+		return axiosInstance.get(`http://3.35.134.196:3000/courses/search?keyword=${name}`);
+	} else{
+		console.log(id)
+		return axiosInstance.get(`http://3.35.134.196:3000/courses/search?category2Id=${id}`);
 	}
 };
