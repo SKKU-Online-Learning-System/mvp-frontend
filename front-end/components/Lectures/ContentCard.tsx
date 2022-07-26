@@ -1,9 +1,11 @@
 import React from 'react'
 import {useState} from 'react'
 import styled from 'styled-components';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setClickedId } from '../../feature/lecture/lectureSlice';
 import CardItem from './CardItem';
+import { RootState } from 'app/store';
+
 
 interface CardProps {
 	title: string;
@@ -14,17 +16,15 @@ interface CardProps {
 // <>(fragment)를 붙이지 않으면, Element[]가 return됐다고 나오면서 error생김. 한개씩 리턴해야함.
 const ContentCard = ({ title, type, index }: CardProps) => {
 	const dispatch = useAppDispatch();
+	const { lectureType } = useAppSelector((state: RootState) => state.lecture);
+	console.log(lectureType[0][index])
+	console.log(index)
 	const [collapsed, setCollapsed] = useState(false);
-	const CardList = [["Linux", "Unix", "Java", "Python", "C++"],
-					  ["Data1", "Data2", "Data3"],
-					  ["1", "2", "3"],
-					  ["Da1", "Da2", "Da3"]
-					]
 
 	function toggleCollapse() {
 		setCollapsed(preValue => !preValue);
 		dispatch(setClickedId(0));
-		console.log(collapsed)
+		console.log()
 	}			
 	
 	return title === '' ? (
@@ -53,8 +53,8 @@ const ContentCard = ({ title, type, index }: CardProps) => {
 					{title}
 					
 				</CardTop>
-				{CardList[index-1].map((subItem) =>
-        			<CardItem item={subItem} collapse={collapsed}/>
+				{lectureType[0][index].category2s.map((subItem: any) =>
+        			<CardItem id = {subItem.id} item={subItem.name} collapse={collapsed}/>
 				)}
 		</>
 
