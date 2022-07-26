@@ -16,15 +16,11 @@ interface CardProps {
 // <>(fragment)를 붙이지 않으면, Element[]가 return됐다고 나오면서 error생김. 한개씩 리턴해야함.
 const ContentCard = ({ title, type, index }: CardProps) => {
 	const dispatch = useAppDispatch();
-	const { lectureType } = useAppSelector((state: RootState) => state.lecture);
-	console.log(lectureType[0][index])
-	console.log(index)
+	const { clickedId, lectureType } = useAppSelector((state: RootState) => state.lecture);
 	const [collapsed, setCollapsed] = useState(false);
 
 	function toggleCollapse() {
 		setCollapsed(preValue => !preValue);
-		dispatch(setClickedId(0));
-		console.log()
 	}			
 	
 	return title === '' ? (
@@ -46,7 +42,6 @@ const ContentCard = ({ title, type, index }: CardProps) => {
 				<CardTop
 					onClick={ () => {
 							toggleCollapse()
-							dispatch(setClickedId(0))
 						}
 					}
 				>
@@ -54,7 +49,7 @@ const ContentCard = ({ title, type, index }: CardProps) => {
 					
 				</CardTop>
 				{lectureType[0][index].category2s.map((subItem: any) =>
-        			<CardItem id = {subItem.id} item={subItem.name} collapse={collapsed}/>
+        			<CardItem id = {subItem.id} item={subItem.name} collapse={collapsed} key={subItem.id}/>
 				)}
 		</>
 

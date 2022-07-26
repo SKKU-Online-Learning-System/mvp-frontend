@@ -3,6 +3,10 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import LoginModal from '@components/modals/LoginModal';
 import { useRouter } from 'next/router';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { setClickedId } from 'feature/lecture/lectureSlice';
+import { RootState } from 'app/store';
+
 interface LinkProps {
 	isThisPage: boolean;
 }
@@ -24,11 +28,19 @@ const menuData = [
 const Header = () => {
 	const [showModal, setShowModal] = useState(false);
 	const router = useRouter();
+	const dispatch = useAppDispatch();
+	const { clickedId } = useAppSelector(
+		(state: RootState) => state.lecture,
+	);
+
+	const resetLecture = () => {
+		dispatch(setClickedId(0))
+	}
 	const menuBar = (
 		<ul>
 			{menuData.map((menu) => {
 				return (
-					<li key={menu.id} style={{ display: 'inline' }}>
+					<li key={menu.id} style={{ display: 'inline' }} onClick={resetLecture}>
 						<Link href={menu.path}>
 							<LinkMenu isThisPage={menu.path === router.pathname}>
 								{menu.name}
@@ -53,6 +65,7 @@ const Header = () => {
 							margin: '0 10px',
 							cursor: 'pointer',
 						}}
+						onClick={resetLecture}
 					>
 						온라인 명륜당
 					</span>
