@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axiosInstance from 'shared/apis';
 const Curriculum = () => {
 	const courceId = 1;
 	const [lectureData, setLectureData] = useState([
@@ -8,8 +9,8 @@ const Curriculum = () => {
 	]);
 	useEffect(() => {
 		const getLecture = async () => {
-			const response = await axios.get(
-				'http://3.35.134.196:3000/courses/' + courceId + '/lectures',
+			const response = await axiosInstance(
+				'/courses/' + courceId + '/lectures',
 			);
 			const data = await response.data;
 			setLectureData(data);

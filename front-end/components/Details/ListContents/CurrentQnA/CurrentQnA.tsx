@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import QnABox from './QnABox';
+import axiosInstance from 'shared/apis';
 const CurrentQnA = () => {
 	const courceId = 1;
 	const [qna, setQna] = useState([
@@ -9,9 +9,7 @@ const CurrentQnA = () => {
 	]);
 	useEffect(() => {
 		const getQnA = async () => {
-			const response = await axios.get(
-				'http://3.35.134.196:3000/questions/course/' + courceId,
-			);
+			const response = await axiosInstance('/questions/course/' + courceId);
 			const data = await response.data;
 			if (data.length > 3) setQna(data.slice(0, 3));
 			else setQna(data);
