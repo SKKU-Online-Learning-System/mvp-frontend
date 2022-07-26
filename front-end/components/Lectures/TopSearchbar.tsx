@@ -1,9 +1,12 @@
 import React, { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { setLectures, setPageNum } from 'feature/lecture/lectureSlice';
-import { RootState } from 'app/store';
-import { fetchSearchedData, fetchAllLecturesPerPage } from '../../shared/apis/lectureApi';
+import { useAppDispatch, useAppSelector } from 'store/app/hooks';
+import { setLectures, setPageNum } from 'store/feature/lecture/lectureSlice';
+import { RootState } from 'store/app/store';
+import {
+	fetchSearchedData,
+	fetchAllLecturesPerPage,
+} from 'apis/Lectures/lectureApi';
 
 interface Props {
 	checkList: boolean[];
@@ -11,7 +14,7 @@ interface Props {
 
 const TopSearchbar = ({ checkList }: Props) => {
 	const inputRef = useRef<any>(null);
-	const [Key , setKey] = useState()
+	const [Key, setKey] = useState();
 	const dispatch = useAppDispatch();
 	const { pageNum } = useAppSelector((state: RootState) => state.lecture);
 	let p_num = 1;
@@ -31,11 +34,10 @@ const TopSearchbar = ({ checkList }: Props) => {
 
 	const handleInput = (e: any) => {
 		inputRef.current.value = e.target.value;
-		setKey(e.target.value)
+		setKey(e.target.value);
 	};
-
-	function check(){
-		console.log(Key)
+	function check() {
+		console.log(Key);
 	}
 
 	return (
@@ -53,7 +55,9 @@ const TopSearchbar = ({ checkList }: Props) => {
 						height: '36px',
 					}}
 				/>
-				<SerchButton type="submit" onClick={handleSearch}>검색</SerchButton>
+				<SerchButton type="submit" onClick={handleSearch}>
+					검색
+				</SerchButton>
 			</Searchbar>
 			<BottomLine />
 		</div>

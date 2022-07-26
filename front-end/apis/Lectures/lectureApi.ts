@@ -1,4 +1,4 @@
-import axiosInstance from '.';
+import axiosInstance from '..';
 
 export const fetchAllLectureCategories = () => {
 	return axiosInstance.get(`courses/categories`);
@@ -11,8 +11,7 @@ export const fetchLectureLists = (category: string) => {
 export const fetchSearchedData = (name: string, difficulty: string) => {
 	if (difficulty) {
 		return axiosInstance.get(`courses?s=${name}&difficulty=${difficulty}`);
-	}
-	else{
+	} else {
 		return axiosInstance.get(`courses/search?keyword=${name}`);
 	}
 };

@@ -6,11 +6,11 @@ import LectureList from '@components/Lectures/LectureList';
 import LectureMove from '@components/Lectures/LectureMove';
 
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { addLectureType } from '../feature/lecture/lectureSlice';
-import { fetchAllLectureCategories } from 'shared/apis/lectureApi';
+import { useAppDispatch, useAppSelector } from 'store/app/hooks';
+import { addLectureType } from 'store/feature/lecture/lectureSlice';
+import { fetchAllLectureCategories } from 'apis/Lectures/lectureApi';
 import ContentMenu from '@components/Lectures/ContentMenu';
-import { RootState } from 'app/store';
+import { RootState } from 'store/app/store';
 import styled from 'styled-components';
 import SelectorCard from '@components/Lectures/SelectorCard';
 
@@ -42,7 +42,6 @@ const LecturesPage = () => {
 									setCheckList={setCheckList}
 									title={'난이도'}
 									type={['입문', '초급', '중급이상']}
-									
 								/>
 							</SelectCardWrapper>
 						</SidebarLeft>

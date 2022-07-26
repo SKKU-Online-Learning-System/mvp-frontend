@@ -1,13 +1,15 @@
 import { useRouter } from 'next/router';
-import { useAppSelector } from 'app/hooks';
-import { RootState } from 'app/store';
-import { setClickedId } from '../../feature/lecture/lectureSlice';
+import { useAppSelector } from 'store/app/hooks';
+import { RootState } from 'store/app/store';
+import { setClickedId } from 'store/feature/lecture/lectureSlice';
 import TagCard from './TagCard';
 
 const LectureCard = () => {
 	const router = useRouter();
-	const { clickedId, lectures } = useAppSelector((state: RootState) => state.lecture);
-	console.log(lectures)
+	const { clickedId, lectures } = useAppSelector(
+		(state: RootState) => state.lecture,
+	);
+	console.log(lectures);
 	const handleClick = (id: number) => {
 		//router.push(`/details/${id}`);
 		router.push(`/details`);
@@ -24,7 +26,11 @@ const LectureCard = () => {
 						key={elem.id}
 						style={{ flex: '0 1 25%', padding: '1rem', cursor: 'pointer' }}
 					>
-						<img style={{ width: '300px' }} src="images/card_img.png" alt="no" />
+						<img
+							style={{ width: '300px' }}
+							src="images/card_img.png"
+							alt="no"
+						/>
 						<div style={{ display: 'flex', flexFlow: 'row wrap' }}>
 							<TagCard name={elem.hashtag} />
 						</div>
@@ -32,7 +38,7 @@ const LectureCard = () => {
 							style={{
 								fontWeight: 700,
 								maxWidth: '300px',
-								textOverflow: "ellipsis",
+								textOverflow: 'ellipsis',
 								overflow: 'hidden',
 							}}
 						>

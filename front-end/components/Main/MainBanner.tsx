@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CardList } from './CardList';
-import { fetchBannerImgUrls } from 'shared/apis/Main/bannerApi';
+import { fetchBannerImgUrls } from 'apis/Main/bannerApi';
 
 const MainBanner = () => {
 	const [imageUrl, setImageUrl] = useState<string[]>([]);
