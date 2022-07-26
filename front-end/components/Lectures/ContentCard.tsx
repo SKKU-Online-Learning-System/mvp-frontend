@@ -54,7 +54,7 @@ const ContentCard = ({ title, type, index }: CardProps) => {
 					
 				</CardTop>
 				{lectureType[0][index].category2s.map((subItem: any) =>
-        			<CardItem item={subItem.name} collapse={collapsed}/>
+        			<CardItem id = {subItem.id} item={subItem.name} collapse={collapsed}/>
 				)}
 		</>
 

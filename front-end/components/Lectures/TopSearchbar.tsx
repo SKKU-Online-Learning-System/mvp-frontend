@@ -15,14 +15,14 @@ const TopSearchbar = ({ checkList }: Props) => {
 	const [Key , setKey] = useState()
 	const dispatch = useAppDispatch();
 	const { allLectures } = useAppSelector((state: RootState) => state.lecture);
-
+	const Id = 0;
 	const handleSearch = async (e: any) => {
 		e.preventDefault();
 		let res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
 		let str = res.filter((elem) => elem).join();
 
 		try {
-			let result = await fetchSearchedData(inputRef.current.value, str);
+			let result = await fetchSearchedData(inputRef.current.value, str, Id);
 			dispatch(setLectures(result.data));
 			//no such thing as .records in this api
 			console.log(result.data)
