@@ -39,7 +39,7 @@ const Layout = ({ children }: LayoutProps) => {
 					})}
 				</ul>
 			</div>
-			{children}
+			<div style={{ display: 'block', marginTop: '20px' }}>{children}</div>
 		</LayoutBox>
 	);
 };
@@ -47,11 +47,12 @@ const Layout = ({ children }: LayoutProps) => {
 export default Layout;
 
 const LayoutBox = styled.div`
-	width: 1400px;
-	margin: 0 auto;
+	margin: 0 20px;
 	display: flex;
+	justify-content: flex-start;
 	.menuBar {
-		margin-right: 50px;
+		margin-right: 1%;
+		min-width: 230px;
 	}
 	ul {
 		list-style: none;
@@ -68,6 +69,10 @@ const LayoutBox = styled.div`
 	}
 	a {
 		display: block;
+	}
+	@media only screen and (min-width: 1400px) {
+		margin: 0 auto;
+		width: 1400px;
 	}
 `;
 const LinkMenu = styled.a<LinkProps>`

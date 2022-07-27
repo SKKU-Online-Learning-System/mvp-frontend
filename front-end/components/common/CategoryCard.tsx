@@ -2,13 +2,21 @@ import React, { Children } from 'react';
 import styled from 'styled-components';
 interface CardProps {
 	children?: React.ReactNode;
-	header: string;
-	smallHeader: string;
-	img: string;
+	header?: string;
+	smallHeader?: string;
+	img?: string;
+	width?: string;
+	margin?: string;
 }
-const CategoryCard = ({ header, children, smallHeader }: CardProps) => {
+const CategoryCard = ({
+	header,
+	children,
+	smallHeader,
+	width,
+	margin,
+}: CardProps) => {
 	return (
-		<CardWrapper>
+		<CardWrapper style={{ width: `${width}`, margin: `${margin}` }}>
 			<div className="header">
 				<div className="small-header"> {smallHeader}</div>
 				<img
@@ -32,7 +40,6 @@ const CardWrapper = styled.div`
 		position: relative;
 		background: rgba(0, 0, 0, 0.7);
 		color: white;
-		min-width: 180px;
 		padding: 10px 20px 10px 20px;
 		font-size: 1.2rem;
 		font-weight: bold;
@@ -44,7 +51,6 @@ const CardWrapper = styled.div`
 	}
 	display: flex;
 	flex-direction: column;
-	max-width: 300px;
 `;
 const CardContentWrapper = styled.div`
 	background-color: white;
