@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import QnABox from './QnABox';
-import axiosInstance from 'shared/apis';
+import axiosInstance from 'apis';
 const CurrentQnA = () => {
 	const courceId = 1;
 	const [qna, setQna] = useState([
