@@ -4,7 +4,7 @@ const withImages = require('next-images');
 module.exports = withImages();
 module.exports = {
 	reactStrictMode: true,
-	async rewrites() {
+	async rewrite() {
 		return [
 			{
 				source: '/',
@@ -18,6 +18,7 @@ module.exports = {
 	webpack(config, options) {
 		config.resolve = {
 			alias: {
+				'@apis': path.join(__dirname, 'apis'),
 				'@components': path.join(__dirname, 'components'),
 				'@interfaces': path.join(__dirname, 'interfaces'),
 			},

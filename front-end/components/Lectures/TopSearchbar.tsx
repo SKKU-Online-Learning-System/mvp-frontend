@@ -1,10 +1,12 @@
 import React, { useCallback, useRef, useState } from 'react';
-import {debounce} from 'lodash';
 import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { setLectures, setClickedId } from 'feature/lecture/lectureSlice';
-import { RootState } from 'app/store';
-import { fetchSearchedData } from '../../shared/apis/lectureApi';
+import { useAppDispatch, useAppSelector } from 'store/app/hooks';
+import { setLectures, setPageNum } from 'store/feature/lecture/lectureSlice';
+import { RootState } from 'store/app/store';
+import {
+	fetchSearchedData,
+	fetchAllLecturesPerPage,
+} from 'apis/Lectures/lectureApi';
 
 interface Props {
 	checkList: boolean[];
@@ -12,32 +14,30 @@ interface Props {
 
 const TopSearchbar = ({ checkList }: Props) => {
 	const inputRef = useRef<any>(null);
-	const [Key , setKey] = useState()
+	const [Key, setKey] = useState();
 	const dispatch = useAppDispatch();
-	const { allLectures } = useAppSelector((state: RootState) => state.lecture);
-	const Id = 0;
+	const { pageNum } = useAppSelector((state: RootState) => state.lecture);
+	let p_num = 1;
 	const handleSearch = async (e: any) => {
 		e.preventDefault();
 		let res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
 		let str = res.filter((elem) => elem).join();
 
 		try {
-			let result = await fetchSearchedData(inputRef.current.value, str, Id);
+			let result = await fetchSearchedData(inputRef.current.value, str);
 			dispatch(setLectures(result.data));
 			//no such thing as .records in this api
-			console.log(result.data)
 		} catch (e: any) {
 			console.error(e);
 		}
 	};
 
-	const handleInput = debounce((e: any) => {
+	const handleInput = (e: any) => {
 		inputRef.current.value = e.target.value;
-		setKey(e.target.value)
-	}, 5000);
-
-	function check(){
-		console.log(Key)
+		setKey(e.target.value);
+	};
+	function check() {
+		console.log(Key);
 	}
 
 	return (
@@ -55,7 +55,9 @@ const TopSearchbar = ({ checkList }: Props) => {
 						height: '36px',
 					}}
 				/>
-				<SerchButton type="submit" onClick={handleSearch}>검색</SerchButton>
+				<SerchButton type="submit" onClick={handleSearch}>
+					검색
+				</SerchButton>
 			</Searchbar>
 			<BottomLine />
 		</div>
