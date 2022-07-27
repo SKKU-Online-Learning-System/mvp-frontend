@@ -2,10 +2,12 @@ import React from 'react';
 import Layout from '@components/MyPage/Layout';
 import CategoryCard from '@components/common/CategoryCard';
 import styled from 'styled-components';
+import CommonHeader from '@components/common/CommonHeader';
 const index = () => {
 	const margin = '5px';
 	return (
 		<Layout>
+			<CommonHeader lineColor="orange" cat1="MY PAGE" cat2="DASHBOARD" />
 			<Container>
 				<CategoryCard
 					smallHeader="DASHBOARD"
@@ -76,4 +78,5 @@ export default index;
 const Container = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
+	margin-top: 1rem;
 `;

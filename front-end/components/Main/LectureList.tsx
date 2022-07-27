@@ -13,7 +13,7 @@ const LectureList = ({ headerText, headerColor }) => {
 	);
 };
 
-const CommonHeader = ({ text, color }) => {
+export const CommonHeader = ({ text, color }) => {
 	return (
 		<Wrapper>
 			<div style={{ position: 'relative' }}>
