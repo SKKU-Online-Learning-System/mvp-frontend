@@ -17,6 +17,5 @@ export const fetchSearchedData = (name: string, difficulty: string) => {
 };
 
 export const fetchAllLecturesPerPage = (pageNum: number) => {
-	//console.log(pageNum);
 	return axiosInstance.get(`courses/search?page=${pageNum}`);
 };

@@ -26,7 +26,6 @@ const CardItem = ({ id, item, collapse }: SubProps) => {
 				dispatch(setLectures(res.data));
 			})
 			.catch((err) => console.log(err));
-		console.log(clickedId);
 	};
 	return (
 		<div>{collapse && <SubCard onClick={showLecture}>{item}</SubCard>}</div>

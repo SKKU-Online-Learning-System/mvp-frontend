@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from 'store/app/hooks';
 import { setLectures, setPageNum } from 'store/feature/lecture/lectureSlice';
@@ -14,19 +14,17 @@ interface Props {
 
 const TopSearchbar = ({ checkList }: Props) => {
 	const inputRef = useRef<any>(null);
-	const [Key, setKey] = useState();
 	const dispatch = useAppDispatch();
-	const { pageNum } = useAppSelector((state: RootState) => state.lecture);
-	let p_num = 1;
+	const { lectures } = useAppSelector((state: RootState) => state.lecture);
+
 	const handleSearch = async (e: any) => {
 		e.preventDefault();
 		let res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
 		let str = res.filter((elem) => elem).join();
-
+		console.log(lectures.courses[0].hashtag)
 		try {
 			let result = await fetchSearchedData(inputRef.current.value, str);
 			dispatch(setLectures(result.data));
-			//no such thing as .records in this api
 		} catch (e: any) {
 			console.error(e);
 		}
@@ -34,11 +32,7 @@ const TopSearchbar = ({ checkList }: Props) => {
 
 	const handleInput = (e: any) => {
 		inputRef.current.value = e.target.value;
-		setKey(e.target.value);
 	};
-	function check() {
-		console.log(Key);
-	}
 
 	return (
 		<div>
@@ -48,7 +42,6 @@ const TopSearchbar = ({ checkList }: Props) => {
 					type="text"
 					placeholder="강의 검색하기"
 					onChange={handleInput}
-					onClick={check}
 					style={{
 						flex: '0 1 300px',
 						border: '1px solid #dedede',

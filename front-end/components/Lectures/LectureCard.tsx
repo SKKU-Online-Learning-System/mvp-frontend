@@ -9,7 +9,6 @@ const LectureCard = () => {
 	const { clickedId, lectures } = useAppSelector(
 		(state: RootState) => state.lecture,
 	);
-	console.log(lectures);
 	const handleClick = (id: number) => {
 		//router.push(`/details/${id}`);
 		router.push(`/details`);

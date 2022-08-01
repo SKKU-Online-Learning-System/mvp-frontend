@@ -36,7 +36,6 @@ const LectureList = () => {
 				.catch((err) => console.log(err));
 		}
 	}, [clickedId]);
-	console.log(clickedId);
 	return (
 		<LectureHeader>
 			{lectures &&
