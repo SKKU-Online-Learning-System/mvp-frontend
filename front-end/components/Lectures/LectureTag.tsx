@@ -4,17 +4,26 @@ import { RootState } from 'store/app/store';
 import { useAppSelector } from 'store/app/hooks';
 import styled from 'styled-components';
 import LecturesPage from 'pages/lectures';
+
+/** shows every hashtags of the courses */
 const LectureTag = () => {
 	let tags = [];
-	const {lectures} = useAppSelector((state: RootState) => state.lecture);
-
+	const { lectures } = useAppSelector((state: RootState) => state.lecture);
+	
+	/** 
+	 * check the courses' hashtags when lectures are defined 
+	 * push the hashtags to the array named "tags" 
+	*/
 	if(lectures.courses){
-		for(let i=0;i<lectures.courses.length;i++){
-			for(let j=0;j<lectures.courses[i].hashtag.length;j++){
-				tags.push(lectures.courses[i].hashtag[j])
+		if(lectures.courses.length > 0){
+			for(let i=0;i<lectures.courses.length;i++){
+				for(let j=0;j<lectures.courses[i].hashtag.length;j++){
+					tags.push(lectures.courses[i].hashtag[j])
+				}
 			}
 		}
 	}
+	/** erase tags that are overlapping */
 	tags = new Set(tags);
 	tags = [...tags]
 

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from 'store/app/hooks';
-import { setLectures, setPageNum } from 'store/feature/lecture/lectureSlice';
+import { setLectures, setClickedId } from 'store/feature/lecture/lectureSlice';
 import { RootState } from 'store/app/store';
 import {
 	fetchSearchedData,
@@ -15,13 +15,12 @@ interface Props {
 const TopSearchbar = ({ checkList }: Props) => {
 	const inputRef = useRef<any>(null);
 	const dispatch = useAppDispatch();
-	const { lectures } = useAppSelector((state: RootState) => state.lecture);
 
 	const handleSearch = async (e: any) => {
 		e.preventDefault();
+		dispatch(setClickedId(0))
 		let res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
 		let str = res.filter((elem) => elem).join();
-		console.log(lectures.courses[0].hashtag)
 		try {
 			let result = await fetchSearchedData(inputRef.current.value, str);
 			dispatch(setLectures(result.data));
@@ -56,6 +55,7 @@ const TopSearchbar = ({ checkList }: Props) => {
 		</div>
 	);
 };
+
 
 const Searchbar = styled.form`
 	display: flex;

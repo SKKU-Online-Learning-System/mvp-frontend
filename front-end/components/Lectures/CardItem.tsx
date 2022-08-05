@@ -15,9 +15,14 @@ interface SubProps {
 
 const CardItem = ({ id, item, collapse }: SubProps) => {
 	const dispatch = useAppDispatch();
-	const { clickedId, lectures } = useAppSelector(
+	const { clickedId } = useAppSelector(
 		(state: RootState) => state.lecture,
 	);
+
+	/**
+	 * shows the lectures grouped by the category when clicked
+	 * grouped category is set by the clickedId
+	 */
 	const showLecture = async (e: any) => {
 		e.preventDefault();
 		dispatch(setClickedId(id));
