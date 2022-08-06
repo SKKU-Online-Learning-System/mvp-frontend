@@ -1,6 +1,7 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axiosInstance from 'shared/apis';
+import axiosInstance from 'apis';
 const Curriculum = () => {
 	const courceId = 1;
 	const [lectureData, setLectureData] = useState([

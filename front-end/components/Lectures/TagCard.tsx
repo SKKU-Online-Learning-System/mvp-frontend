@@ -15,6 +15,7 @@ const TagCard = ({ name }: CardProps) => {
 
 const Card = styled.div`
 	display: flex;
+	width: 130px;
 	height: 36px;
 	border-radius: 4px;
 	justify-content: center;
@@ -25,7 +26,7 @@ const Card = styled.div`
 	padding: 1rem;
 	margin-right: 10px;
 	margin-top: 10px;
-	margin-left: 1rem;
+	margin-bottom: 10px;
 	font-size: 1rem;
 `;
 //export default React.memo(TagCard);

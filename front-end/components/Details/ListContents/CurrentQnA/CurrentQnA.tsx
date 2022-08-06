@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import QnABox from './QnABox';
+import axiosInstance from 'apis';
 const CurrentQnA = () => {
+	const courceId = 1;
+	const [qna, setQna] = useState([
+		{ id: 0, contents: '', answers: [{ contents: '' }] },
+	]);
+	useEffect(() => {
+		const getQnA = async () => {
+			const response = await axiosInstance('/questions/course/' + courceId);
+			const data = await response.data;
+			if (data.length > 3) setQna(data.slice(0, 3));
+			else setQna(data);
+		};
+		getQnA();
+	}, []);
 	return (
 		<Container>
 			<header>
@@ -15,9 +29,15 @@ const CurrentQnA = () => {
 					<button>MORE</button>
 				</div>
 			</header>
-			<QnABox />
-			<QnABox />
-			<QnABox />
+			{qna.map((ele) => {
+				return (
+					<QnABox
+						key={ele.id}
+						question={ele.contents}
+						answer={ele.answers[0].contents}
+					/>
+				);
+			})}
 		</Container>
 	);
 };

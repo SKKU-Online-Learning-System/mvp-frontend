@@ -1,19 +1,32 @@
 import { useRouter } from 'next/router';
+<<<<<<< HEAD
 import { useAppSelector } from 'app/hooks';
 import { RootState } from 'app/store';
+=======
+import { useAppSelector } from 'store/app/hooks';
+import { RootState } from 'store/app/store';
+import { setClickedId } from 'store/feature/lecture/lectureSlice';
+>>>>>>> 9178aed23d3639e28c9b67c5dd9b3058d7ddc58c
 import TagCard from './TagCard';
 
 const LectureCard = () => {
 	const router = useRouter();
-	const { lectures } = useAppSelector((state: RootState) => state.lecture);
-
+	const { clickedId, lectures } = useAppSelector(
+		(state: RootState) => state.lecture,
+	);
+	console.log(lectures);
 	const handleClick = (id: number) => {
 		//router.push(`/details/${id}`);
 		router.push(`/details`);
 	};
+
 	return (
 		<>
+<<<<<<< HEAD
 			{lectures?.map((elem: any) => {
+=======
+			{lectures.courses.map((elem: any) => {
+>>>>>>> 9178aed23d3639e28c9b67c5dd9b3058d7ddc58c
 				return (
 					<div
 						onClick={(event: React.MouseEvent<HTMLElement>) =>
