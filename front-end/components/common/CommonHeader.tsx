@@ -30,6 +30,4 @@ const Container = styled.div`
 	position: relative;
 	padding-right: 40px;
 	font-size: 1.5rem;
-	border-right: 2px solid rgba(0, 0, 0, 0.2);
-	/* font-weight: 700; */
 `;

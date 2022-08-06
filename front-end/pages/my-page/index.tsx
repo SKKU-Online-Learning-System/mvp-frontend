@@ -21,7 +21,7 @@ const index = () => {
 				</CategoryCard>
 				<CategoryCard
 					smallHeader="DASHBOARD"
-					header="MY PROFILE"
+					header="최근 알림보기"
 					margin={margin}
 				>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
@@ -31,7 +31,23 @@ const index = () => {
 				</CategoryCard>
 				<CategoryCard
 					smallHeader="DASHBOARD"
-					header="MY PROFILE"
+					header="최근 내 질문"
+					margin={margin}
+				>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
+					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
+					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
+					repellat quam.
+				</CategoryCard>
+				<CategoryCard smallHeader="DASHBOARD" header="학습통계" margin={margin}>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
+					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
+					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
+					repellat quam.
+				</CategoryCard>
+				<CategoryCard
+					smallHeader="DASHBOARD"
+					header="최근 학습중인 강좌/강의"
 					margin={margin}
 				>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
@@ -41,27 +57,7 @@ const index = () => {
 				</CategoryCard>
 				<CategoryCard
 					smallHeader="DASHBOARD"
-					header="MY PROFILE"
-					margin={margin}
-				>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
-					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
-					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
-					repellat quam.
-				</CategoryCard>
-				<CategoryCard
-					smallHeader="DASHBOARD"
-					header="MY PROFILE"
-					margin={margin}
-				>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
-					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
-					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
-					repellat quam.
-				</CategoryCard>
-				<CategoryCard
-					smallHeader="DASHBOARD"
-					header="MY PROFILE"
+					header="완료한 강좌"
 					margin={margin}
 				>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
