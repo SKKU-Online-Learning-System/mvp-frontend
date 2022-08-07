@@ -14,9 +14,7 @@ const DashNoti = () => {
 				<div className="inner">
 					<ul>
 						<li>
-							<span>
-								질문에 대한 답변이 등록되었습니다. 프로필이 수정되었습니다.
-							</span>
+							<span>질문에 대한 답변이 등록되었습니다. 프로필이 수정</span>
 						</li>
 						<li>
 							<span>수강중인 React입문 강좌에 새 강의가 등록되었습니</span>
@@ -60,6 +58,7 @@ const Container = styled.div`
 	li {
 		border-bottom: solid;
 		border-color: #e2e2e2;
+		border-width: thin;
 		padding: 0.3rem;
 		width: 100%;
 	}
