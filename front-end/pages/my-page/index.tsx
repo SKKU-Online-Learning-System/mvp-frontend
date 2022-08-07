@@ -4,6 +4,7 @@ import CategoryCard from '@components/common/CategoryCard';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader';
 import DashProfile from '@components/MyPage/Dashboard/DashProfile';
+import DashNoti from '@components/MyPage/Dashboard/DashNoti';
 const index = () => {
 	const margin = '5px';
 	return (
@@ -11,16 +12,7 @@ const index = () => {
 			<CommonHeader lineColor="orange" cat1="MY PAGE" cat2="DASHBOARD" />
 			<Container>
 				<DashProfile />
-				<CategoryCard
-					smallHeader="DASHBOARD"
-					header="최근 알림보기"
-					margin={margin}
-				>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
-					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
-					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
-					repellat quam.
-				</CategoryCard>
+				<DashNoti />
 				<CategoryCard
 					smallHeader="DASHBOARD"
 					header="최근 내 질문"

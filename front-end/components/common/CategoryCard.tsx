@@ -61,7 +61,6 @@ const CardWrapper = styled.div`
 `;
 const CardContentWrapper = styled.div`
 	background-color: white;
-	padding-bottom: 20px;
 	border: solid;
 	border-color: #e2e2e2;
 	border-width: thin;
