@@ -53,23 +53,25 @@ const LayoutBox = styled.div`
 	.menuBar {
 		margin-right: 1%;
 		min-width: 230px;
+
+		ul {
+			list-style: none;
+			border: solid;
+			border-color: #e2e2e2;
+			border-width: thin;
+			padding: 0;
+			height: 100%;
+		}
+		li {
+			border-bottom: solid;
+			border-color: #e2e2e2;
+			border-width: thin;
+		}
+		a {
+			display: block;
+		}
 	}
-	ul {
-		list-style: none;
-		border: solid;
-		border-color: #e2e2e2;
-		border-width: thin;
-		padding: 0;
-		height: 100%;
-	}
-	li {
-		border-bottom: solid;
-		border-color: #e2e2e2;
-		border-width: thin;
-	}
-	a {
-		display: block;
-	}
+
 	@media only screen and (min-width: 1400px) {
 		margin: 0 auto;
 		width: 1400px;

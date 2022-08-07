@@ -1,5 +1,7 @@
+import { useRouter } from 'next/router';
 import React, { Children } from 'react';
 import styled from 'styled-components';
+
 interface CardProps {
 	children?: React.ReactNode;
 	header?: string;
@@ -7,6 +9,7 @@ interface CardProps {
 	img?: string;
 	width?: string;
 	margin?: string;
+	url?: string;
 }
 const CategoryCard = ({
 	header,
@@ -14,7 +17,9 @@ const CategoryCard = ({
 	smallHeader,
 	width,
 	margin,
+	url,
 }: CardProps) => {
+	const router = useRouter();
 	return (
 		<CardWrapper style={{ width: `${width}`, margin: `${margin}` }}>
 			<div className="header">
@@ -23,7 +28,9 @@ const CategoryCard = ({
 					style={{ right: 0, top: 0, position: 'absolute', cursor: 'pointer' }}
 					src={'images/plus_icon.png'}
 					width="24px"
-					onClick={() => alert('plus')}
+					onClick={() => {
+						url && router.push(url);
+					}}
 				></img>
 				{header || ''}
 			</div>

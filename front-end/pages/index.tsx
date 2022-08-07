@@ -11,13 +11,13 @@ import MidCategory from '@components/Main/MidCategory';
 import axios from 'axios';
 
 const Index = () => {
-	useEffect(() => {
-		axios
-			.get(`${process.env.NEXT_PUBLIC_API_SERVER}auth/temp-login`)
-			.then((res) => console.log(res.data));
-	}, []);
+	// useEffect(() => {
+	// 	axios
+	// 		.get(`${process.env.NEXT_PUBLIC_API_SERVER}auth/temp-login`)
+	// 		.then((res) => console.log(res.data));
+	// }, []);
 
-	console.log(process.env.NEXT_PUBLIC_API_SERVER);
+	// console.log(process.env.NEXT_PUBLIC_API_SERVER);
 	return (
 		<Wrapper>
 			<MainBanner />

@@ -3,22 +3,14 @@ import Layout from '@components/MyPage/Layout';
 import CategoryCard from '@components/common/CategoryCard';
 import styled from 'styled-components';
 import CommonHeader from '@components/common/CommonHeader';
+import DashProfile from '@components/MyPage/Dashboard/DashProfile';
 const index = () => {
 	const margin = '5px';
 	return (
 		<Layout>
 			<CommonHeader lineColor="orange" cat1="MY PAGE" cat2="DASHBOARD" />
 			<Container>
-				<CategoryCard
-					smallHeader="DASHBOARD"
-					header="MY PROFILE"
-					margin={margin}
-				>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
-					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
-					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
-					repellat quam.
-				</CategoryCard>
+				<DashProfile />
 				<CategoryCard
 					smallHeader="DASHBOARD"
 					header="최근 알림보기"
