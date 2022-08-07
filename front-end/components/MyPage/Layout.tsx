@@ -53,6 +53,7 @@ const LayoutBox = styled.div`
 	.menuBar {
 		margin-right: 1%;
 		min-width: 230px;
+		font-size: 0.8rem;
 
 		ul {
 			list-style: none;
@@ -66,6 +67,7 @@ const LayoutBox = styled.div`
 			border-bottom: solid;
 			border-color: #e2e2e2;
 			border-width: thin;
+			line-height: 1.6rem;
 		}
 		a {
 			display: block;
