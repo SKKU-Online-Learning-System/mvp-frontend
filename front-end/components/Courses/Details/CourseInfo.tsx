@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useAppSelector } from 'store/app/hooks';
 import { RootState } from 'store/app/store';
 
-const MainText = () => {
+const CourseInfo = () => {
 	const course = useAppSelector(
 		(state: RootState) => state.courseDetail.course,
 	);
@@ -23,15 +23,14 @@ const MainText = () => {
 	);
 };
 
-export default MainText;
+export default CourseInfo;
 
 const Container = styled.div`
 	display: flex;
-	width: 50rem;
 	flex-direction: column;
 	justify-content: center;
 	color: white;
-	padding-left: 50px;
+	padding: 0 50px;
 	& h1,
 	h2,
 	h3,

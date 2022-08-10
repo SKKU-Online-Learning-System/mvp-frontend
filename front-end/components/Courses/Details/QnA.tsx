@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import QnAItem from './QnAItem';
-import axiosInstance from 'apis';
 import { useAppSelector } from 'store/app/hooks';
 import { RootState } from 'store/app/store';
+import { useRouter } from 'next/router';
 
-const QnA = ({ courseId }: any) => {
+const QnA = () => {
+	const router = useRouter();
 	const qna = useAppSelector((state: RootState) => state.courseDetail.qna);
+	const { id } = useAppSelector(
+		(state: RootState) => state.courseDetail.course,
+	);
+
+	function handleClick(courseId: number) {
+		router.push(`/questions/course/${courseId}`);
+	}
 
 	return (
 		<Container>
@@ -21,8 +29,10 @@ const QnA = ({ courseId }: any) => {
 					Recent Questions
 				</div>
 				<div style={{ display: 'flex' }}>
-					<h2>최근 한 질문</h2>
-					<button>MORE</button>
+					<h2 style={{ width: '20%' }}>최근 한 질문</h2>
+					<div onClick={(e: React.MouseEvent<HTMLElement>) => handleClick(id)}>
+						MORE
+					</div>
 				</div>
 			</header>
 			{qna.map((ele) => {
@@ -43,7 +53,7 @@ export default QnA;
 const Container = styled.div`
 	width: 80%;
 	margin: auto;
-	padding: 18px 23px;
+	padding: 25px;
 	font-family: 'Noto Sans KR';
 	& header {
 		margin: 0 0 16px 18px;

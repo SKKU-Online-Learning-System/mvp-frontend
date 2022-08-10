@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import MainBanner from '@components/Courses/Details/MainBanner';
 import QnA from '@components/Courses/Details/QnA';
 import LectureList from '@components/Courses/Details/LectureList';
 import { useRouter } from 'next/router';
@@ -16,6 +15,7 @@ import {
 	setLectures,
 	setQna,
 } from 'store/feature/course/courseDetailSlice';
+import CourseHeader from '@components/Courses/Details/CourseHeader';
 
 const CourseDetailPage = () => {
 	const dispatch = useAppDispatch();
@@ -38,7 +38,7 @@ const CourseDetailPage = () => {
 
 	return (
 		<>
-			<MainBanner />
+			<CourseHeader />
 			<Container>
 				<LectureList />
 				<QnA />
@@ -50,13 +50,6 @@ const CourseDetailPage = () => {
 export default CourseDetailPage;
 
 const Container = styled.div`
-	.leftBox {
-		margin: 0 56px 0 0;
-		width: 50%;
-	}
-	margin: 0 auto;
-	@media only screen and (min-width: 1300px) {
-		/* width: 1650px; */
-		width: 1300px;
-	}
+	width: 1100px;
+	margin: 30px auto;
 `;

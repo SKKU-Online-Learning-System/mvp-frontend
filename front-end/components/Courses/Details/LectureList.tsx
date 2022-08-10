@@ -1,12 +1,10 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import axiosInstance from 'apis';
-import LectureListSection from './LectureListSection';
 import { useAppSelector } from 'store/app/hooks';
 import { RootState } from 'store/app/store';
+import LectureListSection from './LectureListSection';
 
-const LectureList = ({ courseId }: any) => {
+const LectureList = () => {
 	const lectures = useAppSelector(
 		(state: RootState) => state.courseDetail.lectures,
 	);
@@ -23,7 +21,7 @@ const LectureList = ({ courseId }: any) => {
 			</header>
 
 			{lectures.map((section) => {
-				return <LectureListSection key={section.title} section={section} />;
+				return <LectureListSection key={section.id} section={section} />;
 			})}
 		</Container>
 	);
@@ -34,11 +32,11 @@ export default LectureList;
 const Container = styled.div`
 	width: 80%;
 	margin: auto;
-	padding: 18px 23px;
+	padding: 25px;
 	font-family: 'Noto Sans KR';
 
 	h2 {
-		margin: 0;
+		margin: 0 0 5px 0;
 		color: #393939;
 		font-weight: bold;
 	}

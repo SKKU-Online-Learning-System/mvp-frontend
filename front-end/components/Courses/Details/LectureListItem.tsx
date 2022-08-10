@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 const LectureListItem = ({ lecture, index }: any) => {
 	function durationToHMS(duration: number) {
 		let hours = Math.floor(duration / 3600);
@@ -12,13 +14,34 @@ const LectureListItem = ({ lecture, index }: any) => {
 	}
 
 	return (
-		<tr>
-			<td>{index + 1}</td>
-			<td>{lecture.title}</td>
-			<td>{durationToHMS(lecture.duration)}</td>
-			<td></td>
-		</tr>
+		<Container>
+			<span className="index">{index + 1}</span>
+			<span className="title">{lecture.title}</span>
+			<span className="duration">{durationToHMS(lecture.duration)}</span>
+		</Container>
 	);
 };
 
 export default LectureListItem;
+
+const Container = styled.div`
+	display: flex;
+	height: 48px;
+	align-items: center;
+	span {
+		color: #404040;
+		font-size: 16px;
+	}
+	.index {
+		width: 10%;
+		text-align: center;
+	}
+	.title {
+		width: 75%;
+		padding-left: 5px;
+	}
+	.duration {
+		width: 15%;
+		text-align: center;
+	}
+`;

@@ -8,7 +8,7 @@ export type courseDetailState = {
 		description: string;
 		thumbnail: string;
 		difficulty: number;
-		createdAt: Date;
+		createdAt: string;
 		instructor: string;
 		category1: string;
 		category2: string;
@@ -18,13 +18,14 @@ export type courseDetailState = {
 		{
 			id: number;
 			title: string;
+			show: boolean;
 			lectures: [
 				{
 					id: number;
 					title: string;
 					duration: number;
 					filename: string;
-					createdAt: Date;
+					createdAt: string;
 				},
 			];
 		},
@@ -33,7 +34,7 @@ export type courseDetailState = {
 		{
 			id: number;
 			contents: string;
-			createdAt: Date;
+			createdAt: string;
 			author: {
 				id: number;
 				nickname: string;
@@ -42,7 +43,7 @@ export type courseDetailState = {
 				{
 					id: number;
 					contents: string;
-					createdAt: Date;
+					createdAt: string;
 					author: {
 						id: number;
 						nickname: string;
@@ -61,7 +62,7 @@ const initialState: courseDetailState = {
 		description: '',
 		thumbnail: '',
 		difficulty: 0,
-		createdAt: new Date(),
+		createdAt: '',
 		instructor: '',
 		category1: '',
 		category2: '',
@@ -71,13 +72,14 @@ const initialState: courseDetailState = {
 		{
 			id: 0,
 			title: '',
+			show: true,
 			lectures: [
 				{
 					id: 0,
 					title: '',
 					duration: 0,
 					filename: '',
-					createdAt: new Date(),
+					createdAt: '',
 				},
 			],
 		},
@@ -86,7 +88,7 @@ const initialState: courseDetailState = {
 		{
 			id: 0,
 			contents: '',
-			createdAt: new Date(),
+			createdAt: '',
 			author: {
 				id: 0,
 				nickname: '',
@@ -95,7 +97,7 @@ const initialState: courseDetailState = {
 				{
 					id: 0,
 					contents: '',
-					createdAt: new Date(),
+					createdAt: '',
 					author: {
 						id: 0,
 						nickname: '',
@@ -115,13 +117,21 @@ export const courseDetailSlice = createSlice({
 		},
 		setLectures: (state, action: PayloadAction<object>) => {
 			Object.assign(state.lectures, action.payload);
+			state.lectures.map((section) => (section.show = true));
 		},
 		setQna: (state, action: PayloadAction<object>) => {
 			Object.assign(state.qna, action.payload);
 		},
+		toggleSection: (state, action: PayloadAction<number>) => {
+			const sectionId = action.payload;
+			state.lectures.map((section) => {
+				if (section.id === sectionId) section.show = !section.show;
+			});
+		},
 	},
 });
 
-export const { setCourse, setLectures, setQna } = courseDetailSlice.actions;
+export const { setCourse, setLectures, setQna, toggleSection } =
+	courseDetailSlice.actions;
 
 export default courseDetailSlice.reducer;
