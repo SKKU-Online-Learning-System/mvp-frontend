@@ -1,3 +1,6 @@
+import { sendLogInRequest } from "apis/LogIn/logInApi";
+import { AxiosResponse } from "axios";
+import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 
@@ -18,7 +21,7 @@ const Input = styled.input`
   box-sizing: border-box;
 `;
 
-const Button = styled.div`
+const Button = styled.button`
   font-size: 18px;
   font-weight: 700;
   line-height: 49px;
@@ -33,21 +36,46 @@ const Button = styled.div`
   border-radius: 0;
   background-color: #03c75a;
 `;
-//아디 비번 값 받기
+
+//이메일 값 받기
 //값없으면 disabled
-function LoginForm() {
-    return (
-        <Container>
-            <Input id="id" name="id" placeholder="아이디를 입력해주세요" />
-            <Input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="비밀번호를 입력해주세요"
-            />
-            <Button>로그인</Button>
-        </Container>
-    );
+function LogInForm() {
+  const router = useRouter();
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    
+    const email: string = e.target.email.value;
+
+    if (!email) {
+      alert('이메일 주소를 입력하세요');
+      return;
+    }
+    sendLogInRequest(email)
+      .then((res: AxiosResponse) => {
+        prompt('Success: Check your email!');
+        router.reload();
+      })
+      .catch((err: any) => {
+        alert('Error: Login attempt failed...');
+        if (err.response) {
+          console.log(err.response);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log('Error:', err.message);
+        }
+      });
+  }
+
+  return (
+      <Container>
+        <form onSubmit={handleSubmit}>
+          <Input id="email" name="email" placeholder="로그인할 이메일을 입력해주세요" />
+          <Button type="submit">이메일 전송</Button>
+        </form>
+      </Container>
+  );
 }
 
-export default LoginForm;
+export default LogInForm;

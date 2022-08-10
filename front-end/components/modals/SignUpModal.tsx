@@ -1,16 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import LogInForm from "./LogInForm";
+import SignUpForm from "./SignUpForm";
 
-interface LogInModalProps {
+interface SignUpModalProps {
   show: boolean;
   onClose: Function;
   children?: React.ReactNode;
-  onOpenSignUp: Function;
 }
 
-function LogInModal({ show, onClose, onOpenSignUp,children }: LogInModalProps) {
+function SignUpModal({ show, onClose, children }: SignUpModalProps) {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
@@ -22,12 +21,6 @@ function LogInModal({ show, onClose, onOpenSignUp,children }: LogInModalProps) {
     onClose();
   };
 
-  const handleOpenSignUpClick = (e: any) => {
-    e.preventDefault();
-    onClose();
-    onOpenSignUp();
-  }
-
   const modalContent = show ? (
     <StyledModalOverlay>
       <StyledModal>
@@ -38,9 +31,8 @@ function LogInModal({ show, onClose, onOpenSignUp,children }: LogInModalProps) {
         </StyledModalHeader>
 
         <StyledModalBody>
-          <h1>LOGIN</h1>
-          <LogInForm />
-          <div>처음이신가요? <a href='#' onClick={handleOpenSignUpClick}>회원가입</a></div>
+          <h1>Sign Up</h1>
+          <SignUpForm />
         </StyledModalBody>
       </StyledModal>
     </StyledModalOverlay>
@@ -57,7 +49,7 @@ function LogInModal({ show, onClose, onOpenSignUp,children }: LogInModalProps) {
   }
 }
 
-export default LogInModal;
+export default SignUpModal;
 
 const StyledModalBody = styled.div`
   padding-top: 10px;

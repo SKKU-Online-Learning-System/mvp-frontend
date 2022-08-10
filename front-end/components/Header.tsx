@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import styled from 'styled-components';
-import LoginModal from '@components/modals/LoginModal';
+import LogInModal from '@components/modals/LogInModal';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from 'store/app/hooks';
 import { setClickedId } from 'store/feature/lecture/lectureSlice';
 import { RootState } from 'store/app/store';
+import SignUpModal from './modals/SignUpModal';
 
 interface LinkProps {
 	isThisPage: boolean;
@@ -26,7 +27,8 @@ const menuData = [
 ];
 
 const Header = () => {
-	const [showModal, setShowModal] = useState(false);
+	const [showLogInModal, setShowLogInModal] = useState(false);
+	const [showSignUpModal, setShowSignUpModal] = useState(false);
 	const router = useRouter();
 	const dispatch = useAppDispatch();
 	const { clickedId } = useAppSelector((state: RootState) => state.lecture);
@@ -83,17 +85,21 @@ const Header = () => {
 			</div>
 
 			<div>
-				<button onClick={() => setShowModal(true)}>로그인</button>
-				<Link href="/signup">
+				<button onClick={() => setShowLogInModal(true)}>로그인</button>
+				{/* <Link href="/signup">
 					<LinkMenu isThisPage={'/signup' === router.pathname}>
 						회원가입
 					</LinkMenu>
-				</Link>
+				</Link> */}
+				<button onClick={() => setShowSignUpModal(true)}>회원가입</button>
 			</div>
 
-			<LoginModal onClose={() => setShowModal(false)} show={showModal}>
+			<LogInModal onClose={() => setShowLogInModal(false)} onOpenSignUp={() => setShowSignUpModal(true)} show={showLogInModal}>
 				로그인 모달 children
-			</LoginModal>
+			</LogInModal>
+			<SignUpModal onClose={() => setShowSignUpModal(false)} show={showSignUpModal}>
+				회원가입 모달 children
+			</SignUpModal>
 		</Container>
 	);
 };
