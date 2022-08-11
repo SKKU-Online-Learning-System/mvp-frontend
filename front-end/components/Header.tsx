@@ -57,7 +57,7 @@ const Header = () => {
 		<Container>
 			<div style={{ display: 'flex', alignItems: 'center' }}>
 				<a href="https://www.skku.edu/">
-					<img src="images/main_logo.png" style={{ zoom: '80%' }} />
+					<img src="/images/main_logo.png" style={{ zoom: '80%' }} />
 				</a>
 				<Link href="/">
 					<span
@@ -119,7 +119,7 @@ const LinkMenu = styled.a<LinkProps>`
 `;
 const SearchButton = styled.button`
 	background: none;
-	background-image: url('images/search_btn.png');
+	background-image: url('/images/search_btn.png');
 	background-size: cover;
 	margin-left: -40px;
 	border: none;
