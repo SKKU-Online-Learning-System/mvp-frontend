@@ -25,8 +25,13 @@ const LectureTag = () => {
 	}
 	/** erase tags that are overlapping */
 	tags = new Set(tags);
-	tags = [...tags]
 
+
+	tags = [...tags]
+	console.log(tags.length)
+	if(tags.length > 20){
+		tags = tags.slice(0, 20)
+	}
 	return (
 		<div style={{ display: 'flex', flexFlow: 'row wrap' }}>
 			<TagCard name={tags}/>

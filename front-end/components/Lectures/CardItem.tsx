@@ -2,7 +2,7 @@ import React from 'react';
 import { $CombinedState } from 'redux';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { setLectures, setClickedId } from 'store/feature/lecture/lectureSlice';
+import { setLectures, setClickedId, setMenu } from 'store/feature/lecture/lectureSlice';
 import { fetchLectureLists } from 'apis/Lectures/lectureApi';
 import { useAppDispatch, useAppSelector } from 'store/app/hooks';
 import { RootState } from 'store/app/store';
@@ -15,7 +15,7 @@ interface SubProps {
 
 const CardItem = ({ id, item, collapse }: SubProps) => {
 	const dispatch = useAppDispatch();
-	const { clickedId } = useAppSelector(
+	const { clickedId, menu } = useAppSelector(
 		(state: RootState) => state.lecture,
 	);
 
@@ -26,6 +26,7 @@ const CardItem = ({ id, item, collapse }: SubProps) => {
 	const showLecture = async (e: any) => {
 		e.preventDefault();
 		dispatch(setClickedId(id));
+		dispatch(setMenu(item))
 		fetchLectureLists(clickedId.toString())
 			.then((res) => {
 				dispatch(setLectures(res.data));
