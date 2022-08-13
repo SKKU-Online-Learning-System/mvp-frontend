@@ -47,7 +47,7 @@ function SignUpModal({ show, onClose, children }: SignUpModalProps) {
 }
 
 export default SignUpModal;
-const Backdrop = styled.div`
+export const Backdrop = styled.div`
 	background-color: rgba(0, 0, 0, 0.5);
 	position: fixed;
 	top: 0;
@@ -73,7 +73,7 @@ const StyledModal = styled.div`
 	border-radius: 15px;
 	padding: 15px;
 `;
-const StyledModalOverlay = styled.div`
+export const StyledModalOverlay = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
