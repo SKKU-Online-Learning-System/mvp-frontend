@@ -1,16 +1,15 @@
-
-
-import React from 'react';
-import Layout from '@components/Main/MyPage/Layout';
-import CategoryCard from '@components/Common/CategoryCard';
+import CategoryCard from '@components/common/CategoryCard';
+import MyPageLayout from '@components/MyPage/MyPageLayout';
 import styled from 'styled-components';
-const index = () => {
+
+const MyPageIndex = () => {
 	const margin = '5px';
 	return (
+		<MyPageLayout>
 			<Container>
 				<CategoryCard
 					smallHeader="DASHBOARD"
-					header="수강중인 강좌"
+					header="MY PROFILE"
 					margin={margin}
 				>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
@@ -20,7 +19,7 @@ const index = () => {
 				</CategoryCard>
 				<CategoryCard
 					smallHeader="DASHBOARD"
-					header="수강 완료 강좌"
+					header="MY PROFILE"
 					margin={margin}
 				>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
@@ -30,7 +29,7 @@ const index = () => {
 				</CategoryCard>
 				<CategoryCard
 					smallHeader="DASHBOARD"
-					header="찜한 강좌"
+					header="MY PROFILE"
 					margin={margin}
 				>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
@@ -40,7 +39,7 @@ const index = () => {
 				</CategoryCard>
 				<CategoryCard
 					smallHeader="DASHBOARD"
-					header="즐겨찾기 강좌"
+					header="MY PROFILE"
 					margin={margin}
 				>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
@@ -50,7 +49,7 @@ const index = () => {
 				</CategoryCard>
 				<CategoryCard
 					smallHeader="DASHBOARD"
-					header="내 질의응답"
+					header="MY PROFILE"
 					margin={margin}
 				>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
@@ -60,7 +59,7 @@ const index = () => {
 				</CategoryCard>
 				<CategoryCard
 					smallHeader="DASHBOARD"
-					header="최근 수강 강좌"
+					header="MY PROFILE"
 					margin={margin}
 				>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
@@ -69,10 +68,12 @@ const index = () => {
 					repellat quam.
 				</CategoryCard>
 			</Container>
+		</MyPageLayout>
 	);
 };
 
-export default index;
+export default MyPageIndex;
+
 const Container = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;

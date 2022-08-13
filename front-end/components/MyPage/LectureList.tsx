@@ -1,32 +1,38 @@
 import styled from 'styled-components';
 
-const LectureList = ({ headerText, headerColor, data }) => {
+const LectureList = ({ headerText, headerColor, data }: any) => {
 	return (
 		<div>
 			<CommonHeader text={headerText} color={headerColor} />
-			<div style={{ display: 'flex', width: '100%', flexWrap: 'wrap', padding: '20px 35px', overflowX: 'auto' }}>
+			<div
+				style={{
+					display: 'flex',
+					width: '100%',
+					flexWrap: 'wrap',
+					padding: '20px 35px',
+					overflowX: 'auto',
+				}}
+			>
 				{data.map((item: any) => (
 					<LectureCardWrapper>
-					<img src="images/lecture_thumbnail.png" />
-					<div style={{ display: 'flex', gap: '5px' }}>
-						<HashTagChip>#python</HashTagChip>
-						<HashTagChip>#코딩입문</HashTagChip>
-						<HashTagChip>#자동매매</HashTagChip>
-					</div>
-					<div style={{ fontWeight: 'bold' }}>
-						{item.course.title}
-					</div>
-					<div style={{ fontSize: '12px', opacity: '0.6' }}>
-						{item.course.summary}
-					</div>
-					</LectureCardWrapper>				
+						<img src="images/lecture_thumbnail.png" />
+						<div style={{ display: 'flex', gap: '5px' }}>
+							<HashTagChip>#python</HashTagChip>
+							<HashTagChip>#코딩입문</HashTagChip>
+							<HashTagChip>#자동매매</HashTagChip>
+						</div>
+						<div style={{ fontWeight: 'bold' }}>{item.course.title}</div>
+						<div style={{ fontSize: '12px', opacity: '0.6' }}>
+							{item.course.summary}
+						</div>
+					</LectureCardWrapper>
 				))}
 			</div>
 		</div>
 	);
 };
 
-const CommonHeader = ({ text, color }) => {
+const CommonHeader = ({ text, color }: any) => {
 	return (
 		<Wrapper>
 			<div style={{ position: 'relative' }}>
@@ -46,7 +52,6 @@ const CommonHeader = ({ text, color }) => {
 	);
 };
 
-
 const Wrapper = styled.div`
 	width: 75vw;
 	font-size: 32px;
@@ -56,7 +61,6 @@ const Wrapper = styled.div`
 	padding-left: 45px;
 	padding-top: 60px;
 	flex-wrap: wrap;
-
 `;
 
 const LectureCardWrapper = styled.div`

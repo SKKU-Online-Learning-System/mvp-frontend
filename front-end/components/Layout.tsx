@@ -11,7 +11,8 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => (
 	<LayoutBox>
 		<Header />
-		{children}
+		<ContentsBox>{children}</ContentsBox>
+
 		<Footer />
 	</LayoutBox>
 );
@@ -22,6 +23,7 @@ const LayoutBox = styled.div`
 	flex-direction: column;
 	margin-left: auto;
 	margin-right: auto;
+	height: 100vh;
 	@media only screen and (min-width: 1440px) {
 		/* width: 1650px; */
 		width: 100vw;
@@ -29,6 +31,10 @@ const LayoutBox = styled.div`
 	@media only screen and (max-width: 1440px) {
 		width: 100vw;
 	}
+`;
+
+const ContentsBox = styled.div`
+	flex: 1;
 `;
 
 export default Layout;
