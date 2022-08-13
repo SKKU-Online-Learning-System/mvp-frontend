@@ -1,23 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import Layout from '@components/Layout';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import MainBanner from '@components/Main/MainBanner';
 import Notice from '@components/Main/Notice';
-import Dashboard from '@components/Main/Dashboard';
 // 1920px 기준임. width별로 다르게 나와야함.
 import LectureList from '@components/Main/LectureList';
 import MidBanner from '@components/Main/MidBanner';
 import MidCategory from '@components/Main/MidCategory';
-import axios from 'axios';
+import axiosInstance from 'apis';
 
 const Index = () => {
 	useEffect(() => {
-		axios
-			.get(`${process.env.NEXT_PUBLIC_API_SERVER}auth/temp-login`)
-			.then((res) => console.log(res.data));
+		axiosInstance.get('/auth/temp-login').then((res) => console.log(res.data));
 	}, []);
 
-	console.log(process.env.NEXT_PUBLIC_API_SERVER);
 	return (
 		<Wrapper>
 			<MainBanner />

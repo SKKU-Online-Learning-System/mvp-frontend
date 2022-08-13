@@ -1,8 +1,8 @@
 import axios from 'axios';
 // axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
-	withCredentials: true,
-	baseURL: process.env.NEXT_PUBLIC_API_SERVER,
+	// withCredentials: true,
+	baseURL: process.env.NEXT_PUBLIC_API_BASEURL,
 });
 
 export default axiosInstance;
