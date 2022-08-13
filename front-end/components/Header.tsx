@@ -23,6 +23,7 @@ const menuData = [
 	{ id: 1, name: '강좌 List', path: '/lectures' },
 	{ id: 2, name: '커뮤니티', path: '/community' },
 	{ id: 3, name: 'MY최근강의', path: '/details' },
+	{ id: 4, name: '마이페이지', path: '/my-page' },
 ];
 
 const Header = () => {
