@@ -13,7 +13,7 @@ const Footer = () => {
 			>
 				<InfoBox>
 					<div style={{ display: 'flex' }}>
-						<img src="images/main_logo.png" />
+						<img src="/images/main_logo.png" />
 						<div
 							style={{
 								fontFamily: 'Gugi',

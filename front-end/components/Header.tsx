@@ -24,6 +24,7 @@ const menuData = [
 	{ id: 1, name: '강좌 List', path: '/lectures' },
 	{ id: 2, name: '커뮤니티', path: '/community' },
 	{ id: 3, name: 'MY최근강의', path: '/details' },
+	{ id: 4, name: '마이페이지', path: '/my-page' },
 ];
 
 const Header = () => {
@@ -59,7 +60,7 @@ const Header = () => {
 		<Container>
 			<div style={{ display: 'flex', alignItems: 'center' }}>
 				<a href="https://www.skku.edu/">
-					<img src="images/main_logo.png" style={{ zoom: '80%' }} />
+					<img src="/images/main_logo.png" style={{ zoom: '80%' }} />
 				</a>
 				<Link href="/">
 					<span
@@ -125,7 +126,7 @@ const LinkMenu = styled.a<LinkProps>`
 `;
 const SearchButton = styled.button`
 	background: none;
-	background-image: url('images/search_btn.png');
+	background-image: url('/images/search_btn.png');
 	background-size: cover;
 	margin-left: -40px;
 	border: none;
