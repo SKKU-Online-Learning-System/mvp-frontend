@@ -2,36 +2,46 @@ import { useRouter } from 'next/router';
 import { useAppSelector } from 'store/app/hooks';
 import { RootState } from 'store/app/store';
 import { setClickedId } from 'store/feature/lecture/lectureSlice';
-import TagCard from './TagCard';
+import HashTagCard from './HashTagCard';
+import styled from 'styled-components';
 
 const LectureCard = () => {
 	const router = useRouter();
 	const { clickedId, lectures } = useAppSelector(
 		(state: RootState) => state.lecture,
 	);
-	console.log(lectures);
+
 	const handleClick = (id: number) => {
 		router.push(`/courses/${id}`);
 	};
 
 	return (
-		<>
+		<Wrapper>
 			{lectures.courses.map((elem: any) => {
 				return (
-					<div
+					<span
+						style={{ paddingRight: '1rem', cursor: 'pointer' }}
 						onClick={(event: React.MouseEvent<HTMLElement>) =>
 							handleClick(elem.id)
 						}
 						key={elem.id}
-						style={{ flex: '0 1 25%', padding: '1rem', cursor: 'pointer' }}
 					>
 						<img
 							style={{ width: '300px' }}
 							src="images/card_img.png"
 							alt="no"
 						/>
-						<div style={{ display: 'flex', flexFlow: 'row wrap' }}>
-							<TagCard name={elem.hashtag} />
+						<div
+							style={{
+								display: 'flex',
+								gap: '4px',
+								overflowY: 'auto',
+								width: '300px',
+							}}
+						>
+							{elem.hashtag.map((name: string, idx: number) => (
+								<HashTagCard name={name} key={idx} />
+							))}
 						</div>
 						<div
 							style={{
@@ -54,10 +64,16 @@ const LectureCard = () => {
 						>
 							{elem.description}
 						</div>
-					</div>
+					</span>
 				);
 			})}
-		</>
+		</Wrapper>
 	);
 };
+
+const Wrapper = styled.div`
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+`;
 export default LectureCard;

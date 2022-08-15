@@ -7,7 +7,6 @@ import { addLectureType } from 'store/feature/lecture/lectureSlice';
 import { fetchAllLectureCategories } from 'apis/Lectures/lectureApi';
 import TopSearchbar from '@components/Courses/List/TopSearchbar';
 import BreadCrumb from '@components/Courses/List/BreadCrumb';
-import LectureTag from '@components/Courses/List/LectureTag';
 import LectureList from '@components/Courses/List/LectureList';
 import LectureMove from '@components/Courses/List/LectureMove';
 import ContentMenu from '@components/Courses/List/ContentMenu';
@@ -35,14 +34,12 @@ const CoursesListPage = () => {
 						{/* 왼쪽 sidebar 전체 */}
 						<SidebarLeft>
 							<ContentMenu />
-							<SelectCardWrapper>
-								<SelectorCard
-									checkList={checkList}
-									setCheckList={setCheckList}
-									title={'난이도'}
-									type={['입문', '초급', '중급이상']}
-								/>
-							</SelectCardWrapper>
+							<SelectorCard
+								checkList={checkList}
+								setCheckList={setCheckList}
+								title={'난이도'}
+								type={['입문', '초급', '중급이상']}
+							/>
 						</SidebarLeft>
 						{/* 오른쪽 전체, 그 안에서 위(검색창) 아래(강의 리스트) 나눔*/}
 
@@ -52,7 +49,6 @@ const CoursesListPage = () => {
 							{/* 전체| 크리에이티브 부분 */}
 							<BreadCrumb />
 							{/* TAG */}
-							<LectureTag />
 							{/* 강의 보여주는 부분 */}
 							<LectureList />
 							<LectureMove />
@@ -65,22 +61,20 @@ const CoursesListPage = () => {
 };
 
 const Wrapper = styled.div`
-	width: 100%;
+	width: 1440px;
 	display: flex;
 	flex-direction: row;
-	padding: 2rem 0;
-`;
-
-const SelectCardWrapper = styled.div`
-	padding: 0 3vw;
+	margin: auto;
+	font-family: Noto Sans KR;
 `;
 
 const SidebarLeft = styled.div`
-	flex: 2;
+	min-width: 300px;
+	padding: 0 2rem;
 `;
 
 const LectureBody = styled.div`
-	flex: 8;
+	width: 100%;
 `;
 
 export default CoursesListPage;
