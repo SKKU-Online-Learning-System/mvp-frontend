@@ -46,14 +46,12 @@ const LecturesPage = () => {
 							</SelectCardWrapper>
 						</SidebarLeft>
 						{/* 오른쪽 전체, 그 안에서 위(검색창) 아래(강의 리스트) 나눔*/}
-
 						<LectureBody>
 							{/* 상단 검색바 */}
 							<TopSearchbar checkList={checkList} />
 							{/* 전체| 크리에이티브 부분 */}
 							<BreadCrumb />
 							{/* TAG */}
-							<LectureTag />
 							{/* 강의 보여주는 부분 */}
 							<LectureList />
 							<LectureMove />

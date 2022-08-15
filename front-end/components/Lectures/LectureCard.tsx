@@ -9,7 +9,6 @@ const LectureCard = () => {
 	const { clickedId, lectures } = useAppSelector(
 		(state: RootState) => state.lecture,
 	);
-	console.log(lectures);
 	const handleClick = (id: number) => {
 		//router.push(`/details/${id}`);
 		router.push(`/details`);
@@ -24,10 +23,10 @@ const LectureCard = () => {
 							handleClick(elem.id)
 						}
 						key={elem.id}
-						style={{ flex: '0 1 25%', padding: '1rem', cursor: 'pointer' }}
+						style={{ flex: '0 1 20%', padding: '1rem', cursor: 'pointer' }}
 					>
 						<img
-							style={{ width: '300px' }}
+							style={{ width: '200px' }}
 							src="images/card_img.png"
 							alt="no"
 						/>
@@ -37,7 +36,7 @@ const LectureCard = () => {
 						<div
 							style={{
 								fontWeight: 700,
-								maxWidth: '300px',
+								maxWidth: '200px',
 								textOverflow: 'ellipsis',
 								overflow: 'hidden',
 							}}
@@ -46,7 +45,7 @@ const LectureCard = () => {
 						</div>
 						<div
 							style={{
-								width: '300px',
+								width: '200px',
 								color: '#7d7d7d',
 								fontSize: '0.9rem',
 								overflow: 'hidden',

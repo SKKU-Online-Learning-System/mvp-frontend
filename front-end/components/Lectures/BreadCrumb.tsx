@@ -1,10 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from 'store/app/hooks';
+import { RootState } from 'store/app/store';
+
 const BreadCrumb = () => {
+	const { menu } = useAppSelector(
+		(state: RootState) => state.lecture,
+	);
 	return (
 		<Container>
 			<div style={{ fontSize: '18px', color: '#454545', fontWeight: 700 }}>
-				전체
+				전체 > {menu}
 			</div>
 
 			<Selector>
