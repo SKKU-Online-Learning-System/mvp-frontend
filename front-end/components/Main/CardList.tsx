@@ -17,7 +17,12 @@ const ImageComponent = ({ imageUrl }) => {
 			style={{ paddingRight: '10px', overflow: 'auto', cursor: 'pointer' }}
 			onClick={() => alert('Clicked')}
 		>
-			<img crossOrigin="anonymous" src={imageUrl} alt="#" width="100%" />
+			<img
+				crossOrigin="anonymous"
+				src={imageUrl}
+				alt="#"
+				style={{ maxWidth: '250px' }}
+			/>
 		</div>
 	);
 };
