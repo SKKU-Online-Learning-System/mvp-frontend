@@ -3,9 +3,12 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import LoginModal from '@components/modals/LoginModal';
 import { useRouter } from 'next/router';
-import { useAppDispatch, useAppSelector } from 'store/app/hooks';
-import { setClickedId } from 'store/feature/lecture/lectureSlice';
+import { useAppSelector, useAppDispatch } from 'store/app/hooks';
 import { RootState } from 'store/app/store';
+import SignUpModal from './modals/SignUpModal';
+import { userLoginAuthState } from '../constants/userAuthState';
+import axiosInstance from '../apis/index';
+import { setIsLoggined } from 'store/feature/auth/userAuthSlice';
 
 interface LinkProps {
 	isThisPage: boolean;
@@ -23,26 +26,28 @@ const menuData = [
 	{ id: 1, name: '강좌 List', path: '/lectures' },
 	{ id: 2, name: '커뮤니티', path: '/community' },
 	{ id: 3, name: 'MY최근강의', path: '/details' },
+	{ id: 4, name: '마이페이지', path: '/my-page' },
 ];
 
 const Header = () => {
-	const [showModal, setShowModal] = useState(false);
+	const [showLogInModal, setShowLogInModal] = useState(false);
+	const [showSignUpModal, setShowSignUpModal] = useState(false);
 	const router = useRouter();
 	const dispatch = useAppDispatch();
-	const { clickedId } = useAppSelector((state: RootState) => state.lecture);
-
-	const resetLecture = () => {
-		dispatch(setClickedId(0));
+	const { isLoggined } = useAppSelector(
+		(state: RootState) => state.userAuthState,
+	);
+	const handleLogout = () => {
+		axiosInstance
+			.get('/auth/logout')
+			.then(() => dispatch(setIsLoggined(userLoginAuthState.NOT_LOGGINED)));
 	};
+
 	const menuBar = (
 		<ul>
 			{menuData.map((menu) => {
 				return (
-					<li
-						key={menu.id}
-						style={{ display: 'inline' }}
-						onClick={resetLecture}
-					>
+					<li key={menu.id} style={{ display: 'inline' }}>
 						<Link href={menu.path}>
 							<LinkMenu isThisPage={menu.path === router.pathname}>
 								{menu.name}
@@ -57,7 +62,7 @@ const Header = () => {
 		<Container>
 			<div style={{ display: 'flex', alignItems: 'center' }}>
 				<a href="https://www.skku.edu/">
-					<img src="images/main_logo.png" style={{ zoom: '80%' }} />
+					<img src="/images/main_logo.png" style={{ zoom: '80%' }} />
 				</a>
 				<Link href="/">
 					<span
@@ -67,7 +72,6 @@ const Header = () => {
 							margin: '0 10px',
 							cursor: 'pointer',
 						}}
-						onClick={resetLecture}
 					>
 						온라인 명륜당
 					</span>
@@ -82,18 +86,30 @@ const Header = () => {
 				{menuBar}
 			</div>
 
-			<div>
-				<button onClick={() => setShowModal(true)}>로그인</button>
-				<Link href="/signup">
-					<LinkMenu isThisPage={'/signup' === router.pathname}>
-						회원가입
-					</LinkMenu>
-				</Link>
-			</div>
+			{isLoggined === userLoginAuthState.LOGGINED ? (
+				<div>
+					<button onClick={handleLogout}>Logout</button>
+				</div>
+			) : (
+				<div>
+					<button onClick={() => setShowLogInModal(true)}>로그인</button>
+					<button onClick={() => setShowSignUpModal(true)}>회원가입</button>
+				</div>
+			)}
 
-			<LoginModal onClose={() => setShowModal(false)} show={showModal}>
+			<LoginModal
+				onClose={() => setShowLogInModal(false)}
+				onOpenSignUp={() => setShowSignUpModal(true)}
+				show={showLogInModal}
+			>
 				로그인 모달 children
 			</LoginModal>
+			<SignUpModal
+				onClose={() => setShowSignUpModal(false)}
+				show={showSignUpModal}
+			>
+				회원가입 모달 children
+			</SignUpModal>
 		</Container>
 	);
 };
@@ -119,7 +135,7 @@ const LinkMenu = styled.a<LinkProps>`
 `;
 const SearchButton = styled.button`
 	background: none;
-	background-image: url('images/search_btn.png');
+	background-image: url('/images/search_btn.png');
 	background-size: cover;
 	margin-left: -40px;
 	border: none;

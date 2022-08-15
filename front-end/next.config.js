@@ -4,11 +4,11 @@ const withImages = require('next-images');
 module.exports = withImages();
 module.exports = {
 	reactStrictMode: true,
-	async rewrite() {
+	async rewrites() {
 		return [
 			{
-				source: '/',
-				destination: process.env.NEXT_PUBLIC_API_SERVER, // cors 문제 해결 위해서 임시 설정.
+				source: process.env.API_SOURCE,
+				destination: `${process.env.API_SERVER}/:path*`,
 			},
 		];
 	},

@@ -1,24 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import LogInForm from './LoginForm';
-import { Backdrop, StyledModalOverlay } from './SignUpModal';
+import SignUpForm from './SignUpForm';
 
-interface LogInModalProps {
+interface SignUpModalProps {
 	show: boolean;
 	onClose: Function;
 	children?: React.ReactNode;
-	onOpenSignUp: Function;
 }
 
-function LoginModal({
-	show,
-	onClose,
-	onOpenSignUp,
-	children,
-}: LogInModalProps) {
+function SignUpModal({ show, onClose, children }: SignUpModalProps) {
 	const [isBrowser, setIsBrowser] = useState(false);
-
 	useEffect(() => {
 		setIsBrowser(true);
 	}, []);
@@ -26,12 +18,6 @@ function LoginModal({
 	const handleCloseClick = (e: any) => {
 		e.preventDefault();
 		onClose();
-	};
-
-	const handleOpenSignUpClick = (e: any) => {
-		e.preventDefault();
-		onClose();
-		onOpenSignUp();
 	};
 
 	const modalContent = show ? (
@@ -44,14 +30,8 @@ function LoginModal({
 				</StyledModalHeader>
 
 				<StyledModalBody>
-					<h1>LOGIN</h1>
-					<LogInForm />
-					<div>
-						처음이신가요?{' '}
-						<a href="#" onClick={handleOpenSignUpClick}>
-							회원가입
-						</a>
-					</div>
+					<h1>Sign Up</h1>
+					<SignUpForm />
 				</StyledModalBody>
 			</StyledModal>
 			<Backdrop onClick={handleCloseClick} />
@@ -66,8 +46,15 @@ function LoginModal({
 	}
 }
 
-export default LoginModal;
-
+export default SignUpModal;
+export const Backdrop = styled.div`
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+`;
 const StyledModalBody = styled.div`
 	padding-top: 10px;
 `;
@@ -86,14 +73,13 @@ const StyledModal = styled.div`
 	border-radius: 15px;
 	padding: 15px;
 `;
-// const StyledModalOverlay = styled.div`
-// 	position: fixed;
-// 	top: 0;
-// 	left: 0;
-// 	width: 100%;
-// 	height: 100%;
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-// 	background-color: rgba(0, 0, 0, 0.5);
-// `;
+export const StyledModalOverlay = styled.div`
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
