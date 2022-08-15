@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
 
 export type lectureState = {
 	lectureType: string[][];
@@ -7,6 +6,7 @@ export type lectureState = {
 	lectures: any;
 	allLectures: object[]; // (임시) 검색용 전체 결과 리스트
 	pageNum: number;
+	menu: string;
 };
 
 const initialState: lectureState = {
@@ -15,6 +15,7 @@ const initialState: lectureState = {
 	lectures: [],
 	allLectures: [],
 	pageNum: 1,
+	menu: '',
 };
 
 export const lectureSlice = createSlice({
@@ -34,13 +35,22 @@ export const lectureSlice = createSlice({
 			state.allLectures = action.payload;
 		},
 		setPageNum: (state, action: PayloadAction<number>) => {
-			state.pageNum = action.payload
+			state.pageNum = action.payload;
+		},
+		setMenu: (state, action: PayloadAction<string>) => {
+			state.menu = action.payload;
 		},
 	},
 });
 
-export const { addLectureType, setClickedId, setLectures, setAllLectures, setPageNum } =
-	lectureSlice.actions;
+export const {
+	addLectureType,
+	setClickedId,
+	setLectures,
+	setAllLectures,
+	setPageNum,
+	setMenu,
+} = lectureSlice.actions;
 
 // calling the above actions would be useless if we could not access the data in the state. So, we use something called a selector which allows us to select a value from the state.
 //export const selectCount = (state: RootState) => state.counter.value;

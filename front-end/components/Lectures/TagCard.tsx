@@ -15,19 +15,19 @@ const TagCard = ({ name }: CardProps) => {
 
 const Card = styled.div`
 	display: flex;
-	width: 130px;
-	height: 36px;
-	border-radius: 4px;
+	width: 50px;
+	height: 20px;
+	border-radius: 2px;
 	justify-content: center;
 	align-items: center;
 	color: #fff;
 	background-color: #b8b8b8;
 
-	padding: 1rem;
-	margin-right: 10px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	font-size: 1rem;
+	padding: 0.5rem;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-size: 0.5rem;
 `;
 //export default React.memo(TagCard);
 export default TagCard;

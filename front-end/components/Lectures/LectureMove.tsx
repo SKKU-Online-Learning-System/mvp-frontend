@@ -1,6 +1,7 @@
 import {
 	setLectures,
 	setAllLectures,
+	setPageNum,
 } from 'store/feature/lecture/lectureSlice';
 import { useAppDispatch, useAppSelector } from 'store/app/hooks';
 import { RootState } from 'store/app/store';
@@ -8,32 +9,49 @@ import {
 	fetchAllLecturesPerPage,
 	fetchSearchedData,
 } from 'apis/Lectures/lectureApi';
-
-import React from 'react';
+import React, { useState } from 'react';
+import _ from 'lodash';
 
 const LectureMove = () => {
 	const dispatch = useAppDispatch();
-	const { pageNum } = useAppSelector((state: RootState) => state.lecture);
+	const { lectures, pageNum, clickedId } = useAppSelector((state: RootState) => state.lecture);
+	const [ lectureNum, setLectureNum ] = useState(0);
+	const [ collapsed, setCollapsed ] = useState(true);
+	let new_lectures;
 
-	const showLectures = async (any: number) => {
-		//e.preventDefault();
+	const showLectures = async (p_num: number) => {
 		try {
-			let result = await fetchAllLecturesPerPage(pageNum);
-			dispatch(setLectures(result.data));
-			//no such thing as .records in this api
+			if(p_num !== 1 && clickedId === 0){
+				dispatch(setPageNum(p_num));
+				new_lectures = Object.assign({}, lectures);
+				let result = await fetchAllLecturesPerPage(pageNum);
+								
+				for(let i=0;i<lectures.courses.length;i++){
+					result.data.courses.push(lectures.courses[i])
+				}
+				
+				result.data.courses.sort((a, b) => {
+					return a.id - b.id;
+				})
+				result.data.courses = _.uniqBy(result.data.courses, 'id');
+				setLectureNum(result.data.courses.length)
+				dispatch(setLectures(result.data));
+			}
 		} catch (e: any) {
 			console.error(e);
 		}
 	};
-
-	//page 수 결정하는 법? usestate? 그러면 각 검색 / 카드 클릭 마다 페이지 넘버 저장 후 여기서 맵핑
-	//그냥 여기서 해결
-	//여기서 해결 안됨
+	
 	return (
 		<>
-			<button onClick={() => showLectures(1)}>show</button>
+			{collapsed && <button onClick={() => showLectures(2)}>show</button>}
 		</>
 	);
 };
+
+
+// 전체 강의 개수는 api에서 쉽게 가져올 수 있다 -> lectures.length
+// 여기서 만약 result.data.courses.length === lectures.length면 버튼 없앤다
+
 
 export default LectureMove;
