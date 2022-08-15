@@ -10,8 +10,7 @@ const LectureCard = () => {
 		(state: RootState) => state.lecture,
 	);
 	const handleClick = (id: number) => {
-		//router.push(`/details/${id}`);
-		router.push(`/details`);
+		router.push(`/courses/${id}`);
 	};
 
 	return (
