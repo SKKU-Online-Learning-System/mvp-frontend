@@ -18,5 +18,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd mvp-frontend/
+            rm -rf ./front-end/.next
             git pull origin development
             pm2 restart 1
