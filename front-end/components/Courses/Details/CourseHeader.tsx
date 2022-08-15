@@ -8,7 +8,7 @@ const CourseHeader = () => {
 	const { thumbnail } = useAppSelector(
 		(state: RootState) => state.courseDetail.course,
 	);
-	const imgUrl = `${process.env.NEXT_PUBLIC_API_BASEURL}/${thumbnail}`;
+	const imgUrl = `${process.env.NEXT_PUBLIC_API_BASEURL}/images/banners/${thumbnail}`;
 
 	return (
 		<Container>
