@@ -65,10 +65,7 @@ const CardTop = styled.div`
 	border: 1px solid #e4e4e4;
 	cursor: pointer;
 	padding: 0.85rem;
-	background: ${({collapse}) => 
-		collapse === true && 'grey' ||
-		collapse === false && '#fafafa'
-	};
+	background: ${({collapse}) => collapse ? 'grey' :  '#fafafa' };
 	font-weight: 600;
 	color: #595959;
 `;
