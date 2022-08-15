@@ -23,10 +23,9 @@ const textBoxStyle = {
 	borderRadius: '20px',
 };
 const menuData = [
-	{ id: 1, name: '강좌 List', path: '/lectures' },
-	{ id: 2, name: '커뮤니티', path: '/community' },
-	{ id: 3, name: 'MY최근강의', path: '/details' },
-	{ id: 4, name: '마이페이지', path: '/my-page' },
+	{ id: 1, name: '강좌 List', path: '/courses' },
+	{ id: 2, name: '강의 재생', path: '/lectures' },
+	{ id: 3, name: '마이페이지', path: '/my-page' },
 ];
 
 const Header = () => {

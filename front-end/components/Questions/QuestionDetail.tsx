@@ -18,7 +18,7 @@ const QuestionDetail = ({ questionId }: any) => {
 			.get(`questions/${questionId}`)
 			.then((res) => setQuestion(res.data))
 			.catch((e) => console.log(e));
-	});
+	}, []);
 
 	return (
 		<>

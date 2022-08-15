@@ -9,7 +9,9 @@ const MainBanner = () => {
 	const makeFullUrlLists = (fileName: string[]) => {
 		let tempFullUrlLists: string[] = [];
 		fileName.forEach((elem) =>
-			tempFullUrlLists.push(`${process.env.NEXT_PUBLIC_API_BASEURL}/${elem}`),
+			tempFullUrlLists.push(
+				`${process.env.NEXT_PUBLIC_API_BASEURL}/images/banners/${elem}`,
+			),
 		);
 		setImageUrl(tempFullUrlLists);
 	};
