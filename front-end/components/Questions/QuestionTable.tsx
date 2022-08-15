@@ -11,7 +11,7 @@ const QuestionTable = ({ courseId }: any) => {
 			.get(`questions/course/${courseId}`)
 			.then((res) => setQuestions(res.data))
 			.catch((e) => console.log(e));
-	});
+	}, []);
 
 	return (
 		<>

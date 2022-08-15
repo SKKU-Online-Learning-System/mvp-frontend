@@ -11,8 +11,7 @@ const LectureCard = () => {
 	);
 	console.log(lectures);
 	const handleClick = (id: number) => {
-		//router.push(`/details/${id}`);
-		router.push(`/details`);
+		router.push(`/courses/${id}`);
 	};
 
 	return (

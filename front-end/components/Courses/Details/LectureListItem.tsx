@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 const LectureListItem = ({ lecture, index }: any) => {
@@ -14,11 +15,13 @@ const LectureListItem = ({ lecture, index }: any) => {
 	}
 
 	return (
-		<Container>
-			<span className="index">{index + 1}</span>
-			<span className="title">{lecture.title}</span>
-			<span className="duration">{durationToHMS(lecture.duration)}</span>
-		</Container>
+		<Link href={`/lectures/${lecture.id}`}>
+			<Container>
+				<span className="index">{index + 1}</span>
+				<span className="title">{lecture.title}</span>
+				<span className="duration">{durationToHMS(lecture.duration)}</span>
+			</Container>
+		</Link>
 	);
 };
 
