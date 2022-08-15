@@ -7,10 +7,17 @@ import LectureList from '@components/Main/LectureList';
 import MidBanner from '@components/Main/MidBanner';
 import MidCategory from '@components/Main/MidCategory';
 import axiosInstance from 'apis';
+import { useAppDispatch } from '../store/app/hooks';
+import { setIsLoggined } from 'store/feature/auth/userAuthSlice';
+import { userLoginAuthState } from 'constants/userAuthState';
 
 const Index = () => {
+	const dispatch = useAppDispatch();
+
 	useEffect(() => {
-		// axiosInstance.get('/auth/temp-login').then((res) => console.log(res.data));
+		axiosInstance
+			.get('/auth/temp-login')
+			.then((res) => dispatch(setIsLoggined(userLoginAuthState.LOGGINED)));
 	}, []);
 
 	return (

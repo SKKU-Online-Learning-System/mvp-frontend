@@ -3,9 +3,12 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import LoginModal from '@components/modals/LoginModal';
 import { useRouter } from 'next/router';
-import { useAppSelector } from 'store/app/hooks';
+import { useAppSelector, useAppDispatch } from 'store/app/hooks';
 import { RootState } from 'store/app/store';
 import SignUpModal from './modals/SignUpModal';
+import { userLoginAuthState } from '../constants/userAuthState';
+import axiosInstance from '../apis/index';
+import { setIsLoggined } from 'store/feature/auth/userAuthSlice';
 
 interface LinkProps {
 	isThisPage: boolean;
@@ -30,9 +33,15 @@ const Header = () => {
 	const [showLogInModal, setShowLogInModal] = useState(false);
 	const [showSignUpModal, setShowSignUpModal] = useState(false);
 	const router = useRouter();
+	const dispatch = useAppDispatch();
 	const { isLoggined } = useAppSelector(
 		(state: RootState) => state.userAuthState,
 	);
+	const handleLogout = () => {
+		axiosInstance
+			.get('/auth/logout')
+			.then(() => dispatch(setIsLoggined(userLoginAuthState.NOT_LOGGINED)));
+	};
 
 	const menuBar = (
 		<ul>
@@ -77,8 +86,10 @@ const Header = () => {
 				{menuBar}
 			</div>
 
-			{isLoggined ? (
-				<div>로그인 완료</div>
+			{isLoggined === userLoginAuthState.LOGGINED ? (
+				<div>
+					<button onClick={handleLogout}>Logout</button>
+				</div>
 			) : (
 				<div>
 					<button onClick={() => setShowLogInModal(true)}>로그인</button>

@@ -10,19 +10,23 @@ import { Provider } from 'react-redux';
 import { store } from 'store/app/store';
 import Layout from '@components/Layout';
 import axiosInstance from 'apis';
+import { userLoginAuthState } from '../constants/userAuthState';
 
 function MyComponent({ children }: any) {
 	const dispatch = useAppDispatch();
 	const { isLoggined } = useAppSelector(
 		(state: RootState) => state.userAuthState,
 	);
+
 	useEffect(() => {
-		if (!isLoggined) {
+		if (isLoggined === userLoginAuthState.NOT_CHECKED_YET) {
 			axiosInstance
 				.get('auth/profile')
 				.then((res) => {
 					if (res.status === 200) {
-						dispatch(setIsLoggined(true));
+						dispatch(setIsLoggined(userLoginAuthState.LOGGINED));
+					} else if (res.status === 401) {
+						dispatch(setIsLoggined(userLoginAuthState.NOT_LOGGINED));
 					}
 				})
 				.catch((e: any) => console.log(e));
