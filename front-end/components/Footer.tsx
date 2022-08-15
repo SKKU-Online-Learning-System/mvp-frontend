@@ -33,11 +33,9 @@ const Footer = () => {
 					<a href="https://www.skku.edu/skku/etc/pop_email.do">
 						이메일 무단수집거부
 					</a>
-					<span> | </span>
 					<a href="https://www.skku.edu/skku/etc/private.do">
 						개인정보처리방침
 					</a>
-					<span> | </span>
 					<a>Contact us</a>
 				</InfoBox>
 			</div>
@@ -61,5 +59,8 @@ const InfoBox = styled.div`
 	}
 	& a:hover {
 		color: #c2d45e;
+	}
+	& a:not(:last-child):after {
+		content: ' | ';
 	}
 `;
