@@ -30,12 +30,12 @@ const MainBanner = () => {
 };
 
 const Container = styled.div`
-	width: 100%;
-	background: linear-gradient(#1f5191, #022240);
-	padding: 50px 60px;
+	min-width: 1440px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background: linear-gradient(#1f5191, #022240);
+	padding: 50px 60px;
 `;
 
 export default MainBanner;

@@ -24,5 +24,4 @@ const ImageComponent = ({ imageUrl }) => {
 
 const CardWrapper = styled.div`
 	display: flex;
-	max-width: 1650px; // 이 부분도 CONST로 관리 해야함.
 `;

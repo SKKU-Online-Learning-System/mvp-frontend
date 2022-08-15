@@ -62,7 +62,7 @@ const Container = styled.div`
 `;
 
 const NoticeWrapper = styled.div`
-	max-width: 1650px;
+	width: 100%;
 	display: flex;
 	padding: 40px 40px 40px 50px;
 `;
@@ -71,6 +71,6 @@ const TextCardWrapper = styled.div`
 	display: flex;
 	max-width: 300px;
 	flex-direction: column;
-	white-space: nowrap;
+	/* white-space: nowrap; */
 	padding: 0 20px;
 `;
