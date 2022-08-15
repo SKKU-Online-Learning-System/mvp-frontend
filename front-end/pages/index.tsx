@@ -21,31 +21,35 @@ const Index = () => {
 	}, []);
 
 	return (
-		<Wrapper>
+		<>
 			<MainBanner />
-			<Notice />
-			{/* <Dashboard /> */}
-			<LectureList
-				headerText={'추천 강의(카테고리 무관)'}
-				headerColor={'red'}
-			/>
-			<MidBanner />
-			{/* <LectureList headerText={'최근 강의 이어보기'} headerColor={'orange'} /> */}
-			<MidCategory />
-			<LectureList
-				headerText={'프로그래밍 분야 인기 강의 모음'}
-				headerColor={'purple'}
-			/>
-			<LectureList
-				headerText={'보안 분야 인기 강의 모음'}
-				headerColor={'#df4bff'}
-			/>
-		</Wrapper>
+			<Wrapper>
+				{/* <Notice /> */}
+				{/* <Dashboard /> */}
+				<LectureList
+					headerText={'추천 강의(카테고리 무관)'}
+					headerColor={'red'}
+				/>
+				<MidBanner />
+				{/* <LectureList headerText={'최근 강의 이어보기'} headerColor={'orange'} /> */}
+				<MidCategory />
+				<LectureList
+					headerText={'프로그래밍 분야 인기 강의 모음'}
+					headerColor={'purple'}
+				/>
+				<LectureList
+					headerText={'보안 분야 인기 강의 모음'}
+					headerColor={'#df4bff'}
+				/>
+			</Wrapper>
+		</>
 	);
 };
 
 export default Index;
 
 const Wrapper = styled.div`
+	width: 1440px;
+	margin: auto;
 	font-family: Noto Sans KR;
 `;
