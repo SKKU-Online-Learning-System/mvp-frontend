@@ -8,7 +8,7 @@ const ContentMenu = () => {
 	return (
 		<>
 			{lectureType[0] && (
-				<div style={{ padding: '0 2vw' }}>
+				<div>
 					{lectureType[0].map((content, id) => (
 						<ContentCard title={content.name} type={[]} index={id} key={id} />
 					))}
