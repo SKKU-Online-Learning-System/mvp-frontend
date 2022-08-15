@@ -11,7 +11,7 @@ interface LogInModalProps {
 	onOpenSignUp: Function;
 }
 
-function LogInModal({
+function LoginModal({
 	show,
 	onClose,
 	onOpenSignUp,
@@ -66,7 +66,7 @@ function LogInModal({
 	}
 }
 
-export default LogInModal;
+export default LoginModal;
 
 const StyledModalBody = styled.div`
 	padding-top: 10px;

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import styled from 'styled-components';
-import LogInModal from '@components/modals/LogInModal';
+import LoginModal from '@components/modals/LoginModal';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from 'store/app/hooks';
 import { setClickedId } from 'store/feature/lecture/lectureSlice';
@@ -95,10 +95,17 @@ const Header = () => {
 				<button onClick={() => setShowSignUpModal(true)}>회원가입</button>
 			</div>
 
-			<LogInModal onClose={() => setShowLogInModal(false)} onOpenSignUp={() => setShowSignUpModal(true)} show={showLogInModal}>
+			<LoginModal
+				onClose={() => setShowLogInModal(false)}
+				onOpenSignUp={() => setShowSignUpModal(true)}
+				show={showLogInModal}
+			>
 				로그인 모달 children
-			</LogInModal>
-			<SignUpModal onClose={() => setShowSignUpModal(false)} show={showSignUpModal}>
+			</LoginModal>
+			<SignUpModal
+				onClose={() => setShowSignUpModal(false)}
+				show={showSignUpModal}
+			>
 				회원가입 모달 children
 			</SignUpModal>
 		</Container>
