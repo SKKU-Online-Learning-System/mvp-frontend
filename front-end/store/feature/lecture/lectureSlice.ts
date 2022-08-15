@@ -37,24 +37,20 @@ export const lectureSlice = createSlice({
 		setPageNum: (state, action: PayloadAction<number>) => {
 			state.pageNum = action.payload;
 		},
-		setMenu:(state, action: PayloadAction<string>) => {
-			state.menu = action.payload
+		setMenu: (state, action: PayloadAction<string>) => {
+			state.menu = action.payload;
 		},
 	},
 });
 
-<<<<<<< HEAD
-export const { addLectureType, setClickedId, setLectures, setAllLectures, setPageNum, setMenu } =
-	lectureSlice.actions;
-=======
 export const {
 	addLectureType,
 	setClickedId,
 	setLectures,
 	setAllLectures,
 	setPageNum,
+	setMenu,
 } = lectureSlice.actions;
->>>>>>> development
 
 // calling the above actions would be useless if we could not access the data in the state. So, we use something called a selector which allows us to select a value from the state.
 //export const selectCount = (state: RootState) => state.counter.value;
