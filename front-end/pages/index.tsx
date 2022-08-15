@@ -10,7 +10,7 @@ import axiosInstance from 'apis';
 
 const Index = () => {
 	useEffect(() => {
-		axiosInstance.get('/auth/temp-login').then((res) => console.log(res.data));
+		// axiosInstance.get('/auth/temp-login').then((res) => console.log(res.data));
 	}, []);
 
 	return (
