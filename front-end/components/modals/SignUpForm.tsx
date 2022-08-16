@@ -52,7 +52,7 @@ enum CHECK_STATUS {
 
 //이메일 닉네임 값 받기
 //값없으면 disabled
-function SignUpForm() {
+function SignUpForm({ onClose }: any) {
 	const router = useRouter();
 
 	// 0: 중복, 1: 중복확인 통과, 2: 초기 상태
@@ -61,6 +61,8 @@ function SignUpForm() {
 
 	const [emailValue, setEmailValue] = useState('');
 	const [nicknameValue, setNicknameValue] = useState('');
+
+	const [sendingMail, setSendingMail] = useState(false);
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
@@ -77,13 +79,16 @@ function SignUpForm() {
 
 		const email: string = e.target.email.value;
 		const nickname: string = e.target.nickname.value;
+		setSendingMail(true);
 
 		try {
 			const res = await sendSignUpRequest(email, nickname);
 			if (res.data.success === true) {
-				alert('Success: Check your email!');
+				router.push('/auth/signup/mail-success');
+				onClose();
 			} else {
-				alert('Error: Sign up attempt failed...');
+				router.push('/auth/signup/mail-failed');
+				onClose();
 			}
 		} catch (e: any) {
 			console.log(e.message);
@@ -129,60 +134,74 @@ function SignUpForm() {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<Container>
-				<InputBox>
-					<label htmlFor="email">이메일</label>
-					<Input
-						id="email"
-						name="email"
-						type="email"
-						placeholder="이메일을 입력해주세요"
-						onChange={handleChange(setEmailValue, setEmailUnique)}
+		<>
+			{sendingMail ? (
+				<LoadingBox>
+					<img
+						src="https://mblogthumb-phinf.pstatic.net/MjAxODEwMjNfNjAg/MDAxNTQwMjg2OTk2NTcw.mfWKPtzKVO1mJaBBIFKIkVBlMQQIF1Vc-yrlbbGaoP0g.KNJWAgMmhsfQrZI3n0UT-LMi_qpHAZls4qPMvbNaJBcg.GIF.chingguhl/Spinner-1s-200px.gif?type=w800"
+						alt="loading"
 					/>
-					<CheckBox>
-						<CheckButton onClick={handleClickEmailCheck}>중복 체크</CheckButton>
-						<CheckMessage>
-							{emailUnique === CHECK_STATUS.NONE ? null : emailUnique ===
-							  CHECK_STATUS.CHECKED ? (
-								<CheckMessageOK>사용 가능한 이메일입니다.</CheckMessageOK>
-							) : (
-								<CheckMessageConflict>
-									이미 사용 중인 이메일입니다.
-								</CheckMessageConflict>
-							)}
-						</CheckMessage>
-					</CheckBox>
-				</InputBox>
+				</LoadingBox>
+			) : (
+				<form onSubmit={handleSubmit}>
+					<Container>
+						<InputBox>
+							<label htmlFor="email">이메일</label>
+							<Input
+								id="email"
+								name="email"
+								type="email"
+								placeholder="이메일을 입력해주세요"
+								onChange={handleChange(setEmailValue, setEmailUnique)}
+							/>
+							<CheckBox>
+								<CheckButton onClick={handleClickEmailCheck}>
+									중복 체크
+								</CheckButton>
+								<CheckMessage>
+									{emailUnique === CHECK_STATUS.NONE ? null : emailUnique ===
+									  CHECK_STATUS.CHECKED ? (
+										<CheckMessageOK>사용 가능한 이메일입니다.</CheckMessageOK>
+									) : (
+										<CheckMessageConflict>
+											이미 사용 중인 이메일입니다.
+										</CheckMessageConflict>
+									)}
+								</CheckMessage>
+							</CheckBox>
+						</InputBox>
 
-				<InputBox>
-					<label htmlFor="nickname">닉네임</label>
-					<Input
-						id="nickname"
-						name="nickname"
-						placeholder="닉네임을 입력해주세요"
-						onChange={handleChange(setNicknameValue, setNicknameUnique)}
-					/>
-					<CheckBox>
-						<CheckButton onClick={handleClickNicknameCheck}>
-							중복 체크
-						</CheckButton>
-						<CheckMessage>
-							{nicknameUnique === CHECK_STATUS.NONE ? null : nicknameUnique ===
-							  CHECK_STATUS.CHECKED ? (
-								<CheckMessageOK>사용 가능한 닉네임입니다.</CheckMessageOK>
-							) : (
-								<CheckMessageConflict>
-									이미 사용 중인 닉네임입니다.
-								</CheckMessageConflict>
-							)}
-						</CheckMessage>
-					</CheckBox>
-				</InputBox>
+						<InputBox>
+							<label htmlFor="nickname">닉네임</label>
+							<Input
+								id="nickname"
+								name="nickname"
+								placeholder="닉네임을 입력해주세요"
+								onChange={handleChange(setNicknameValue, setNicknameUnique)}
+							/>
+							<CheckBox>
+								<CheckButton onClick={handleClickNicknameCheck}>
+									중복 체크
+								</CheckButton>
+								<CheckMessage>
+									{nicknameUnique ===
+									CHECK_STATUS.NONE ? null : nicknameUnique ===
+									  CHECK_STATUS.CHECKED ? (
+										<CheckMessageOK>사용 가능한 닉네임입니다.</CheckMessageOK>
+									) : (
+										<CheckMessageConflict>
+											이미 사용 중인 닉네임입니다.
+										</CheckMessageConflict>
+									)}
+								</CheckMessage>
+							</CheckBox>
+						</InputBox>
 
-				<Button type="submit">회원가입</Button>
-			</Container>
-		</form>
+						<Button type="submit">회원가입</Button>
+					</Container>
+				</form>
+			)}
+		</>
 	);
 }
 
@@ -221,4 +240,14 @@ const CheckButton = styled.button`
 	line-height: 20px;
 	border-radius: 3px;
 	background-color: #fcfcfc;
+`;
+
+const LoadingBox = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 400px;
+	img {
+		width: 100px;
+	}
 `;

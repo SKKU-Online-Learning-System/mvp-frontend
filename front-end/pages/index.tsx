@@ -14,11 +14,11 @@ import { userLoginAuthState } from 'constants/userAuthState';
 const Index = () => {
 	const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		axiosInstance
-			.get('/auth/temp-login')
-			.then((res) => dispatch(setIsLoggined(userLoginAuthState.LOGGINED)));
-	}, []);
+	// useEffect(() => {
+	// 	axiosInstance
+	// 		.get('/auth/temp-login')
+	// 		.then((res) => dispatch(setIsLoggined(userLoginAuthState.LOGGINED)));
+	// }, []);
 
 	return (
 		<>

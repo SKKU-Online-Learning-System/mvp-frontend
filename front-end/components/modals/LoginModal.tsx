@@ -28,12 +28,6 @@ function LoginModal({
 		onClose();
 	};
 
-	const handleOpenSignUpClick = (e: any) => {
-		e.preventDefault();
-		onClose();
-		onOpenSignUp();
-	};
-
 	const modalContent = show ? (
 		<StyledModalOverlay>
 			<StyledModal>
@@ -43,14 +37,7 @@ function LoginModal({
 
 				<StyledModalBody>
 					<h1>로그인</h1>
-					<LogInForm />
-					<hr />
-					<SignupBox>
-						처음이신가요?{' '}
-						<span className="signupButton" onClick={handleOpenSignUpClick}>
-							회원가입
-						</span>
-					</SignupBox>
+					<LogInForm onClose={onClose} onOpenSignUp={onOpenSignUp} />
 				</StyledModalBody>
 			</StyledModal>
 			<Backdrop onClick={handleCloseClick} />
@@ -99,16 +86,3 @@ const StyledModal = styled.div`
 // 	align-items: center;
 // 	background-color: rgba(0, 0, 0, 0.5);
 // `;
-
-const SignupBox = styled.div`
-	display: flex;
-	height: 60px;
-	padding: 0 40px;
-	justify-content: space-evenly;
-	align-items: center;
-
-	.signupButton {
-		font-weight: 700;
-		cursor: pointer;
-	}
-`;
