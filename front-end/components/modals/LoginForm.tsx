@@ -5,8 +5,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-	margin-top: 100px;
-	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 150px;
+	margin-top: 50px;
 `;
 
 const Input = styled.input`
@@ -17,6 +20,7 @@ const Input = styled.input`
 	margin: 0 0 8px;
 	padding: 5px 39px 5px 11px;
 	border: solid 1px #dadada;
+	border-radius: 5px;
 	background: #fff;
 	box-sizing: border-box;
 `;
@@ -28,13 +32,13 @@ const Button = styled.button`
 	display: block;
 	width: 100%;
 	height: 49px;
-	margin: 16px 0 7px;
+	margin: 20px 0 0 0;
 	cursor: pointer;
 	text-align: center;
 	color: #fff;
 	border: none;
-	border-radius: 0;
-	background-color: #03c75a;
+	border-radius: 5px;
+	background-color: rgba(148, 186, 101, 0.9);
 `;
 
 //이메일 값 받기
@@ -72,7 +76,7 @@ function LoginForm() {
 					name="email"
 					placeholder="로그인할 이메일을 입력해주세요"
 				/>
-				<Button type="submit">이메일 전송</Button>
+				<Button type="submit">로그인</Button>
 			</form>
 		</Container>
 	);

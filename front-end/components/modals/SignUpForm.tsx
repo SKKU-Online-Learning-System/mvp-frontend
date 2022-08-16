@@ -11,7 +11,7 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	height: 360px;
+	height: 330px;
 	margin-top: 50px;
 `;
 
@@ -35,19 +35,14 @@ const Button = styled.button`
 	display: block;
 	width: 100%;
 	height: 49px;
-	margin: 16px 0 7px;
+	margin: 20px 0 0 0;
 	cursor: pointer;
 	text-align: center;
 	color: #fff;
 	border: none;
 	border-radius: 5px;
-	background-color: #03c75a;
+	background-color: rgba(148, 186, 101, 0.9);
 `;
-
-enum MARK {
-	CHECK_MARK = '\u2705',
-	CROSS_MARK = '\u274C',
-}
 
 enum CHECK_STATUS {
 	NONE = 0,
@@ -137,7 +132,7 @@ function SignUpForm() {
 		<form onSubmit={handleSubmit}>
 			<Container>
 				<InputBox>
-					<label htmlFor="email">이메일:</label>
+					<label htmlFor="email">이메일</label>
 					<Input
 						id="email"
 						name="email"
@@ -146,7 +141,7 @@ function SignUpForm() {
 						onChange={handleChange(setEmailValue, setEmailUnique)}
 					/>
 					<CheckBox>
-						<button onClick={handleClickEmailCheck}>중복 체크</button>
+						<CheckButton onClick={handleClickEmailCheck}>중복 체크</CheckButton>
 						<CheckMessage>
 							{emailUnique === CHECK_STATUS.NONE ? null : emailUnique ===
 							  CHECK_STATUS.CHECKED ? (
@@ -161,7 +156,7 @@ function SignUpForm() {
 				</InputBox>
 
 				<InputBox>
-					<label htmlFor="nickname">닉네임:</label>
+					<label htmlFor="nickname">닉네임</label>
 					<Input
 						id="nickname"
 						name="nickname"
@@ -169,7 +164,9 @@ function SignUpForm() {
 						onChange={handleChange(setNicknameValue, setNicknameUnique)}
 					/>
 					<CheckBox>
-						<button onClick={handleClickNicknameCheck}>중복 체크</button>
+						<CheckButton onClick={handleClickNicknameCheck}>
+							중복 체크
+						</CheckButton>
 						<CheckMessage>
 							{nicknameUnique === CHECK_STATUS.NONE ? null : nicknameUnique ===
 							  CHECK_STATUS.CHECKED ? (
@@ -205,12 +202,23 @@ const CheckBox = styled.div`
 
 const CheckMessage = styled.span`
 	padding-right: 10px;
+	vertical-align: middle;
 `;
 
 const CheckMessageOK = styled.span`
 	color: green;
+	vertical-align: middle;
 `;
 
 const CheckMessageConflict = styled.span`
 	color: red;
+	vertical-align: middle;
+`;
+
+const CheckButton = styled.button`
+	width: 80px;
+	font-weight: 400;
+	line-height: 20px;
+	border-radius: 3px;
+	background-color: #fcfcfc;
 `;

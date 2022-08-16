@@ -63,13 +63,14 @@ const StyledModalHeader = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	font-size: 30px;
+	cursor: pointer;
 `;
 
 const StyledModal = styled.div`
 	z-index: 2;
 	background: white;
-	width: 500px;
-	height: 600px;
+	width: 450px;
+	height: 570px;
 	border-radius: 15px;
 	padding: 40px 60px;
 `;

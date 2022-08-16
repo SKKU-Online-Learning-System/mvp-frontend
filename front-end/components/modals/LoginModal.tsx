@@ -38,20 +38,19 @@ function LoginModal({
 		<StyledModalOverlay>
 			<StyledModal>
 				<StyledModalHeader>
-					<a href="#" onClick={handleCloseClick}>
-						x
-					</a>
+					<div onClick={handleCloseClick}>X</div>
 				</StyledModalHeader>
 
 				<StyledModalBody>
-					<h1>LOGIN</h1>
+					<h1>로그인</h1>
 					<LogInForm />
-					<div>
+					<hr />
+					<SignupBox>
 						처음이신가요?{' '}
-						<a href="#" onClick={handleOpenSignUpClick}>
+						<span className="signupButton" onClick={handleOpenSignUpClick}>
 							회원가입
-						</a>
-					</div>
+						</span>
+					</SignupBox>
 				</StyledModalBody>
 			</StyledModal>
 			<Backdrop onClick={handleCloseClick} />
@@ -69,22 +68,25 @@ function LoginModal({
 export default LoginModal;
 
 const StyledModalBody = styled.div`
-	padding-top: 10px;
+	h1 {
+		margin: 0;
+	}
 `;
 
 const StyledModalHeader = styled.div`
 	display: flex;
 	justify-content: flex-end;
-	font-size: 25px;
+	font-size: 30px;
+	cursor: pointer;
 `;
 
 const StyledModal = styled.div`
 	z-index: 2;
 	background: white;
-	width: 500px;
-	height: 600px;
+	width: 450px;
+	height: 450px;
 	border-radius: 15px;
-	padding: 15px;
+	padding: 40px 60px;
 `;
 // const StyledModalOverlay = styled.div`
 // 	position: fixed;
@@ -97,3 +99,16 @@ const StyledModal = styled.div`
 // 	align-items: center;
 // 	background-color: rgba(0, 0, 0, 0.5);
 // `;
+
+const SignupBox = styled.div`
+	display: flex;
+	height: 60px;
+	padding: 0 40px;
+	justify-content: space-evenly;
+	align-items: center;
+
+	.signupButton {
+		font-weight: 700;
+		cursor: pointer;
+	}
+`;
