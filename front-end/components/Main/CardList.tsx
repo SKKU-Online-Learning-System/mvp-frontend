@@ -15,7 +15,7 @@ const ImageComponent = ({ imageUrl }) => {
 	return (
 		<div
 			style={{ paddingRight: '10px', overflow: 'auto', cursor: 'pointer' }}
-			onClick={() => alert('Clicked')}
+			onClick={() => alert('기능 개발중입니다.')}
 		>
 			<img
 				crossOrigin="anonymous"

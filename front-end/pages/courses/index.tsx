@@ -51,7 +51,7 @@ const CoursesListPage = () => {
 							{/* TAG */}
 							{/* 강의 보여주는 부분 */}
 							<LectureList />
-							<LectureMove />
+							{/* <LectureMove /> */}
 						</LectureBody>
 					</Wrapper>
 				</>
