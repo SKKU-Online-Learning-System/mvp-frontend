@@ -24,13 +24,11 @@ function SignUpModal({ show, onClose, children }: SignUpModalProps) {
 		<StyledModalOverlay>
 			<StyledModal>
 				<StyledModalHeader>
-					<a href="#" onClick={handleCloseClick}>
-						x
-					</a>
+					<div onClick={handleCloseClick}>X</div>
 				</StyledModalHeader>
 
 				<StyledModalBody>
-					<h1>Sign Up</h1>
+					<h1>회원가입</h1>
 					<SignUpForm />
 				</StyledModalBody>
 			</StyledModal>
@@ -56,13 +54,15 @@ export const Backdrop = styled.div`
 	height: 100%;
 `;
 const StyledModalBody = styled.div`
-	padding-top: 10px;
+	h1 {
+		margin: 0;
+	}
 `;
 
 const StyledModalHeader = styled.div`
 	display: flex;
 	justify-content: flex-end;
-	font-size: 25px;
+	font-size: 30px;
 `;
 
 const StyledModal = styled.div`
@@ -71,7 +71,7 @@ const StyledModal = styled.div`
 	width: 500px;
 	height: 600px;
 	border-radius: 15px;
-	padding: 15px;
+	padding: 40px 60px;
 `;
 export const StyledModalOverlay = styled.div`
 	position: fixed;

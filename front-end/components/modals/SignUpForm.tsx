@@ -3,14 +3,16 @@ import {
 	fetchNicknameCheck,
 	sendSignUpRequest,
 } from 'apis/SignUp/signUpApi';
-import { AxiosResponse } from 'axios';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-	margin-top: 100px;
-	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 360px;
+	margin-top: 50px;
 `;
 
 const Input = styled.input`
@@ -21,6 +23,7 @@ const Input = styled.input`
 	margin: 0 0 8px;
 	padding: 5px 39px 5px 11px;
 	border: solid 1px #dadada;
+	border-radius: 5px;
 	background: #fff;
 	box-sizing: border-box;
 `;
@@ -37,7 +40,7 @@ const Button = styled.button`
 	text-align: center;
 	color: #fff;
 	border: none;
-	border-radius: 0;
+	border-radius: 5px;
 	background-color: #03c75a;
 `;
 
@@ -131,41 +134,83 @@ function SignUpForm() {
 	};
 
 	return (
-		<Container>
-			<form onSubmit={handleSubmit}>
-				<Input
-					id="email"
-					name="email"
-					type="email"
-					placeholder="이메일을 입력해주세요"
-					onChange={handleChange(setEmailValue, setEmailUnique)}
-				/>
-				<button onClick={handleClickEmailCheck}>이메일 중복 체크</button>
-				<span>
-					{emailUnique === CHECK_STATUS.NONE
-						? null
-						: emailUnique === CHECK_STATUS.CHECKED
-						? MARK.CHECK_MARK
-						: MARK.CROSS_MARK}
-				</span>
-				<Input
-					id="nickname"
-					name="nickname"
-					placeholder="닉네임을 입력해주세요"
-					onChange={handleChange(setNicknameValue, setNicknameUnique)}
-				/>
-				<button onClick={handleClickNicknameCheck}>닉네임 중복 체크</button>
-				<span>
-					{nicknameUnique === CHECK_STATUS.NONE
-						? null
-						: nicknameUnique === CHECK_STATUS.CHECKED
-						? MARK.CHECK_MARK
-						: MARK.CROSS_MARK}
-				</span>
+		<form onSubmit={handleSubmit}>
+			<Container>
+				<InputBox>
+					<label htmlFor="email">이메일:</label>
+					<Input
+						id="email"
+						name="email"
+						type="email"
+						placeholder="이메일을 입력해주세요"
+						onChange={handleChange(setEmailValue, setEmailUnique)}
+					/>
+					<CheckBox>
+						<button onClick={handleClickEmailCheck}>중복 체크</button>
+						<CheckMessage>
+							{emailUnique === CHECK_STATUS.NONE ? null : emailUnique ===
+							  CHECK_STATUS.CHECKED ? (
+								<CheckMessageOK>사용 가능한 이메일입니다.</CheckMessageOK>
+							) : (
+								<CheckMessageConflict>
+									이미 사용 중인 이메일입니다.
+								</CheckMessageConflict>
+							)}
+						</CheckMessage>
+					</CheckBox>
+				</InputBox>
+
+				<InputBox>
+					<label htmlFor="nickname">닉네임:</label>
+					<Input
+						id="nickname"
+						name="nickname"
+						placeholder="닉네임을 입력해주세요"
+						onChange={handleChange(setNicknameValue, setNicknameUnique)}
+					/>
+					<CheckBox>
+						<button onClick={handleClickNicknameCheck}>중복 체크</button>
+						<CheckMessage>
+							{nicknameUnique === CHECK_STATUS.NONE ? null : nicknameUnique ===
+							  CHECK_STATUS.CHECKED ? (
+								<CheckMessageOK>사용 가능한 닉네임입니다.</CheckMessageOK>
+							) : (
+								<CheckMessageConflict>
+									이미 사용 중인 닉네임입니다.
+								</CheckMessageConflict>
+							)}
+						</CheckMessage>
+					</CheckBox>
+				</InputBox>
+
 				<Button type="submit">회원가입</Button>
-			</form>
-		</Container>
+			</Container>
+		</form>
 	);
 }
 
 export default SignUpForm;
+
+const InputBox = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 110px;
+`;
+
+const CheckBox = styled.div`
+	display: flex;
+	flex-direction: row-reverse;
+`;
+
+const CheckMessage = styled.span`
+	padding-right: 10px;
+`;
+
+const CheckMessageOK = styled.span`
+	color: green;
+`;
+
+const CheckMessageConflict = styled.span`
+	color: red;
+`;

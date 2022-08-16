@@ -120,7 +120,7 @@ const Container = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	margin: 10px;
-	padding: 0 10px 0 45px;
+	padding: 0 45px 0 45px;
 `;
 const LinkMenu = styled.a<LinkProps>`
 	color: ${(props) => (props.isThisPage ? '#f5af1a' : 'black')};
