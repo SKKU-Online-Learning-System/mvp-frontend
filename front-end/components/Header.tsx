@@ -9,6 +9,7 @@ import SignUpModal from './modals/SignUpModal';
 import { userLoginAuthState } from '../constants/userAuthState';
 import axiosInstance from '../apis/index';
 import { setIsLoggined } from 'store/feature/auth/userAuthSlice';
+import { DEVICE_BREAKPOINT } from '../constants/breakpoint';
 
 interface LinkProps {
 	isThisPage: boolean;
@@ -115,12 +116,15 @@ const Header = () => {
 
 export default Header;
 const Container = styled.div`
-	width: 100%;
+	width: ${DEVICE_BREAKPOINT.DESKTOP};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin: 10px;
-	padding: 0 10px 0 45px;
+	margin: auto;
+	padding: 8px 0;
+	@media only screen and (max-width: ${DEVICE_BREAKPOINT.DESKTOP}) {
+		padding: 0 10px;
+	}
 `;
 const LinkMenu = styled.a<LinkProps>`
 	color: ${(props) => (props.isThisPage ? '#f5af1a' : 'black')};

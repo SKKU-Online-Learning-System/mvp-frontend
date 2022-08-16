@@ -19,15 +19,9 @@ const Layout = ({ children }: LayoutProps) => (
 const LayoutBox = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin-left: auto;
-	margin-right: auto;
 	height: 100vh;
-	@media only screen and (min-width: 1440px) {
-		width: 100vw;
-	}
-	@media only screen and (max-width: 1440px) {
-		width: 100vw;
-	}
+	width: 100vw;
+	max-width: 100%; // 100vw scrollbar issue
 `;
 
 const ContentsBox = styled.div`
