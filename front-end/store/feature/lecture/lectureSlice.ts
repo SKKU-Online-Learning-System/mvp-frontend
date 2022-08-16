@@ -6,7 +6,7 @@ export type lectureState = {
 	lectures: any;
 	allLectures: object[]; // (임시) 검색용 전체 결과 리스트
 	pageNum: number;
-	menu: string;
+	menu: string[];
 };
 
 const initialState: lectureState = {
@@ -15,7 +15,7 @@ const initialState: lectureState = {
 	lectures: [],
 	allLectures: [],
 	pageNum: 1,
-	menu: '',
+	menu: [],
 };
 
 export const lectureSlice = createSlice({
@@ -37,7 +37,7 @@ export const lectureSlice = createSlice({
 		setPageNum: (state, action: PayloadAction<number>) => {
 			state.pageNum = action.payload;
 		},
-		setMenu: (state, action: PayloadAction<string>) => {
+		setMenu: (state, action: PayloadAction<string[]>) => {
 			state.menu = action.payload;
 		},
 	},

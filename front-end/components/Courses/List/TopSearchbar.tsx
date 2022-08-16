@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from 'store/app/hooks';
-import { setLectures, setPageNum } from 'store/feature/lecture/lectureSlice';
+import { useAppDispatch } from 'store/app/hooks';
+import { setLectures, setMenu } from 'store/feature/lecture/lectureSlice';
 import { RootState } from 'store/app/store';
 import {
 	fetchSearchedData,
@@ -25,12 +25,14 @@ const TopSearchbar = ({ checkList }: Props) => {
 	}
 
 	const handleSearch = async (e: any) => {
+		e.preventDefault();
 		let res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
 		let str = res.filter((elem) => elem).join();
 
 		try {
 			let result = await fetchSearchedData(inputRef.current.value, str);
 			dispatch(setLectures(result.data));
+			dispatch(setMenu([]));
 			//no such thing as .records in this api
 		} catch (e: any) {
 			console.error(e);
@@ -71,7 +73,7 @@ const TopSearchbar = ({ checkList }: Props) => {
 				</div>
 			</Title>
 			<SearchBarAndTagWrapper>
-				<Searchbar>
+				<Searchbar onSubmit={handleSearch}>
 					<Input
 						type="text"
 						ref={inputRef}
@@ -146,16 +148,6 @@ const Input = styled.input`
 	& :focus {
 		outline: 0;
 	}
-`;
-
-const SerchButton = styled.button`
-	border: 1px solid #dedede;
-	height: 36px;
-	background-color: #1dc078;
-	color: #ffffff;
-	font-size: 1rem;
-	font-weight: 600;
-	cursor: pointer;
 `;
 
 //export default TopSearchbar;

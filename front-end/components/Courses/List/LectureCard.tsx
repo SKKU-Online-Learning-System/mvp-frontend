@@ -10,6 +10,7 @@ const LectureCard = () => {
 	const { clickedId, lectures } = useAppSelector(
 		(state: RootState) => state.lecture,
 	);
+	const width = 1140/4;
 
 	const handleClick = (id: number) => {
 		router.push(`/courses/${id}`);
@@ -20,14 +21,14 @@ const LectureCard = () => {
 			{lectures.courses.map((elem: any) => {
 				return (
 					<span
-						style={{ paddingRight: '1rem', cursor: 'pointer' }}
+						style={{ paddingRight: '1rem', cursor: 'pointer', width:width }}
 						onClick={(event: React.MouseEvent<HTMLElement>) =>
 							handleClick(elem.id)
 						}
 						key={elem.id}
 					>
 						<img
-							style={{ width: '300px' }}
+							width="100%"
 							src="images/card_img.png"
 							alt="no"
 						/>
@@ -35,8 +36,7 @@ const LectureCard = () => {
 							style={{
 								display: 'flex',
 								gap: '4px',
-								overflowY: 'auto',
-								width: '300px',
+								overflowY: 'auto'
 							}}
 						>
 							{elem.hashtag.map((name: string, idx: number) => (
@@ -46,7 +46,6 @@ const LectureCard = () => {
 						<div
 							style={{
 								fontWeight: 700,
-								maxWidth: '300px',
 								textOverflow: 'ellipsis',
 								overflow: 'hidden',
 							}}
@@ -55,7 +54,6 @@ const LectureCard = () => {
 						</div>
 						<div
 							style={{
-								width: '300px',
 								color: '#7d7d7d',
 								fontSize: '0.9rem',
 								overflow: 'hidden',
@@ -74,6 +72,6 @@ const LectureCard = () => {
 const Wrapper = styled.div`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 1rem;
+	row-gap: 1rem;
 `;
 export default LectureCard;
