@@ -88,12 +88,16 @@ const Header = () => {
 
 			{isLoggined === userLoginAuthState.LOGGINED ? (
 				<div>
-					<button onClick={handleLogout}>Logout</button>
+					<LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
 				</div>
 			) : (
 				<div>
-					<button onClick={() => setShowLogInModal(true)}>로그인</button>
-					<button onClick={() => setShowSignUpModal(true)}>회원가입</button>
+					<LoginButton onClick={() => setShowLogInModal(true)}>
+						로그인
+					</LoginButton>
+					<SignupButton onClick={() => setShowSignUpModal(true)}>
+						회원가입
+					</SignupButton>
 				</div>
 			)}
 
@@ -149,4 +153,55 @@ const SearchButton = styled.button`
 	}
 	padding: none;
 	cursor: pointer;
+`;
+const LoginButton = styled.button`
+	background: #69c97f;
+	color: #ffffff;
+	margin: 0 5px 0 0;
+	padding: 0.4rem 0.8rem;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: 0.3s;
+	&:hover {
+		background: #34a84d;
+		outline: 0;
+	}
+`;
+const LogoutButton = styled.button`
+	background: #eab106;
+	color: #ffffff;
+	margin: 0;
+	padding: 0.4rem 0.8rem;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: 0.3s;
+	&:hover {
+		background: #b08911;
+		outline: 0;
+	}
+`;
+const SignupButton = styled.button`
+	background: #d58e6d;
+	color: #ffffff;
+	margin: 0;
+	padding: 0.4rem 0.8rem;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: 0.3s;
+	&:hover {
+		background: #c7643d;
+		outline: 0;
+	}
 `;

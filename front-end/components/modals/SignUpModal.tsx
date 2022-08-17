@@ -29,7 +29,7 @@ function SignUpModal({ show, onClose, children }: SignUpModalProps) {
 
 				<StyledModalBody>
 					<h1>회원가입</h1>
-					<SignUpForm />
+					<SignUpForm onClose={onClose} />
 				</StyledModalBody>
 			</StyledModal>
 			<Backdrop onClick={handleCloseClick} />

@@ -1,7 +1,7 @@
 import { sendLogInRequest } from 'apis/LogIn/logInApi';
 import { AxiosResponse } from 'axios';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -43,8 +43,10 @@ const Button = styled.button`
 
 //이메일 값 받기
 //값없으면 disabled
-function LoginForm() {
+function LoginForm({ onClose, onOpenSignUp }: any) {
 	const router = useRouter();
+
+	const [sendingMail, setSendingMail] = useState(false);
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
@@ -55,31 +57,80 @@ function LoginForm() {
 			alert('이메일 주소를 입력하세요');
 			return;
 		}
+		setSendingMail(true);
 
 		try {
 			const res = await sendLogInRequest(email);
 			if (res.data.success === true) {
-				alert('Success: Check your email!');
+				router.push('/auth/login/mail-success');
+				onClose();
 			} else {
-				alert('Error: Login attempt failed...');
+				router.push('/auth/login/mail-failed');
+				onClose();
 			}
 		} catch (e: any) {
 			console.log(e.message);
 		}
 	};
 
+	const handleOpenSignUpClick = (e: any) => {
+		e.preventDefault();
+		onClose();
+		onOpenSignUp();
+	};
+
 	return (
-		<Container>
-			<form onSubmit={handleSubmit}>
-				<Input
-					id="email"
-					name="email"
-					placeholder="로그인할 이메일을 입력해주세요"
-				/>
-				<Button type="submit">로그인</Button>
-			</form>
-		</Container>
+		<>
+			{sendingMail ? (
+				<LoadingBox>
+					<img
+						src="https://mblogthumb-phinf.pstatic.net/MjAxODEwMjNfNjAg/MDAxNTQwMjg2OTk2NTcw.mfWKPtzKVO1mJaBBIFKIkVBlMQQIF1Vc-yrlbbGaoP0g.KNJWAgMmhsfQrZI3n0UT-LMi_qpHAZls4qPMvbNaJBcg.GIF.chingguhl/Spinner-1s-200px.gif?type=w800"
+						alt="loading"
+					/>
+				</LoadingBox>
+			) : (
+				<Container>
+					<form onSubmit={handleSubmit}>
+						<Input
+							id="email"
+							name="email"
+							placeholder="로그인할 이메일을 입력해주세요"
+						/>
+						<Button type="submit">로그인</Button>
+					</form>
+					<hr />
+					<SignupBox>
+						처음이신가요?{' '}
+						<span className="signupButton" onClick={handleOpenSignUpClick}>
+							회원가입
+						</span>
+					</SignupBox>
+				</Container>
+			)}
+		</>
 	);
 }
 
 export default LoginForm;
+
+const LoadingBox = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 300px;
+	img {
+		width: 100px;
+	}
+`;
+const SignupBox = styled.div`
+	display: flex;
+	height: 60px;
+	padding: 0 40px;
+	justify-content: space-evenly;
+	align-items: center;
+
+	.signupButton {
+		font-weight: 700;
+		cursor: pointer;
+	}
+`;
