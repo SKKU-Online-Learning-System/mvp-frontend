@@ -10,7 +10,7 @@ const LectureCard = () => {
 	const { clickedId, lectures } = useAppSelector(
 		(state: RootState) => state.lecture,
 	);
-	const width = 1140/4;
+	const width = 1140 / 4;
 
 	const handleClick = (id: number) => {
 		router.push(`/courses/${id}`);
@@ -21,7 +21,7 @@ const LectureCard = () => {
 			{lectures.courses.map((elem: any) => {
 				return (
 					<span
-						style={{ paddingRight: '1rem', cursor: 'pointer', width:width }}
+						style={{ paddingRight: '1rem', cursor: 'pointer', width: width }}
 						onClick={(event: React.MouseEvent<HTMLElement>) =>
 							handleClick(elem.id)
 						}
@@ -29,14 +29,15 @@ const LectureCard = () => {
 					>
 						<img
 							width="100%"
-							src="images/card_img.png"
+							// src="images/card_img.png"
+							src={`/api/images/banners/${elem.thumbnail}`}
 							alt="no"
 						/>
 						<div
 							style={{
 								display: 'flex',
 								gap: '4px',
-								overflowY: 'auto'
+								overflowY: 'auto',
 							}}
 						>
 							{elem.hashtag.map((name: string, idx: number) => (
