@@ -21,7 +21,7 @@ const ImageComponent = ({ imageUrl }) => {
 				crossOrigin="anonymous"
 				src={imageUrl}
 				alt="#"
-				style={{ maxWidth: '250px' }}
+				style={{ maxWidth: '250px', width: '250px', height: '250px' }}
 			/>
 		</div>
 	);
