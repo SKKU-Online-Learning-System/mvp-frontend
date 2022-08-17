@@ -39,6 +39,7 @@ const SectionBox = styled.div`
 	font-size: 18px;
 	font-weight: bold;
 	align-items: center;
+	cursor: pointer;
 `;
 
 const LecturesBox = styled.div<{ show: boolean }>`

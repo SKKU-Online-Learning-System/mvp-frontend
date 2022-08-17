@@ -31,6 +31,7 @@ const Container = styled.div`
 	display: flex;
 	height: 48px;
 	align-items: center;
+	cursor: pointer;
 	span {
 		color: #404040;
 		font-size: 16px;
@@ -46,5 +47,8 @@ const Container = styled.div`
 	.duration {
 		width: 15%;
 		text-align: center;
+	}
+	&:hover {
+		background-color: #eaeaea;
 	}
 `;

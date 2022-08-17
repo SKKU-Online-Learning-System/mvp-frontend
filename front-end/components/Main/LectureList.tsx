@@ -1,19 +1,27 @@
+import axiosInstance from 'apis';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const LectureList = ({ headerText, headerColor }) => {
+const LectureList = ({ headerText, headerColor }: any) => {
+	const [populars, setPopulars] = useState([]);
+
+	useEffect(() => {
+		axiosInstance.get('/courses/popular').then((res) => setPopulars(res.data));
+	}, []);
+
 	return (
 		<div>
 			<CommonHeader text={headerText} color={headerColor} />
 			<div style={{ display: 'flex', padding: '20px 35px', overflowX: 'auto' }}>
-				{new Array(5).fill(1).map((elem, idx) => (
-					<LectureCard key={idx} />
+				{populars.slice(0, 5).map((lecture, idx) => (
+					<LectureCard key={idx} lecture={lecture} />
 				))}
 			</div>
 		</div>
 	);
 };
 
-const CommonHeader = ({ text, color }) => {
+const CommonHeader = ({ text, color }: any) => {
 	return (
 		<Wrapper>
 			<div style={{ position: 'relative' }}>
@@ -33,21 +41,19 @@ const CommonHeader = ({ text, color }) => {
 	);
 };
 
-const LectureCard = () => {
+const LectureCard = ({ lecture }: any) => {
 	return (
 		<LectureCardWrapper>
 			<img src="images/lecture_thumbnail.png" />
-			<div style={{ display: 'flex', gap: '5px' }}>
+			{/* <img src="https://mrdang.kro.kr/api/images/" /> */}
+			{/* <div style={{ display: 'flex', gap: '5px' }}>
 				<HashTagChip>#python</HashTagChip>
 				<HashTagChip>#코딩입문</HashTagChip>
 				<HashTagChip>#자동매매</HashTagChip>
-			</div>
-			<div style={{ fontWeight: 'bold' }}>
-				파이썬 시작하기: 파이썬 입문자를 위한개념 정리
-			</div>
+			</div> */}
+			<div style={{ fontWeight: 'bold' }}>{lecture.title}</div>
 			<div style={{ fontSize: '12px', opacity: '0.6' }}>
-				파이썬이란 무엇인가? 개발 환경 구축부터 기초 파이썬 문법, 자동 매매
-				구현, 실전 서비스까지!
+				{lecture.description}
 			</div>
 		</LectureCardWrapper>
 	);
@@ -66,7 +72,7 @@ const Wrapper = styled.div`
 const LectureCardWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 295px;
+	width: 270px;
 	padding: 10px;
 `;
 
