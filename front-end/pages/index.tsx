@@ -26,10 +26,7 @@ const Index = () => {
 			<Wrapper>
 				{/* <Notice /> */}
 				{/* <Dashboard /> */}
-				<LectureList
-					headerText={'추천 강의(카테고리 무관)'}
-					headerColor={'red'}
-				/>
+				<LectureList headerText={'인기 강의'} headerColor={'red'} />
 				<MidBanner />
 				{/* <LectureList headerText={'최근 강의 이어보기'} headerColor={'orange'} /> */}
 				<MidCategory />
