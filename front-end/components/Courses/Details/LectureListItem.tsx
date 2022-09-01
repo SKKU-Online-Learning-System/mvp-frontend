@@ -1,25 +1,23 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-
+import { durationToHhMmSs } from 'utils/durationToHhMmSs';
+import { useRouter } from 'next/router';
+// courseId가 있어야 lecturePicker 목록을 불러올 수 있음.
 const LectureListItem = ({ lecture, index }: any) => {
-	function durationToHMS(duration: number) {
-		let hours = Math.floor(duration / 3600);
-		let minutes: any = Math.floor((duration - hours * 3600) / 60);
-		let seconds: any = duration - hours * 3600 - minutes * 60;
-
-		if (minutes < 10) minutes = `0${minutes}`;
-		if (seconds < 10) seconds = `0${seconds}`;
-
-		if (hours !== 0) return `${hours}:${minutes}:${seconds}`;
-		else return `${minutes}:${seconds}`;
-	}
+	const router = useRouter();
+	const { courseId } = router.query;
 
 	return (
-		<Link href={`/lectures/${lecture.id}`}>
+		<Link
+			href={{
+				pathname: `/lectures/${lecture.id}`,
+				query: { courseId },
+			}}
+		>
 			<Container>
 				<span className="index">{index + 1}</span>
 				<span className="title">{lecture.title}</span>
-				<span className="duration">{durationToHMS(lecture.duration)}</span>
+				<span className="duration">{durationToHhMmSs(lecture.duration)}</span>
 			</Container>
 		</Link>
 	);

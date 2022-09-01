@@ -29,7 +29,6 @@ const LectureCard = () => {
 					>
 						<img
 							width="100%"
-							// src="images/card_img.png"
 							src={`/api/images/banners/${elem.thumbnail}`}
 							alt="no"
 						/>

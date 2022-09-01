@@ -19,3 +19,7 @@ export const fetchSearchedData = (name: string, difficulty: string) => {
 export const fetchAllLecturesPerPage = (pageNum: number) => {
 	return axiosInstance.get(`courses/search?page=${pageNum}`);
 };
+
+export const fetchLectureVideoUrl = (lectureId: string) => {
+	return axiosInstance.get(`/file/video/lecture/${lectureId}`);
+};

@@ -1,13 +1,13 @@
 import axiosInstance from 'apis';
 
-export const fetchCourseDetail = (courseId: any) => {
+export const fetchCourseDetail = (courseId: string) => {
 	return axiosInstance.get(`/courses/${courseId}`);
 };
 
-export const fetchCourseDetailLectures = (courseId: any) => {
+export const fetchCourseDetailLectures = (courseId: string) => {
 	return axiosInstance.get(`/courses/${courseId}/lectures`);
 };
 
-export const fetchCourseDetailQna = (courseId: any) => {
+export const fetchCourseDetailQna = (courseId: string) => {
 	return axiosInstance.get(`/questions/course/${courseId}`);
 };
