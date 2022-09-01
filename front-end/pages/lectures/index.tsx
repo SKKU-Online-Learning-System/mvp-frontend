@@ -11,7 +11,7 @@ const Editor = dynamic<EditorProps>(
 	() => import('@toast-ui/react-editor').then((m) => m.Editor),
 	{ ssr: false },
 );
-
+// TODO : 접근 못하게 막아야함. 보여줄 영상이 없음.
 const LecturePlayer = () => {
 	return (
 		<LecturePlayerWrapper>

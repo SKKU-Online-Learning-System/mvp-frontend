@@ -1,32 +1,28 @@
-import dynamic from 'next/dynamic';
 import ReactPlayer from 'react-player/lazy';
-
-import Layout from '@components/Layout';
-import { EditorProps } from '@toast-ui/react-editor';
-
 import '@toast-ui/editor/dist/toastui-editor.css';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import axiosInstance from 'apis';
+import { fetchLectureVideoUrl } from 'apis/Lectures/lectureApi';
+import { fetchCourseDetailLectures } from 'apis/Courses/courseApi';
 import { useRouter } from 'next/router';
+import { LecturePicker } from '@components/Lectures/LecturePicker';
 
-const Editor = dynamic<EditorProps>(
-	() => import('@toast-ui/react-editor').then((m) => m.Editor),
-	{ ssr: false },
-);
-
+// courseId 기억해야함.
 const LecturePlayer = () => {
 	const router = useRouter();
-	const { lectureId } = router.query;
+	const { lectureId, courseId } = router.query;
 
-	const [videoUrl, setVideoUrl] = useState('');
+	const [videoUrl, setVideoUrl] = useState<string>('');
+
+	const _fetchLectureVideoUrl = async (lectureId: string) => {
+		const res = await fetchLectureVideoUrl(lectureId);
+		setVideoUrl(res.data.video_url);
+	};
 
 	useEffect(() => {
 		if (!router.isReady) return;
-		axiosInstance.get(`/file/video/lecture/${lectureId}`).then((res) => {
-			setVideoUrl(res.data.video_url);
-		});
-	}, [router.isReady, lectureId, setVideoUrl]);
+		_fetchLectureVideoUrl(lectureId as string);
+	}, [router.isReady, lectureId]);
 
 	return (
 		<LecturePlayerWrapper>
@@ -46,20 +42,13 @@ const LecturePlayer = () => {
 					} // 플레이어 초기 포스터 사진
 				/>
 			</div>
-			<div className="editor-wrapper" style={{ width: '300px' }}>
-				<Editor
-					initialValue="# 메모"
-					previewStyle="tab"
-					height="768px"
-					toolbarItems={[]}
-					initialEditType="markdown"
-				/>
-			</div>
+			{router.isReady && <LecturePicker courseId={courseId as string} />}
 		</LecturePlayerWrapper>
 	);
 };
 
 const LecturePlayerWrapper = styled.div`
+	font-family: 'Noto Sans KR';
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
