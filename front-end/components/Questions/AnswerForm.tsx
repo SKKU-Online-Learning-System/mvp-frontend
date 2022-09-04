@@ -1,4 +1,5 @@
 import axiosInstance from 'apis';
+import { Container } from 'pages/questions/[questionId]';
 
 const AnswerForm = ({ questionId }: any) => {
 	const handleSubmit = async (e: any) => {
@@ -15,17 +16,19 @@ const AnswerForm = ({ questionId }: any) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<textarea
-				name="contents"
-				cols={200}
-				rows={5}
-				placeholder="답변을 입력하세요."
-				required
-			/>
-			<input type="text" name="questionId" value={questionId} hidden />
-			<button type="submit">답변 입력</button>
-		</form>
+		<Container>
+			<form onSubmit={handleSubmit}>
+				<textarea
+					name="contents"
+					cols={130}
+					rows={5}
+					placeholder="답변을 입력하세요."
+					required
+				/>
+				<input type="text" name="questionId" value={questionId} hidden />
+				<button type="submit">답변 입력</button>
+			</form>
+		</Container>
 	);
 };
 

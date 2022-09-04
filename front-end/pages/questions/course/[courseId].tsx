@@ -12,7 +12,7 @@ const QuestionsByCoursePage = () => {
 			<CourseHeader />
 			<Wrapper>
 				<Button>질문하기</Button>
-				<QuestionTable courseId={courseId} />;
+				<QuestionTable courseId={courseId} />
 				{/* <QuestionForm courseId={courseId} /> */}
 			</Wrapper>
 		</>
