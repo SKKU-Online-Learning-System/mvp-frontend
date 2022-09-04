@@ -9,7 +9,10 @@ const QuestionTable = ({ courseId }: any) => {
 		axiosInstance
 			.get(`questions/course/${courseId}`)
 			.then((res) => {
-				setQuestions(res.data);
+				const orderedDate = res.data.sort(
+					(a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+				);
+				setQuestions(orderedDate);
 			})
 			.catch((e) => console.log(e));
 	}, []);

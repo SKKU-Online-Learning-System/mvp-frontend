@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 const data = {
 	id: 1,
@@ -16,9 +16,24 @@ const QuestionBox = ({ question, courseName }: any) => {
 	const handleClick = (questionId: number) => {
 		router.push(`/questions/${questionId}`);
 	};
+
+	const [timeBefore, setTimeBefore] = useState<string>('');
 	useEffect(() => {
-		console.log(courseName);
-	}, []);
+		const now = new Date();
+		const createTime = new Date(question.createdAt);
+		const yearDiff = now.getFullYear() - createTime.getFullYear();
+		const monthDiff = now.getMonth() - createTime.getMonth();
+		const dayDiff = now.getDay() - createTime.getDay();
+		const hourDiff = now.getTime() - createTime.getTime();
+		const minDiff = now.getMinutes() - createTime.getMinutes();
+		const secDiff = now.getSeconds() - createTime.getSeconds();
+		if (yearDiff) setTimeBefore(`${yearDiff}년 전`);
+		else if (monthDiff) setTimeBefore(`${monthDiff}달 전`);
+		else if (dayDiff) setTimeBefore(`${dayDiff}일 전`);
+		else if (hourDiff) setTimeBefore(`${hourDiff}시간 전`);
+		else if (minDiff) setTimeBefore(`${minDiff}분 전`);
+		else setTimeBefore(`${secDiff}초 전`);
+	}, [question.createdAt]);
 	return (
 		<Wapper
 			onClick={() => {
@@ -29,7 +44,7 @@ const QuestionBox = ({ question, courseName }: any) => {
 				<header className="title">{question.title || '제목없음'}</header>
 				<section className="contents">{question.contents}</section>
 				<div className="info">
-					{`${question.author.nickname} · ${question.createdAt} · ${courseName}`}
+					{`${question.author.nickname} · ${timeBefore} · ${courseName}`}
 				</div>
 			</div>
 			<div className="right">
@@ -47,6 +62,7 @@ const Wapper = styled.li`
 	margin: auto;
 	:hover {
 		background-color: #f8f9fa;
+		transition: 0.3s;
 	}
 	cursor: pointer;
 	padding: 20px;
