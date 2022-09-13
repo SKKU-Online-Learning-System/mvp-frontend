@@ -23,3 +23,14 @@ export const fetchAllLecturesPerPage = (pageNum: number) => {
 export const fetchLectureVideoUrl = (lectureId: string) => {
 	return axiosInstance.get(`/file/video/lecture/${lectureId}`);
 };
+
+export const fetchLectureHistory = (lectureId: string) => {
+	return axiosInstance.get(`/history/lecture/${lectureId}`);
+};
+
+export const updateLectureHistory = ({
+	lectureId,
+	lastTime,
+}: Record<string, string | number>) => {
+	return axiosInstance.patch('/history', { lectureId, lastTime });
+};

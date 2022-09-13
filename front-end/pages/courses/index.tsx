@@ -12,8 +12,6 @@ import LectureList from '@components/Courses/List/LectureList';
 import ContentMenu from '@components/Courses/List/ContentMenu';
 import SelectorCard from '@components/Courses/List/SelectorCard';
 
-
-
 const CoursesListPage = () => {
 	const dispatch = useAppDispatch();
 	const { lectureType } = useAppSelector((state: RootState) => state.lecture);
