@@ -3,14 +3,16 @@ import styled from 'styled-components';
 import { RootState } from 'store/app/store';
 import { useAppDispatch, useAppSelector } from 'store/app/hooks';
 import { addLectureType } from 'store/feature/lecture/lectureSlice';
+import { AxiosResponse } from 'axios';
 
 import { fetchAllLectureCategories } from 'apis/Lectures/lectureApi';
 import TopSearchbar from '@components/Courses/List/TopSearchbar';
 import BreadCrumb from '@components/Courses/List/BreadCrumb';
 import LectureList from '@components/Courses/List/LectureList';
-import LectureMove from '@components/Courses/List/LectureMove';
 import ContentMenu from '@components/Courses/List/ContentMenu';
 import SelectorCard from '@components/Courses/List/SelectorCard';
+
+
 
 const CoursesListPage = () => {
 	const dispatch = useAppDispatch();
@@ -20,8 +22,8 @@ const CoursesListPage = () => {
 	useEffect(() => {
 		if (lectureType.length === 0) {
 			fetchAllLectureCategories()
-				.then((res: any) => dispatch(addLectureType(res.data)))
-				.catch((err: any) => console.log(err));
+				.then((res: AxiosResponse) => dispatch(addLectureType(res.data)))
+				.catch((err: unknown) => console.log(err));
 		}
 	}, []);
 
