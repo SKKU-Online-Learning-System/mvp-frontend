@@ -29,7 +29,7 @@ const Index = () => {
 				<LectureList headerText={'인기 강의'} headerColor={'red'} />
 				<MidBanner />
 				{/* <LectureList headerText={'최근 강의 이어보기'} headerColor={'orange'} /> */}
-				<MidCategory />
+				{/* <MidCategory /> */}
 				<LectureList
 					headerText={'프로그래밍 분야 인기 강의 모음'}
 					headerColor={'purple'}
