@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import LoginModal from '@components/modals/LoginModal';
 import { useRouter } from 'next/router';
@@ -22,6 +22,7 @@ const textBoxStyle = {
 	width: '300px',
 	height: '35px',
 	borderRadius: '20px',
+	padding: '0 40px 0 16px',
 };
 const menuData = [
 	{ id: 1, name: '강좌 List', path: '/courses' },
@@ -37,10 +38,26 @@ const Header = () => {
 	const { isLoggined } = useAppSelector(
 		(state: RootState) => state.userAuthState,
 	);
+	const inputRef = useRef<HTMLInputElement | null>(null);
+
 	const handleLogout = () => {
 		axiosInstance
 			.get('/auth/logout')
 			.then(() => dispatch(setIsLoggined(userLoginAuthState.NOT_LOGGINED)));
+	};
+
+	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { current } = inputRef;
+
+		if (current) current.value = e.target.value;
+	};
+
+	const handleClickSearchLectures = () => {
+		if (inputRef?.current?.value)
+			router.push({
+				pathname: '/courses',
+				query: { s: inputRef?.current?.value },
+			});
 	};
 
 	const menuBar = (
@@ -78,10 +95,12 @@ const Header = () => {
 				</Link>
 				<input
 					type="text"
+					ref={inputRef}
 					placeholder="배우고 싶은 지식을 입력하세요."
 					style={textBoxStyle}
+					onChange={handleInput}
 				/>
-				<SearchButton />
+				<SearchButton onClick={handleClickSearchLectures} />
 
 				{menuBar}
 			</div>
