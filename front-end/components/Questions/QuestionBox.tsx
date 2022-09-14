@@ -1,14 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-const data = {
-	id: 1,
-	author: '강의자',
-	contents:
-		'http://boj.kr/c8011b15074846f0ac9c659a869f7336위 링크에 제가 작성한 코드가 있습니다.선생님께서 작성하신 코드와 거의 유사하며차이점으로는 코드라...',
-	createdAt: '17시간 전',
-	answers: ['answer', 'asdf', 'asdf'],
-};
 
 const QuestionBox = ({ question, courseName }: any) => {
 	const router = useRouter();
@@ -49,7 +41,7 @@ const QuestionBox = ({ question, courseName }: any) => {
 			</div>
 			<div className="right">
 				<div className="circle">
-					{question.answers.length}
+					{question.answerCount}
 					<div className="circle-text">답변</div>
 				</div>
 			</div>

@@ -5,14 +5,15 @@ const AnswerForm = ({ questionId }: any) => {
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 
-		const questionId = e.target.questionId.value;
+		// const questionId = e.target.questionId.value;
 		const contents = e.target.contents.value;
 
-		// const result = await axiosInstance.post(`answers/question/${questionId}`, {
-		// 	contents,
-		// });
+		const result = await axiosInstance.post(`answers`, {
+			questionId: questionId,
+			contents: contents,
+		});
 
-		console.log(questionId, contents);
+		console.log(questionId, contents, result);
 	};
 
 	return (
