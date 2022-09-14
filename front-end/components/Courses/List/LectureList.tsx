@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import LectureCard from './LectureCard';
 
 import { useAppDispatch, useAppSelector } from 'store/app/hooks';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import {
 	setLectures,
 	setAllLectures,
 } from 'store/feature/lecture/lectureSlice';
 import { RootState } from 'store/app/store';
 import { fetchLectureLists, fetchSearchedData } from 'apis/Lectures/lectureApi';
+import { AxiosResponse } from 'axios';
 
 const LectureList = () => {
 	// local state로 저장
@@ -21,19 +22,19 @@ const LectureList = () => {
 		if (clickedId === 0) {
 			//전체보기
 			fetchSearchedData('', '')
-				.then((res) => {
+				.then((res: AxiosResponse) => {
 					dispatch(setLectures(res.data));
 					dispatch(setAllLectures(res.data)); // 검색 결과 임시로 전체 저장
 				})
-				.catch((err) => console.log(err));
+				.catch((err: unknown) => console.log(err));
 		} else if (clickedId !== -1) {
 			// 카테고리 보기
 			fetchLectureLists(clickedId.toString())
-				.then((res) => {
+				.then((res: AxiosResponse) => {
 					dispatch(setLectures(res.data));
 					dispatch(setAllLectures(res.data)); // 검색 결과 임시로 전체 저장
 				})
-				.catch((err) => console.log(err));
+				.catch((err: unknown) => console.log(err));
 		}
 	}, [clickedId]);
 

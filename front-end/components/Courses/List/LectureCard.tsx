@@ -1,16 +1,32 @@
 import { useRouter } from 'next/router';
 import { useAppSelector } from 'store/app/hooks';
 import { RootState } from 'store/app/store';
-import { setClickedId } from 'store/feature/lecture/lectureSlice';
 import HashTagCard from './HashTagCard';
 import styled from 'styled-components';
+import { SyntheticEvent } from 'react';
+import { defaultErrorImage } from 'constants/index';
+type courseType = {
+	category1: string;
+	category2: string;
+	createdAt: string;
+	description: string;
+	difficulty: number;
+	hashtag: string[];
+	id: number;
+	instructor: string;
+	summary: string;
+	thumbnail: string;
+	title: string;
+};
 
+const width = ~~(1140 / 4);
 const LectureCard = () => {
 	const router = useRouter();
-	const { clickedId, lectures } = useAppSelector(
-		(state: RootState) => state.lecture,
-	);
-	const width = 1140 / 4;
+	const { lectures } = useAppSelector((state: RootState) => state.lecture);
+
+	const handleImgError = (e: SyntheticEvent<HTMLImageElement>) => {
+		(e.target as HTMLImageElement).src = defaultErrorImage;
+	};
 
 	const handleClick = (id: number) => {
 		router.push(`/courses/${id}`);
@@ -18,18 +34,17 @@ const LectureCard = () => {
 
 	return (
 		<Wrapper>
-			{lectures.courses.map((elem: any) => {
+			{lectures.courses.map((elem: courseType) => {
 				return (
 					<span
 						style={{ paddingRight: '1rem', cursor: 'pointer', width: width }}
-						onClick={(event: React.MouseEvent<HTMLElement>) =>
-							handleClick(elem.id)
-						}
+						onClick={() => handleClick(elem.id)}
 						key={elem.id}
 					>
 						<img
 							width="100%"
 							src={`/api/images/banners/${elem.thumbnail}`}
+							onError={handleImgError}
 							alt="no"
 						/>
 						<div
