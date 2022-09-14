@@ -10,16 +10,21 @@ import {
 import { RootState } from 'store/app/store';
 import { fetchLectureLists, fetchSearchedData } from 'apis/Lectures/lectureApi';
 import { AxiosResponse } from 'axios';
+import { useRouter } from 'next/router';
 
 const LectureList = () => {
 	// local state로 저장
 	const dispatch = useAppDispatch();
+	const router = useRouter();
+	const { s } = router.query;
 	const { clickedId, lectures } = useAppSelector(
 		(state: RootState) => state.lecture,
 	);
 	// TODO : 검색후에 돌아왔을때, 다시 강의를 새로 불러오는 문제, 원래 페이지가 나와야함.
 	useEffect(() => {
-		if (clickedId === 0) {
+		if (!router.isReady) return;
+
+		if (clickedId === 0 && !s) {
 			//전체보기
 			fetchSearchedData('', '')
 				.then((res: AxiosResponse) => {
@@ -27,7 +32,7 @@ const LectureList = () => {
 					dispatch(setAllLectures(res.data)); // 검색 결과 임시로 전체 저장
 				})
 				.catch((err: unknown) => console.log(err));
-		} else if (clickedId !== -1) {
+		} else if (clickedId !== -1 && !s) {
 			// 카테고리 보기
 			fetchLectureLists(clickedId.toString())
 				.then((res: AxiosResponse) => {
@@ -36,7 +41,7 @@ const LectureList = () => {
 				})
 				.catch((err: unknown) => console.log(err));
 		}
-	}, [clickedId]);
+	}, [clickedId, router.isReady]);
 
 	return (
 		<LectureHeader>

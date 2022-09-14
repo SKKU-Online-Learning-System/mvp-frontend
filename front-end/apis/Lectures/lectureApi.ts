@@ -8,7 +8,7 @@ export const fetchLectureLists = (category: string) => {
 	return axiosInstance.get(`courses/search?category2Id=${category}`);
 };
 
-export const fetchSearchedData = (name: string, difficulty: string) => {
+export const fetchSearchedData = (name: string, difficulty?: string) => {
 	if (difficulty) {
 		return axiosInstance.get(`courses?s=${name}&difficulty=${difficulty}`);
 	} else {

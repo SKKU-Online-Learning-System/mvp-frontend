@@ -1,12 +1,9 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch } from 'store/app/hooks';
 import { setLectures, setMenu } from 'store/feature/lecture/lectureSlice';
-import { RootState } from 'store/app/store';
-import {
-	fetchSearchedData,
-	fetchAllLecturesPerPage,
-} from 'apis/Lectures/lectureApi';
+import { fetchSearchedData } from 'apis/Lectures/lectureApi';
+import { useRouter } from 'next/router';
 
 import HashTagCard from './HashTagCard';
 
@@ -18,30 +15,42 @@ const TopSearchbar = ({ checkList }: Props) => {
 	const dodbogiLocation = 'images/dodbogi.png';
 	const inputRef = useRef<any>(null);
 	const dispatch = useAppDispatch();
+	const router = useRouter();
+	const { s } = router.query;
 
 	let tags = ['Python', 'Java'];
 	for (var i = 0; i < 10; i++) {
 		tags.push(tags[0] + i.toString());
 	}
 
-	const handleSearch = async (e: any) => {
-		e.preventDefault();
-		let res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
-		let str = res.filter((elem) => elem).join();
-
+	const _fetchSearchedData = async (s: string, difficulty?: string) => {
 		try {
-			let result = await fetchSearchedData(inputRef.current.value, str);
+			let result = await fetchSearchedData(s, difficulty);
 			dispatch(setLectures(result.data));
 			dispatch(setMenu([]));
 			//no such thing as .records in this api
-		} catch (e: any) {
+		} catch (e: unknown) {
 			console.error(e);
 		}
+	};
+
+	const handleSearch = async (e: any) => {
+		e.preventDefault();
+		let res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
+		let difficulty: string = res.filter((elem) => elem).join();
+
+		_fetchSearchedData(inputRef.current.value, difficulty);
 	};
 
 	const handleInput = (e: any) => {
 		inputRef.current.value = e.target.value;
 	};
+
+	useEffect(() => {
+		if (!router.isReady) return;
+
+		if (s) _fetchSearchedData(s as string);
+	}, [router.isReady, s]);
 
 	return (
 		<Wrapper>
