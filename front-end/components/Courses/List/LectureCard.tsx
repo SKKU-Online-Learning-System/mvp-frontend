@@ -43,7 +43,7 @@ const LectureCard = () => {
 					>
 						<img
 							width="100%"
-							src={`/api/images/banners/${elem.thumbnail}`}
+							src={elem.thumbnail}
 							onError={handleImgError}
 							alt="no"
 						/>

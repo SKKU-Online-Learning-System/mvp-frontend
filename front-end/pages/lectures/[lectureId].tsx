@@ -16,7 +16,7 @@ import Error from 'next/error';
 const LecturePlayer = () => {
 	const router = useRouter();
 	const { lectureId, courseId } = router.query;
-	const ref = useRef(null);
+	const ref = useRef<ReactPlayer | null>(null);
 
 	const [videoUrl, setVideoUrl] = useState<string>('');
 
@@ -32,7 +32,8 @@ const LecturePlayer = () => {
 	const _fetchLectureHistory = async (lectureId: string) => {
 		try {
 			const res = await fetchLectureHistory(lectureId);
-			console.log(res.data);
+			const lastTime = res.data[0]?.lastTime;
+			lastTime && ref?.current?.seekTo(lastTime, 'seconds');
 		} catch (e: unknown) {
 			console.warn(e);
 		}
@@ -40,13 +41,13 @@ const LecturePlayer = () => {
 
 	const _updateLectureHistory = async (currentPlayTime: number) => {
 		updateLectureHistory({
-			lectureId: lectureId as string,
+			lectureId: +lectureId as number,
 			lastTime: currentPlayTime,
 		});
 	};
 
 	const sendCurrentPlayTime = () => {
-		if (!ref) return;
+		if (!ref?.current) return;
 
 		const time = ~~ref.current.getCurrentTime();
 		_updateLectureHistory(time);
@@ -55,7 +56,7 @@ const LecturePlayer = () => {
 	useEffect(() => {
 		if (!router.isReady) return;
 		_fetchLectureVideoUrl(lectureId as string);
-		// _fetchLectureHistory(lectureId as string);
+		_fetchLectureHistory(lectureId as string);
 	}, [router.isReady, lectureId]);
 
 	return (
@@ -66,7 +67,7 @@ const LecturePlayer = () => {
 						<ReactPlayer
 							ref={ref}
 							className="react-player"
-							url={`https://mrdang.kro.kr/api/${videoUrl}`} // 플레이어 url
+							url={videoUrl} // 플레이어 url
 							style={{ minWidth: '1080px', minHeight: '768px' }}
 							playing={true} // 자동 재생 on
 							muted={true} // 자동 재생 on
@@ -76,10 +77,10 @@ const LecturePlayer = () => {
 							poster={
 								'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
 							} // 플레이어 초기 포스터 사진
-							progressInterval={5000}
-							// onPause={() => sendCurrentPlayTime}
-							// onProgress={() => sendCurrentPlayTime}
-							// onEnded={() => sendCurrentPlayTime}
+							progressInterval={10000}
+							onPause={sendCurrentPlayTime}
+							onProgress={sendCurrentPlayTime}
+							onEnded={sendCurrentPlayTime}
 						/>
 					</div>
 					{router.isReady && <LecturePicker courseId={courseId as string} />}

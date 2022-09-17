@@ -56,10 +56,7 @@ const LectureCard = ({ lecture }: any) => {
 
 	return (
 		<LectureCardWrapper onClick={() => handleClick(lecture.id)}>
-			<img
-				src={`/api/images/banners/${lecture.thumbnail}`}
-				onError={handleImgError}
-			/>
+			<img src={lecture.thumbnail} onError={handleImgError} />
 			<div style={{ fontWeight: 'bold' }}>{lecture.title}</div>
 			<div style={{ fontSize: '12px', opacity: '0.6' }}>
 				{lecture.description}
