@@ -4,6 +4,7 @@ import { RootState } from 'store/app/store';
 import { userLoginAuthState } from 'constants/userAuthState';
 import { useAppSelector } from 'store/app/hooks';
 // TODO : type 채워넣기.
+// NOTE. https://dev.to/shubhamverma/implement-protected-routes-in-nextjs-37ml
 const withRouteGuard = (WrappedComponent: any) => {
 	return (props: any) => {
 		const router = useRouter();
@@ -13,7 +14,6 @@ const withRouteGuard = (WrappedComponent: any) => {
 		);
 
 		const checkUserAuth = () => {
-			console.log(isLoggined);
 			if (isLoggined === userLoginAuthState.LOGGINED) {
 				setIsVerified(true);
 			} else if (isLoggined === userLoginAuthState.NOT_LOGGINED) {
