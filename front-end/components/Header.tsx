@@ -26,8 +26,7 @@ const textBoxStyle = {
 };
 const menuData = [
 	{ id: 1, name: '강좌 List', path: '/courses' },
-	{ id: 2, name: '강의 재생', path: '/lectures' },
-	{ id: 3, name: '마이페이지', path: '/my-page' },
+	{ id: 2, name: '마이페이지', path: '/my-page' },
 ];
 
 const Header = () => {
@@ -41,9 +40,10 @@ const Header = () => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const handleLogout = () => {
-		axiosInstance
-			.get('/auth/logout')
-			.then(() => dispatch(setIsLoggined(userLoginAuthState.NOT_LOGGINED)));
+		axiosInstance.get('/auth/logout').then(() => {
+			dispatch(setIsLoggined(userLoginAuthState.NOT_LOGGINED));
+			router.replace('/');
+		});
 	};
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,8 +62,11 @@ const Header = () => {
 
 	const menuBar = (
 		<ul>
-			{menuData.map((menu) => {
-				return (
+			{menuData.map((menu) =>
+				isLoggined !== userLoginAuthState.LOGGINED &&
+				menu.name === '마이페이지' ? (
+					''
+				) : (
 					<li key={menu.id} style={{ display: 'inline' }}>
 						<Link href={menu.path}>
 							<LinkMenu isThisPage={menu.path === router.pathname}>
@@ -71,8 +74,8 @@ const Header = () => {
 							</LinkMenu>
 						</Link>
 					</li>
-				);
-			})}
+				),
+			)}
 		</ul>
 	);
 	return (

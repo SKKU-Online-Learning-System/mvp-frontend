@@ -16,8 +16,8 @@ const SideMenu = () => {
 	return (
 		<>
 			<ul>
-				{menus.map((menu) => (
-					<Link href={menu.path}>
+				{menus.map((menu, idx) => (
+					<Link key={idx} href={menu.path}>
 						<MenuBox>
 							<li>{menu.title}</li>
 						</MenuBox>

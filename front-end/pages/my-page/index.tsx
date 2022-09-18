@@ -1,6 +1,7 @@
 import CategoryCard from '@components/common/CategoryCard';
 import MyPageLayout from '@components/MyPage/MyPageLayout';
 import styled from 'styled-components';
+import withRouteGuard from '@components/withRouteGuard';
 
 const MyPageIndex = () => {
 	const margin = '5px';
@@ -72,7 +73,7 @@ const MyPageIndex = () => {
 	);
 };
 
-export default MyPageIndex;
+export default withRouteGuard(MyPageIndex);
 
 const Container = styled.div`
 	display: grid;

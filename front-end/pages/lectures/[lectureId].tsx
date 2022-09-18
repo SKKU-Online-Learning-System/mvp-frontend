@@ -10,7 +10,9 @@ import {
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { LecturePicker } from '@components/Lectures/LecturePicker';
+import { HTTP_STATUS_CODE } from 'constants/statusCode';
 import Error from 'next/error';
+import withRouteGuard from '@components/withRouteGuard';
 
 // courseId 기억해야함.
 const LecturePlayer = () => {
@@ -23,7 +25,7 @@ const LecturePlayer = () => {
 	const _fetchLectureVideoUrl = async (lectureId: string) => {
 		try {
 			const res = await fetchLectureVideoUrl(lectureId);
-			setVideoUrl(res.data.video_url);
+			setVideoUrl(res.data[0].filename);
 		} catch (e: unknown) {
 			console.warn(e);
 		}
@@ -86,7 +88,7 @@ const LecturePlayer = () => {
 					{router.isReady && <LecturePicker courseId={courseId as string} />}
 				</LecturePlayerWrapper>
 			) : (
-				<Error statusCode={404} />
+				<Error statusCode={HTTP_STATUS_CODE.NOT_FOUND} />
 			)}
 		</>
 	);
@@ -101,4 +103,4 @@ const LecturePlayerWrapper = styled.div`
 	height: 100%;
 `;
 
-export default LecturePlayer;
+export default withRouteGuard(LecturePlayer);
