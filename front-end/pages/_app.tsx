@@ -10,7 +10,9 @@ import { Provider } from 'react-redux';
 import { store } from 'store/app/store';
 import Layout from '@components/Layout';
 import axiosInstance from 'apis';
+import { AxiosError, AxiosResponse } from 'axios';
 import { userLoginAuthState } from '../constants/userAuthState';
+import { HTTP_STATUS_CODE } from '../constants/statusCode';
 
 function MyComponent({ children }: any) {
 	const dispatch = useAppDispatch();
@@ -22,14 +24,16 @@ function MyComponent({ children }: any) {
 		if (isLoggined === userLoginAuthState.NOT_CHECKED_YET) {
 			axiosInstance
 				.get('auth/profile')
-				.then((res) => {
-					if (res.status === 200) {
+				.then((res: AxiosResponse) => {
+					if (res.status === HTTP_STATUS_CODE.OK) {
 						dispatch(setIsLoggined(userLoginAuthState.LOGGINED));
-					} else if (res.status === 401) {
-						dispatch(setIsLoggined(userLoginAuthState.NOT_LOGGINED));
 					}
 				})
-				.catch((e: any) => console.log(e));
+				.catch((e: AxiosError) => {
+					if (e?.response?.status === HTTP_STATUS_CODE.FORBIDDEN) {
+						dispatch(setIsLoggined(userLoginAuthState.NOT_LOGGINED));
+					}
+				});
 		}
 	}, []);
 

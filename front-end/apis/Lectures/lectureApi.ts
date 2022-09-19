@@ -21,7 +21,7 @@ export const fetchAllLecturesPerPage = (pageNum: number) => {
 };
 
 export const fetchLectureVideoUrl = (lectureId: string) => {
-	return axiosInstance.get(`/file/video/lecture/${lectureId}`);
+	return axiosInstance.get(`lectures/${lectureId}`);
 };
 
 export const fetchLectureHistory = (lectureId: string) => {
