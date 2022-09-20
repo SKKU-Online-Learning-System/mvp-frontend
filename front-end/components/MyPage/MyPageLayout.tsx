@@ -1,12 +1,15 @@
-import SideMenu from '@components/MyPage/SideMedu';
-import { ReactChild } from 'react';
+import SideMenu from '@components/MyPage/SideMenu';
 import styled from 'styled-components';
 
-const MyPageLayout = ({ children }: { children: ReactChild }) => {
+interface Props {
+	children: React.ReactNode;
+}
+
+const MyPageLayout = ({ children }: Props) => {
 	return (
 		<Container>
 			<SideMenuBox>
-				<SideMenu></SideMenu>
+				<SideMenu />
 			</SideMenuBox>
 			<ContentsBox>{children}</ContentsBox>
 		</Container>

@@ -1,16 +1,17 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import { MYPAGE_PATH } from 'constants/MyPage';
 
 const SideMenu = () => {
 	const root = '/my-page';
 	const menus = [
 		{ title: '대시보드', path: root },
-		{ title: '최근 시청 강좌', path: `${root}/history` },
-		{ title: '즐겨찾기 강좌', path: `${root}/bookmark` },
-		{ title: '수강 중인 강좌', path: `${root}/learning` },
-		{ title: '수강 완료 강좌', path: `${root}/completed` },
-		{ title: '찜한 강좌', path: `${root}/wishlist` },
-		{ title: '내 질문/답변', path: `${root}/my-qna` },
+		{ title: '최근 시청 강좌', path: `${root}/${MYPAGE_PATH.HISTORY}` },
+		// { title: '즐겨찾기 강좌', path: `${root}/${MYPAGE_PATH.BOOKMARK}` },
+		{ title: '수강 중인 강좌', path: `${root}/${MYPAGE_PATH.LEARNING}` },
+		{ title: '수강 완료 강좌', path: `${root}/${MYPAGE_PATH.COMPLETED}` },
+		// { title: '찜한 강좌', path: `${root}/${MYPAGE_PATH.WISHLIST}` },
+		{ title: '내 질문/답변', path: `${root}/${MYPAGE_PATH.MY_QNA}` },
 	];
 
 	return (
