@@ -8,7 +8,7 @@ export const fetchLectureLists = (category: string) => {
 	return axiosInstance.get(`courses/search?category2Id=${category}`);
 };
 
-export const fetchSearchedData = (name: string, difficulty: string) => {
+export const fetchSearchedData = (name: string, difficulty?: string) => {
 	if (difficulty) {
 		return axiosInstance.get(`courses?s=${name}&difficulty=${difficulty}`);
 	} else {
@@ -21,7 +21,7 @@ export const fetchAllLecturesPerPage = (pageNum: number) => {
 };
 
 export const fetchLectureVideoUrl = (lectureId: string) => {
-	return axiosInstance.get(`/file/video/lecture/${lectureId}`);
+	return axiosInstance.get(`lectures/${lectureId}`);
 };
 
 export const fetchLectureHistory = (lectureId: string) => {

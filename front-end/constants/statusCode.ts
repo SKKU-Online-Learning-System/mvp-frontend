@@ -1,0 +1,10 @@
+export const HTTP_STATUS_CODE = {
+	OK: 200,
+	CREATED: 201,
+	BAD_REQUEST: 400,
+	UNAUTHORIZED: 401, // 인증되지 않음. ex) 로그인 X
+	FORBIDDEN: 403, // 권한이 없음 ex) 권한 없는 요청.
+	NOT_FOUND: 404,
+	INTERNAL_SERVER_ERROR: 500,
+	SERVICE_UNAVAILABLE: 503,
+};

@@ -1,6 +1,8 @@
 import axiosInstance from 'apis';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, SyntheticEvent } from 'react';
 import styled from 'styled-components';
+import { defaultErrorImage } from 'constants/index';
+import { useRouter } from 'next/router';
 
 const LectureList = ({ headerText, headerColor }: any) => {
 	const [populars, setPopulars] = useState([]);
@@ -42,15 +44,19 @@ const CommonHeader = ({ text, color }: any) => {
 };
 
 const LectureCard = ({ lecture }: any) => {
+	const router = useRouter();
+
+	const handleImgError = (e: SyntheticEvent<HTMLImageElement>) => {
+		(e.target as HTMLImageElement).src = defaultErrorImage;
+	};
+
+	const handleClick = (id: number) => {
+		router.push(`/courses/${id}`);
+	};
+
 	return (
-		<LectureCardWrapper>
-			<img src="images/lecture_thumbnail.png" />
-			{/* <img src="https://mrdang.kro.kr/api/images/" /> */}
-			{/* <div style={{ display: 'flex', gap: '5px' }}>
-				<HashTagChip>#python</HashTagChip>
-				<HashTagChip>#코딩입문</HashTagChip>
-				<HashTagChip>#자동매매</HashTagChip>
-			</div> */}
+		<LectureCardWrapper onClick={() => handleClick(lecture.id)}>
+			<img src={lecture.thumbnail} onError={handleImgError} />
 			<div style={{ fontWeight: 'bold' }}>{lecture.title}</div>
 			<div style={{ fontSize: '12px', opacity: '0.6' }}>
 				{lecture.description}
@@ -71,6 +77,7 @@ const Wrapper = styled.div`
 
 const LectureCardWrapper = styled.div`
 	display: flex;
+	cursor: pointer;
 	flex-direction: column;
 	width: 270px;
 	padding: 10px;
