@@ -1,7 +1,7 @@
 import CourseHeader from '@components/Courses/Details/CourseHeader';
 import QuestionTable from '@components/Questions/QuestionTable';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
 	fetchCourseDetail,
@@ -14,9 +14,11 @@ import {
 	setQna,
 } from 'store/feature/course/courseDetailSlice';
 import { useAppDispatch } from 'store/app/hooks';
+import QuestionForm from '@components/Questions/QuestionForm';
 const QuestionsByCoursePage = () => {
 	const router = useRouter();
 	const dispatch = useAppDispatch();
+	const [openForm, setOpenForm] = useState(false);
 	const { courseId } = router.query;
 	useEffect(() => {
 		if (!router.isReady) return;
@@ -35,9 +37,15 @@ const QuestionsByCoursePage = () => {
 		<>
 			<CourseHeader />
 			<Wrapper>
-				<Button>질문하기</Button>
+				<Button
+					onClick={() => {
+						setOpenForm((prev) => !prev);
+					}}
+				>
+					질문하기
+				</Button>
+				{openForm && <QuestionForm courseId={courseId} />}
 				<QuestionTable courseId={courseId} />
-				{/* <QuestionForm courseId={courseId} /> */}
 			</Wrapper>
 		</>
 	);
