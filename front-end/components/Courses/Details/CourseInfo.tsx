@@ -10,12 +10,12 @@ const CourseInfo = () => {
 
 	return (
 		<Container>
-			<h4>{`${course.category1} > ${course.category2}`}</h4>
+			<h4>{`${course.category1.name} > ${course.category2.name}`}</h4>
 			<h2>{course.title}</h2>
 			<h4>{course.description}</h4>
-			<p>{`강사: ${course.instructor}`}</p>
+			<p>{`강사: ${course.instructor.nickname}`}</p>
 			<div>
-				{course.hashtag.map((ele) => {
+				{course.hashtags?.map((ele) => {
 					return <div key={ele} className="hashtag">{`#${ele}`}</div>;
 				})}
 			</div>
