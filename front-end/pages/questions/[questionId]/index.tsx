@@ -20,11 +20,12 @@ const QuestionDetailPage = () => {
 	}>();
 
 	useEffect(() => {
+		if (!router.isReady) return;
 		axiosInstance
 			.get(`questions/${questionId}`)
 			.then((res) => setQuestion(res.data))
 			.catch((e) => console.log(e));
-	}, []);
+	}, [router.isReady]);
 	return (
 		<>
 			<QuestionDetailQ question={question} />

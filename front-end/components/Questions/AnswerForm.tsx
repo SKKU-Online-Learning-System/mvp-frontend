@@ -1,19 +1,17 @@
 import axiosInstance from 'apis';
+import { postAnswer } from 'apis/QnA/qnaApi';
+import { useRouter } from 'next/router';
 import { Container } from 'pages/questions/[questionId]';
 
 const AnswerForm = ({ questionId }: any) => {
+	const router = useRouter();
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 
 		// const questionId = e.target.questionId.value;
 		const contents = e.target.contents.value;
-
-		const result = await axiosInstance.post(`answers`, {
-			questionId: questionId,
-			contents: contents,
-		});
-
-		console.log(questionId, contents, result);
+		postAnswer({ questionId: +questionId, contents: contents });
+		router.reload();
 	};
 
 	return (

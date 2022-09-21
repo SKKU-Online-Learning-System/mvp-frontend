@@ -40,8 +40,7 @@ const QnA = () => {
 					<QnAItem
 						key={ele.id}
 						question={ele.contents}
-						answer={'x'}
-						// answer={ele.answers[0]?.contents || 'x'}
+						answer={ele.answers[0]?.contents || 'x'}
 					/>
 				);
 			})}

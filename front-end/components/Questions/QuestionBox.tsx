@@ -16,7 +16,7 @@ const QuestionBox = ({ question, courseName }: any) => {
 		const yearDiff = now.getFullYear() - createTime.getFullYear();
 		const monthDiff = now.getMonth() - createTime.getMonth();
 		const dayDiff = now.getDay() - createTime.getDay();
-		const hourDiff = now.getTime() - createTime.getTime();
+		const hourDiff = now.getHours() - createTime.getHours();
 		const minDiff = now.getMinutes() - createTime.getMinutes();
 		const secDiff = now.getSeconds() - createTime.getSeconds();
 		if (yearDiff) setTimeBefore(`${yearDiff}년 전`);
