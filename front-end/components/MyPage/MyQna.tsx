@@ -1,7 +1,8 @@
 import MyPageLayout from '@components/MyPage/MyPageLayout';
 import BreadCrumb from '@components/common/BreadCrumb';
+import { MYPAGE_MENU } from 'constants/MyPage';
 
-const menu = ['질문/답변'];
+const menu = [MYPAGE_MENU.MY_QNA];
 
 const MyQnA = () => {
 	return (
