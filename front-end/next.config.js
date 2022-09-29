@@ -4,14 +4,14 @@ const withImages = require('next-images');
 module.exports = withImages();
 module.exports = {
 	reactStrictMode: true,
-	// async rewrites() {
-	// 	return [
-	// 		{
-	// 			source: process.env.API_SOURCE,
-	// 			destination: `${process.env.API_SERVER}/:path*`,
-	// 		},
-	// 	];
-	// },
+	async rewrites() {
+		return [
+			{
+				source: process.env.API_SOURCE,
+				destination: `${process.env.API_SERVER}/:path*`,
+			},
+		];
+	},
 	images: {
 		disableStaticImages: true,
 	},
