@@ -2,11 +2,11 @@ import { useRouter } from 'next/router';
 import withRouteGuard from '@components/withRouteGuard';
 import { MYPAGE_PATH } from 'constants/MyPage';
 
-import Bookmark from '@components/MyPage/bookmark';
-import Completed from '@components/MyPage/completed';
-import History from '@components/MyPage/history';
-import Learning from '@components/MyPage/learning';
-import MyQnA from '@components/MyPage/my-qna';
+import Bookmark from '@components/MyPage/Bookmark';
+import Completed from '@components/MyPage/Completed';
+import History from '@components/MyPage/History';
+import Learning from '@components/MyPage/Learning';
+import MyQnA from '@components/MyPage/MyQna';
 import Wishlist from '@components/MyPage/wishlist';
 import MyPageIndex from './index';
 
