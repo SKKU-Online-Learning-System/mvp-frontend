@@ -29,11 +29,11 @@ const MyPage = () => {
 			case MYPAGE_PATH.WISHLIST:
 				return <Wishlist />;
 			default:
-				return <MyPageIndex />;
+				return <History />;
 		}
 	};
 
-	return category && routeComponent(category as string);
+	return category ? routeComponent(category as string) : null;
 };
 
 export default withRouteGuard(MyPage);
