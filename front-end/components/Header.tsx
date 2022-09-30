@@ -26,7 +26,7 @@ const textBoxStyle = {
 };
 const menuData = [
 	{ id: 1, name: '강좌 List', path: '/courses' },
-	{ id: 2, name: '마이페이지', path: '/my-page' },
+	{ id: 2, name: '마이페이지', path: '/my-page/history' },
 ];
 
 const Header = () => {

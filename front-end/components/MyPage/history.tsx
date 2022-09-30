@@ -4,11 +4,10 @@ import styled from 'styled-components';
 import MyPageLayout from '@components/MyPage/MyPageLayout';
 import BreadCrumb from '@components/common/BreadCrumb';
 import { MyPageTitle } from './MyPageTitle';
-
-import axiosInstance from 'apis';
 import { AxiosResponse, AxiosError } from 'axios';
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { MYPAGE_MENU } from 'constants/MyPage';
+import { fetchRecentLectures } from 'apis/MyPage';
 // TODO. css class명 기준 뭘로 할지.. BEM 을 따를지.. 아직 잘 모르겠음
 interface ILatestLectures {
 	duration?: number;
@@ -44,28 +43,9 @@ const History = () => {
 	};
 
 	useEffect(() => {
-		axiosInstance
-			.get('history/latest')
+		fetchRecentLectures()
 			.then((res: AxiosResponse) => {
 				setLatestLectures(res.data);
-			})
-			.catch((error: AxiosError) => {
-				console.warn(error);
-			});
-
-		axiosInstance
-			.get('completed')
-			.then((res: AxiosResponse) => {
-				console.log(res.data);
-			})
-			.catch((error: AxiosError) => {
-				console.warn(error);
-			});
-
-		axiosInstance
-			.get('history')
-			.then((res: AxiosResponse) => {
-				console.log(res.data);
 			})
 			.catch((error: AxiosError) => {
 				console.warn(error);
@@ -96,7 +76,7 @@ const History = () => {
 	);
 };
 
-const GridWrapper = styled.div`
+export const GridWrapper = styled.div`
 	display: grid;
 	border: 1px solid grey;
 	grid-column-gap: 16px;

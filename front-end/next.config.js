@@ -26,4 +26,13 @@ module.exports = {
 		};
 		return config;
 	},
+	async redirects() {
+		return [
+			{
+				source: '/my-page',
+				destination: '/my-page/history', // Matched parameters can be used in the destination
+				permanent: true,
+			},
+		];
+	},
 };
