@@ -22,6 +22,7 @@ const Container = styled.div`
 	display: flex;
 	width: 1200px;
 	margin: 0 auto;
+	font-family: 'Noto Sans KR';
 `;
 
 const SideMenuBox = styled.div`

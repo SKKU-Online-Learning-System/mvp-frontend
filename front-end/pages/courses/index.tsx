@@ -7,14 +7,16 @@ import { AxiosResponse } from 'axios';
 
 import { fetchAllLectureCategories } from 'apis/Lectures/lectureApi';
 import TopSearchbar from '@components/Courses/List/TopSearchbar';
-import BreadCrumb from '@components/Courses/List/BreadCrumb';
+import BreadCrumb from '@components/common/BreadCrumb';
 import LectureList from '@components/Courses/List/LectureList';
 import ContentMenu from '@components/Courses/List/ContentMenu';
 import SelectorCard from '@components/Courses/List/SelectorCard';
 
 const CoursesListPage = () => {
 	const dispatch = useAppDispatch();
-	const { lectureType } = useAppSelector((state: RootState) => state.lecture);
+	const { lectureType, menu } = useAppSelector(
+		(state: RootState) => state.lecture,
+	);
 	const [checkList, setCheckList] = useState<boolean[]>([false, false, false]);
 
 	useEffect(() => {
@@ -47,7 +49,11 @@ const CoursesListPage = () => {
 							{/* 상단 검색바 */}
 							<TopSearchbar checkList={checkList} />
 							{/* 전체| 크리에이티브 부분 */}
-							{/* <BreadCrumb /> */}
+							<BreadCrumb
+								category={'강좌LIST'}
+								menu={menu}
+								containerPadding={'2rem 0'}
+							/>
 							{/* TAG */}
 							{/* 강의 보여주는 부분 */}
 							<LectureList />

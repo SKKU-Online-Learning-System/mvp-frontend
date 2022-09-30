@@ -30,7 +30,10 @@ const QnA = () => {
 				</div>
 				<div style={{ display: 'flex' }}>
 					<h2 style={{ width: '20%' }}>최근 한 질문</h2>
-					<div onClick={(e: React.MouseEvent<HTMLElement>) => handleClick(id)}>
+					<div
+						onClick={(e: React.MouseEvent<HTMLElement>) => handleClick(id)}
+						className="more"
+					>
 						MORE
 					</div>
 				</div>
@@ -55,6 +58,19 @@ const Container = styled.div`
 	margin: auto;
 	padding: 25px;
 	font-family: 'Noto Sans KR';
+	.more {
+		font-size: 0.9rem;
+		cursor: pointer;
+		border: solid;
+		border-color: #b1afaf;
+		padding: 5px;
+		border-radius: 0.5rem;
+		& :hover {
+			background-color: #6e6e6e;
+			color: #dfdfdf;
+			transition: 0.3s;
+		}
+	}
 	& header {
 		margin: 0 0 16px 18px;
 	}

@@ -18,11 +18,6 @@ const TopSearchbar = ({ checkList }: Props) => {
 	const router = useRouter();
 	const { s } = router.query;
 
-	let tags = ['Python', 'Java'];
-	for (var i = 0; i < 10; i++) {
-		tags.push(tags[0] + i.toString());
-	}
-
 	const _fetchSearchedData = async (s: string, difficulty?: string) => {
 		try {
 			let result = await fetchSearchedData(s, difficulty);
@@ -100,27 +95,10 @@ const TopSearchbar = ({ checkList }: Props) => {
 						/>
 					</span>
 				</Searchbar>
-				<HashTagWrapper>
-					{tags.map((elem, idx) => (
-						<HashTagCard
-							onClick={() => alert('추후 개발 예정')}
-							name={elem}
-							key={idx}
-						/>
-					))}
-				</HashTagWrapper>
 			</SearchBarAndTagWrapper>
 		</Wrapper>
 	);
 };
-
-const HashTagWrapper = styled.div`
-	display: flex;
-	max-height: 80px;
-	overflow-y: auto;
-	flex-wrap: wrap;
-	gap: 4px;
-`;
 
 const Title = styled.div`
 	display: flex;
