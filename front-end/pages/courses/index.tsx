@@ -47,7 +47,7 @@ const CoursesListPage = () => {
 							{/* 상단 검색바 */}
 							<TopSearchbar checkList={checkList} />
 							{/* 전체| 크리에이티브 부분 */}
-							<BreadCrumb />
+							{/* <BreadCrumb /> */}
 							{/* TAG */}
 							{/* 강의 보여주는 부분 */}
 							<LectureList />
