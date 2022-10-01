@@ -20,4 +20,5 @@ jobs:
             cd mvp-frontend/
             rm -rf ./front-end/.next
             git pull origin development
+            npm run build
             pm2 restart 1
