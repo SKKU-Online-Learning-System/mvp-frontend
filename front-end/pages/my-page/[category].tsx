@@ -4,7 +4,6 @@ import { MYPAGE_PATH } from 'constants/MyPage';
 
 import Bookmark from '@components/MyPage/Bookmark';
 import Completed from '@components/MyPage/Completed';
-
 import History from '@components/MyPage/History';
 import Learning from '@components/MyPage/Learning';
 import MyQnA from '@components/MyPage/MyQna';
