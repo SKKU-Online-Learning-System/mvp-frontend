@@ -8,7 +8,7 @@ import {
 	setAllLectures,
 } from 'store/feature/lecture/lectureSlice';
 import { RootState } from 'store/app/store';
-import { fetchLectureLists, fetchSearchedData } from 'apis/Lectures/lectureApi';
+import { fetchCourseLists, fetchSearchedCourses } from 'apis/Courses/courseApi';
 import { AxiosResponse } from 'axios';
 import { useRouter } from 'next/router';
 
@@ -26,7 +26,7 @@ const LectureList = () => {
 
 		if (clickedId === 0 && !s) {
 			//전체보기
-			fetchSearchedData('', '')
+			fetchSearchedCourses('')
 				.then((res: AxiosResponse) => {
 					dispatch(setLectures(res.data));
 					dispatch(setAllLectures(res.data)); // 검색 결과 임시로 전체 저장
@@ -34,7 +34,7 @@ const LectureList = () => {
 				.catch((err: unknown) => console.log(err));
 		} else if (clickedId !== -1 && !s) {
 			// 카테고리 보기
-			fetchLectureLists(clickedId.toString())
+			fetchCourseLists(clickedId.toString())
 				.then((res: AxiosResponse) => {
 					dispatch(setLectures(res.data));
 					dispatch(setAllLectures(res.data)); // 검색 결과 임시로 전체 저장

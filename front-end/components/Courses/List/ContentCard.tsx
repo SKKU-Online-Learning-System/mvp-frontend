@@ -9,7 +9,7 @@ import {
 } from 'store/feature/lecture/lectureSlice';
 // import CardItem from './CardItem';
 import { RootState } from 'store/app/store';
-import { fetchLectureLists } from 'apis/Lectures/lectureApi';
+import { fetchCourseLists } from 'apis/Courses/courseApi';
 
 interface CardProps {
 	title: string;
@@ -32,7 +32,7 @@ const ContentCard = ({ title, type, index }: CardProps) => {
 	const showLecture = (id: number, name: string) => {
 		dispatch(setMenu([title, name]));
 		dispatch(setClickedId(id));
-		fetchLectureLists(clickedId.toString())
+		fetchCourseLists(clickedId.toString())
 			.then((res) => {
 				dispatch(setLectures(res.data));
 			})
