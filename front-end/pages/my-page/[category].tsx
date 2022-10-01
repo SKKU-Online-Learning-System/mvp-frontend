@@ -8,7 +8,6 @@ import History from '@components/MyPage/History';
 import Learning from '@components/MyPage/Learning';
 import MyQnA from '@components/MyPage/MyQna';
 import Wishlist from '@components/MyPage/wishlist';
-import MyPageIndex from './index';
 
 const MyPage = () => {
 	const router = useRouter();
