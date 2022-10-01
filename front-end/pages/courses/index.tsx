@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from 'store/app/hooks';
 import { addLectureType } from 'store/feature/lecture/lectureSlice';
 import { AxiosResponse } from 'axios';
 
-import { fetchAllLectureCategories } from 'apis/Lectures/lectureApi';
+import { fetchAllCourseCategories } from 'apis/Courses/courseApi';
 import TopSearchbar from '@components/Courses/List/TopSearchbar';
 import BreadCrumb from '@components/common/BreadCrumb';
 import LectureList from '@components/Courses/List/LectureList';
@@ -21,7 +21,7 @@ const CoursesListPage = () => {
 
 	useEffect(() => {
 		if (lectureType.length === 0) {
-			fetchAllLectureCategories()
+			fetchAllCourseCategories()
 				.then((res: AxiosResponse) => dispatch(addLectureType(res.data)))
 				.catch((err: unknown) => console.log(err));
 		}
@@ -57,7 +57,6 @@ const CoursesListPage = () => {
 							{/* TAG */}
 							{/* 강의 보여주는 부분 */}
 							<LectureList />
-							{/* <LectureMove /> */}
 						</LectureBody>
 					</Wrapper>
 				</>

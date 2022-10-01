@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useAppDispatch } from 'store/app/hooks';
 import { setLectures, setMenu } from 'store/feature/lecture/lectureSlice';
-import { fetchSearchedData } from 'apis/Lectures/lectureApi';
+import { fetchSearchedCourses } from 'apis/Courses/courseApi';
 import { useRouter } from 'next/router';
 
 import HashTagCard from './HashTagCard';
@@ -13,14 +13,17 @@ interface Props {
 
 const TopSearchbar = ({ checkList }: Props) => {
 	const dodbogiLocation = 'images/dodbogi.png';
-	const inputRef = useRef<any>(null);
+	const inputRef = useRef<HTMLInputElement | null>(null);
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 	const { s } = router.query;
 
-	const _fetchSearchedData = async (s: string, difficulty?: string) => {
+	const _fetchSearchedCourses = async (s: string) => {
+		const res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
+		const difficulty = res.filter((elem) => elem).join();
+
 		try {
-			let result = await fetchSearchedData(s, difficulty);
+			const result = await fetchSearchedCourses(s, difficulty || undefined);
 			dispatch(setLectures(result.data));
 			dispatch(setMenu([]));
 			//no such thing as .records in this api
@@ -31,21 +34,23 @@ const TopSearchbar = ({ checkList }: Props) => {
 
 	const handleSearch = async (e: any) => {
 		e.preventDefault();
-		let res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
-		let difficulty: string = res.filter((elem) => elem).join();
-
-		_fetchSearchedData(inputRef.current.value, difficulty);
+		if (inputRef.current) _fetchSearchedCourses(inputRef.current.value);
 	};
 
-	const handleInput = (e: any) => {
-		inputRef.current.value = e.target.value;
+	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (inputRef.current) inputRef.current.value = e.target.value;
 	};
 
 	useEffect(() => {
 		if (!router.isReady) return;
 
-		if (s) _fetchSearchedData(s as string);
-	}, [router.isReady, s]);
+		if (s) {
+			_fetchSearchedCourses(s as string);
+			return;
+		}
+
+		if (inputRef.current) _fetchSearchedCourses(inputRef.current.value);
+	}, [router.isReady, s, checkList]);
 
 	return (
 		<Wrapper>

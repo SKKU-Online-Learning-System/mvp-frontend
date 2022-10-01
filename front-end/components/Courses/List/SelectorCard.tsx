@@ -8,22 +8,18 @@ interface CardProps {
 }
 
 const SelectorCard = ({ setCheckList, checkList, title, type }: CardProps) => {
-	const handleClicked = (index: number) => {
+	const handleClick = (index: number) => () => {
 		setCheckList((prev: boolean[]) =>
 			prev.map((elem: boolean, idx: number) => (idx === index ? !elem : elem)),
 		);
 	};
+
 	return (
 		<Wrapper>
 			<TypeHeader>{title}</TypeHeader>
 			{type.map((x, index) => (
 				<div key={x} style={{ color: 'rgb(120, 120, 120)' }}>
-					<input
-						type="checkbox"
-						onClick={() => {handleClicked(index); console.log(checkList)}}
-						name={x}
-					/>{' '}
-					{x}
+					<input type="checkbox" onClick={handleClick(index)} name={x} /> {x}
 				</div>
 			))}
 		</Wrapper>
