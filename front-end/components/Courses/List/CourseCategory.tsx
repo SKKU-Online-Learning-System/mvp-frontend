@@ -1,23 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, SetStateAction, Dispatch } from 'react';
 import styled from 'styled-components';
 import { selectCourseCategory } from 'store/feature/course/courseSelector';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 type ToggleType = {
 	isClicked: boolean;
 };
 
-const CourseCategory = () => {
+interface ICourseCategory {
+	setMenu: Dispatch<SetStateAction<string[]>>;
+}
+
+const CourseCategory = ({ setMenu }: ICourseCategory) => {
+	const router = useRouter();
 	const courseCategory = useSelector(selectCourseCategory);
 	const [isClickedCategory, setIsClickedCategory] = useState<boolean[]>([]);
 
-	const handleClick = (clickedIndex: number) => () => {
+	const handleCardClick = (clickedIndex: number) => () => {
+		if (!clickedIndex) {
+			setMenu(['전체보기']);
+			router.push('/courses');
+			return;
+		}
+
 		const clickedCategory = isClickedCategory.map((value, index) =>
 			clickedIndex === index ? !value : value,
 		);
 
 		setIsClickedCategory(clickedCategory);
+	};
+
+	const handleSubItemClick = (category2sId: number, menu: string[]) => () => {
+		setMenu(menu);
+		router.push({
+			pathname: '/courses',
+			query: { category2sId },
+		});
 	};
 
 	useEffect(() => {
@@ -33,10 +52,18 @@ const CourseCategory = () => {
 			{courseCategory.length > 0 &&
 				courseCategory.map((content, index) => (
 					<React.Fragment key={index}>
-						<Card onClick={handleClick(index)}>{content.name}</Card>
+						<Card onClick={handleCardClick(index)}>{content.name}</Card>
 						<SubItemBody isClicked={isClickedCategory[index]}>
 							{content.category2s?.map((elem, index) => (
-								<SubItem key={index}>{elem.name}</SubItem>
+								<SubItem
+									onClick={handleSubItemClick(elem.id, [
+										content.name,
+										elem.name,
+									])}
+									key={index}
+								>
+									{elem.name}
+								</SubItem>
 							))}
 						</SubItemBody>
 					</React.Fragment>

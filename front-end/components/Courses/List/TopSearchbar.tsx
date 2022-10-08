@@ -1,35 +1,19 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { useAppDispatch } from 'store/app/hooks';
-import { setLectures, setMenu } from 'store/feature/lecture/lectureSlice';
-import { fetchSearchedCourses } from 'apis/Courses/courseApi';
 import { useRouter } from 'next/router';
 
 import HashTagCard from './HashTagCard';
 
-interface Props {
-	checkList: boolean[];
-}
-
-const TopSearchbar = ({ checkList }: Props) => {
+const TopSearchbar = () => {
 	const dodbogiLocation = 'images/dodbogi.png';
 	const inputRef = useRef<HTMLInputElement | null>(null);
-	const dispatch = useAppDispatch();
 	const router = useRouter();
-	const { s } = router.query;
 
-	const _fetchSearchedCourses = async (s: string) => {
-		const res = checkList.map((elem, idx) => (elem ? idx + 1 : false));
-		const difficulty = res.filter((elem) => elem).join();
-
-		try {
-			const result = await fetchSearchedCourses(s, difficulty || undefined);
-			dispatch(setLectures(result.data));
-			dispatch(setMenu([]));
-			//no such thing as .records in this api
-		} catch (e: unknown) {
-			console.error(e);
-		}
+	const _fetchSearchedCourses = (keyword: string) => {
+		router.push({
+			pathname: '/courses',
+			query: { ...router.query, keyword },
+		});
 	};
 
 	const handleSearch = async (e: any) => {
@@ -40,17 +24,6 @@ const TopSearchbar = ({ checkList }: Props) => {
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (inputRef.current) inputRef.current.value = e.target.value;
 	};
-
-	useEffect(() => {
-		if (!router.isReady) return;
-
-		if (s) {
-			_fetchSearchedCourses(s as string);
-			return;
-		}
-
-		if (inputRef.current) _fetchSearchedCourses(inputRef.current.value);
-	}, [router.isReady, s, checkList]);
 
 	return (
 		<Wrapper>

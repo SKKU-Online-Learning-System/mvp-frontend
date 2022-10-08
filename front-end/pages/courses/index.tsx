@@ -1,44 +1,47 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { RootState } from 'store/app/store';
-import { useAppDispatch, useAppSelector } from 'store/app/hooks';
-import { addLectureType } from 'store/feature/lecture/lectureSlice';
+import { useSelector, useDispatch } from 'react-redux';
 import { AxiosResponse } from 'axios';
+import { selectCourseCategory } from 'store/feature/course/courseSelector';
+import { courseActions } from 'store/feature/course/courseSlice';
+import API from 'apis/Courses/courseApi';
 
-import { fetchAllCourseCategories } from 'apis/Courses/courseApi';
 import TopSearchbar from '@components/Courses/List/TopSearchbar';
 import BreadCrumb from '@components/common/BreadCrumb';
 import LectureList from '@components/Courses/List/LectureList';
-import ContentMenu from '@components/Courses/List/ContentMenu';
-import SelectorCard from '@components/Courses/List/SelectorCard';
+import CourseCategory from '@components/Courses/List/CourseCategory';
+import DifficultyList from '@components/Courses/List/DifficultyList';
 
 const CoursesListPage = () => {
-	const dispatch = useAppDispatch();
-	const { lectureType, menu } = useAppSelector(
-		(state: RootState) => state.lecture,
-	);
-	const [checkList, setCheckList] = useState<boolean[]>([false, false, false]);
+	const dispatch = useDispatch();
+	const courseCategory = useSelector(selectCourseCategory);
+	const [menu, setMenu] = useState<string[]>([]);
 
 	useEffect(() => {
-		if (lectureType.length === 0) {
-			fetchAllCourseCategories()
-				.then((res: AxiosResponse) => dispatch(addLectureType(res.data)))
+		if (!courseCategory.length) {
+			API.fetchAllCourseCategories()
+				.then((res: AxiosResponse) =>
+					dispatch(
+						courseActions.setCourseCategory([
+							{ id: 0, name: '전체보기' },
+							...res.data,
+						]),
+					),
+				)
 				.catch((err: unknown) => console.log(err));
 		}
 	}, []);
 
 	return (
 		<>
-			{lectureType && (
+			{courseCategory && (
 				<>
 					{/* 화면 전체 */}
 					<Wrapper>
 						{/* 왼쪽 sidebar 전체 */}
 						<SidebarLeft>
-							<ContentMenu />
-							<SelectorCard
-								checkList={checkList}
-								setCheckList={setCheckList}
+							<CourseCategory setMenu={setMenu} />
+							<DifficultyList
 								title={'난이도'}
 								type={['입문', '초급', '중급이상']}
 							/>
@@ -46,16 +49,13 @@ const CoursesListPage = () => {
 						{/* 오른쪽 전체, 그 안에서 위(검색창) 아래(강의 리스트) 나눔*/}
 
 						<LectureBody>
-							{/* 상단 검색바 */}
-							<TopSearchbar checkList={checkList} />
-							{/* 전체| 크리에이티브 부분 */}
+							<TopSearchbar />
 							<BreadCrumb
 								category={'강좌LIST'}
 								menu={menu}
 								containerPadding={'2rem 0'}
 							/>
-							{/* TAG */}
-							{/* 강의 보여주는 부분 */}
+
 							<LectureList />
 						</LectureBody>
 					</Wrapper>
