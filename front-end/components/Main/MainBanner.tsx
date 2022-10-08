@@ -1,30 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { CardList } from './CardList';
-import { fetchBannerImgUrls } from 'apis/Main/bannerApi';
-
+import API from 'apis/Main';
+import { IMainBanners } from 'types/Main';
+// TODO. query string 형식으로 요청 보내기
 const MainBanner = () => {
-	const [imageUrl, setImageUrl] = useState<string[]>([]);
+	const [bannerList, setBannerList] = useState<IMainBanners[]>([]);
 
-	const makeFullUrlLists = (fileName: string[]) => {
-		let tempFullUrlLists: string[] = [];
-		fileName.forEach((elem) =>
-			tempFullUrlLists.push(
-				`${process.env.NEXT_PUBLIC_API_BASEURL}/images/banners/${elem}`,
-			),
-		);
-		setImageUrl(tempFullUrlLists);
+	const getImageUrl = (path: string) => {
+		const url = new URL(`${process.env.NEXT_PUBLIC_API_BASEURL}`);
+		url.pathname = path;
+
+		return url.toString();
 	};
 
 	useEffect(() => {
-		fetchBannerImgUrls()
-			.then((res) => makeFullUrlLists(res.data))
+		API.fetchBannerImgUrls()
+			.then((res) => setBannerList(res.data))
 			.catch((err) => console.log(err));
 	}, []);
 
 	return (
 		<Container>
-			{imageUrl.length > 0 && <CardList imageUrlLists={imageUrl} />}
+			{bannerList.length > 0 &&
+				bannerList.map((banner, index) => (
+					<div
+						key={index}
+						style={{
+							paddingRight: '10px',
+							overflow: 'auto',
+							cursor: 'pointer',
+						}}
+						onClick={() => alert('기능 개발중입니다.')}
+					>
+						<img
+							crossOrigin="anonymous"
+							src={getImageUrl(banner.filename)}
+							alt="bannerItem"
+							style={{ maxWidth: '250px', width: '250px', height: '250px' }}
+						/>
+					</div>
+				))}
 		</Container>
 	);
 };
