@@ -4,12 +4,8 @@ import QnA from '@components/Courses/Details/QnA';
 import LectureList from '@components/Courses/Details/LectureList';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import {
-	fetchCourseDetail,
-	fetchCourseDetailLectures,
-	fetchCourseDetailQna,
-} from 'apis/Courses/courseApi';
-import { useAppDispatch } from 'store/app/hooks';
+import API from 'apis/Courses/courseApi';
+import { useDispatch } from 'react-redux';
 import {
 	setCourse,
 	setLectures,
@@ -18,17 +14,18 @@ import {
 import CourseHeader from '@components/Courses/Details/CourseHeader';
 
 const CourseDetailPage = () => {
-	const dispatch = useAppDispatch();
+	const dispatch = useDispatch();
 	const router = useRouter();
 	const { courseId } = router.query;
 
 	useEffect(() => {
 		if (!router.isReady) return;
 		(async () => {
-			if (isNaN(Number(courseId))) return;
-			const course: any = await fetchCourseDetail(courseId);
-			const lectures: any = await fetchCourseDetailLectures(courseId);
-			const qna: any = await fetchCourseDetailQna(courseId);
+			const course: any = await API.fetchCourseDetail(courseId as string);
+			const lectures: any = await API.fetchCourseDetailLectures(
+				courseId as string,
+			);
+			const qna: any = await API.fetchCourseDetailQna(courseId as string);
 			dispatch(setCourse(course?.data));
 			dispatch(setLectures(lectures?.data));
 			if (qna.data.length > 3) dispatch(setQna(qna.data.slice(0, 3)));

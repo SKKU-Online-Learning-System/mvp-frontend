@@ -3,11 +3,7 @@ import QuestionTable from '@components/Questions/QuestionTable';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import {
-	fetchCourseDetail,
-	fetchCourseDetailLectures,
-	fetchCourseDetailQna,
-} from 'apis/Courses/courseApi';
+import API from 'apis/Courses/courseApi';
 import {
 	setCourse,
 	setLectures,
@@ -23,10 +19,11 @@ const QuestionsByCoursePage = () => {
 	useEffect(() => {
 		if (!router.isReady) return;
 		(async () => {
-			if (isNaN(Number(courseId))) return;
-			const course: any = await fetchCourseDetail(courseId);
-			const lectures: any = await fetchCourseDetailLectures(courseId);
-			const qna: any = await fetchCourseDetailQna(courseId);
+			const course: any = await API.fetchCourseDetail(courseId as string);
+			const lectures: any = await API.fetchCourseDetailLectures(
+				courseId as string,
+			);
+			const qna: any = await API.fetchCourseDetailQna(courseId as string);
 			dispatch(setCourse(course?.data));
 			dispatch(setLectures(lectures?.data));
 			if (qna.data.length > 3) dispatch(setQna(qna.data.slice(0, 3)));
