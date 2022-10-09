@@ -1,42 +1,39 @@
 import axiosInstance from 'apis';
+import { ISearchedCourse } from 'types/Course';
 
-export const fetchCourseDetail = (courseId: string) => {
-	return axiosInstance.get(`/courses/${courseId}`);
-};
-
-export const fetchCourseDetailLectures = (courseId: string) => {
-	return axiosInstance.get(`/courses/${courseId}/lectures`);
-};
-
-export const fetchCourseDetailQna = (courseId: string) => {
-	return axiosInstance.get(`/questions/course/${courseId}`);
-};
-
-export const fetchAllCourseCategories = () => {
-	return axiosInstance.get(`courses/categories`);
-};
-
-export const fetchCourseLists = (category: string) => {
-	return axiosInstance.get('courses/search', {
-		params: {
-			category2Id: category,
-		},
-	});
-};
-
-export const fetchSearchedCourses = (name: string, difficulty?: string) => {
-	return axiosInstance.get('courses/search', {
-		params: {
-			keyword: name,
-			difficulty,
-		},
-	});
-};
-
-export const fetchAllCoursesPerPage = (pageNum: number) => {
-	return axiosInstance.get('courses/search', {
-		params: {
-			page: pageNum,
-		},
-	});
+export default {
+	fetchCourseDetail: (courseId: string) => {
+		return axiosInstance.get(`/courses/${courseId}`);
+	},
+	fetchCourseDetailLectures: (courseId: string) => {
+		return axiosInstance.get(`/courses/${courseId}/lectures`);
+	},
+	fetchCourseDetailQna: (courseId: string) => {
+		return axiosInstance.get(`/questions/course/${courseId}`);
+	},
+	fetchAllCourseCategories: () => {
+		return axiosInstance.get(`courses/categories`);
+	},
+	fetchCourseLists: (category?: string) => {
+		return axiosInstance.get<ISearchedCourse>('courses/search', {
+			params: {
+				category2Id: category,
+			},
+		});
+	},
+	fetchSearchedCourses: (keyword: string, difficulty?: string) => {
+		return axiosInstance.get('courses/search', {
+			params: {
+				keyword: keyword,
+				difficulty,
+			},
+		});
+	},
+	fetchAllCoursesPerPage: (pageNum: number) => {
+		return axiosInstance.get('courses/search', {
+			params: {
+				page: pageNum,
+			},
+		});
+	},
 };

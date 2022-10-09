@@ -1,11 +1,11 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import lectureReducer from '../feature/lecture/lectureSlice';
+import courseReducer from '../feature/course/courseSlice';
 import courseDetailReducer from '../feature/course/courseDetailSlice';
 import userAuthReducer from 'store/feature/auth/userAuthSlice';
 
 export const store = configureStore({
 	reducer: {
-		lecture: lectureReducer,
+		course: courseReducer,
 		courseDetail: courseDetailReducer,
 		userAuthState: userAuthReducer,
 		// This is where we add reducers.

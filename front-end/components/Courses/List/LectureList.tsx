@@ -1,62 +1,73 @@
 import styled from 'styled-components';
 import LectureCard from './LectureCard';
 
-import { useAppDispatch, useAppSelector } from 'store/app/hooks';
-import { useEffect } from 'react';
-import {
-	setLectures,
-	setAllLectures,
-} from 'store/feature/lecture/lectureSlice';
-import { RootState } from 'store/app/store';
-import { fetchCourseLists, fetchSearchedCourses } from 'apis/Courses/courseApi';
+import API from 'apis/Courses/courseApi';
+import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { AxiosResponse } from 'axios';
 import { useRouter } from 'next/router';
+import { ICourseInfo } from 'types/Course/index';
 
 const LectureList = () => {
-	// local state로 저장
-	const dispatch = useAppDispatch();
+	const dispatch = useDispatch();
 	const router = useRouter();
-	const { s } = router.query;
-	const { clickedId, lectures } = useAppSelector(
-		(state: RootState) => state.lecture,
-	);
+	const { keyword, category2sId, difficulty } = router.query;
+	const [courseLists, setCourseLists] = useState<ICourseInfo[]>([]);
+
 	// TODO : 검색후에 돌아왔을때, 다시 강의를 새로 불러오는 문제, 원래 페이지가 나와야함.
 	useEffect(() => {
 		if (!router.isReady) return;
+		// 검색어 없는경우
+		if (!keyword && !category2sId && !difficulty) {
+			API.fetchCourseLists()
+				.then((res: AxiosResponse) => {
+					setCourseLists(res.data.courses);
+				})
+				.catch((error: unknown) => console.warn(error));
 
-		if (clickedId === 0 && !s) {
-			//전체보기
-			fetchSearchedCourses('')
-				.then((res: AxiosResponse) => {
-					dispatch(setLectures(res.data));
-					dispatch(setAllLectures(res.data)); // 검색 결과 임시로 전체 저장
-				})
-				.catch((err: unknown) => console.log(err));
-		} else if (clickedId !== -1 && !s) {
-			// 카테고리 보기
-			fetchCourseLists(clickedId.toString())
-				.then((res: AxiosResponse) => {
-					dispatch(setLectures(res.data));
-					dispatch(setAllLectures(res.data)); // 검색 결과 임시로 전체 저장
-				})
-				.catch((err: unknown) => console.log(err));
+			return;
 		}
-	}, [clickedId, router.isReady]);
+		// 검색 or 난이도 버튼 누른경우
+		if (keyword || difficulty) {
+			const _keyword = (keyword ?? '') as string;
+			const _difficulty = (difficulty ?? undefined) as string | undefined;
+
+			API.fetchSearchedCourses(_keyword, _difficulty)
+				.then((res: AxiosResponse) => {
+					setCourseLists(res.data.courses);
+				})
+				.catch((error: unknown) => console.warn(error));
+
+			return;
+		}
+		// 카테고리 메뉴에서 클릭한경우
+		if (category2sId) {
+			API.fetchCourseLists(category2sId as string)
+				.then((res: AxiosResponse) => {
+					setCourseLists(res.data.courses);
+				})
+				.catch((error: unknown) => console.warn(error));
+
+			return;
+		}
+	}, [router.isReady, keyword, category2sId, difficulty]);
 
 	return (
-		<LectureHeader>
-			{lectures &&
-				(lectures.length === 0 ? (
-					<div>검색 결과가 없습니다!!!</div>
-				) : (
-					<LectureCard />
-				))}
-		</LectureHeader>
+		<Wrapper>
+			{courseLists?.length ? (
+				courseLists.map((course, index) => (
+					<LectureCard course={course} key={index} />
+				))
+			) : (
+				<div>검색 결과가 없습니다!!!</div>
+			)}
+		</Wrapper>
 	);
 };
-
-const LectureHeader = styled.div`
-	display: flex;
-	flex-flow: row wrap;
+const Wrapper = styled.div`
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	row-gap: 1rem;
 `;
+
 export default LectureList;
