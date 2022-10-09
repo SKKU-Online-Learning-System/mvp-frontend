@@ -7,7 +7,7 @@ const MainBanner = () => {
 	const [bannerList, setBannerList] = useState<IMainBanners[]>([]);
 
 	const getImageUrl = (path: string) => {
-		const url = new URL(`${process.env.NEXT_PUBLIC_API_BASEURL}`);
+		const url = new URL(`${process.env.NEXT_PUBLIC_API_SERVER}`);
 		url.pathname = path;
 
 		return url.toString();
