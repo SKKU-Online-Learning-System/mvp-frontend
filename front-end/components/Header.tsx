@@ -59,6 +59,15 @@ const Header = () => {
 				query: { keyword: inputRef?.current?.value },
 			});
 			inputRef.current.value = '';
+			return;
+		}
+	};
+
+	const handleKeyPress = (e: any) => {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+			handleClickSearchLectures();
+			return;
 		}
 	};
 
@@ -104,6 +113,7 @@ const Header = () => {
 					placeholder="배우고 싶은 지식을 입력하세요."
 					style={textBoxStyle}
 					onChange={handleInput}
+					onKeyPress={handleKeyPress}
 				/>
 				<SearchButton onClick={handleClickSearchLectures} />
 
