@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 
@@ -6,8 +6,10 @@ import HashTagCard from './HashTagCard';
 
 const TopSearchbar = () => {
 	const dodbogiLocation = 'images/dodbogi.png';
+	const [text, setText] = useState('');
 	const inputRef = useRef<HTMLInputElement | null>(null);
 	const router = useRouter();
+	const { keyword } = router.query;
 
 	const _fetchSearchedCourses = (keyword: string) => {
 		router.push({
@@ -18,12 +20,18 @@ const TopSearchbar = () => {
 
 	const handleSearch = async (e: any) => {
 		e.preventDefault();
-		if (inputRef.current) _fetchSearchedCourses(inputRef.current.value);
+		_fetchSearchedCourses(text);
 	};
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (inputRef.current) inputRef.current.value = e.target.value;
+		setText(e.target.value);
 	};
+
+	useEffect(() => {
+		if (!router.isReady) return;
+
+		keyword ? setText(keyword as string) : setText('');
+	}, [router.isReady, keyword]);
 
 	return (
 		<Wrapper>
@@ -58,7 +66,7 @@ const TopSearchbar = () => {
 				<Searchbar onSubmit={handleSearch}>
 					<Input
 						type="text"
-						ref={inputRef}
+						value={text}
 						placeholder="강의 검색하기"
 						onChange={handleInput}
 					/>
