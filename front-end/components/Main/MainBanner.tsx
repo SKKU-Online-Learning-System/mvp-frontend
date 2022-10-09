@@ -8,7 +8,16 @@ const MainBanner = () => {
 
 	const getImageUrl = (path: string) => {
 		const url = new URL(`${process.env.NEXT_PUBLIC_API_SERVER}`);
-		url.pathname = path;
+		/*
+		백엔드 요청 환경변수에 origin만으로 이루어지지 않고, path가 섞여있는 경우가 있음.
+		https://www.xxx.com/apis ~~ 이런 케이스.
+		URL 인터페이스를 깔끔하게 사용하기 어려운 케이스
+		*/
+
+		if (url.pathname === '/') url.pathname = path;
+		else {
+			url.pathname = `${url.pathname}${path}`;
+		}
 
 		return url.toString();
 	};
