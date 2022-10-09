@@ -31,8 +31,8 @@ const DifficultyList = ({ title, type }: CardProps) => {
 			.join(',');
 
 		const query: { difficulty?: string } = {
-			difficulty,
 			...router.query,
+			difficulty,
 		};
 
 		if (!difficulty) delete query.difficulty;
