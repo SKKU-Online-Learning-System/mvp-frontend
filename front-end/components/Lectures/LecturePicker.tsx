@@ -1,39 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { fetchCourseDetailLectures } from 'apis/Courses/courseApi';
+import API from 'apis/Courses/courseApi';
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { useRouter } from 'next/router';
+import { ILectureList } from 'types/Lecture/index';
 
 type ToggleType = {
 	isCollapsed: boolean;
 };
 
-type Props = {
+interface ILecturePicker {
 	courseId?: string;
-};
-
-type LectureInfo = {
-	createdAt: string;
-	duration: number;
-	filename: string;
-	id: number;
-	title: string;
-};
-
-interface ILectureType {
-	lectures: LectureInfo[];
-	id: number;
-	title: string;
 }
 
-export const LecturePicker: React.FC<Props> = ({ courseId }) => {
+export const LecturePicker = ({ courseId }: ILecturePicker) => {
 	const router = useRouter();
 
-	const [lectureList, setLectureList] = useState<ILectureType[]>([]);
+	const [lectureList, setLectureList] = useState<ILectureList[]>([]);
 	const [isCollapsed, setIsCollapsed] = useState<boolean[]>([]); // true면 펼쳐짐, false면 닫힘.
 
 	const _fetchCourseDetailLectures = async (_courseId: string) => {
-		const res = await fetchCourseDetailLectures(_courseId);
+		const res = await API.fetchCourseDetailLectures(_courseId);
 		setLectureList(res.data);
 		setIsCollapsed(new Array(res.data.length).fill(true));
 	};
@@ -56,7 +43,7 @@ export const LecturePicker: React.FC<Props> = ({ courseId }) => {
 	return (
 		<LecturePickerWrapper>
 			{lectureList.length > 0 &&
-				lectureList.map((elem: ILectureType, idx: number) => {
+				lectureList.map((elem, idx) => {
 					return (
 						<React.Fragment key={idx}>
 							<LectureTitleHeader
@@ -66,7 +53,7 @@ export const LecturePicker: React.FC<Props> = ({ courseId }) => {
 								{elem?.title}
 							</LectureTitleHeader>
 							<CollpaseBody isCollapsed={isCollapsed[idx]}>
-								{elem?.lectures.map((item: LectureInfo, _idx: number) => (
+								{elem?.lectures.map((item, _idx: number) => (
 									<LectureHeader
 										key={_idx}
 										onClick={() => handleMoveToAnotherLecture(item.id)}
@@ -86,7 +73,7 @@ export const LecturePicker: React.FC<Props> = ({ courseId }) => {
 const LecturePickerWrapper = styled.div`
 	border: 1px solid #e7e9eb;
 	height: 768px;
-	overflow-y: auto;
+	overflow-y: scroll;
 	min-width: 300px;
 `;
 
@@ -130,6 +117,7 @@ const LectureHeader = styled.div`
 const CollpaseBody = styled.div<ToggleType>`
 	// transition 걸기위해서 필요
 	overflow-y: hidden;
-	max-height: ${(props) => (props.isCollapsed ? '100em' : '0')};
+	max-height: ${(props) => (props.isCollapsed ? '4500px' : '0')};
+	// row 1개당 45px기준, 목록 100개.
 	transition: max-height 0.3s ease;
 `;

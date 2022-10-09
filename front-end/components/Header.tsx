@@ -53,11 +53,13 @@ const Header = () => {
 	};
 
 	const handleClickSearchLectures = () => {
-		if (inputRef?.current?.value)
+		if (inputRef?.current?.value) {
 			router.push({
 				pathname: '/courses',
-				query: { s: inputRef?.current?.value },
+				query: { keyword: inputRef?.current?.value },
 			});
+			inputRef.current.value = '';
+		}
 	};
 
 	const menuBar = (
