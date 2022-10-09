@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import API from 'apis/Main';
 import { IMainBanners } from 'types/Main';
+import { useRouter } from 'next/router';
 // TODO. query string 형식으로 요청 보내기
 const MainBanner = () => {
+	const router = useRouter();
 	const [bannerList, setBannerList] = useState<IMainBanners[]>([]);
 
 	const getImageUrl = (path: string) => {
@@ -20,6 +22,10 @@ const MainBanner = () => {
 		}
 
 		return url.toString();
+	};
+
+	const handleImageClick = (category2sId: number | null) => () => {
+		router.push({ pathname: '/courses', query: { category2sId } });
 	};
 
 	useEffect(() => {
@@ -39,7 +45,7 @@ const MainBanner = () => {
 							overflow: 'auto',
 							cursor: 'pointer',
 						}}
-						onClick={() => alert('기능 개발중입니다.')}
+						onClick={handleImageClick(banner.category2Id)}
 					>
 						<img
 							crossOrigin="anonymous"
