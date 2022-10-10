@@ -23,6 +23,7 @@ export const requestHandlers = [
 			}),
 		);
 	}),
+<<<<<<< HEAD
 
 	rest.get('/history', (req, res, ctx) => {
 		return res(
@@ -50,4 +51,6 @@ export const requestHandlers = [
 			]),
 		);
 	}),
+=======
+>>>>>>> 93dfe5f (feat: mSW 설치 및 환경설정 적용)
 ];
