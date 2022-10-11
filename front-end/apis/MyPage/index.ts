@@ -1,7 +1,7 @@
 import axiosInstance from 'apis';
 
 export const fetchRecentLectures = () => {
-	return axiosInstance.get('history/latest');
+	return axiosInstance.get('history');
 };
 
 export const fetchCompletedLectures = () => {

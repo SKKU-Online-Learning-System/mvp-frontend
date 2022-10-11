@@ -1,16 +1,18 @@
 import axiosInstance from '..';
+import { ILatestLecture } from 'types/MyPage';
+import { ILectureVideo } from 'types/Lecture';
 
-export const fetchLectureVideoUrl = (lectureId: string) => {
-	return axiosInstance.get(`lectures/${lectureId}`);
-};
-
-export const fetchLectureHistory = (lectureId: string) => {
-	return axiosInstance.get(`/history/lecture/${lectureId}`);
-};
-
-export const updateLectureHistory = ({
-	lectureId,
-	lastTime,
-}: Record<string, string | number>) => {
-	return axiosInstance.patch('/history', { lectureId, lastTime });
-};
+export default {
+	fetchLectureVideoUrl:(lectureId: string) => {
+		return axiosInstance.get<ILectureVideo[]>(`lectures/${lectureId}`);
+	},
+	fetchLectureHistory : (lectureId: string) => {
+		return axiosInstance.get<ILatestLecture>(`/history/lectures/${lectureId}`);
+	},
+	updateLectureHistory : ({
+		lectureId,
+		lastTime,
+	}: Record<string, string | number>) => {
+		return axiosInstance.patch('/history', { lectureId, lastTime });
+	}
+}
