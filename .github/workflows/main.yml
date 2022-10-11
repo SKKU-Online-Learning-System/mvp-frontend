@@ -19,7 +19,7 @@ jobs:
           script: |
             cd mvp-frontend/
             rm -rf ./front-end/.next
-            git pull origin development
             cd front-end/
-            npm run build
+            git pull origin development
+            yarn i
             pm2 restart 1
