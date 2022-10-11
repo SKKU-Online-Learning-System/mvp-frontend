@@ -2,11 +2,7 @@ import ReactPlayer from 'react-player/lazy';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import {
-	fetchLectureVideoUrl,
-	fetchLectureHistory,
-	updateLectureHistory,
-} from 'apis/Lectures/lectureApi';
+import API from 'apis/Lectures/lectureApi';
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { LecturePicker } from '@components/Lectures/LecturePicker';
@@ -14,7 +10,6 @@ import { HTTP_STATUS_CODE } from 'constants/statusCode';
 import Error from 'next/error';
 import withRouteGuard from '@components/withRouteGuard';
 
-// courseId 기억해야함.
 const LecturePlayer = () => {
 	const router = useRouter();
 	const { lectureId, courseId } = router.query;
@@ -24,7 +19,7 @@ const LecturePlayer = () => {
 
 	const _fetchLectureVideoUrl = async (lectureId: string) => {
 		try {
-			const res = await fetchLectureVideoUrl(lectureId);
+			const res = await API.fetchLectureVideoUrl(lectureId);
 			setVideoUrl(res.data[0].filename);
 		} catch (e: unknown) {
 			console.warn(e);
@@ -33,8 +28,8 @@ const LecturePlayer = () => {
 
 	const _fetchLectureHistory = async (lectureId: string) => {
 		try {
-			const res = await fetchLectureHistory(lectureId);
-			const lastTime = res.data[0]?.lastTime;
+			const res = await API.fetchLectureHistory(lectureId);
+			const lastTime = res.data.lastTime;
 			lastTime && ref?.current?.seekTo(lastTime, 'seconds');
 		} catch (e: unknown) {
 			console.warn(e);
@@ -42,8 +37,8 @@ const LecturePlayer = () => {
 	};
 
 	const _updateLectureHistory = async (currentPlayTime: number) => {
-		updateLectureHistory({
-			lectureId: +lectureId as number,
+		API.updateLectureHistory({
+			lectureId: +(lectureId as string),
 			lastTime: currentPlayTime,
 		});
 	};
