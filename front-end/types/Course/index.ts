@@ -25,3 +25,29 @@ export interface ICourseCategory {
 		name: string;
 	}[];
 }
+
+export interface ICourseDetail {
+	id: number;
+	title: string;
+	summary: string;
+	description: string;
+	thumbnail: string;
+	difficulty: number;
+	createdAt: string;
+	instructor: {
+		id: number;
+		email: string;
+		nickname: string;
+	};
+	category1: {
+		id: number;
+		name: string;
+	};
+	category2: {
+		id: number;
+		name: string;
+	};
+	hashtags: string[];
+	is_logged_in: boolean;
+	has_enrolled: boolean;
+}
