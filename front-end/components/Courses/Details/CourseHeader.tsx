@@ -1,25 +1,50 @@
-import React, { SyntheticEvent } from 'react';
-import { useAppSelector } from 'store/app/hooks';
-import { RootState } from 'store/app/store';
+import React from 'react';
+
 import styled from 'styled-components';
-import CourseInfo from './CourseInfo';
-import { defaultErrorImage } from 'constants/index';
+import { ICourseDetail } from 'types/Course';
+import API from 'apis/Courses/courseApi';
+import { HTTP_STATUS_CODE } from 'constants/statusCode';
+import { useRouter } from 'next/router';
+interface ICourseHeader {
+	courseDetail: ICourseDetail;
+	courseId: string;
+}
+
 interface UrlProps {
 	url: string;
 }
-const CourseHeader = () => {
-	const { thumbnail, id } = useAppSelector(
-		(state: RootState) => state.courseDetail.course,
-	);
-	console.log(thumbnail);
-	const handleImgError = (e: SyntheticEvent<HTMLImageElement>) => {
-		(e.target as HTMLImageElement).src = defaultErrorImage;
+const CourseHeader = ({ courseDetail, courseId }: ICourseHeader) => {
+	const router = useRouter();
+
+	const handleClick = async () => {
+		try {
+			const res = await API.enrollCourse(+courseId);
+			if (res.data.statusCode === HTTP_STATUS_CODE.CREATED) {
+				router.reload();
+			}
+		} catch (e: unknown) {
+			console.warn(e);
+		}
 	};
+
 	return (
 		<Container>
-			<LectureImg url={thumbnail} />
+			<LectureImg url={courseDetail.thumbnail} />
 			<CourseInfoBox>
-				<CourseInfo />
+				<CourseInfoWrapper>
+					<h4>{`${courseDetail.category1.name} > ${courseDetail.category2.name}`}</h4>
+					<h2>{courseDetail.title}</h2>
+					<h4>{courseDetail.description}</h4>
+					<p>{`강사: ${courseDetail.instructor.nickname}`}</p>
+					<div>
+						{courseDetail.hashtags?.map((ele) => {
+							return <div key={ele} className="hashtag">{`#${ele}`}</div>;
+						})}
+					</div>
+					{courseDetail.is_logged_in && !courseDetail.has_enrolled && (
+						<button onClick={handleClick}>강의 신청하기</button>
+					)}
+				</CourseInfoWrapper>
 			</CourseInfoBox>
 		</Container>
 	);
@@ -36,14 +61,29 @@ const Container = styled.div`
 	padding: 0 40px;
 `;
 
-const CourseThumbnailBox = styled.div`
-	display: block;
-	height: 100%;
-	width: 50%;
-	img {
-		display: block;
-		margin: 0 auto;
-		height: 100%;
+const CourseInfoWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: white;
+	padding: 0 50px;
+	& h1,
+	h2,
+	h3,
+	h4 p {
+		margin: 5px;
+	}
+	.hashtag-container {
+	}
+	.hashtag {
+		display: inline;
+		background-color: #f0f0f0;
+		color: #696969;
+		width: 100%;
+		padding: 0 0.8rem;
+		border-radius: 3rem;
+		margin: 0.2rem;
+		font-weight: bold;
 	}
 `;
 

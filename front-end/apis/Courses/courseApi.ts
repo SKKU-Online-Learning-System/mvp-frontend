@@ -1,12 +1,13 @@
 import axiosInstance from 'apis';
-import { ISearchedCourse } from 'types/Course';
+import { ISearchedCourse, ICourseDetail } from 'types/Course';
+import { ILectureList } from 'types/Lecture';
 
 export default {
 	fetchCourseDetail: (courseId: string) => {
-		return axiosInstance.get(`/courses/${courseId}`);
+		return axiosInstance.get<ICourseDetail>(`/courses/${courseId}`);
 	},
 	fetchCourseDetailLectures: (courseId: string) => {
-		return axiosInstance.get(`/courses/${courseId}/lectures`);
+		return axiosInstance.get<ILectureList>(`/courses/${courseId}/lectures`);
 	},
 	fetchCourseDetailQna: (courseId: string) => {
 		return axiosInstance.get(`/questions/course/${courseId}`);
@@ -34,6 +35,11 @@ export default {
 			params: {
 				page: pageNum,
 			},
+		});
+	},
+	enrollCourse: (courseId: number) => {
+		return axiosInstance.post('enrollment', {
+			courseId,
 		});
 	},
 };
