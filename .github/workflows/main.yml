@@ -19,7 +19,8 @@ jobs:
           script: |
             cd mvp-frontend/
             rm -rf ./front-end/.next
+            rm -rf ./front-end/yarn.lock
             cd front-end/
             git pull origin development
-            yarn i
+            npm install
             pm2 restart 1
