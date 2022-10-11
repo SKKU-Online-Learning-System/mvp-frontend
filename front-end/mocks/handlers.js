@@ -23,7 +23,6 @@ export const requestHandlers = [
 			}),
 		);
 	}),
-
 	rest.get('/history', (req, res, ctx) => {
 		return res(
 			ctx.status(200),
