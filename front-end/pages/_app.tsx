@@ -14,6 +14,10 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { userLoginAuthState } from '../constants/userAuthState';
 import { HTTP_STATUS_CODE } from '../constants/statusCode';
 
+if (process.env.NODE_ENV === 'development') {
+	require('../mocks/index');
+}
+
 function MyComponent({ children }: any) {
 	const dispatch = useAppDispatch();
 	const { isLoggined } = useAppSelector(
