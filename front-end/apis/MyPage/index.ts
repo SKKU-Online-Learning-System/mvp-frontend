@@ -1,13 +1,16 @@
 import axiosInstance from 'apis';
+import { IEnrolledCourse } from 'types/MyPage';
 
-export const fetchRecentLectures = () => {
-	return axiosInstance.get('history');
-};
+export default {
+	fetchRecentLectures: () => {
+		return axiosInstance.get('history');
+	},
 
-export const fetchCompletedLectures = () => {
-	return axiosInstance.get('completed');
-};
+	fetchCompletedLectures: () => {
+		return axiosInstance.get('completed');
+	},
 
-export const fetchCurrentLearningCourses = () => {
-	return axiosInstance.get('enrollment');
+	fetchCurrentLearningCourses: () => {
+		return axiosInstance.get<IEnrolledCourse[]>('enrollment');
+	},
 };

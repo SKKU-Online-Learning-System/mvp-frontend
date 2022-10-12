@@ -11,11 +11,13 @@ import {
 } from 'store/feature/course/courseDetailSlice';
 import { useAppDispatch } from 'store/app/hooks';
 import QuestionForm from '@components/Questions/QuestionForm';
+import { ICourseDetail } from 'types/Course';
 const QuestionsByCoursePage = () => {
 	const router = useRouter();
 	const dispatch = useAppDispatch();
 	const [openForm, setOpenForm] = useState(false);
 	const { courseId } = router.query;
+	const [courseDetail, setCourseDetail] = useState<ICourseDetail>();
 	useEffect(() => {
 		if (!router.isReady) return;
 		(async () => {
@@ -24,7 +26,7 @@ const QuestionsByCoursePage = () => {
 				courseId as string,
 			);
 			const qna: any = await API.fetchCourseDetailQna(courseId as string);
-			dispatch(setCourse(course?.data));
+			setCourseDetail(course.data);
 			dispatch(setLectures(lectures?.data));
 			if (qna.data.length > 3) dispatch(setQna(qna.data.slice(0, 3)));
 			else dispatch(setQna(qna?.data));
@@ -32,7 +34,12 @@ const QuestionsByCoursePage = () => {
 	}, [router.isReady, courseId]);
 	return (
 		<>
-			<CourseHeader />
+			{courseDetail && (
+				<CourseHeader
+					courseDetail={courseDetail}
+					courseId={courseId as string}
+				/>
+			)}
 			<Wrapper>
 				<Button
 					onClick={() => {

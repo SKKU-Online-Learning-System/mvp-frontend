@@ -7,7 +7,7 @@ import { MyPageTitle } from './MyPageTitle';
 import { AxiosResponse, AxiosError } from 'axios';
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { MYPAGE_MENU } from 'constants/MyPage';
-import { fetchRecentLectures } from 'apis/MyPage';
+import API from 'apis/MyPage';
 import { useRouter } from 'next/router';
 import { ILatestLecture } from 'types/MyPage';
 // TODO. css class명 기준 뭘로 할지.. BEM 을 따를지.. 아직 잘 모르겠음
@@ -55,9 +55,9 @@ const History = () => {
 	};
 
 	useEffect(() => {
-		fetchRecentLectures()
+		API.fetchRecentLectures()
 			.then((res: AxiosResponse) => {
-				setLatestLectures(res.data.slice(0,20));
+				setLatestLectures(res.data.slice(0, 20));
 			})
 			.catch((error: AxiosError) => {
 				console.warn(error);
