@@ -5,7 +5,7 @@ import { MyPageTitle } from './MyPageTitle';
 import { MYPAGE_MENU } from 'constants/MyPage';
 import { GridWrapper } from './History';
 import { AxiosResponse, AxiosError } from 'axios';
-import { fetchCompletedLectures } from 'apis/MyPage';
+import API from 'apis/MyPage';
 
 const menu = [MYPAGE_MENU.COMPLETED_WATCHING_LECTURES];
 
@@ -14,7 +14,7 @@ const Completed = () => {
 	const [completedCourseList, setCompletedCourseList] = useState([]);
 
 	useEffect(() => {
-		fetchCompletedLectures()
+		API.fetchCompletedLectures()
 			.then((res: AxiosResponse) => {
 				setCompletedCourseList(res.data);
 			})

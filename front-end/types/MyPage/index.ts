@@ -15,3 +15,26 @@ export interface ILatestLecture {
 		};
 	};
 }
+
+export interface IEnrolledCourse {
+	createdAt: string;
+	bookmark: boolean;
+	course: {
+		id: number;
+		title: string;
+		summary: string;
+		description: string;
+		thumbnail: string;
+		difficulty: number;
+		createdAt: string;
+		instructor: {
+			nickname: string;
+		};
+		category1: {
+			name: string;
+		};
+		category2: {
+			name: string;
+		};
+	};
+}
