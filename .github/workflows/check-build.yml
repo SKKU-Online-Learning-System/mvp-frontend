@@ -13,10 +13,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Generate .env.local
+        run: |
+          echo "API_SERVER=$API_SERVER" >> .env.local
+          echo "API_SOURCE=$API_SOURCE" >> .env.local
+          echo "NEXT_PUBLIC_API_BASEURL=$NEXT_PUBLIC_API_BASEURL" >> .env.local
+          echo "NEXT_PUBLIC_API_SERVER=$NEXT_PUBLIC_API_SERVER" >> .env.local
         
       - name: next install and Build
         run: |
-          git pull origin development
           npm install
           npm run build --if-present
           
