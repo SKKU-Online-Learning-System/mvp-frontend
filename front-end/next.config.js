@@ -20,6 +20,13 @@ module.exports = {
 		disableStaticImages: true,
 	},
 	webpack(config, options) {
+		config.plugins = [
+			// 환경 변수 등록/관리 설정
+			new webpack.EnvironmentPlugin({
+				API_SERVER: 'process.env.API_SERVER',
+				API_SOURCE: 'process.env.API_SOURCE',
+			}),
+		];
 		config.resolve = {
 			alias: {
 				'@apis': path.join(__dirname, 'apis'),
