@@ -4,11 +4,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import API from 'apis/Courses/courseApi';
-import {
-	setCourse,
-	setLectures,
-	setQna,
-} from 'store/feature/course/courseDetailSlice';
+import { setLectures, setQna } from 'store/feature/course/courseDetailSlice';
 import { useAppDispatch } from 'store/app/hooks';
 import QuestionForm from '@components/Questions/QuestionForm';
 import { ICourseDetail } from 'types/Course';
