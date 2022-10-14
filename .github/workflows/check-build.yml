@@ -16,10 +16,10 @@ jobs:
         
       - name: Move and Install
         run: |
-          cd mvp-frontend/front-end
+          cd mvp-frontend/front-end/
           npm install  
       - name: Build
         run: |
-          cd mvp-frontend/front-end
+          cd mvp-frontend/front-end/
           npm run build --if-present
     
