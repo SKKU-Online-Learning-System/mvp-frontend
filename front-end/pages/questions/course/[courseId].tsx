@@ -15,22 +15,22 @@ import { ICourseDetail } from 'types/Course';
 const QuestionsByCoursePage = () => {
 	const router = useRouter();
 	const dispatch = useAppDispatch();
-	const [openForm, setOpenForm] = useState(false);
+	// const [openForm, setOpenForm] = useState(false);
 	const { courseId } = router.query;
 	const [courseDetail, setCourseDetail] = useState<ICourseDetail>();
 	useEffect(() => {
 		if (!router.isReady) return;
-		(async () => {
-			const course: any = await API.fetchCourseDetail(courseId as string);
-			const lectures: any = await API.fetchCourseDetailLectures(
-				courseId as string,
-			);
-			const qna: any = await API.fetchCourseDetailQna(courseId as string);
-			setCourseDetail(course.data);
-			dispatch(setLectures(lectures?.data));
-			if (qna.data.length > 3) dispatch(setQna(qna.data.slice(0, 3)));
-			else dispatch(setQna(qna?.data));
-		})();
+		// (async () => {
+		// 	const course: any = await API.fetchCourseDetail(courseId as string);
+		// 	const lectures: any = await API.fetchCourseDetailLectures(
+		// 		courseId as string,
+		// 	);
+		// 	const qna: any = await API.fetchCourseDetailQna(courseId as string);
+		// 	setCourseDetail(course.data);
+		// 	dispatch(setLectures(lectures?.data));
+		// 	if (qna.data.length > 3) dispatch(setQna(qna.data.slice(0, 3)));
+		// 	else dispatch(setQna(qna?.data));
+		// })();
 	}, [router.isReady, courseId]);
 	return (
 		<>
