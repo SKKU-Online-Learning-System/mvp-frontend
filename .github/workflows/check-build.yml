@@ -7,13 +7,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # defaults:
+    #       run:
+    #         working-directory: mvp-frontend/front-end
+
     steps:
       - uses: actions/checkout@v3
-
+        
       - name: Move and Install
         run: |
         cd mvp-frontend/front-end
         npm install  
       - name: Build
-        run: npm run build --if-present
+        run: |
+        cd mvp-frontend/front-end
+        npm run build --if-present
     
