@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 import { ICourseDetail } from 'types/Course';
 import API from 'apis/Courses/courseApi';
 import { HTTP_STATUS_CODE } from 'constants/statusCode';
 import { useRouter } from 'next/router';
+import LoginModal from '@components/modals/LoginModal';
+import SignUpModal from '@components/modals/SignUpModal';
+
+//TODO : Modal 사용 편하게 구조 변경 필요
+type EnrollmentType = {
+	isEnrolled: boolean;
+};
 interface ICourseHeader {
 	courseDetail: ICourseDetail;
 	courseId: string;
@@ -15,8 +22,16 @@ interface UrlProps {
 }
 const CourseHeader = ({ courseDetail, courseId }: ICourseHeader) => {
 	const router = useRouter();
+	const { has_enrolled: isEnrolled, is_logged_in: isLoggined } = courseDetail;
+	const [showLogInModal, setShowLogInModal] = useState(false);
+	const [showSignUpModal, setShowSignUpModal] = useState(false);
 
-	const handleClick = async () => {
+	const handleClick = (isLoggined: boolean) => async () => {
+		if (!isLoggined) {
+			setShowLogInModal(true);
+			return;
+		}
+
 		try {
 			const res = await API.enrollCourse(+courseId);
 			if (res.data.statusCode === HTTP_STATUS_CODE.CREATED) {
@@ -41,11 +56,25 @@ const CourseHeader = ({ courseDetail, courseId }: ICourseHeader) => {
 							return <div key={ele} className="hashtag">{`#${ele}`}</div>;
 						})}
 					</div>
-					{courseDetail.is_logged_in && !courseDetail.has_enrolled && (
-						<button onClick={handleClick}>강의 신청하기</button>
-					)}
+
+					<Button
+						onClick={handleClick(isLoggined)}
+						disabled={isEnrolled}
+						isEnrolled={isEnrolled}
+					>
+						{isEnrolled ? '수강중' : '강좌 신청'}
+					</Button>
 				</CourseInfoWrapper>
 			</CourseInfoBox>
+			<LoginModal
+				onClose={() => setShowLogInModal(false)}
+				onOpenSignUp={() => setShowSignUpModal(true)}
+				show={showLogInModal}
+			/>
+			<SignUpModal
+				onClose={() => setShowSignUpModal(false)}
+				show={showSignUpModal}
+			/>
 		</Container>
 	);
 };
@@ -110,4 +139,16 @@ const LectureImg = styled.div<UrlProps>`
 		url(${(props) => props.url});
 	background-repeat: no-repeat;
 	background-size: cover;
+`;
+
+const Button = styled.button<EnrollmentType>`
+	background-color: #7dad47;
+	color: #fff;
+	opacity: ${(props) => (props.isEnrolled ? '0.6' : '1.0')};
+	border: 0;
+	border-radius: 4px;
+	width: 150px;
+	height: 24px;
+	font-size: 16px;
+	cursor: ${(props) => (props.isEnrolled ? 'undefined' : 'pointer')};
 `;
