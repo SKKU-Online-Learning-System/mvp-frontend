@@ -1,4 +1,5 @@
 import { sendLogInRequest } from 'apis/LogIn/logInApi';
+import { fetchEmailCheck } from 'apis/SignUp/signUpApi';
 import { AxiosResponse } from 'axios';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -58,6 +59,16 @@ function LoginForm({ onClose, onOpenSignUp }: any) {
 			return;
 		}
 		setSendingMail(true);
+		try {
+			const res = await fetchEmailCheck(email);
+			if (res.data.statusCode === 200) {
+				setSendingMail(false);
+				alert('가입되지 않은 이메일 입니다.');
+				return;
+			} else throw new Error('Wrong status code from response or no response');
+		} catch (e: any) {
+			console.log(e.message);
+		}
 
 		try {
 			const res = await sendLogInRequest(email);
