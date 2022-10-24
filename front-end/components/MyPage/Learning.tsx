@@ -110,14 +110,6 @@ const ProgressBar = styled.div<Props>`
 	right: 0;
 	left: 0;
 	height: 4px;
-	background-color: #717171;
-
-	.current_progress_position {
-		position: absolute;
-		height: 100%;
-		width: ${(props) => `${props.percentage}%`};
-		background-color: red;
-	}
 `;
 
 export default Learning;
