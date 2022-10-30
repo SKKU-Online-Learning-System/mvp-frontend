@@ -5,8 +5,8 @@ const ErrorPage = ({ statusCode }: { statusCode: number }) => {
 	return (
 		<Wrapper>
 			<div style={{ fontSize: '100px', fontWeight: 'bold' }}>{statusCode}</div>
-			<h2>{HTTP_ERROR_MESSAGE[statusCode].title}</h2>
-			<div>{HTTP_ERROR_MESSAGE[statusCode].message}</div>
+			<h2>{HTTP_ERROR_MESSAGE[statusCode]?.title}</h2>
+			<div>{HTTP_ERROR_MESSAGE[statusCode]?.message}</div>
 		</Wrapper>
 	);
 };
