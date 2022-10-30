@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ICourseDetail } from 'types/Course';
 import API from 'apis/Courses/courseApi';
-import { HTTP_STATUS_CODE } from 'constants/statusCode';
+import { HTTP_STATUS_CODE } from 'constants/http';
 import { useRouter } from 'next/router';
 import LoginModal from '@components/modals/LoginModal';
 import SignUpModal from '@components/modals/SignUpModal';

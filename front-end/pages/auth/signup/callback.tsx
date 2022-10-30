@@ -1,14 +1,13 @@
 import { fetchSignUpCallback } from 'apis/SignUp/signUpApi';
 import { AxiosResponse } from 'axios';
-import { userLoginAuthState } from 'constants/userAuthState';
+import { userLoginAuthState } from 'constants/commonState';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { useAppDispatch } from 'store/app/hooks';
-import { setIsLoggined } from 'store/feature/auth/userAuthSlice';
-
+import { commonActions } from 'store/feature/common/commonSlice';
+import { useDispatch } from 'react-redux';
 const SignUpCallback = () => {
 	const router = useRouter();
-	const dispatch = useAppDispatch();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		if (router.isReady) {
@@ -17,7 +16,7 @@ const SignUpCallback = () => {
 			fetchSignUpCallback(token)
 				.then((res: AxiosResponse) => {
 					if (res.status === 200) {
-						dispatch(setIsLoggined(userLoginAuthState.LOGGINED));
+						dispatch(commonActions.setIsLoggined(userLoginAuthState.LOGGINED));
 						router.replace('/');
 					} else {
 						router.replace('/auth/callbackError', '/');

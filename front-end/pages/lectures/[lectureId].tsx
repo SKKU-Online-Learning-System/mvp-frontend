@@ -1,15 +1,12 @@
 import ReactPlayer from 'react-player/lazy';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import API from 'apis/Lectures/lectureApi';
-import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { LecturePicker } from '@components/Lectures/LecturePicker';
-import { HTTP_STATUS_CODE } from 'constants/statusCode';
+import { HTTP_STATUS_CODE } from 'constants/http';
 import Error from 'next/error';
-import withRouteGuard from '@components/withRouteGuard';
-
 const LecturePlayer = () => {
 	const router = useRouter();
 	const { lectureId, courseId } = router.query;
@@ -29,7 +26,7 @@ const LecturePlayer = () => {
 	const _fetchLectureHistory = async (lectureId: string) => {
 		try {
 			const res = await API.fetchLectureHistory(lectureId);
-			const lastTime = res.data.lastTime;
+			const lastTime = res?.data.lastTime;
 			lastTime && ref?.current?.seekTo(lastTime, 'seconds');
 		} catch (e: unknown) {
 			console.warn(e);
@@ -98,4 +95,4 @@ const LecturePlayerWrapper = styled.div`
 	height: 100%;
 `;
 
-export default withRouteGuard(LecturePlayer);
+export default LecturePlayer;

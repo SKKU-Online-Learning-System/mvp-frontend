@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './Header';
 import styled from 'styled-components';
 import Footer from './Footer';
+import ErrorManager from '../pages/ErrorManager';
 
 interface LayoutProps {
 	children?: React.ReactNode;
@@ -11,7 +12,9 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => (
 	<LayoutBox>
 		<Header />
-		<ContentsBox>{children}</ContentsBox>
+		<ErrorManager>
+			<ContentsBox>{children}</ContentsBox>
+		</ErrorManager>
 		<Footer />
 	</LayoutBox>
 );
