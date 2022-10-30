@@ -32,15 +32,19 @@ const CourseDetailPage = () => {
 	return (
 		<>
 			{courseDetail && (
-				<CourseHeader
-					courseDetail={courseDetail}
-					courseId={courseId as string}
-				/>
+				<>
+					(
+					<CourseHeader
+						courseDetail={courseDetail}
+						courseId={courseId as string}
+					/>
+					<Container>
+						<LectureList />
+						<QnA />
+					</Container>
+					)
+				</>
 			)}
-			<Container>
-				<LectureList />
-				<QnA />
-			</Container>
 		</>
 	);
 };

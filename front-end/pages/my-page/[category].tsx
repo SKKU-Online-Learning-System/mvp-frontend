@@ -35,4 +35,4 @@ const MyPage = () => {
 	return category ? routeComponent(category as string) : null;
 };
 
-export default withRouteGuard(MyPage);
+export default MyPage;

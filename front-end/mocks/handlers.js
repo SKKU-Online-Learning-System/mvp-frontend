@@ -7,11 +7,11 @@ ctx : status code, header, body 같은것을 만들기 위해 도와주는 함�
 sessionStorage, localStorage들을 이용할수도 있습니다.
 */
 export const requestHandlers = [
-	rest.get('/test', (req, res, ctx) => {
+	rest.get('/errorTest', (req, res, ctx) => {
 		return res(
-			ctx.status(200),
+			ctx.status(404),
 			ctx.json({
-				data: 'get result',
+				errorMessage: '404 Page Not Found',
 			}),
 		);
 	}),

@@ -17,7 +17,8 @@
 		"paths": {
 			"@components/*": ["components/*"],
 			"@interfaces/*": ["interfaces/*"]
-		}
+		},
+		"typeRoots": ["./node_modules/@types", "./@types"]
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/404.js"],
 	"exclude": ["node_modules"]

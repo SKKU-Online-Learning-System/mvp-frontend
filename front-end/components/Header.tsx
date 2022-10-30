@@ -3,12 +3,13 @@ import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import LoginModal from '@components/modals/LoginModal';
 import { useRouter } from 'next/router';
-import { useAppSelector, useAppDispatch } from 'store/app/hooks';
+import { useAppSelector } from 'store/app/hooks';
+import { useDispatch } from 'react-redux';
 import { RootState } from 'store/app/store';
 import SignUpModal from './modals/SignUpModal';
-import { userLoginAuthState } from '../constants/userAuthState';
+import { userLoginAuthState } from '../constants/commonState';
 import axiosInstance from '../apis/index';
-import { setIsLoggined } from 'store/feature/auth/userAuthSlice';
+import { commonActions } from 'store/feature/common/commonSlice';
 import { DEVICE_BREAKPOINT } from '../constants/breakpoint';
 
 interface LinkProps {
@@ -33,15 +34,13 @@ const Header = () => {
 	const [showLogInModal, setShowLogInModal] = useState(false);
 	const [showSignUpModal, setShowSignUpModal] = useState(false);
 	const router = useRouter();
-	const dispatch = useAppDispatch();
-	const { isLoggined } = useAppSelector(
-		(state: RootState) => state.userAuthState,
-	);
+	const dispatch = useDispatch();
+	const { isLoggined } = useAppSelector((state: RootState) => state.common);
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const handleLogout = () => {
 		axiosInstance.get('/auth/logout').then(() => {
-			dispatch(setIsLoggined(userLoginAuthState.NOT_LOGGINED));
+			dispatch(commonActions.setIsLoggined(userLoginAuthState.NOT_LOGGINED));
 			router.replace('/');
 		});
 	};
@@ -79,11 +78,11 @@ const Header = () => {
 					''
 				) : (
 					<li key={menu.id} style={{ display: 'inline' }}>
-						<Link href={menu.path}>
+						<a href={menu.path}>
 							<LinkMenu isThisPage={menu.path === router.pathname}>
 								{menu.name}
 							</LinkMenu>
-						</Link>
+						</a>
 					</li>
 				),
 			)}
@@ -92,10 +91,10 @@ const Header = () => {
 	return (
 		<Container>
 			<div style={{ display: 'flex', alignItems: 'center' }}>
-				<a href="https://www.skku.edu/">
+				<Link href="http://localhost:3000">
 					<img src="/images/main_logo.png" style={{ zoom: '80%' }} />
-				</a>
-				<Link href="/">
+				</Link>
+				<a href="/">
 					<span
 						style={{
 							fontFamily: 'Gugi',
@@ -106,7 +105,7 @@ const Header = () => {
 					>
 						온라인 명륜당
 					</span>
-				</Link>
+				</a>
 				<input
 					type="text"
 					ref={inputRef}
@@ -162,6 +161,12 @@ const Container = styled.div`
 	padding: 8px 0;
 	@media only screen and (max-width: ${DEVICE_BREAKPOINT.DESKTOP}) {
 		padding: 0 10px;
+	}
+
+	a,
+	a:visited {
+		text-decoration: none;
+		color: black;
 	}
 `;
 const LinkMenu = styled.a<LinkProps>`

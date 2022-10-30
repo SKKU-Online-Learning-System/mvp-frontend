@@ -4,7 +4,6 @@ import MainBanner from '@components/Main/MainBanner';
 // 1920px 기준임. width별로 다르게 나와야함.
 import LectureList from '@components/Main/LectureList';
 import MidBanner from '@components/Main/MidBanner';
-
 const Index = () => {
 	return (
 		<>
