@@ -156,7 +156,7 @@ export default Header;
 const Container = styled.div`
 	width: ${DEVICE_BREAKPOINT.DESKTOP};
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 	margin: auto;
 	padding: 8px 0;
