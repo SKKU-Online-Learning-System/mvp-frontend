@@ -78,11 +78,12 @@ const Header = () => {
 					''
 				) : (
 					<li key={menu.id} style={{ display: 'inline' }}>
-						<a href={menu.path}>
-							<LinkMenu isThisPage={menu.path === router.pathname}>
-								{menu.name}
-							</LinkMenu>
-						</a>
+						<LinkMenu
+							href={menu.path}
+							isThisPage={menu.path === router.pathname}
+						>
+							{menu.name}
+						</LinkMenu>
 					</li>
 				),
 			)}
@@ -91,7 +92,7 @@ const Header = () => {
 	return (
 		<Container>
 			<div style={{ display: 'flex', alignItems: 'center' }}>
-				<Link href="http://localhost:3000">
+				<Link href="https://www.skku.edu/skku/index.do">
 					<img src="/images/main_logo.png" style={{ zoom: '80%' }} />
 				</Link>
 				<a href="/">

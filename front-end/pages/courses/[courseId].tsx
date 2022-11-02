@@ -9,12 +9,14 @@ import { useDispatch } from 'react-redux';
 import { setLectures, setQna } from 'store/feature/course/courseDetailSlice';
 import CourseHeader from '@components/Courses/Details/CourseHeader';
 import { ICourseDetail } from 'types/Course';
+import { useModal } from 'hooks/useModal';
 // TODO. 비로그인 회원 or 강의 신청하지 않은 유저는 클릭시에 alert 띄워주기
 const CourseDetailPage = () => {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const { courseId } = router.query;
 	const [courseDetail, setCourseDetail] = useState<ICourseDetail>();
+	const { showModal, setShowLogInModal, renderModal } = useModal();
 
 	useEffect(() => {
 		if (!router.isReady) return;
@@ -33,18 +35,21 @@ const CourseDetailPage = () => {
 		<>
 			{courseDetail && (
 				<>
-					(
 					<CourseHeader
+						setShowLogInModal={setShowLogInModal}
 						courseDetail={courseDetail}
 						courseId={courseId as string}
 					/>
 					<Container>
-						<LectureList />
+						<LectureList
+							setShowLogInModal={setShowLogInModal}
+							courseDetail={courseDetail}
+						/>
 						<QnA />
 					</Container>
-					)
 				</>
 			)}
+			{showModal && renderModal()}
 		</>
 	);
 };

@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import styled from 'styled-components';
 import { ICourseDetail } from 'types/Course';
 import API from 'apis/Courses/courseApi';
 import { HTTP_STATUS_CODE } from 'constants/http';
 import { useRouter } from 'next/router';
-import LoginModal from '@components/modals/LoginModal';
-import SignUpModal from '@components/modals/SignUpModal';
 
 //TODO : Modal 사용 편하게 구조 변경 필요
 type EnrollmentType = {
@@ -15,20 +13,23 @@ type EnrollmentType = {
 interface ICourseHeader {
 	courseDetail: ICourseDetail;
 	courseId: string;
+	setShowLogInModal?: Dispatch<SetStateAction<boolean>>;
 }
 
 interface UrlProps {
 	url: string;
 }
-const CourseHeader = ({ courseDetail, courseId }: ICourseHeader) => {
+const CourseHeader = ({
+	courseDetail,
+	courseId,
+	setShowLogInModal,
+}: ICourseHeader) => {
 	const router = useRouter();
 	const { has_enrolled: isEnrolled, is_logged_in: isLoggined } = courseDetail;
-	const [showLogInModal, setShowLogInModal] = useState(false);
-	const [showSignUpModal, setShowSignUpModal] = useState(false);
 
 	const handleClick = (isLoggined: boolean) => async () => {
 		if (!isLoggined) {
-			setShowLogInModal(true);
+			setShowLogInModal?.(true);
 			return;
 		}
 
@@ -66,15 +67,6 @@ const CourseHeader = ({ courseDetail, courseId }: ICourseHeader) => {
 					</Button>
 				</CourseInfoWrapper>
 			</CourseInfoBox>
-			<LoginModal
-				onClose={() => setShowLogInModal(false)}
-				onOpenSignUp={() => setShowSignUpModal(true)}
-				show={showLogInModal}
-			/>
-			<SignUpModal
-				onClose={() => setShowSignUpModal(false)}
-				show={showSignUpModal}
-			/>
 		</Container>
 	);
 };
