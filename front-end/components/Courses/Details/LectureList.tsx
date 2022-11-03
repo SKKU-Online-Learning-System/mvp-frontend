@@ -42,7 +42,6 @@ const LectureList = ({
 	};
 
 	const handleCollaseClick = (index: number) => () => {
-		console.log(index);
 		setIsCollapsed(
 			isCollapsed.map((elem, idx) => (idx === index ? !elem : elem)),
 		);
