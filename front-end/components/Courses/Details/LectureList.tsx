@@ -1,25 +1,29 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import Link from 'next/link';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
-import { useAppSelector } from 'store/app/hooks';
-import { useDispatch } from 'react-redux';
-import { RootState } from 'store/app/store';
-import { toggleSection } from 'store/feature/course/courseDetailSlice';
 import { useRouter } from 'next/router';
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { ICourseDetail } from 'types/Course';
+import {
+	ILectureList as _ILectureList,
+	ILectureInfo,
+} from 'types/Lecture/index';
 
 interface ILectureList {
 	setShowLogInModal?: Dispatch<SetStateAction<boolean>>;
 	courseDetail: ICourseDetail;
+	lectures: _ILectureList[];
 }
 
-const LectureList = ({ setShowLogInModal, courseDetail }: ILectureList) => {
+const LectureList = ({
+	setShowLogInModal,
+	courseDetail,
+	lectures,
+}: ILectureList) => {
 	const router = useRouter();
-	const dispatch = useDispatch();
-	const lectures = useAppSelector(
-		(state: RootState) => state.courseDetail.lectures,
-	);
+	const [isCollapsed, setIsCollapsed] = useState(
+		Array(lectures.length).fill(true),
+	); // collapsed true -> 접힌상태, false -> 열린상태
+
 	const { courseId } = router.query;
 	const { has_enrolled: isEnrolled, is_logged_in: isLoggined } = courseDetail;
 
@@ -37,6 +41,13 @@ const LectureList = ({ setShowLogInModal, courseDetail }: ILectureList) => {
 		alert('강좌를 신청해주세요.');
 	};
 
+	const handleCollaseClick = (index: number) => () => {
+		console.log(index);
+		setIsCollapsed(
+			isCollapsed.map((elem, idx) => (idx === index ? !elem : elem)),
+		);
+	};
+
 	return (
 		<Container>
 			<header>
@@ -48,20 +59,16 @@ const LectureList = ({ setShowLogInModal, courseDetail }: ILectureList) => {
 				<h2>강의 커리큘럼</h2>
 			</header>
 
-			{lectures.map((section) => {
+			{lectures.map((section, index) => {
 				return (
-					<>
-						<SectionBox
-							onClick={(e: React.MouseEvent<HTMLElement>) => {
-								dispatch(toggleSection(section.id));
-							}}
-						>
+					<React.Fragment key={index}>
+						<SectionBox onClick={handleCollaseClick(index)}>
 							{section.title}
 						</SectionBox>
-						<LecturesBox show={section.show}>
-							{section.lectures.map((lecture: any, index: number) => {
+						<LecturesBox show={isCollapsed[index]}>
+							{section.lectures?.map((lecture: ILectureInfo, index: number) => {
 								return (
-									<div onClick={handleLectureClick(lecture.id)}>
+									<div onClick={handleLectureClick(lecture.id)} key={index}>
 										<LectureContainer>
 											<span className="index">{index + 1}</span>
 											<span className="title">{lecture.title}</span>
@@ -73,7 +80,7 @@ const LectureList = ({ setShowLogInModal, courseDetail }: ILectureList) => {
 								);
 							})}
 						</LecturesBox>
-					</>
+					</React.Fragment>
 				);
 			})}
 		</Container>
@@ -109,10 +116,7 @@ const SectionBox = styled.div`
 `;
 
 const LecturesBox = styled.div<{ show: boolean }>`
-	${(props) => {
-		if (props.show) return '';
-		else return 'display: none;';
-	}}
+	display: ${(props) => (props.show ? 'block' : 'none')};
 `;
 
 const LectureContainer = styled.div`
