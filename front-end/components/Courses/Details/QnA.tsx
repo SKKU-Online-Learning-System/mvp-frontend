@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import QnAItem from './QnAItem';
-import { useAppSelector } from 'store/app/hooks';
-import { RootState } from 'store/app/store';
 import { useRouter } from 'next/router';
+import { IQna } from 'types/Course';
+interface IQnA {
+	courseId: string;
+	qna: IQna[];
+}
 
-const QnA = () => {
+const QnA = ({ courseId, qna }: IQnA) => {
 	const router = useRouter();
-	const qna = useAppSelector((state: RootState) => state.courseDetail.qna);
-	const { id } = useAppSelector(
-		(state: RootState) => state.courseDetail.course,
-	);
 
-	function handleClick(courseId: number) {
+	const handleClick = () => {
 		router.push(`/questions/course/${courseId}`);
-	}
+	};
 
 	return (
 		<Container>
@@ -30,10 +29,7 @@ const QnA = () => {
 				</div>
 				<div style={{ display: 'flex' }}>
 					<h2 style={{ width: '20%' }}>최근 한 질문</h2>
-					<div
-						onClick={(e: React.MouseEvent<HTMLElement>) => handleClick(id)}
-						className="more"
-					>
+					<div onClick={handleClick} className="more">
 						MORE
 					</div>
 				</div>

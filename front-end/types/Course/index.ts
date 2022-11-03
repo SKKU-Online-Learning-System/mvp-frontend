@@ -51,3 +51,25 @@ export interface ICourseDetail {
 	is_logged_in: boolean;
 	has_enrolled: boolean;
 }
+export interface IQna {
+	answercount: number;
+	answers: {
+		authorId: number;
+		contents: string;
+		createdAt: string;
+		id: number;
+		questionId: number;
+		author: {
+			id: number;
+			nickname: string;
+			joinedAt: string;
+			role: number;
+			email: string;
+		};
+	}[];
+	author: { id: number; nickname: string };
+	contents: string;
+	createdAt: string;
+	id: number;
+	title: string;
+}

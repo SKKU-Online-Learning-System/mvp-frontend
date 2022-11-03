@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-interface QnAProps {
+interface IQnAItem {
 	question: string;
 	answer: string;
 }
-const QnAItem = ({ question, answer }: QnAProps) => {
+const QnAItem = ({ question, answer }: IQnAItem) => {
 	return (
 		<div style={{ marginBottom: '80px' }}>
 			<div
