@@ -1,5 +1,5 @@
 import axiosInstance from 'apis';
-import { postAnswer } from 'apis/QnA/qnaApi';
+import API from 'apis/QnA/qnaApi';
 import { useRouter } from 'next/router';
 import { Container } from 'pages/questions/[questionId]';
 
@@ -8,10 +8,13 @@ const AnswerForm = ({ questionId }: any) => {
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 
-		// const questionId = e.target.questionId.value;
+		const questionId = e.target.questionId.value;
 		const contents = e.target.contents.value;
-		postAnswer({ questionId: +questionId, contents: contents });
-		router.reload();
+		// console.log(questionId, contents);
+		API.postAnswer({ questionId: +questionId, contents: contents });
+		// 서버에서 확인 후에 403이면 alert 노출.
+
+		// router.reload();
 	};
 
 	return (

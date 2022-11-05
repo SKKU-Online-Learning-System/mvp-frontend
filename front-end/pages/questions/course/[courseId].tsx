@@ -5,12 +5,29 @@ import styled from 'styled-components';
 import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
 
 import QuestionForm from '@components/Questions/QuestionForm';
-
+/*
+로그인 && 강의 등록이 되어있어야 등록 가능.
+*/
 const QuestionsByCoursePage = () => {
 	const { courseId, courseDetail, showModal, setShowLogInModal, renderModal } =
 		useCourseDetailInfo();
-
 	const [openForm, setOpenForm] = useState(false);
+	const { is_logged_in: isLoggined, has_enrolled: isEnrolled } =
+		courseDetail || {};
+
+	const handleClickButton = () => {
+		if (!isLoggined) {
+			setShowLogInModal(true);
+			return;
+		}
+
+		if (!isEnrolled) {
+			alert('강좌를 먼저 신청해주세요');
+			return;
+		}
+
+		setOpenForm((prev) => !prev);
+	};
 
 	return (
 		<>
@@ -23,15 +40,9 @@ const QuestionsByCoursePage = () => {
 					/>
 
 					<Wrapper>
-						<Button
-							onClick={() => {
-								setOpenForm((prev) => !prev);
-							}}
-						>
-							질문하기
-						</Button>
-						{openForm && <QuestionForm courseId={courseId} />}
-						<QuestionTable courseId={courseId} />
+						<Button onClick={handleClickButton}>질문하기</Button>
+						{openForm && <QuestionForm courseId={courseId as string} />}
+						<QuestionTable courseId={courseId as string} />
 					</Wrapper>
 				</>
 			)}

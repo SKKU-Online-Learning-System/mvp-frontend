@@ -1,19 +1,21 @@
-import axiosInstance from 'apis';
-import { postQuestion } from 'apis/QnA/qnaApi';
+import API from 'apis/QnA/qnaApi';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-const QuestionForm = ({ courseId }: any) => {
+interface IQuestionForm {
+	courseId: string;
+}
+
+const QuestionForm = ({ courseId }: IQuestionForm) => {
 	const router = useRouter();
-	const handleSubmit = async (e: any) => {
+	const handleSubmit = (e: any) => {
 		e.preventDefault();
 
 		const title = e.target.title.value;
 		const contents = e.target.contents.value;
 
-		postQuestion({ courseId: +courseId, title, contents });
+		API.postQuestion({ courseId: +courseId, title, contents });
 		router.reload();
-		console.log(courseId, title, contents);
 	};
 
 	return (
@@ -33,7 +35,6 @@ const QuestionForm = ({ courseId }: any) => {
 					placeholder="질문을 입력하세요."
 					required
 				></textarea>
-				{/* <input type="text" name="courseId" value={courseId} hidden /> */}
 				<button type="submit">질문 입력</button>
 			</form>
 		</Wrapper>

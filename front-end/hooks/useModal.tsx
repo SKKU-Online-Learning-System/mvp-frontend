@@ -34,5 +34,5 @@ export const useModal = () => {
 		);
 	}, [showLogInModal, showSignUpModal]);
 
-	return { showModal, setShowLogInModal, renderModal };
+	return { showModal, setShowLogInModal, setShowSignUpModal, renderModal };
 };

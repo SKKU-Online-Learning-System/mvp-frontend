@@ -1,6 +1,15 @@
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+
+const TimeMap = [
+	{ TEXT: '년 전', TIME: 1000 * 60 * 60 * 24 * 30 * 12 },
+	{ TEXT: '달 전', TIME: 1000 * 60 * 60 * 24 * 30 },
+	{ TEXT: '일 전', TIME: 1000 * 60 * 60 * 24 },
+	{ TEXT: '시간 전', TIME: 1000 * 60 * 60 },
+	{ TEXT: '분 전', TIME: 1000 * 60 },
+	{ TEXT: '초 전', TIME: 1000 },
+];
 
 const QuestionBox = ({ question, courseName }: any) => {
 	const router = useRouter();
@@ -9,23 +18,21 @@ const QuestionBox = ({ question, courseName }: any) => {
 		router.push(`/questions/${questionId}`);
 	};
 
-	const [timeBefore, setTimeBefore] = useState<string>('');
-	useEffect(() => {
-		const now = new Date();
-		const createTime = new Date(question.createdAt);
-		const yearDiff = now.getFullYear() - createTime.getFullYear();
-		const monthDiff = now.getMonth() - createTime.getMonth();
-		const dayDiff = now.getDay() - createTime.getDay();
-		const hourDiff = now.getHours() - createTime.getHours();
-		const minDiff = now.getMinutes() - createTime.getMinutes();
-		const secDiff = now.getSeconds() - createTime.getSeconds();
-		if (yearDiff) setTimeBefore(`${yearDiff}년 전`);
-		else if (monthDiff) setTimeBefore(`${monthDiff}달 전`);
-		else if (dayDiff) setTimeBefore(`${dayDiff}일 전`);
-		else if (hourDiff) setTimeBefore(`${hourDiff}시간 전`);
-		else if (minDiff) setTimeBefore(`${minDiff}분 전`);
-		else setTimeBefore(`${secDiff}초 전`);
-	}, [question.createdAt]);
+	const getTimeBefore = () => {
+		const timeDiff =
+			new Date().getTime() - new Date(question.createdAt).getTime();
+
+		for (const elem of TimeMap) {
+			const dateDiff = ~~(timeDiff / elem.TIME);
+
+			if (dateDiff) {
+				return `${dateDiff}${elem.TEXT}`;
+			}
+		}
+
+		return '방금 전';
+	};
+
 	return (
 		<Wapper
 			onClick={() => {
@@ -36,7 +43,7 @@ const QuestionBox = ({ question, courseName }: any) => {
 				<header className="title">{question.title || '제목없음'}</header>
 				<section className="contents">{question.contents}</section>
 				<div className="info">
-					{`${question.author.nickname} · ${timeBefore} · ${courseName}`}
+					{`${question.author.nickname} · ${getTimeBefore()} · ${courseName}`}
 				</div>
 			</div>
 			<div className="right">

@@ -1,31 +1,34 @@
 import axiosInstance from 'apis';
-import { fetchCourseName, fetchQuestions } from 'apis/QnA/qnaApi';
+import API from 'apis/QnA/qnaApi';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import QuestionBox from './QuestionBox';
 
-const QuestionTable = ({ courseId }: any) => {
+interface IQuestionTable {
+	courseId: string;
+}
+/*
+API가 중복되어서 불리고 있음, 구조 개선 필요
+*/
+const QuestionTable = ({ courseId }: IQuestionTable) => {
 	const [questions, setQuestions] = useState<any[]>([]);
 	const [courseName, setCourseName] = useState<any[]>([]);
 	const router = useRouter();
 	useEffect(() => {
 		if (!router.isReady) return;
-		fetchQuestions(courseId)
+		const fetchQuestions = API.fetchQuestions(courseId);
+		const fetchCourseName = API.fetchCourseName(courseId);
+
+		Promise.all([fetchQuestions, fetchCourseName])
 			.then((res) => {
-				const orderedDate = res.data.sort(
-					(a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+				const [questions, courseName] = res.map((elem) => elem.data);
+
+				setQuestions(
+					questions.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
 				);
-				setQuestions(orderedDate);
+				setCourseName(courseName.title);
 			})
-			.catch((e) => console.log('questions/course/${courseId}' + e));
-	}, [router.isReady]);
-	useEffect(() => {
-		if (!router.isReady) return;
-		fetchCourseName(courseId)
-			.then((res) => {
-				setCourseName(res.data.title);
-			})
-			.catch((e) => console.log(e));
+			.catch((e) => console.warn(e));
 	}, [router.isReady]);
 
 	return (

@@ -1,16 +1,15 @@
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
-import LoginModal from '@components/modals/LoginModal';
 import { useRouter } from 'next/router';
 import { useAppSelector } from 'store/app/hooks';
 import { useDispatch } from 'react-redux';
 import { RootState } from 'store/app/store';
-import SignUpModal from './modals/SignUpModal';
 import { userLoginAuthState } from '../constants/commonState';
 import axiosInstance from '../apis/index';
 import { commonActions } from 'store/feature/common/commonSlice';
 import { DEVICE_BREAKPOINT } from '../constants/breakpoint';
+import { useModal } from '../hooks/useModal';
 
 interface LinkProps {
 	isThisPage: boolean;
@@ -31,12 +30,12 @@ const menuData = [
 ];
 
 const Header = () => {
-	const [showLogInModal, setShowLogInModal] = useState(false);
-	const [showSignUpModal, setShowSignUpModal] = useState(false);
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const { isLoggined } = useAppSelector((state: RootState) => state.common);
 	const inputRef = useRef<HTMLInputElement | null>(null);
+	const { showModal, setShowLogInModal, setShowSignUpModal, renderModal } =
+		useModal();
 
 	const handleLogout = () => {
 		axiosInstance.get('/auth/logout').then(() => {
@@ -135,19 +134,7 @@ const Header = () => {
 				</div>
 			)}
 
-			<LoginModal
-				onClose={() => setShowLogInModal(false)}
-				onOpenSignUp={() => setShowSignUpModal(true)}
-				show={showLogInModal}
-			>
-				로그인 모달 children
-			</LoginModal>
-			<SignUpModal
-				onClose={() => setShowSignUpModal(false)}
-				show={showSignUpModal}
-			>
-				회원가입 모달 children
-			</SignUpModal>
+			{showModal && renderModal()}
 		</Container>
 	);
 };
