@@ -2,14 +2,13 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { useAppSelector } from 'store/app/hooks';
-import { useDispatch } from 'react-redux';
-import { RootState } from 'store/app/store';
+import { useDispatch, useSelector } from 'react-redux';
 import { userLoginAuthState } from '../constants/commonState';
 import axiosInstance from '../apis/index';
 import { commonActions } from 'store/feature/common/commonSlice';
 import { DEVICE_BREAKPOINT } from '../constants/breakpoint';
 import { useModal } from '../hooks/useModal';
+import { selectIsLoggined } from '../store/feature/common/commonSelector';
 
 interface LinkProps {
 	isThisPage: boolean;
@@ -32,7 +31,7 @@ const menuData = [
 const Header = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
-	const { isLoggined } = useAppSelector((state: RootState) => state.common);
+	const isLoggined = useSelector(selectIsLoggined);
 	const inputRef = useRef<HTMLInputElement | null>(null);
 	const { showModal, setShowLogInModal, setShowSignUpModal, renderModal } =
 		useModal();
@@ -119,20 +118,21 @@ const Header = () => {
 				{menuBar}
 			</div>
 
-			{isLoggined === userLoginAuthState.LOGGINED ? (
-				<div>
-					<LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
-				</div>
-			) : (
-				<div>
-					<LoginButton onClick={() => setShowLogInModal(true)}>
-						로그인
-					</LoginButton>
-					<SignupButton onClick={() => setShowSignUpModal(true)}>
-						회원가입
-					</SignupButton>
-				</div>
-			)}
+			{!!isLoggined &&
+				(isLoggined === userLoginAuthState.LOGGINED ? (
+					<div>
+						<LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+					</div>
+				) : (
+					<div>
+						<LoginButton onClick={() => setShowLogInModal(true)}>
+							로그인
+						</LoginButton>
+						<SignupButton onClick={() => setShowSignUpModal(true)}>
+							회원가입
+						</SignupButton>
+					</div>
+				))}
 
 			{showModal && renderModal()}
 		</Container>
