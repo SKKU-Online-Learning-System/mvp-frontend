@@ -28,10 +28,7 @@ export default {
 			contents,
 		});
 	},
-	fetchQuestions: (courseId: string) => {
-		return axiosInstance.get(`questions/course/${courseId}`);
-	},
-	fetchCourseName: (courseId: string) => {
-		return axiosInstance.get(`courses/${courseId}`);
+	fetchCourseDetailQna: (courseId: string) => {
+		return axiosInstance.get(`/questions/course/${courseId}`);
 	},
 };

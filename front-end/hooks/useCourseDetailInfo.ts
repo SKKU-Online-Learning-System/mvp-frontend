@@ -3,7 +3,8 @@ import { ICourseDetail, IQna } from 'types/Course';
 import { ILectureList } from 'types/Lecture';
 import { useState, useEffect } from 'react';
 import { useModal } from './useModal';
-import API from 'apis/Courses/courseApi';
+import courseAPI from 'apis/Courses/courseApi';
+import qnaAPI from 'apis/QnA/qnaApi';
 
 // QuestionTable은 전체 qna가 필요, 그 외엔 Top 3개만 필요
 export const useCourseDetailInfo = () => {
@@ -17,9 +18,11 @@ export const useCourseDetailInfo = () => {
 	useEffect(() => {
 		if (!router.isReady) return;
 
-		const fetchCourse = API.fetchCourseDetail(courseId as string);
-		const fetchLectures = API.fetchCourseDetailLectures(courseId as string);
-		const fetchQna = API.fetchCourseDetailQna(courseId as string);
+		const fetchCourse = courseAPI.fetchCourseDetail(courseId as string);
+		const fetchLectures = courseAPI.fetchCourseDetailLectures(
+			courseId as string,
+		);
+		const fetchQna = qnaAPI.fetchCourseDetailQna(courseId as string);
 
 		Promise.all([fetchCourse, fetchLectures, fetchQna])
 			.then((res) => {
@@ -28,7 +31,7 @@ export const useCourseDetailInfo = () => {
 				setCourseDetail(course);
 				setLectures(lecture);
 				setQna(
-					qna.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)).slice(0, 3),
+					qna.sort((a: IQna, b: IQna) => (a.createdAt < b.createdAt ? 1 : -1)),
 				);
 			})
 			.catch((e) => console.warn(e));
