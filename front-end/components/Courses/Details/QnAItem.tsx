@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 interface IQnAItem {
-	question: string;
+	questionTitle: string;
 	answer: string;
 }
-const QnAItem = ({ question, answer }: IQnAItem) => {
+const QnAItem = ({ questionTitle, answer }: IQnAItem) => {
 	return (
 		<div style={{ marginBottom: '80px' }}>
 			<div
 				style={{ display: 'flex', position: 'relative', overflow: 'hidden' }}
 			>
 				<h1 style={{ fontFamily: 'Gugi', color: '#086ac5' }}>Q.</h1>
-				<Question>{question}</Question>
+				<Question>{questionTitle}</Question>
 				<LineDeco />
 			</div>
 			<div style={{ display: 'flex' }}>

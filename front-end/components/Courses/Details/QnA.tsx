@@ -47,7 +47,7 @@ const QnA = ({ courseId, qna }: IQnA) => {
 				return (
 					<QnAItem
 						key={ele.id}
-						question={ele.contents}
+						questionTitle={ele.title}
 						answer={ele.answers[0]?.contents || '답변을 기다리고 있어요'}
 					/>
 				);
