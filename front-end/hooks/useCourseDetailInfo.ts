@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useModal } from './useModal';
 import API from 'apis/Courses/courseApi';
 
+// QuestionTable은 전체 qna가 필요, 그 외엔 Top 3개만 필요
 export const useCourseDetailInfo = () => {
 	const router = useRouter();
 	const { courseId } = router.query;
@@ -26,7 +27,9 @@ export const useCourseDetailInfo = () => {
 
 				setCourseDetail(course);
 				setLectures(lecture);
-				setQna(qna.slice(0, 3));
+				setQna(
+					qna.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)).slice(0, 3),
+				);
 			})
 			.catch((e) => console.warn(e));
 	}, [router.isReady, courseId]);

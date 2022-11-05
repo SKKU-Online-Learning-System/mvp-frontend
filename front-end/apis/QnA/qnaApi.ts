@@ -1,23 +1,37 @@
 import axiosInstance from '..';
 
-export const postAnswer = ({ questionId, contents }) => {
-	return axiosInstance.post(`/answers`, {
+export default {
+	postAnswer: ({
 		questionId,
 		contents,
-	});
-};
-
-export const postQuestion = ({ courseId, title, contents }: any) => {
-	return axiosInstance.post(`/questions`, {
+	}: {
+		questionId: number;
+		contents: string;
+	}) => {
+		return axiosInstance.post(`/answers`, {
+			questionId,
+			contents,
+		});
+	},
+	postQuestion: ({
 		courseId,
 		title,
 		contents,
-	});
-};
-
-export const fetchQuestions = (courseId) => {
-	return axiosInstance.get(`questions/course/${courseId}`);
-};
-export const fetchCourseName = (courseId) => {
-	return axiosInstance.get(`courses/${courseId}`);
+	}: {
+		courseId: number;
+		title: string;
+		contents: string;
+	}) => {
+		return axiosInstance.post(`/questions`, {
+			courseId,
+			title,
+			contents,
+		});
+	},
+	fetchQuestions: (courseId: string) => {
+		return axiosInstance.get(`questions/course/${courseId}`);
+	},
+	fetchCourseName: (courseId: string) => {
+		return axiosInstance.get(`courses/${courseId}`);
+	},
 };

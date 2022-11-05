@@ -8,6 +8,9 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+/*
+- 강의를 수강중인 유저만 댓글을 달 수 잇어야 함. 서버에서 403 응답주는중.
+*/
 const QuestionDetailPage = () => {
 	const router = useRouter();
 	const { questionId } = router.query;
@@ -32,8 +35,8 @@ const QuestionDetailPage = () => {
 
 			<AnswerSet answers={question?.answers} />
 			<AnswerForm questionId={questionId}></AnswerForm>
-			{/* <AnswerDetail answers={question?.answers[0]} /> */}
-			{/* <QuestionDetail questionId={questionId} /> */}
+			{/* <AnswerDetail answers={question?.answers[0]} />
+			<QuestionDetail questionId={questionId} /> */}
 		</>
 	);
 };
