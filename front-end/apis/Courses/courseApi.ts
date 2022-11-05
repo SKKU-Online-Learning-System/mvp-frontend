@@ -9,9 +9,6 @@ export default {
 	fetchCourseDetailLectures: (courseId: string) => {
 		return axiosInstance.get<ILectureList>(`/courses/${courseId}/lectures`);
 	},
-	fetchCourseDetailQna: (courseId: string) => {
-		return axiosInstance.get(`/questions/course/${courseId}`);
-	},
 	fetchAllCourseCategories: () => {
 		return axiosInstance.get(`courses/categories`);
 	},

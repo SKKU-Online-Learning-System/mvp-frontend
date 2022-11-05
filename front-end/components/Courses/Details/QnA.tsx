@@ -10,6 +10,7 @@ interface IQnA {
 
 const QnA = ({ courseId, qna }: IQnA) => {
 	const router = useRouter();
+	const recentQna = qna.slice(0, 3);
 
 	const handleClick = () => {
 		router.push(`/questions/course/${courseId}`);
@@ -28,18 +29,26 @@ const QnA = ({ courseId, qna }: IQnA) => {
 					Recent Questions
 				</div>
 				<div style={{ display: 'flex' }}>
-					<h2 style={{ width: '20%' }}>최근 한 질문</h2>
-					<div onClick={handleClick} className="more">
-						MORE
-					</div>
+					<h2 style={{ paddingRight: '18px' }}>최근 한 질문</h2>
+					{recentQna.length > 0 && (
+						<MoreButton onClick={handleClick}>질문 더보기</MoreButton>
+					)}
 				</div>
 			</header>
-			{qna.map((ele) => {
+
+			{recentQna.length === 0 && (
+				<div style={{ display: 'flex', alignItems: 'center' }}>
+					<div style={{ padding: '0 18px' }}>첫 질문의 주인공이 되어보세요</div>
+					<MoreButton onClick={handleClick}>질문 올려보기</MoreButton>
+				</div>
+			)}
+
+			{recentQna.map((ele) => {
 				return (
 					<QnAItem
 						key={ele.id}
 						question={ele.contents}
-						answer={ele.answers[0]?.contents || 'x'}
+						answer={ele.answers[0]?.contents || '답변을 기다리고 있어요'}
 					/>
 				);
 			})}
@@ -54,19 +63,7 @@ const Container = styled.div`
 	margin: auto;
 	padding: 25px;
 	font-family: 'Noto Sans KR';
-	.more {
-		font-size: 0.9rem;
-		cursor: pointer;
-		border: solid;
-		border-color: #b1afaf;
-		padding: 5px;
-		border-radius: 0.5rem;
-		& :hover {
-			background-color: #6e6e6e;
-			color: #dfdfdf;
-			transition: 0.3s;
-		}
-	}
+
 	& header {
 		margin: 0 0 16px 18px;
 	}
@@ -95,4 +92,13 @@ const Container = styled.div`
 	& h2 {
 		font-weight: bold;
 	}
+`;
+
+const MoreButton = styled.div`
+	color: #f2f4f6;
+	background: #7dad47;
+	border-radius: 7px;
+	padding: 8px 12px;
+	cursor: pointer;
+	font-weight: 600;
 `;

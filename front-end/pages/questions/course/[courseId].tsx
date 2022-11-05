@@ -9,8 +9,14 @@ import QuestionForm from '@components/Questions/QuestionForm';
 로그인 && 강의 등록이 되어있어야 등록 가능.
 */
 const QuestionsByCoursePage = () => {
-	const { courseId, courseDetail, showModal, setShowLogInModal, renderModal } =
-		useCourseDetailInfo();
+	const {
+		courseId,
+		qna,
+		courseDetail,
+		showModal,
+		setShowLogInModal,
+		renderModal,
+	} = useCourseDetailInfo();
 	const [openForm, setOpenForm] = useState(false);
 	const { is_logged_in: isLoggined, has_enrolled: isEnrolled } =
 		courseDetail || {};
@@ -31,7 +37,7 @@ const QuestionsByCoursePage = () => {
 
 	return (
 		<>
-			{courseDetail && (
+			{courseDetail && qna && (
 				<>
 					<CourseHeader
 						setShowLogInModal={setShowLogInModal}
@@ -42,7 +48,7 @@ const QuestionsByCoursePage = () => {
 					<Wrapper>
 						<Button onClick={handleClickButton}>질문하기</Button>
 						{openForm && <QuestionForm courseId={courseId as string} />}
-						<QuestionTable courseId={courseId as string} />
+						<QuestionTable qna={qna} courseName={courseDetail.title} />
 					</Wrapper>
 				</>
 			)}
