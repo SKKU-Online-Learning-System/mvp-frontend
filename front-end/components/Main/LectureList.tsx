@@ -14,16 +14,16 @@ const LectureList = ({ headerText, headerColor }: any) => {
 	return (
 		<div>
 			<CommonHeader text={headerText} color={headerColor} />
-			<div style={{ display: 'flex', padding: '20px 35px', overflowX: 'auto' }}>
+			<GridWrapper>
 				{populars.slice(0, 5).map((lecture, idx) => (
 					<LectureCard key={idx} lecture={lecture} />
 				))}
-			</div>
+			</GridWrapper>
 		</div>
 	);
 };
 
-const CommonHeader = ({ text, color }: any) => {
+export const CommonHeader = ({ text, color }: any) => {
 	return (
 		<Wrapper>
 			<div style={{ position: 'relative' }}>
@@ -56,7 +56,7 @@ const LectureCard = ({ lecture }: any) => {
 
 	return (
 		<LectureCardWrapper onClick={() => handleClick(lecture.id)}>
-			<img src={lecture.thumbnail} onError={handleImgError} />
+			<img width={'100%'} src={lecture.thumbnail} onError={handleImgError} />
 			<div style={{ fontWeight: 'bold' }}>{lecture.title}</div>
 			<div style={{ fontSize: '12px', opacity: '0.6' }}>
 				{lecture.description}
@@ -75,22 +75,19 @@ const Wrapper = styled.div`
 	padding-top: 60px;
 `;
 
-const LectureCardWrapper = styled.div`
-	display: flex;
-	cursor: pointer;
-	flex-direction: column;
-	width: 270px;
-	padding: 10px;
+const GridWrapper = styled.div`
+	display: grid;
+	grid-column-gap: 16px;
+	grid-row-gap: 16px;
+	grid-template-columns: repeat(5, 1fr);
+	padding: 20px 35px;
 `;
 
-const HashTagChip = styled.div`
-	min-width: 60px;
-	background-color: #e6e6e6;
-	border-radius: 10px;
-	white-space: nowrap;
-	font-size: 10px;
-	padding: 3px 6px;
-	margin: 8px 0;
+const LectureCardWrapper = styled.div`
+	cursor: pointer;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
 `;
 
 export default LectureList;
