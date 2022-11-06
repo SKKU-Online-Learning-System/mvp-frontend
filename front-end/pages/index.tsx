@@ -28,7 +28,7 @@ const Index = () => {
 		<>
 			<MainBanner />
 			<Wrapper>
-				{isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
+				{!!isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
 					<RecentLecture />
 				)}
 				<LectureList headerText={'인기 강의'} headerColor={'red'} />
