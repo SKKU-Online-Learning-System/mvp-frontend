@@ -14,7 +14,13 @@ export default {
 	updateLectureHistory: ({
 		lectureId,
 		lastTime,
-	}: Record<string, string | number>) => {
+	}: {
+		lectureId: number;
+		lastTime: number;
+	}) => {
 		return axiosInstance.patch('/history', { lectureId, lastTime });
+	},
+	postLectureComplete: (courseId: number) => {
+		return axiosInstance.post('/completed', { courseId });
 	},
 };

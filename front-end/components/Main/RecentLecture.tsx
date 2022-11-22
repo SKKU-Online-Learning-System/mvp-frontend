@@ -62,7 +62,7 @@ export const RecentLecture = () => {
 		<>
 			{latestLectures.length > 0 && (
 				<>
-					<CommonHeader text={'최근 수강 강좌'} color={'red'} />
+					<CommonHeader text={'최근 수강 강의'} color={'red'} />
 					<GridWrapper>
 						{latestLectures.map((elem, index) => (
 							<div

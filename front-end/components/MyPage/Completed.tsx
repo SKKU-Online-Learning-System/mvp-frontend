@@ -5,13 +5,21 @@ import { MyPageTitle } from './MyPageTitle';
 import { MYPAGE_MENU } from 'constants/MyPage';
 import { GridWrapper } from './History';
 import { AxiosResponse, AxiosError } from 'axios';
+import { ICourseInfo } from 'types/MyPage';
+import { useRouter } from 'next/router';
 import API from 'apis/MyPage';
 
 const menu = [MYPAGE_MENU.COMPLETED_WATCHING_LECTURES];
 
 const Completed = () => {
 	// useState에 완료 강좌 객체에 맞게 인터페이스 생성해두기.
-	const [completedCourseList, setCompletedCourseList] = useState([]);
+	const router = useRouter();
+	const [completedCourseList, setCompletedCourseList] =
+		useState<ICourseInfo[]>();
+
+	const handleClick = (courseId: number) => () => {
+		router.push(`/courses/${courseId}`);
+	};
 
 	useEffect(() => {
 		API.fetchCompletedLectures()
@@ -32,12 +40,24 @@ const Completed = () => {
 			/>
 			<MyPageTitle title={MYPAGE_MENU.COMPLETED_WATCHING_LECTURES} />
 			<GridWrapper>
-				{completedCourseList &&
-					completedCourseList.map((elem, index) => (
-						<div className="wrapper" key={index}>
-							<div className="title">{elem.title}</div>
+				{!completedCourseList?.length ? (
+					<div>완료된 강의가 없습니다.</div>
+				) : (
+					completedCourseList?.map((elem, index) => (
+						<div
+							className="wrapper"
+							onClick={handleClick(elem.course.id)}
+							key={index}
+						>
+							<img
+								className="image"
+								width={'100%'}
+								src={elem.course.thumbnail}
+							></img>
+							<div className="title">{elem.course.title}</div>
 						</div>
-					))}
+					))
+				)}
 			</GridWrapper>
 		</MyPageLayout>
 	);
