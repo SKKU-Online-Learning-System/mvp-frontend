@@ -61,9 +61,10 @@ const Learning = () => {
 		finishedLectureCount: number;
 		maxLectureCount: number;
 	}) => {
-		if (!finishedLectureCount || !maxLectureCount) return;
+		if (!maxLectureCount) return;
 
-		const percentage = ~~((finishedLectureCount / maxLectureCount) * 100);
+		let percentage = ~~((finishedLectureCount / maxLectureCount) * 100);
+		if (!finishedLectureCount) percentage = 0;
 
 		return `${finishedLectureCount}개 / ${maxLectureCount}개 (${percentage}%)`;
 	};
@@ -82,7 +83,6 @@ const Learning = () => {
 		]).then((res) => {
 			const [currentLearningCourseLists, lectureCountLists, finishedLectures] =
 				res.map((elem) => elem.data);
-			console.log(currentLearningCourseLists);
 
 			getLectureProgressStatus(
 				currentLearningCourseLists,
