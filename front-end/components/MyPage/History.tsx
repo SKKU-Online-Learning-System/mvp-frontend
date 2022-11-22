@@ -74,7 +74,7 @@ const History = () => {
 			<MyPageTitle title={MYPAGE_MENU.RECENT_WATCHING_LECTURES} />
 
 			<GridWrapper>
-				{latestLectures &&
+				{!!latestLectures?.length ? (
 					latestLectures.map((elem, index) => (
 						<div
 							className="wrapper"
@@ -99,7 +99,10 @@ const History = () => {
 								{showTimeProgress(elem.lastTime, elem.lecture.duration)}
 							</div>
 						</div>
-					))}
+					))
+				) : (
+					<div>강의가 존재하지 않습니다</div>
+				)}
 			</GridWrapper>
 		</MyPageLayout>
 	);

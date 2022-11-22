@@ -47,6 +47,11 @@ const LecturePlayer = () => {
 		_updateLectureHistory(time);
 	};
 
+	const onEnded = () => {
+		sendCurrentPlayTime();
+		API.postLectureComplete(+(courseId as string));
+	};
+
 	useEffect(() => {
 		if (!router.isReady) return;
 		_fetchLectureVideoUrl(lectureId as string);
@@ -74,7 +79,7 @@ const LecturePlayer = () => {
 							progressInterval={10000}
 							onPause={sendCurrentPlayTime}
 							onProgress={sendCurrentPlayTime}
-							onEnded={sendCurrentPlayTime}
+							onEnded={onEnded}
 						/>
 					</div>
 					{router.isReady && <LecturePicker courseId={courseId as string} />}

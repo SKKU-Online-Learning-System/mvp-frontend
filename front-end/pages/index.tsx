@@ -31,14 +31,14 @@ const Index = () => {
 				{!!isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
 					<RecentLecture />
 				)}
-				<LectureList headerText={'인기 강의'} headerColor={'red'} />
+				<LectureList headerText={'인기 강좌'} headerColor={'red'} />
 				<MidBanner />
 				<LectureList
-					headerText={'프로그래밍 분야 인기 강의 모음'}
+					headerText={'프로그래밍 분야 인기 강좌 모음'}
 					headerColor={'purple'}
 				/>
 				<LectureList
-					headerText={'보안 분야 인기 강의 모음'}
+					headerText={'보안 분야 인기 강좌 모음'}
 					headerColor={'#df4bff'}
 				/>
 			</Wrapper>

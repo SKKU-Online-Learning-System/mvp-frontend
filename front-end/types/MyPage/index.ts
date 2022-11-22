@@ -16,7 +16,7 @@ export interface ILatestLecture {
 	};
 }
 
-export interface IEnrolledCourse {
+export interface ICourseInfo {
 	createdAt: string;
 	bookmark: boolean;
 	course: {
@@ -37,4 +37,15 @@ export interface IEnrolledCourse {
 			name: string;
 		};
 	};
+}
+
+export interface ILectureCount {
+	courseId: number;
+	lectures_count: string;
+}
+
+export interface IFinishedLectureCount {
+	courseId: number;
+	courseTitle: string;
+	finishedLecture: string;
 }

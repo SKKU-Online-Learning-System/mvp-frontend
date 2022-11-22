@@ -1,5 +1,5 @@
 import axiosInstance from 'apis';
-import { IEnrolledCourse } from 'types/MyPage';
+import { ICourseInfo } from 'types/MyPage';
 
 export default {
 	fetchRecentLectures: () => {
@@ -11,8 +11,20 @@ export default {
 	},
 
 	fetchCurrentLearningCourses: () => {
-		return axiosInstance.get<IEnrolledCourse[]>('enrollment', {
+		return axiosInstance.get<ICourseInfo[]>('enrollment', {
 			willUseCustomErrorHandler: true,
 		});
+	},
+
+	fetchLectureCounts: () => {
+		return axiosInstance.get('/lectures/count');
+	},
+
+	fetchFinishedLectureCounts: () => {
+		return axiosInstance.get('/history/lectures/finished');
+	},
+
+	fetchCompleted: () => {
+		return axiosInstance.get('/completed');
 	},
 };
