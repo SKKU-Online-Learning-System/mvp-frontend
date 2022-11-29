@@ -1,15 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
-
-const TimeMap = [
-	{ TEXT: '년 전', TIME: 1000 * 60 * 60 * 24 * 30 * 12 },
-	{ TEXT: '달 전', TIME: 1000 * 60 * 60 * 24 * 30 },
-	{ TEXT: '일 전', TIME: 1000 * 60 * 60 * 24 },
-	{ TEXT: '시간 전', TIME: 1000 * 60 * 60 },
-	{ TEXT: '분 전', TIME: 1000 * 60 },
-	{ TEXT: '초 전', TIME: 1000 },
-];
+import { getTimeBefore } from 'utils/getTimeBefore';
 
 const QuestionBox = ({ question, courseName }: any) => {
 	const router = useRouter();
@@ -18,23 +10,8 @@ const QuestionBox = ({ question, courseName }: any) => {
 		router.push(`/questions/${questionId}`);
 	};
 
-	const getTimeBefore = () => {
-		const timeDiff =
-			new Date().getTime() - new Date(question.createdAt).getTime();
-
-		for (const elem of TimeMap) {
-			const dateDiff = ~~(timeDiff / elem.TIME);
-
-			if (dateDiff) {
-				return `${dateDiff}${elem.TEXT}`;
-			}
-		}
-
-		return '방금 전';
-	};
-
 	return (
-		<Wapper
+		<Wrapper
 			onClick={() => {
 				handleClick(question.id);
 			}}
@@ -43,7 +20,9 @@ const QuestionBox = ({ question, courseName }: any) => {
 				<header className="title">{question.title || '제목없음'}</header>
 				<section className="contents">{question.contents}</section>
 				<div className="info">
-					{`${question.author.nickname} · ${getTimeBefore()} · ${courseName}`}
+					{`${question.author.nickname} · ${getTimeBefore(
+						question.createdAt,
+					)} · ${courseName}`}
 				</div>
 			</div>
 			<div className="right">
@@ -52,12 +31,12 @@ const QuestionBox = ({ question, courseName }: any) => {
 					<div className="circle-text">답변</div>
 				</div>
 			</div>
-		</Wapper>
+		</Wrapper>
 	);
 };
 
 export default QuestionBox;
-const Wapper = styled.li`
+export const Wrapper = styled.li`
 	margin: auto;
 	:hover {
 		background-color: #f8f9fa;

@@ -27,4 +27,8 @@ export default {
 	fetchCompleted: () => {
 		return axiosInstance.get('/completed');
 	},
+
+	fetchQuestions: () => {
+		return axiosInstance.get('/questions');
+	},
 };

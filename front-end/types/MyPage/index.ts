@@ -1,3 +1,5 @@
+import { ICourseInfo as ICourse } from 'types/Course';
+
 export interface ILatestLecture {
 	id?: number;
 	lastTime: number;
@@ -19,24 +21,7 @@ export interface ILatestLecture {
 export interface ICourseInfo {
 	createdAt: string;
 	bookmark: boolean;
-	course: {
-		id: number;
-		title: string;
-		summary: string;
-		description: string;
-		thumbnail: string;
-		difficulty: number;
-		createdAt: string;
-		instructor: {
-			nickname: string;
-		};
-		category1: {
-			name: string;
-		};
-		category2: {
-			name: string;
-		};
-	};
+	course: ICourse;
 }
 
 export interface ILectureCount {
@@ -48,4 +33,15 @@ export interface IFinishedLectureCount {
 	courseId: number;
 	courseTitle: string;
 	finishedLecture: string;
+}
+
+export interface IMyQuestion {
+	course: ICourse;
+	id: number;
+	authorId: number;
+	courseId: number;
+	lectureId: number | null;
+	title: string;
+	contents: string;
+	createdAt: string;
 }
