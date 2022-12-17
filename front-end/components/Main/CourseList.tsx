@@ -1,29 +1,43 @@
-import axiosInstance from 'apis';
-import { useEffect, useState, SyntheticEvent } from 'react';
+import { SyntheticEvent } from 'react';
 import styled from 'styled-components';
 import { defaultErrorImage } from 'constants/index';
 import { useRouter } from 'next/router';
+import API from 'apis/Main';
+import { useAxios } from 'hooks/useAxios';
+import { ICourse } from 'types/Main';
 
-const LectureList = ({ headerText, headerColor }: any) => {
-	const [populars, setPopulars] = useState([]);
+interface ICourseListProps {
+	headerText: string;
+	headerColor: string;
+}
 
-	useEffect(() => {
-		axiosInstance.get('/courses/popular').then((res) => setPopulars(res.data));
-	}, []);
+interface ICommonHeaderProps {
+	text: string;
+	color: string;
+}
+
+interface ICourseCardProps {
+	course: ICourse;
+}
+
+const CourseList = ({ headerText, headerColor }: ICourseListProps) => {
+	const { data: popularCourses, isLoading } = useAxios(API.fetchPopularCourses);
+
+	if (isLoading) return <div>Loading...</div>;
 
 	return (
 		<div>
 			<CommonHeader text={headerText} color={headerColor} />
 			<GridWrapper>
-				{populars.slice(0, 5).map((lecture, idx) => (
-					<LectureCard key={idx} lecture={lecture} />
+				{popularCourses?.slice(0, 5).map((course, idx) => (
+					<CourseCard key={idx} course={course} />
 				))}
 			</GridWrapper>
 		</div>
 	);
 };
 
-export const CommonHeader = ({ text, color }: any) => {
+export const CommonHeader = ({ text, color }: ICommonHeaderProps) => {
 	return (
 		<Wrapper>
 			<div style={{ position: 'relative' }}>
@@ -43,7 +57,7 @@ export const CommonHeader = ({ text, color }: any) => {
 	);
 };
 
-const LectureCard = ({ lecture }: any) => {
+const CourseCard = ({ course }: ICourseCardProps) => {
 	const router = useRouter();
 
 	const handleImgError = (e: SyntheticEvent<HTMLImageElement>) => {
@@ -55,13 +69,13 @@ const LectureCard = ({ lecture }: any) => {
 	};
 
 	return (
-		<LectureCardWrapper onClick={() => handleClick(lecture.id)}>
-			<img width={'100%'} src={lecture.thumbnail} onError={handleImgError} />
-			<div style={{ fontWeight: 'bold' }}>{lecture.title}</div>
+		<CourseCardWrapper onClick={() => handleClick(course.id)}>
+			<img width={'100%'} src={course.thumbnail} onError={handleImgError} />
+			<div style={{ fontWeight: 'bold' }}>{course.title}</div>
 			<div style={{ fontSize: '12px', opacity: '0.6' }}>
-				{lecture.description}
+				{course.description}
 			</div>
-		</LectureCardWrapper>
+		</CourseCardWrapper>
 	);
 };
 
@@ -83,11 +97,11 @@ const GridWrapper = styled.div`
 	padding: 20px 35px;
 `;
 
-const LectureCardWrapper = styled.div`
+const CourseCardWrapper = styled.div`
 	cursor: pointer;
 	width: 100%;
 	overflow: hidden;
 	position: relative;
 `;
 
-export default LectureList;
+export default CourseList;

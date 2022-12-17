@@ -5,7 +5,7 @@ import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { ILatestLecture } from 'types/MyPage';
 import { AxiosResponse, AxiosError } from 'axios';
 import API from 'apis/MyPage';
-import { CommonHeader } from './LectureList';
+import { CommonHeader } from './CourseList';
 
 type Props = {
 	percentage: number;
