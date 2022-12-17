@@ -1,9 +1,11 @@
 import axiosInstance from 'apis';
-import { ICourseInfo } from 'types/MyPage';
+import { ICourseInfo, ILatestLecture } from 'types/MyPage';
 
 export default {
-	fetchRecentLectures: () => {
-		return axiosInstance.get('history', { willUseCustomErrorHandler: true });
+	fetchRecentLectures: (): Promise<ILatestLecture[]> => {
+		return axiosInstance
+			.get('history', { willUseCustomErrorHandler: true })
+			.then((res) => res.data);
 	},
 
 	fetchCompletedLectures: () => {
