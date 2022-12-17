@@ -1,11 +1,9 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
-import { ILatestLecture } from 'types/MyPage';
-import { AxiosResponse, AxiosError } from 'axios';
 import API from 'apis/MyPage';
 import { CommonHeader } from './CourseList';
+import { useAxios } from 'hooks/useAxios';
 
 type Props = {
 	percentage: number;
@@ -13,7 +11,7 @@ type Props = {
 
 export const RecentLecture = () => {
 	const router = useRouter();
-	const [latestLectures, setLatestLectures] = useState<ILatestLecture[]>([]);
+	const { data: recentLectures, isLoading } = useAxios(API.fetchRecentLectures);
 
 	const getProgressPercentage = (curTime?: number, duration?: number) => {
 		curTime ??= 0;
@@ -48,50 +46,38 @@ export const RecentLecture = () => {
 		router.push({ pathname: `/lectures/${lectureId}`, query: { courseId } });
 	};
 
-	useEffect(() => {
-		API.fetchRecentLectures()
-			.then((res: AxiosResponse) => {
-				setLatestLectures(res.data.slice(0, 5));
-			})
-			.catch((error: AxiosError) => {
-				console.warn(error);
-			});
-	}, []);
+	if (isLoading) return <div>Loading...</div>;
 
 	return (
 		<>
-			{latestLectures.length > 0 && (
-				<>
-					<CommonHeader text={'최근 수강 강의'} color={'red'} />
-					<GridWrapper>
-						{latestLectures.map((elem, index) => (
-							<div
-								className="wrapper"
-								onClick={handleClick(elem.lecture.course.id, elem.lecture.id)}
-								key={index}
-							>
-								<img
-									className="image"
-									width={'100%'}
-									src={elem.lecture.course.thumbnail}
-								></img>
-								<ProgressBar
-									percentage={getProgressPercentage(
-										elem.lastTime,
-										elem.lecture.duration,
-									)}
-								>
-									<div className="current_progress_position"></div>
-								</ProgressBar>
-								<div className="title">{elem.lecture.title}</div>
-								<div className="time">
-									{showTimeProgress(elem.lastTime, elem.lecture.duration)}
-								</div>
-							</div>
-						))}
-					</GridWrapper>
-				</>
-			)}
+			<CommonHeader text={'최근 수강 강의'} color={'red'} />
+			<GridWrapper>
+				{recentLectures?.slice(0, 5).map((elem, index) => (
+					<div
+						className="wrapper"
+						onClick={handleClick(elem.lecture.course.id, elem.lecture.id)}
+						key={index}
+					>
+						<img
+							className="image"
+							width={'100%'}
+							src={elem.lecture.course.thumbnail}
+						></img>
+						<ProgressBar
+							percentage={getProgressPercentage(
+								elem.lastTime,
+								elem.lecture.duration,
+							)}
+						>
+							<div className="current_progress_position"></div>
+						</ProgressBar>
+						<div className="title">{elem.lecture.title}</div>
+						<div className="time">
+							{showTimeProgress(elem.lastTime, elem.lecture.duration)}
+						</div>
+					</div>
+				))}
+			</GridWrapper>
 		</>
 	);
 };
