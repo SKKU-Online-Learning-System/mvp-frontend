@@ -13,10 +13,19 @@ import { userLoginAuthState } from '../constants/commonState';
 import { HTTP_STATUS_CODE } from '../constants/http';
 import { selectIsLoggined } from 'store/feature/common/commonSelector';
 import { commonActions } from 'store/feature/common/commonSlice';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 if (process.env.NODE_ENV === 'development') {
 	require('../mocks/index');
 }
+// TODO. 옵션 찾아보고 필요한것 확인.
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+		},
+	},
+});
 
 function MyComponent({ children }: any) {
 	const dispatch = useDispatch();
@@ -46,7 +55,7 @@ function MyComponent({ children }: any) {
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
 	return (
-		<>
+		<QueryClientProvider client={queryClient}>
 			<Head>
 				<title>온라인 명륜당</title>
 			</Head>
@@ -58,7 +67,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
 					</Layout>
 				</MyComponent>
 			</Provider>
-		</>
+		</QueryClientProvider>
 	);
 };
 

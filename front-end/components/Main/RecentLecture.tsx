@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
-import API from 'apis/MyPage';
 import { CommonHeader } from './CourseList';
-import { useAxios } from 'hooks/useAxios';
+import { useRecentLecturesFetch } from 'query/hooks/Main/index';
 
 type Props = {
 	percentage: number;
@@ -11,7 +10,7 @@ type Props = {
 
 export const RecentLecture = () => {
 	const router = useRouter();
-	const { data: recentLectures, isLoading } = useAxios(API.fetchRecentLectures);
+	const { data: recentLectures, isLoading } = useRecentLecturesFetch();
 
 	const getProgressPercentage = (curTime?: number, duration?: number) => {
 		curTime ??= 0;
@@ -42,7 +41,7 @@ export const RecentLecture = () => {
 		return `${_curTime} / ${_duration} (${progressPercentage}%)`;
 	};
 
-	const handleClick = (courseId?: number, lectureId?: number) => () => {
+	const handleClick = (courseId: number, lectureId: number) => () => {
 		router.push({ pathname: `/lectures/${lectureId}`, query: { courseId } });
 	};
 
