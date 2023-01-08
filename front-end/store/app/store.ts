@@ -1,12 +1,8 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import courseReducer from '../feature/course/courseSlice';
-import courseDetailReducer from '../feature/course/courseDetailSlice';
 import commonReducer from 'store/feature/common/commonSlice';
 
 export const store = configureStore({
 	reducer: {
-		course: courseReducer,
-		courseDetail: courseDetailReducer,
 		common: commonReducer,
 		// This is where we add reducers.
 		// Since we don't have any yet, leave this empty

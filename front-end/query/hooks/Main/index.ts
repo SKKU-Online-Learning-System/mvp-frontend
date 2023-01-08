@@ -1,5 +1,5 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { QUERY_KEYS } from 'query/keys/Main';
+import { QUERY_KEYS } from 'query/hooks/Main/queryKeys';
 import mainPageAPI from 'apis/Main';
 import myPageAPI from 'apis/MyPage';
 import { ICourse } from 'types/Main';

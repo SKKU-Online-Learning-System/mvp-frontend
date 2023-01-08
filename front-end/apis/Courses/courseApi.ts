@@ -1,5 +1,5 @@
 import axiosInstance from 'apis';
-import { ISearchedCourse, ICourseDetail } from 'types/Course';
+import { ICourseDetail, ICourseCategory, ISearchedCourse } from 'types/Course';
 import { ILectureList } from 'types/Lecture';
 
 export default {
@@ -9,23 +9,30 @@ export default {
 	fetchCourseDetailLectures: (courseId: string) => {
 		return axiosInstance.get<ILectureList>(`/courses/${courseId}/lectures`);
 	},
-	fetchAllCourseCategories: () => {
-		return axiosInstance.get(`courses/categories`);
+	fetchAllCourseCategories: (): Promise<ICourseCategory[]> => {
+		return axiosInstance.get(`courses/categories`).then((res) => res.data);
 	},
-	fetchCourseLists: (category?: string) => {
-		return axiosInstance.get<ISearchedCourse>('courses/search', {
-			params: {
-				category2Id: category,
-			},
-		});
+	fetchCourseList: (category?: string): Promise<ISearchedCourse> => {
+		return axiosInstance
+			.get('courses/search', {
+				params: {
+					category2Id: category,
+				},
+			})
+			.then((res) => res.data);
 	},
-	fetchSearchedCourses: (keyword: string, difficulty?: string) => {
-		return axiosInstance.get('courses/search', {
-			params: {
-				keyword: keyword,
-				difficulty,
-			},
-		});
+	fetchSearchedCourseList: (
+		keyword?: string,
+		difficulty?: string,
+	): Promise<ISearchedCourse> => {
+		return axiosInstance
+			.get('courses/search', {
+				params: {
+					keyword,
+					difficulty,
+				},
+			})
+			.then((res) => res.data);
 	},
 	fetchAllCoursesPerPage: (pageNum: number) => {
 		return axiosInstance.get('courses/search', {
