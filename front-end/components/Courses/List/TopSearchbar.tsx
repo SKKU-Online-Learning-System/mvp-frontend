@@ -2,37 +2,39 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 
-const TopSearchbar = () => {
-	const dodbogiLocation = 'images/dodbogi.png';
-	const [text, setText] = useState('');
-	const router = useRouter();
-	const { keyword } = router.query;
+const dodbogiLocation = 'images/dodbogi.png';
 
-	const _fetchSearchedCourses = (keyword: string | undefined) => {
-		const query = { ...router.query, keyword };
-		if (!keyword) {
-			delete query.keyword;
+const TopSearchbar = () => {
+	const router = useRouter();
+	const [text, setText] = useState('');
+	const { keyword } = router.query as { keyword: string };
+
+	const handleSearchClick = async (e: FormEvent) => {
+		e.preventDefault();
+
+		if (!text) {
+			return;
 		}
 
+		const query = { ...router.query, keyword: text };
 		router.push({
 			pathname: '/courses',
 			query,
 		});
 	};
 
-	const handleSearch = async (e: FormEvent) => {
-		e.preventDefault();
-		_fetchSearchedCourses(text);
-	};
-
-	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setText(e.target.value);
 	};
 
 	useEffect(() => {
 		if (!router.isReady) return;
 
-		keyword ? setText(keyword as string) : setText('');
+		if (keyword) {
+			setText(keyword);
+		} else {
+			setText('');
+		}
 	}, [router.isReady, keyword]);
 
 	return (
@@ -64,17 +66,17 @@ const TopSearchbar = () => {
 					</div>
 				</div>
 			</Title>
-			<SearchBarAndTagWrapper>
-				<Searchbar onSubmit={handleSearch}>
+			<SearchBarWrapper>
+				<Searchbar onSubmit={handleSearchClick}>
 					<Input
 						type="text"
 						value={text}
 						placeholder="강의 검색하기"
-						onChange={handleInput}
+						onChange={handleChangeInput}
 					/>
 					<span
 						style={{ padding: '16px 4px', cursor: 'pointer' }}
-						onClick={handleSearch}
+						onClick={handleSearchClick}
 					>
 						<img
 							src="/images/search_btn.png"
@@ -83,7 +85,7 @@ const TopSearchbar = () => {
 						/>
 					</span>
 				</Searchbar>
-			</SearchBarAndTagWrapper>
+			</SearchBarWrapper>
 		</Wrapper>
 	);
 };
@@ -103,7 +105,7 @@ const Wrapper = styled.div`
 	padding: 25px 0 30px 0;
 `;
 
-const SearchBarAndTagWrapper = styled.div`
+const SearchBarWrapper = styled.div`
 	display: flex;
 	column-gap: 20px;
 `;
@@ -125,5 +127,4 @@ const Input = styled.input`
 	}
 `;
 
-//export default TopSearchbar;
 export default React.memo(TopSearchbar);

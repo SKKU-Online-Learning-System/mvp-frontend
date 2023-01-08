@@ -72,3 +72,9 @@ export interface IQna {
 	id: number;
 	title: string;
 }
+
+export interface ICourseListParams {
+	category2sId?: string;
+	keyword?: string;
+	difficulty: string;
+}

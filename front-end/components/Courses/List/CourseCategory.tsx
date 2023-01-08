@@ -1,25 +1,24 @@
 import React, { useState, useEffect, SetStateAction, Dispatch } from 'react';
 import styled from 'styled-components';
-import { selectCourseCategory } from 'store/feature/course/courseSelector';
-import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { useCourseCategoriesFetch } from 'query/hooks/CourseList/index';
 
 type ToggleType = {
 	isClicked: boolean;
 };
 
 interface ICourseCategory {
-	setMenu: Dispatch<SetStateAction<string[]>>;
+	handleClickMenu: (menu: string[]) => void;
 }
 
-const CourseCategory = ({ setMenu }: ICourseCategory) => {
+const CourseCategory = ({ handleClickMenu }: ICourseCategory) => {
 	const router = useRouter();
-	const courseCategory = useSelector(selectCourseCategory);
+	const { data: courseCategories, isLoading } = useCourseCategoriesFetch();
 	const [isClickedCategory, setIsClickedCategory] = useState<boolean[]>([]);
 
 	const handleCardClick = (clickedIndex: number) => () => {
 		if (!clickedIndex) {
-			setMenu(['전체보기']);
+			handleClickMenu(['전체보기']);
 			router.push('/courses');
 			return;
 		}
@@ -32,7 +31,7 @@ const CourseCategory = ({ setMenu }: ICourseCategory) => {
 	};
 
 	const handleSubItemClick = (category2sId: number, menu: string[]) => () => {
-		setMenu(menu);
+		handleClickMenu(menu);
 		router.push({
 			pathname: '/courses',
 			query: { category2sId },
@@ -40,34 +39,32 @@ const CourseCategory = ({ setMenu }: ICourseCategory) => {
 	};
 
 	useEffect(() => {
-		const categoryLength = courseCategory.length;
+		const categoryLength = courseCategories?.length;
 
 		if (!categoryLength) return;
 
 		setIsClickedCategory(new Array(categoryLength).fill(false));
-	}, [courseCategory]);
+	}, [courseCategories]);
+
+	if (isLoading) return <div>Loading....</div>;
 
 	return (
 		<div>
-			{courseCategory.length > 0 &&
-				courseCategory.map((content, index) => (
-					<React.Fragment key={index}>
-						<Card onClick={handleCardClick(index)}>{content.name}</Card>
-						<SubItemBody isClicked={isClickedCategory[index]}>
-							{content.category2s?.map((elem, index) => (
-								<SubItem
-									onClick={handleSubItemClick(elem.id, [
-										content.name,
-										elem.name,
-									])}
-									key={index}
-								>
-									{elem.name}
-								</SubItem>
-							))}
-						</SubItemBody>
-					</React.Fragment>
-				))}
+			{courseCategories?.map((content, index) => (
+				<React.Fragment key={index}>
+					<Card onClick={handleCardClick(index)}>{content.name}</Card>
+					<SubItemBody isClicked={isClickedCategory[index]}>
+						{content.category2s?.map((elem, index) => (
+							<SubItem
+								onClick={handleSubItemClick(elem.id, [content.name, elem.name])}
+								key={index}
+							>
+								{elem.name}
+							</SubItem>
+						))}
+					</SubItemBody>
+				</React.Fragment>
+			))}
 		</div>
 	);
 };
