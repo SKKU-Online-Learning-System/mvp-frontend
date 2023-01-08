@@ -1,24 +1,26 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-
-import HashTagCard from './HashTagCard';
 
 const TopSearchbar = () => {
 	const dodbogiLocation = 'images/dodbogi.png';
 	const [text, setText] = useState('');
-	const inputRef = useRef<HTMLInputElement | null>(null);
 	const router = useRouter();
 	const { keyword } = router.query;
 
-	const _fetchSearchedCourses = (keyword: string) => {
+	const _fetchSearchedCourses = (keyword: string | undefined) => {
+		const query = { ...router.query, keyword };
+		if (!keyword) {
+			delete query.keyword;
+		}
+
 		router.push({
 			pathname: '/courses',
-			query: { ...router.query, keyword },
+			query,
 		});
 	};
 
-	const handleSearch = async (e: any) => {
+	const handleSearch = async (e: FormEvent) => {
 		e.preventDefault();
 		_fetchSearchedCourses(text);
 	};

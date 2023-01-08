@@ -2,19 +2,19 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-interface CardProps {
+interface ICardProps {
 	title: string;
 	type: string[];
 }
 
-const DifficultyList = ({ title, type }: CardProps) => {
+const DifficultyList = ({ title, type }: ICardProps) => {
 	const router = useRouter();
 	const initialRenderRef = useRef(false);
 	const [checkedList, setCheckedList] = useState([false, false, false]);
 
 	const handleClick = (index: number) => () => {
-		setCheckedList((prev: boolean[]) =>
-			prev.map((elem: boolean, idx: number) => (idx === index ? !elem : elem)),
+		setCheckedList((prev) =>
+			prev.map((elem, idx) => (idx === index ? !elem : elem)),
 		);
 	};
 
@@ -26,8 +26,10 @@ const DifficultyList = ({ title, type }: CardProps) => {
 		}
 
 		const difficulty = checkedList
-			.map((value, idx) => (value ? idx + 1 : ''))
-			.filter((val) => val)
+			.reduce((acc: number[], cur, idx) => {
+				if (cur) acc.push(idx + 1);
+				return acc;
+			}, [])
 			.join(',');
 
 		const query: { difficulty?: string } = {
