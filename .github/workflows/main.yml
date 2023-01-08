@@ -20,6 +20,7 @@ jobs:
             cd mvp-frontend/
             rm -rf ./front-end/.next
             rm -rf ./front-end/yarn.lock
+            rm -rf ./front-end/package-lock.json
             cd front-end/
             git pull origin development
             npm install
