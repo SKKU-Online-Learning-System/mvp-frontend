@@ -2,9 +2,8 @@ import { SyntheticEvent } from 'react';
 import styled from 'styled-components';
 import { defaultErrorImage } from 'constants/index';
 import { useRouter } from 'next/router';
-import API from 'apis/Main';
-import { useAxios } from 'hooks/useAxios';
 import { ICourse } from 'types/Main';
+import { usePopularCoursesFetch } from 'query/hooks/Main/index';
 
 interface ICourseListProps {
 	headerText: string;
@@ -21,7 +20,7 @@ interface ICourseCardProps {
 }
 
 const CourseList = ({ headerText, headerColor }: ICourseListProps) => {
-	const { data: popularCourses, isLoading } = useAxios(API.fetchPopularCourses);
+	const { data: popularCourses, isLoading } = usePopularCoursesFetch();
 
 	if (isLoading) return <div>Loading...</div>;
 
