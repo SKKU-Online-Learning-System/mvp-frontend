@@ -1,5 +1,4 @@
 import ReactPlayer from 'react-player/lazy';
-import '@toast-ui/editor/dist/toastui-editor.css';
 import styled from 'styled-components';
 import { useEffect, useState, useRef } from 'react';
 import API from 'apis/Lectures/lectureApi';
