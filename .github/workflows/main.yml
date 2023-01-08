@@ -21,6 +21,7 @@ jobs:
             rm -rf ./front-end/.next
             rm -rf ./front-end/yarn.lock
             rm -rf ./front-end/package-lock.json
+            rm -rf ./front-end/package.json
             cd front-end/
             git pull origin development
             npm install
