@@ -11,7 +11,7 @@ import Wishlist from '@components/MyPage/wishlist';
 
 const MyPage = () => {
 	const router = useRouter();
-	const { category } = router.query;
+	const { category } = router.query as { category: string };
 
 	const routeComponent = (category: string) => {
 		switch (category) {
@@ -32,7 +32,7 @@ const MyPage = () => {
 		}
 	};
 
-	return category ? routeComponent(category as string) : null;
+	return category ? routeComponent(category) : null;
 };
 
 export default MyPage;
