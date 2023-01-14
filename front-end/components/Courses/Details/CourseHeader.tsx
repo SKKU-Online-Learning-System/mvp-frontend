@@ -6,14 +6,13 @@ import API from 'apis/Courses/courseApi';
 import { HTTP_STATUS_CODE } from 'constants/http';
 import { useRouter } from 'next/router';
 
-//TODO : Modal 사용 편하게 구조 변경 필요
 type EnrollmentType = {
 	isEnrolled: boolean;
 };
 interface ICourseHeader {
 	courseDetail: ICourseDetail;
 	courseId: string;
-	setShowLogInModal?: Dispatch<SetStateAction<boolean>>;
+	onOpenLoginModal: () => void;
 }
 
 interface UrlProps {
@@ -22,14 +21,14 @@ interface UrlProps {
 const CourseHeader = ({
 	courseDetail,
 	courseId,
-	setShowLogInModal,
+	onOpenLoginModal,
 }: ICourseHeader) => {
 	const router = useRouter();
 	const { has_enrolled: isEnrolled, is_logged_in: isLoggined } = courseDetail;
 
 	const handleClick = (isLoggined: boolean) => async () => {
 		if (!isLoggined) {
-			setShowLogInModal?.(true);
+			onOpenLoginModal();
 			return;
 		}
 

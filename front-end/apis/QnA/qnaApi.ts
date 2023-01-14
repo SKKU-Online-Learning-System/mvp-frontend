@@ -1,3 +1,4 @@
+import { IQna } from 'types/Course';
 import axiosInstance from '..';
 
 export default {
@@ -28,7 +29,9 @@ export default {
 			contents,
 		});
 	},
-	fetchCourseDetailQna: (courseId: string) => {
-		return axiosInstance.get(`/questions/course/${courseId}`);
+	fetchCourseDetailQna: (courseId?: string): Promise<IQna[]> => {
+		return axiosInstance
+			.get(`/questions/course/${courseId}`)
+			.then((res) => res.data);
 	},
 };

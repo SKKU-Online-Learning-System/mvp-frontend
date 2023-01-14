@@ -6,33 +6,36 @@ import LectureList from '@components/Courses/Details/LectureList';
 import CourseHeader from '@components/Courses/Details/CourseHeader';
 
 import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
-// TODO. 비로그인 회원 or 강의 신청하지 않은 유저는 클릭시에 alert 띄워주기
+
 const CourseDetailPage = () => {
 	const {
 		courseId,
-		courseDetail,
+		course,
 		qna,
-		lectures,
+		lecture,
 		showModal,
-		setShowLogInModal,
+		onOpenLoginModal,
 		renderModal,
+		isLoading,
 	} = useCourseDetailInfo();
+
+	if (isLoading) return <div>Loading...</div>;
 
 	return (
 		<>
-			{courseDetail && (
+			{course && (
 				<>
 					<CourseHeader
-						setShowLogInModal={setShowLogInModal}
-						courseDetail={courseDetail}
-						courseId={courseId as string}
+						onOpenLoginModal={onOpenLoginModal}
+						courseDetail={course}
+						courseId={courseId}
 					/>
 					<Container>
-						{lectures && (
+						{lecture && (
 							<LectureList
-								lectures={lectures}
-								setShowLogInModal={setShowLogInModal}
-								courseDetail={courseDetail}
+								lectures={lecture}
+								onOpenLoginModal={onOpenLoginModal}
+								courseDetail={course}
 							/>
 						)}
 						{qna && <QnA courseId={courseId as string} qna={qna} />}

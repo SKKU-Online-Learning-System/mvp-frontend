@@ -9,20 +9,20 @@ import {
 } from 'types/Lecture/index';
 
 interface ILectureList {
-	setShowLogInModal?: Dispatch<SetStateAction<boolean>>;
+	onOpenLoginModal: () => void;
 	courseDetail: ICourseDetail;
 	lectures: _ILectureList[];
 }
 
 const LectureList = ({
-	setShowLogInModal,
+	onOpenLoginModal,
 	courseDetail,
 	lectures,
 }: ILectureList) => {
 	const router = useRouter();
 	const [isCollapsed, setIsCollapsed] = useState(
 		Array(lectures.length).fill(true),
-	); // collapsed true -> 접힌상태, false -> 열린상태
+	);
 
 	const { courseId } = router.query;
 	const { has_enrolled: isEnrolled, is_logged_in: isLoggined } = courseDetail;
@@ -34,7 +34,7 @@ const LectureList = ({
 		}
 
 		if (!isLoggined) {
-			setShowLogInModal?.(true);
+			onOpenLoginModal();
 			return;
 		}
 

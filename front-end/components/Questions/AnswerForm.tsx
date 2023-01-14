@@ -4,13 +4,10 @@ import { Container } from 'pages/questions/[questionId]';
 import axios, { AxiosError } from 'axios';
 import { HTTP_STATUS_CODE } from 'constants/http';
 import { useModal } from 'hooks/useModal';
-/*
-403일때 에러르 보여주는데, 만약 요청 intercept해서 201로 바꿔도 의미 X
-서버에서 권한 검사 후 DB에 저장하므로 안전함.
-*/
+
 const AnswerForm = ({ questionId }: any) => {
 	const router = useRouter();
-	const { showModal, setShowLogInModal, renderModal } = useModal();
+	const { showModal, onOpenLoginModal, renderModal } = useModal();
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
@@ -31,7 +28,7 @@ const AnswerForm = ({ questionId }: any) => {
 				axios.isAxiosError(e) &&
 				e.response?.status === HTTP_STATUS_CODE.FORBIDDEN
 			) {
-				setShowLogInModal(true);
+				onOpenLoginModal();
 			} else {
 				console.warn(e);
 			}

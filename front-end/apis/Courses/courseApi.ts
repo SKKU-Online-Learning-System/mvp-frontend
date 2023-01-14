@@ -3,11 +3,13 @@ import { ICourseDetail, ICourseCategory, ISearchedCourse } from 'types/Course';
 import { ILectureList } from 'types/Lecture';
 
 export default {
-	fetchCourseDetail: (courseId: string) => {
-		return axiosInstance.get<ICourseDetail>(`/courses/${courseId}`);
+	fetchCourseDetail: (courseId?: string): Promise<ICourseDetail> => {
+		return axiosInstance.get(`/courses/${courseId}`).then((res) => res.data);
 	},
-	fetchCourseDetailLectures: (courseId: string) => {
-		return axiosInstance.get<ILectureList>(`/courses/${courseId}/lectures`);
+	fetchCourseDetailLectures: (courseId?: string): Promise<ILectureList[]> => {
+		return axiosInstance
+			.get(`/courses/${courseId}/lectures`)
+			.then((res) => res.data);
 	},
 	fetchAllCourseCategories: (): Promise<ICourseCategory[]> => {
 		return axiosInstance.get(`courses/categories`).then((res) => res.data);
