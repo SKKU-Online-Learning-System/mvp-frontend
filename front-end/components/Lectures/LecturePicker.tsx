@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import API from 'apis/Courses/courseApi';
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { useRouter } from 'next/router';
-import { ILectureList } from 'types/Lecture/index';
+import { useCourseDetailLectureFetch } from 'query/hooks/CourseDetail/index';
 
 type ToggleType = {
 	isCollapsed: boolean;
@@ -16,14 +15,15 @@ interface ILecturePicker {
 export const LecturePicker = ({ courseId }: ILecturePicker) => {
 	const router = useRouter();
 
-	const [lectureList, setLectureList] = useState<ILectureList[]>([]);
 	const [isCollapsed, setIsCollapsed] = useState<boolean[]>([]); // true면 펼쳐짐, false면 닫힘.
-
-	const _fetchCourseDetailLectures = async (_courseId: string) => {
-		const res = await API.fetchCourseDetailLectures(_courseId);
-		setLectureList(res.data);
-		setIsCollapsed(new Array(res.data.length).fill(true));
-	};
+	const { data: lectureList, isLoading } = useCourseDetailLectureFetch(
+		courseId,
+		{
+			onSuccess: (data) => {
+				setIsCollapsed(new Array(data.length).fill(true));
+			},
+		},
+	);
 
 	const handleToggleCollapse = (index: number) => {
 		const newArray = isCollapsed.map((bool, idx) =>
@@ -36,36 +36,33 @@ export const LecturePicker = ({ courseId }: ILecturePicker) => {
 		router.push({ pathname: `/lectures/${lectureId}`, query: { courseId } });
 	};
 
-	useEffect(() => {
-		if (courseId) _fetchCourseDetailLectures(courseId);
-	}, []);
+	if (isLoading) return <div>Loading...</div>;
 
 	return (
 		<LecturePickerWrapper>
-			{lectureList.length > 0 &&
-				lectureList.map((elem, idx) => {
-					return (
-						<React.Fragment key={idx}>
-							<LectureTitleHeader
-								isCollapsed={isCollapsed[idx]}
-								onClick={() => handleToggleCollapse(idx)}
-							>
-								{elem?.title}
-							</LectureTitleHeader>
-							<CollpaseBody isCollapsed={isCollapsed[idx]}>
-								{elem?.lectures.map((item, _idx: number) => (
-									<LectureHeader
-										key={_idx}
-										onClick={() => handleMoveToAnotherLecture(item.id)}
-									>
-										<li>{item.title}</li>
-										<li>{durationToHhMmSs(item.duration)}</li>
-									</LectureHeader>
-								))}
-							</CollpaseBody>
-						</React.Fragment>
-					);
-				})}
+			{lectureList?.map((elem, idx) => {
+				return (
+					<React.Fragment key={idx}>
+						<LectureTitleHeader
+							isCollapsed={isCollapsed[idx]}
+							onClick={() => handleToggleCollapse(idx)}
+						>
+							{elem?.title}
+						</LectureTitleHeader>
+						<CollpaseBody isCollapsed={isCollapsed[idx]}>
+							{elem?.lectures.map((item, _idx: number) => (
+								<LectureHeader
+									key={_idx}
+									onClick={() => handleMoveToAnotherLecture(item.id)}
+								>
+									<li>{item.title}</li>
+									<li>{durationToHhMmSs(item.duration)}</li>
+								</LectureHeader>
+							))}
+						</CollpaseBody>
+					</React.Fragment>
+				);
+			})}
 		</LecturePickerWrapper>
 	);
 };

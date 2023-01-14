@@ -3,13 +3,15 @@ import { ILatestLecture } from 'types/MyPage';
 import { ILectureVideo } from 'types/Lecture';
 
 export default {
-	fetchLectureVideoUrl: (lectureId: string) => {
-		return axiosInstance.get<ILectureVideo[]>(`lectures/${lectureId}`);
+	fetchLectureVideoUrl: (lectureId: string): Promise<ILectureVideo[]> => {
+		return axiosInstance.get(`lectures/${lectureId}`).then((res) => res.data);
 	},
-	fetchLectureHistory: (lectureId: string) => {
-		return axiosInstance.get<ILatestLecture>(`/history/lectures/${lectureId}`, {
-			willUseCustomErrorHandler: true,
-		});
+	fetchLectureHistory: (lectureId: string): Promise<ILatestLecture> => {
+		return axiosInstance
+			.get(`/history/lectures/${lectureId}`, {
+				willUseCustomErrorHandler: true,
+			})
+			.then((res) => res.data);
 	},
 	updateLectureHistory: ({
 		lectureId,
@@ -17,10 +19,10 @@ export default {
 	}: {
 		lectureId: number;
 		lastTime: number;
-	}) => {
+	}): Promise<void> => {
 		return axiosInstance.patch('/history', { lectureId, lastTime });
 	},
-	postLectureComplete: (courseId: number) => {
+	updateLectureComplete: (courseId: number): Promise<void> => {
 		return axiosInstance.post('/completed', { courseId });
 	},
 };

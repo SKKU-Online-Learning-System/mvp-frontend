@@ -1,5 +1,9 @@
 import { QUERY_KEYS } from './queryKeys';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import {
+	useQuery,
+	UseQueryOptions,
+	UseQueryResult,
+} from '@tanstack/react-query';
 import courseAPI from 'apis/Courses/courseApi';
 import qnaApi from 'apis/QnA/qnaApi';
 import { ICourseDetail, IQna } from 'types/Course';
@@ -23,12 +27,14 @@ export const useCourseDetailFetch = (
 
 export const useCourseDetailLectureFetch = (
 	courseId?: string,
+	options?: UseQueryOptions<ILectureList[]>,
 ): UseQueryResult<ILectureList[]> => {
 	return useQuery<ILectureList[]>(
 		[QUERY_KEYS.FETCH_COURSE_DETAIL_LECTURES],
 		() => courseAPI.fetchCourseDetailLectures(courseId),
 		{
 			enabled: !!courseId,
+			...options,
 		},
 	);
 };

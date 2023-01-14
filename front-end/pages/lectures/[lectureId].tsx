@@ -1,61 +1,60 @@
 import ReactPlayer from 'react-player/lazy';
 import styled from 'styled-components';
-import { useEffect, useState, useRef } from 'react';
-import API from 'apis/Lectures/lectureApi';
+import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { LecturePicker } from '@components/Lectures/LecturePicker';
 import { HTTP_STATUS_CODE } from 'constants/http';
 import Error from 'next/error';
+import {
+	useLectureVideoUrlFetch,
+	useLectureHistoryFetch,
+	useLectureHistoryUpdate,
+	useLectureCompleteUpdate,
+} from 'query/hooks/Lecture/index';
+
+type RouterQueryString = {
+	lectureId: string;
+	courseId: string;
+};
+
 const LecturePlayer = () => {
 	const router = useRouter();
-	const { lectureId, courseId } = router.query;
+	const { lectureId, courseId } = router.query as RouterQueryString;
 	const ref = useRef<ReactPlayer | null>(null);
 
-	const [videoUrl, setVideoUrl] = useState<string>('');
+	const { data: videoUrl, isLoading: isVideoUrlLoading } =
+		useLectureVideoUrlFetch(lectureId);
+	const { isLoading: isRecentLectureHistoryLoading } = useLectureHistoryFetch(
+		lectureId,
+		{
+			onSuccess: (lastTime: number) =>
+				ref?.current?.seekTo(lastTime, 'seconds'),
+		},
+	);
+	const updateLectureHistory = useLectureHistoryUpdate();
+	const updateLectureComplete = useLectureCompleteUpdate();
 
-	const _fetchLectureVideoUrl = async (lectureId: string) => {
-		try {
-			const res = await API.fetchLectureVideoUrl(lectureId);
-			setVideoUrl(res.data[0].filename);
-		} catch (e: unknown) {
-			console.warn(e);
-		}
-	};
+	const isLoading = isVideoUrlLoading || isRecentLectureHistoryLoading;
 
-	const _fetchLectureHistory = async (lectureId: string) => {
-		try {
-			const res = await API.fetchLectureHistory(lectureId);
-			const lastTime = res?.data.lastTime;
-			lastTime && ref?.current?.seekTo(lastTime, 'seconds');
-		} catch (e: unknown) {
-			console.warn(e);
-		}
-	};
+	const onUpdateCurrentPlayTime = () => {
+		if (!ref?.current) return;
 
-	const _updateLectureHistory = async (currentPlayTime: number) => {
-		API.updateLectureHistory({
-			lectureId: +(lectureId as string),
+		const currentPlayTime = ~~ref.current.getCurrentTime();
+
+		updateLectureHistory.mutate({
+			lectureId: +lectureId,
 			lastTime: currentPlayTime,
 		});
 	};
 
-	const sendCurrentPlayTime = () => {
-		if (!ref?.current) return;
-
-		const time = ~~ref.current.getCurrentTime();
-		_updateLectureHistory(time);
-	};
+	const onUpdateLectureComplete = () => updateLectureComplete.mutate(+courseId);
 
 	const onEnded = () => {
-		sendCurrentPlayTime();
-		API.postLectureComplete(+(courseId as string));
+		onUpdateCurrentPlayTime();
+		onUpdateLectureComplete();
 	};
 
-	useEffect(() => {
-		if (!router.isReady) return;
-		_fetchLectureVideoUrl(lectureId as string);
-		_fetchLectureHistory(lectureId as string);
-	}, [router.isReady, lectureId]);
+	if (isLoading) return <div>Loading....</div>;
 
 	return (
 		<>
@@ -76,12 +75,12 @@ const LecturePlayer = () => {
 								'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
 							} // 플레이어 초기 포스터 사진
 							progressInterval={10000}
-							onPause={sendCurrentPlayTime}
-							onProgress={sendCurrentPlayTime}
+							onPause={onUpdateCurrentPlayTime}
+							onProgress={onUpdateCurrentPlayTime}
 							onEnded={onEnded}
 						/>
 					</div>
-					{router.isReady && <LecturePicker courseId={courseId as string} />}
+					{router.isReady && <LecturePicker courseId={courseId} />}
 				</LecturePlayerWrapper>
 			) : (
 				<Error statusCode={HTTP_STATUS_CODE.NOT_FOUND} />
