@@ -33,8 +33,7 @@ const Header = () => {
 	const dispatch = useDispatch();
 	const isLoggined = useSelector(selectIsLoggined);
 	const inputRef = useRef<HTMLInputElement | null>(null);
-	const { showModal, setShowLogInModal, setShowSignUpModal, renderModal } =
-		useModal();
+	const { showModal, onOpenLoginModal, onOpenSignUp, renderModal } = useModal();
 
 	const handleLogout = () => {
 		axiosInstance.get('/auth/logout').then(() => {
@@ -125,12 +124,8 @@ const Header = () => {
 					</div>
 				) : (
 					<div>
-						<LoginButton onClick={() => setShowLogInModal(true)}>
-							로그인
-						</LoginButton>
-						<SignupButton onClick={() => setShowSignUpModal(true)}>
-							회원가입
-						</SignupButton>
+						<LoginButton onClick={onOpenLoginModal}>로그인</LoginButton>
+						<SignupButton onClick={onOpenSignUp}>회원가입</SignupButton>
 					</div>
 				))}
 

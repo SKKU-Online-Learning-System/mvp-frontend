@@ -19,6 +19,10 @@ export const useModal = () => {
 		setShowSignUpModal(true);
 	};
 
+	const onOpenLoginModal = () => {
+		setShowLogInModal(true);
+	};
+
 	const showModal = showLogInModal || showSignUpModal;
 
 	const renderModal = useCallback(() => {
@@ -34,5 +38,5 @@ export const useModal = () => {
 		);
 	}, [showLogInModal, showSignUpModal]);
 
-	return { showModal, setShowLogInModal, setShowSignUpModal, renderModal };
+	return { showModal, onOpenLoginModal, onOpenSignUp, renderModal };
 };

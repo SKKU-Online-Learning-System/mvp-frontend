@@ -1,49 +1,33 @@
 import { useRouter } from 'next/router';
-import { ICourseDetail, IQna } from 'types/Course';
-import { ILectureList } from 'types/Lecture';
-import { useState, useEffect } from 'react';
 import { useModal } from './useModal';
-import courseAPI from 'apis/Courses/courseApi';
-import qnaAPI from 'apis/QnA/qnaApi';
+import {
+	useCourseDetailFetch,
+	useCourseDetailLectureFetch,
+	useCourseQnaFetch,
+} from 'query/hooks/CourseDetail/index';
 
-// QuestionTable은 전체 qna가 필요, 그 외엔 Top 3개만 필요
+type RouterQueryString = { courseId: string };
+
 export const useCourseDetailInfo = () => {
 	const router = useRouter();
-	const { courseId } = router.query;
-	const [courseDetail, setCourseDetail] = useState<ICourseDetail>();
-	const [qna, setQna] = useState<IQna[]>();
-	const [lectures, setLectures] = useState<ILectureList[]>();
-	const { showModal, setShowLogInModal, renderModal } = useModal();
+	const { courseId } = router.query as RouterQueryString;
+	const { data: course, isLoading: isCourseLoading } =
+		useCourseDetailFetch(courseId);
+	const { data: qna, isLoading: isQnaLoading } = useCourseQnaFetch(courseId);
+	const { data: lecture, isLoading: isLectureLoading } =
+		useCourseDetailLectureFetch(courseId);
 
-	useEffect(() => {
-		if (!router.isReady) return;
-
-		const fetchCourse = courseAPI.fetchCourseDetail(courseId as string);
-		const fetchLectures = courseAPI.fetchCourseDetailLectures(
-			courseId as string,
-		);
-		const fetchQna = qnaAPI.fetchCourseDetailQna(courseId as string);
-
-		Promise.all([fetchCourse, fetchLectures, fetchQna])
-			.then((res) => {
-				const [course, lecture, qna] = res.map((elem) => elem.data);
-
-				setCourseDetail(course);
-				setLectures(lecture);
-				setQna(
-					qna.sort((a: IQna, b: IQna) => (a.createdAt < b.createdAt ? 1 : -1)),
-				);
-			})
-			.catch((e) => console.warn(e));
-	}, [router.isReady, courseId]);
+	const { showModal, onOpenLoginModal, renderModal } = useModal();
+	const isLoading = isCourseLoading || isQnaLoading || isLectureLoading;
 
 	return {
 		courseId,
-		courseDetail,
+		course,
 		qna,
-		lectures,
+		lecture,
 		showModal,
-		setShowLogInModal,
+		onOpenLoginModal,
 		renderModal,
+		isLoading,
 	};
 };
