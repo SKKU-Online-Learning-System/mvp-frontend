@@ -1,5 +1,10 @@
 import axiosInstance from 'apis';
-import { ICourseInfo, ILatestLecture } from 'types/MyPage';
+import {
+	ICourseInfo,
+	ILatestLecture,
+	ILectureCount,
+	IFinishedLectureCount,
+} from 'types/MyPage';
 
 export default {
 	fetchRecentLectures: (): Promise<ILatestLecture[]> => {
@@ -8,26 +13,28 @@ export default {
 			.then((res) => res.data);
 	},
 
-	fetchCompletedLectures: () => {
-		return axiosInstance.get('completed', { willUseCustomErrorHandler: true });
+	fetchCompletedCourses: (): Promise<ICourseInfo[]> => {
+		return axiosInstance
+			.get('completed', { willUseCustomErrorHandler: true })
+			.then((res) => res.data);
 	},
 
-	fetchCurrentLearningCourses: () => {
-		return axiosInstance.get<ICourseInfo[]>('enrollment', {
-			willUseCustomErrorHandler: true,
-		});
+	fetchCurrentLearningCourses: (): Promise<ICourseInfo[]> => {
+		return axiosInstance
+			.get('enrollment', {
+				willUseCustomErrorHandler: true,
+			})
+			.then((res) => res.data);
 	},
 
-	fetchLectureCounts: () => {
-		return axiosInstance.get('/lectures/count');
+	fetchLectureCounts: (): Promise<ILectureCount[]> => {
+		return axiosInstance.get('/lectures/count').then((res) => res.data);
 	},
 
-	fetchFinishedLectureCounts: () => {
-		return axiosInstance.get('/history/lectures/finished');
-	},
-
-	fetchCompleted: () => {
-		return axiosInstance.get('/completed');
+	fetchFinishedLectureList: (): Promise<IFinishedLectureCount[]> => {
+		return axiosInstance
+			.get('/history/lectures/finished')
+			.then((res) => res.data);
 	},
 
 	fetchQuestions: () => {

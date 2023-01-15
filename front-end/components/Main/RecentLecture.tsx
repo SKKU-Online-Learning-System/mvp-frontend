@@ -12,36 +12,28 @@ export const RecentLecture = () => {
 	const router = useRouter();
 	const { data: recentLectures, isLoading } = useRecentLecturesFetch();
 
-	const getProgressPercentage = (curTime?: number, duration?: number) => {
-		curTime ??= 0;
-		duration ??= 0;
+	const isValidate = (curTime: number, duration: number) => {
+		return duration !== 0 && duration >= curTime;
+	};
 
-		// 현재 시간이 전체 길이보다 긴 경우 (오류 발생 케이스)
-		if (duration < curTime) {
-			curTime = duration;
-		}
+	const getProgressPercentage = (
+		curTime: number = 0,
+		duration: number = 0,
+	): number => {
+		if (!isValidate(curTime, duration)) return 0;
 
 		return ~~((curTime / duration) * 100);
 	};
 
-	const showTimeProgress = (curTime?: number, duration?: number) => {
-		curTime ??= 0;
-		duration ??= 0;
+	const showTimeProgress = (curTime: number = 0, duration: number = 0) => {
+		if (!isValidate(curTime, duration)) return '';
 
-		// 현재 시간이 전체 길이보다 긴 경우 (오류 발생 케이스)
-		if (duration < curTime) {
-			curTime = duration;
-		}
-
-		const _curTime = durationToHhMmSs(curTime);
-		const _duration = durationToHhMmSs(duration);
-		let progressPercentage = 0;
-
-		if (duration) progressPercentage = getProgressPercentage(curTime, duration);
-		return `${_curTime} / ${_duration} (${progressPercentage}%)`;
+		return `${durationToHhMmSs(curTime)} / ${durationToHhMmSs(
+			duration,
+		)} (${getProgressPercentage(curTime, duration)}%)`;
 	};
 
-	const handleClick = (courseId: number, lectureId: number) => () => {
+	const handleClick = (courseId?: number, lectureId?: number) => () => {
 		router.push({ pathname: `/lectures/${lectureId}`, query: { courseId } });
 	};
 
