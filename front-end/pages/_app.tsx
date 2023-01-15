@@ -41,7 +41,11 @@ function MyComponent({ children }: any) {
 					}
 				})
 				.catch((e: AxiosError) => {
-					if (e?.response?.status === HTTP_STATUS_CODE.FORBIDDEN) {
+					const statusCode = e?.response?.status;
+					if (
+						statusCode === HTTP_STATUS_CODE.FORBIDDEN ||
+						statusCode === HTTP_STATUS_CODE.UNAUTHORIZED
+					) {
 						dispatch(
 							commonActions.setIsLoggined(userLoginAuthState.NOT_LOGGINED),
 						);

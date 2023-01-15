@@ -22,8 +22,8 @@ const Completed = () => {
 	};
 
 	useEffect(() => {
-		API.fetchCompletedLectures()
-			.then((res: AxiosResponse) => {
+		API.fetchCompletedCourses()
+			.then((res: any) => {
 				setCompletedCourseList(res.data);
 			})
 			.catch((error: AxiosError) => {

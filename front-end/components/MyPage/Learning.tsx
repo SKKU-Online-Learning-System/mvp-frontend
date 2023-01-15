@@ -4,54 +4,32 @@ import BreadCrumb from '@components/common/BreadCrumb';
 import { MYPAGE_MENU } from 'constants/MyPage';
 import { MyPageTitle } from './MyPageTitle';
 import styled from 'styled-components';
-import API from 'apis/MyPage';
 import { useRouter } from 'next/router';
-import {
-	ICourseInfo,
-	ILectureCount,
-	IFinishedLectureCount,
-} from 'types/MyPage';
+import { useCurrentLeaningCourseListFetch } from 'query/hooks/MyPage';
 
 const menu = [MYPAGE_MENU.CURRENT_WATCHING_LECTURES];
 
+interface ILectureStatusCount {
+	finishedLectureCount: number;
+	maxLectureCount: number;
+}
+
 const Learning = () => {
-	// useState에 완료 강좌 객체에 맞게 인터페이스 생성해두기.
 	const router = useRouter();
-	const [currentLearningCourseList, setCurrentLearningCourseList] =
-		useState<ICourseInfo[]>();
+
 	const [learningLectureCount, setLearningLectureCount] =
-		useState<{ finishedLectureCount: number; maxLectureCount: number }[]>();
+		useState<ILectureStatusCount[]>();
+
+	const result = useCurrentLeaningCourseListFetch();
+	const [currentLearningCourseList, finishedLectureList, lectureCountList] = [
+		result[1].data,
+		result[2].data,
+		result[3].data,
+	];
+	const isLoading = result.some((elem) => elem.isLoading);
 
 	const handleClick = (courseId: number) => () => {
 		router.push(`/courses/${courseId}`);
-	};
-
-	const getLectureProgressStatus = (
-		currentLearningCourseLists: ICourseInfo[],
-		lectureCountLists: ILectureCount[],
-		finishedLectures: IFinishedLectureCount[],
-	) => {
-		const learningLectureIds = currentLearningCourseLists.map(
-			(elem) => elem.course.id,
-		);
-
-		const _learningLectureCount = learningLectureIds.map((elem) => {
-			const maxLectureCount = +(
-				lectureCountLists.find((value) => elem === value.courseId)
-					?.lectures_count ?? 0
-			);
-			const finishedLectureCount = +(
-				finishedLectures.find((value) => elem === value.courseId)
-					?.finishedLecture ?? 0
-			);
-
-			return {
-				finishedLectureCount,
-				maxLectureCount,
-			};
-		});
-
-		setLearningLectureCount(_learningLectureCount);
 	};
 
 	const showLectureProgressStatus = ({
@@ -70,28 +48,33 @@ const Learning = () => {
 	};
 
 	useEffect(() => {
-		const fetchCurrentLearningCourses = API.fetchCurrentLearningCourses();
-		const fetchLectureCounts = API.fetchLectureCounts();
-		const fetchFinishedLectureCounts = API.fetchFinishedLectureCounts();
-		const fetchCompleted = API.fetchCompleted();
+		if (isLoading) return;
 
-		Promise.all([
-			fetchCurrentLearningCourses,
-			fetchLectureCounts,
-			fetchFinishedLectureCounts,
-			fetchCompleted,
-		]).then((res) => {
-			const [currentLearningCourseLists, lectureCountLists, finishedLectures] =
-				res.map((elem) => elem.data);
+		const learningLectureCount = currentLearningCourseList?.reduce(
+			(prev: ILectureStatusCount[], cur) => {
+				const id = cur.course.id;
 
-			getLectureProgressStatus(
-				currentLearningCourseLists,
-				lectureCountLists,
-				finishedLectures,
-			);
-			setCurrentLearningCourseList(currentLearningCourseLists);
-		});
-	}, []);
+				const maxLectureCount = +(
+					lectureCountList?.find((value) => id === value.courseId)
+						?.lectures_count ?? 0
+				);
+				const finishedLectureCount = +(
+					finishedLectureList?.find((value) => id === value.courseId)
+						?.finishedLecture ?? 0
+				);
+
+				prev.push({ finishedLectureCount, maxLectureCount });
+				return prev;
+			},
+			[],
+		);
+
+		setLearningLectureCount(learningLectureCount);
+	}, [isLoading]);
+
+	if (isLoading) return <div>Loading...</div>;
+	if (!currentLearningCourseList?.length)
+		return <div>강좌가 존재하지 않습니다</div>;
 
 	return (
 		<MyPageLayout>
@@ -103,28 +86,24 @@ const Learning = () => {
 
 			<MyPageTitle title={MYPAGE_MENU.CURRENT_WATCHING_LECTURES} />
 			<GridWrapper>
-				{!!currentLearningCourseList?.length ? (
-					currentLearningCourseList.map((elem, index) => (
-						<div
-							className="wrapper"
-							onClick={handleClick(elem.course.id)}
-							key={index}
-						>
-							<img
-								className="image"
-								width={'100%'}
-								src={elem.course.thumbnail}
-							></img>
-							<div className="title">{elem.course.title}</div>
-							<div className="time">
-								{learningLectureCount &&
-									showLectureProgressStatus(learningLectureCount[index])}
-							</div>
+				{currentLearningCourseList.map((elem, index) => (
+					<div
+						className="wrapper"
+						onClick={handleClick(elem.course.id)}
+						key={index}
+					>
+						<img
+							className="image"
+							width={'100%'}
+							src={elem.course.thumbnail}
+						></img>
+						<div className="title">{elem.course.title}</div>
+						<div className="time">
+							{learningLectureCount &&
+								showLectureProgressStatus(learningLectureCount[index])}
 						</div>
-					))
-				) : (
-					<div>강좌가 존재하지 않습니다</div>
-				)}
+					</div>
+				))}
 			</GridWrapper>
 		</MyPageLayout>
 	);
