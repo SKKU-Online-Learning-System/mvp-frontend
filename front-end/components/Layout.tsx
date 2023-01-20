@@ -2,6 +2,8 @@ import React from 'react';
 
 import Header from './Header';
 import styled from 'styled-components';
+import Footer from './Footer';
+import ErrorManager from '../pages/ErrorManager';
 
 interface LayoutProps {
 	children?: React.ReactNode;
@@ -10,22 +12,23 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => (
 	<LayoutBox>
 		<Header />
-		{children}
+		<ErrorManager>
+			<ContentsBox>{children}</ContentsBox>
+		</ErrorManager>
+		<Footer />
 	</LayoutBox>
 );
 
 const LayoutBox = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	margin-left: auto;
-	margin-right: auto;
-	@media only screen and (min-width: 1440px) {
-		width: 1650px;
-	}
-	@media only screen and (max-width: 1440px) {
-		width: 100vw;
-	}
+	height: 100vh;
+	width: 100vw;
+	max-width: 100%; // 100vw scrollbar issue
+`;
+
+const ContentsBox = styled.div`
+	flex: 1;
 `;
 
 export default Layout;

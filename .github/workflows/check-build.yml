@@ -1,0 +1,35 @@
+name: check-build-actions
+
+on:
+  pull_request:
+    branches: [ development ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+          run:
+            working-directory: ./front-end
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate .env.local
+        run: |
+          echo "API_SERVER=$API_SERVER" >> .env.local
+          echo "API_SOURCE=$API_SOURCE" >> .env.local
+          echo "NEXT_PUBLIC_API_BASEURL=$NEXT_PUBLIC_API_BASEURL" >> .env.local
+          echo "NEXT_PUBLIC_API_SERVER=$NEXT_PUBLIC_API_SERVER" >> .env.local
+        env:
+          API_SERVER: ${{ secrets.API_SERVER }}
+          API_SOURCE: ${{ secrets.API_SOURCE }}
+          NEXT_PUBLIC_API_BASEURL: ${{ secrets.API_SERVER }}
+          NEXT_PUBLIC_API_SERVER: ${{ secrets.API_SOURCE }}
+
+        
+      - name: next install and Build
+        run: |
+          npm install
+          npm run build --if-present
+          
+    

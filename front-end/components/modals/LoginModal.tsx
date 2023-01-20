@@ -1,78 +1,88 @@
-import React, { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
-import styled from "styled-components";
-import LoginForm from "./LoginForm";
+import React, { useEffect, useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
+import styled from 'styled-components';
+import LogInForm from './LoginForm';
+import { Backdrop, StyledModalOverlay } from './SignUpModal';
 
-interface LoginModalProps {
-  show: boolean;
-  onClose: Function;
-  children?: React.ReactNode;
+interface LogInModalProps {
+	show: boolean;
+	onClose: Function;
+	children?: React.ReactNode;
+	onOpenSignUp: Function;
 }
 
-function LoginModal({ show, onClose, children }: LoginModalProps) {
-  const [isBrowser, setIsBrowser] = useState(false);
+function LoginModal({
+	show,
+	onClose,
+	onOpenSignUp,
+	children,
+}: LogInModalProps) {
+	const [isBrowser, setIsBrowser] = useState(false);
 
-  useEffect(() => {
-    setIsBrowser(true);
-  }, []);
+	useEffect(() => {
+		setIsBrowser(true);
+	}, []);
 
-  const handleCloseClick = (e: any) => {
-    e.preventDefault();
-    onClose();
-  };
+	const handleCloseClick = (e: any) => {
+		e.preventDefault();
+		onClose();
+	};
 
-  const modalContent = show ? (
-    <StyledModalOverlay>
-      <StyledModal>
-        <StyledModalHeader>
-          <a href="#" onClick={handleCloseClick}>
-            x
-          </a>
-        </StyledModalHeader>
+	const modalContent = show ? (
+		<StyledModalOverlay>
+			<StyledModal>
+				<StyledModalHeader>
+					<div onClick={handleCloseClick}>X</div>
+				</StyledModalHeader>
 
-        <StyledModalBody><LoginForm /></StyledModalBody>
-      </StyledModal>
-    </StyledModalOverlay>
-  ) : null;
+				<StyledModalBody>
+					<h1>로그인</h1>
+					<LogInForm onClose={onClose} onOpenSignUp={onOpenSignUp} />
+				</StyledModalBody>
+			</StyledModal>
+			<Backdrop onClick={handleCloseClick} />
+		</StyledModalOverlay>
+	) : null;
 
-  if (isBrowser) {
-    const portalDiv = document.getElementById("modal-root")!;
-    return ReactDOM.createPortal(
-      modalContent,
-      portalDiv
-    );
-  } else {
-    return null;
-  }
+	if (isBrowser) {
+		const portalDiv = document.getElementById('modal-root')!;
+		return ReactDOM.createPortal(modalContent, portalDiv);
+	} else {
+		return null;
+	}
 }
 
 export default LoginModal;
 
 const StyledModalBody = styled.div`
-  padding-top: 10px;
+	h1 {
+		margin: 0;
+	}
 `;
 
 const StyledModalHeader = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  font-size: 25px;
+	display: flex;
+	justify-content: flex-end;
+	font-size: 30px;
+	cursor: pointer;
 `;
 
 const StyledModal = styled.div`
-  background: white;
-  width: 500px;
-  height: 600px;
-  border-radius: 15px;
-  padding: 15px;
+	z-index: 2;
+	background: white;
+	width: 450px;
+	height: 450px;
+	border-radius: 15px;
+	padding: 40px 60px;
 `;
-const StyledModalOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-`;
+// const StyledModalOverlay = styled.div`
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	width: 100%;
+// 	height: 100%;
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// 	background-color: rgba(0, 0, 0, 0.5);
+// `;
