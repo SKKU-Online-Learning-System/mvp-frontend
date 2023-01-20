@@ -43,9 +43,11 @@ export default {
 			},
 		});
 	},
-	enrollCourse: (courseId: number) => {
-		return axiosInstance.post('enrollment', {
-			courseId,
-		});
+	enrollCourse: (courseId: number): Promise<any> => {
+		return axiosInstance
+			.post('enrollment', {
+				courseId,
+			})
+			.then((res) => res.data);
 	},
 };

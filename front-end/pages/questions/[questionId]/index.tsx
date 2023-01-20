@@ -1,7 +1,5 @@
-import AnswerDetail from '@components/Questions/AnswerDetail';
 import AnswerForm from '@components/Questions/AnswerForm';
 import AnswerSet from '@components/Questions/AnswerSet';
-import QuestionDetail from '@components/Questions/QuestionDetail';
 import QuestionDetailQ from '@components/Questions/QuestionDetailQ';
 import axiosInstance from 'apis';
 import { useRouter } from 'next/router';
@@ -29,14 +27,13 @@ const QuestionDetailPage = () => {
 			.then((res) => setQuestion(res.data))
 			.catch((e) => console.log(e));
 	}, [router.isReady]);
+
 	return (
 		<>
 			<QuestionDetailQ question={question} />
 
 			<AnswerSet answers={question?.answers} />
 			<AnswerForm questionId={questionId}></AnswerForm>
-			{/* <AnswerDetail answers={question?.answers[0]} />
-			<QuestionDetail questionId={questionId} /> */}
 		</>
 	);
 };

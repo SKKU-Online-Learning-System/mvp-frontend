@@ -36,12 +36,25 @@ export interface IFinishedLectureCount {
 }
 
 export interface IMyQuestion {
-	course: ICourse;
+	course: IMyQeustionCourse;
 	id: number;
 	authorId: number;
 	courseId: number;
 	lectureId: number | null;
 	title: string;
 	contents: string;
+	createdAt: string;
+}
+
+interface IMyQeustionCourse {
+	id: number;
+	title: string;
+	summary: string;
+	description: '';
+	instructorId: number;
+	category1Id: number;
+	category2Id: number;
+	thumbnail: string;
+	difficulty: 2;
 	createdAt: string;
 }

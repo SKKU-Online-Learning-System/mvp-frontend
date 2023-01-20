@@ -1,10 +1,10 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 import { ICourseDetail } from 'types/Course';
-import API from 'apis/Courses/courseApi';
 import { HTTP_STATUS_CODE } from 'constants/http';
 import { useRouter } from 'next/router';
+import { useCourseEnrollmentUpdate } from 'query/hooks/QnA/index';
 
 type EnrollmentType = {
 	isEnrolled: boolean;
@@ -25,6 +25,7 @@ const CourseHeader = ({
 }: ICourseHeader) => {
 	const router = useRouter();
 	const { has_enrolled: isEnrolled, is_logged_in: isLoggined } = courseDetail;
+	const mutation = useCourseEnrollmentUpdate();
 
 	const handleClick = (isLoggined: boolean) => async () => {
 		if (!isLoggined) {
@@ -32,14 +33,20 @@ const CourseHeader = ({
 			return;
 		}
 
-		try {
-			const res = await API.enrollCourse(+courseId);
-			if (res.data.statusCode === HTTP_STATUS_CODE.CREATED) {
-				router.reload();
-			}
-		} catch (e: unknown) {
-			console.warn(e);
-		}
+		mutation.mutate(+courseId, {
+			onSuccess: (data) => {
+				if (data.statusCode === HTTP_STATUS_CODE.CREATED) {
+					router.reload();
+				} else {
+					alert(
+						'알수없는 오류로 강의 신청에 실패 했습니다. 다시 시도해주세요.',
+					);
+				}
+			},
+			onError: () => {
+				alert('오류로 인해 신청에 실패했습니다. 다시 시도해주세요.');
+			},
+		});
 	};
 
 	return (
@@ -76,7 +83,6 @@ const Container = styled.div`
 	display: flex;
 	width: 100%;
 	height: 25rem;
-	//TO DO:  responsible
 	background-color: #063f80;
 	padding: 0 40px;
 `;
