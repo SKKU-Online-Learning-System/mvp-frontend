@@ -1,35 +1,23 @@
-import { useEffect, useState } from 'react';
 import MyPageLayout from '@components/MyPage/MyPageLayout';
 import BreadCrumb from '@components/common/BreadCrumb';
 import { MyPageTitle } from './MyPageTitle';
 import { MYPAGE_MENU } from 'constants/MyPage';
 import { GridWrapper } from './History';
-import { AxiosResponse, AxiosError } from 'axios';
-import { ICourseInfo } from 'types/MyPage';
 import { useRouter } from 'next/router';
-import API from 'apis/MyPage';
+import { useCompletedCourseFetch } from 'query/hooks/MyPage';
 
 const menu = [MYPAGE_MENU.COMPLETED_WATCHING_LECTURES];
 
 const Completed = () => {
-	// useState에 완료 강좌 객체에 맞게 인터페이스 생성해두기.
 	const router = useRouter();
-	const [completedCourseList, setCompletedCourseList] =
-		useState<ICourseInfo[]>();
+
+	const { data: completedCourseList, isLoading } = useCompletedCourseFetch();
 
 	const handleClick = (courseId: number) => () => {
 		router.push(`/courses/${courseId}`);
 	};
 
-	useEffect(() => {
-		API.fetchCompletedCourses()
-			.then((res: any) => {
-				setCompletedCourseList(res.data);
-			})
-			.catch((error: AxiosError) => {
-				console.warn(error);
-			});
-	}, []);
+	if (isLoading) return <div>isLoading...</div>;
 
 	return (
 		<MyPageLayout>

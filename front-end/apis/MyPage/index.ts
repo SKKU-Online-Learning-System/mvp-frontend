@@ -4,6 +4,7 @@ import {
 	ILatestLecture,
 	ILectureCount,
 	IFinishedLectureCount,
+	IMyQuestion,
 } from 'types/MyPage';
 
 export default {
@@ -37,7 +38,7 @@ export default {
 			.then((res) => res.data);
 	},
 
-	fetchQuestions: () => {
-		return axiosInstance.get('/questions');
+	fetchQuestions: (): Promise<IMyQuestion[]> => {
+		return axiosInstance.get('/questions').then((res) => res.data);
 	},
 };

@@ -1,10 +1,11 @@
-import { useQueries, UseQueryResult } from '@tanstack/react-query';
+import { useQueries, UseQueryResult, useQuery } from '@tanstack/react-query';
 import { QUERY_KEYS } from './queryKeys';
 import myPageAPI from 'apis/MyPage';
 import {
 	ICourseInfo,
 	IFinishedLectureCount,
 	ILectureCount,
+	IMyQuestion,
 } from 'types/MyPage';
 
 export const useCurrentLeaningCourseListFetch = (): [
@@ -33,4 +34,18 @@ export const useCurrentLeaningCourseListFetch = (): [
 			},
 		],
 	});
+};
+
+export const useCompletedCourseFetch = (): UseQueryResult<ICourseInfo[]> => {
+	return useQuery<ICourseInfo[]>(
+		[QUERY_KEYS.FETCH_COMPLETED_COURSES],
+		myPageAPI.fetchCompletedCourses,
+	);
+};
+
+export const useMyQnaFetch = (): UseQueryResult<IMyQuestion[]> => {
+	return useQuery<IMyQuestion[]>(
+		[QUERY_KEYS.FETCH_MY_QNA],
+		myPageAPI.fetchQuestions,
+	);
 };
