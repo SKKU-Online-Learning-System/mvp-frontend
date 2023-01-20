@@ -9,21 +9,14 @@ import QuestionForm from '@components/Questions/QuestionForm';
 로그인 && 강의 등록이 되어있어야 등록 가능.
 */
 const QuestionsByCoursePage = () => {
-	const {
-		courseId,
-		qna,
-		courseDetail,
-		showModal,
-		setShowLogInModal,
-		renderModal,
-	} = useCourseDetailInfo();
+	const { courseId, qna, course, showModal, onOpenLoginModal, renderModal } =
+		useCourseDetailInfo();
 	const [openForm, setOpenForm] = useState(false);
-	const { is_logged_in: isLoggined, has_enrolled: isEnrolled } =
-		courseDetail || {};
+	const { is_logged_in: isLoggined, has_enrolled: isEnrolled } = course || {};
 
 	const handleClickButton = () => {
 		if (!isLoggined) {
-			setShowLogInModal(true);
+			onOpenLoginModal();
 			return;
 		}
 
@@ -37,18 +30,18 @@ const QuestionsByCoursePage = () => {
 
 	return (
 		<>
-			{courseDetail && qna && (
+			{course && qna && (
 				<>
 					<CourseHeader
-						setShowLogInModal={setShowLogInModal}
-						courseDetail={courseDetail}
-						courseId={courseId as string}
+						onOpenLoginModal={onOpenLoginModal}
+						courseDetail={course}
+						courseId={courseId}
 					/>
 
 					<Wrapper>
 						<Button onClick={handleClickButton}>질문하기</Button>
-						{openForm && <QuestionForm courseId={courseId as string} />}
-						<QuestionTable qna={qna} courseName={courseDetail.title} />
+						{openForm && <QuestionForm courseId={courseId} />}
+						<QuestionTable qna={qna} courseName={course.title} />
 					</Wrapper>
 				</>
 			)}
