@@ -5,46 +5,9 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 150px;
-	margin-top: 50px;
-`;
-
-const Input = styled.input`
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	height: 40px;
-	margin: 0 0 8px;
-	padding: 5px 39px 5px 11px;
-	border: solid 1px #dadada;
-	border-radius: 5px;
-	background: #fff;
-	box-sizing: border-box;
-`;
-
-const Button = styled.button`
-	font-size: 18px;
-	font-weight: 700;
-	line-height: 49px;
-	display: block;
-	width: 100%;
-	height: 49px;
-	margin: 20px 0 0 0;
-	cursor: pointer;
-	text-align: center;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	background-color: rgba(148, 186, 101, 0.9);
-`;
-
 //이메일 값 받기
 //값없으면 disabled
-function LoginForm({ onClose, onOpenSignUp }: any) {
+const LoginForm = ({ onClose, onOpenSignUp }: any) => {
 	const router = useRouter();
 
 	const [sendingMail, setSendingMail] = useState(false);
@@ -120,9 +83,46 @@ function LoginForm({ onClose, onOpenSignUp }: any) {
 			)}
 		</>
 	);
-}
+};
 
 export default LoginForm;
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 150px;
+	margin-top: 50px;
+`;
+
+const Input = styled.input`
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 40px;
+	margin: 0 0 8px;
+	padding: 5px 39px 5px 11px;
+	border: solid 1px #dadada;
+	border-radius: 5px;
+	background: #fff;
+	box-sizing: border-box;
+`;
+
+const Button = styled.button`
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 49px;
+	display: block;
+	width: 100%;
+	height: 49px;
+	margin: 20px 0 0 0;
+	cursor: pointer;
+	text-align: center;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	background-color: rgba(148, 186, 101, 0.9);
+`;
 
 const LoadingBox = styled.div`
 	display: flex;

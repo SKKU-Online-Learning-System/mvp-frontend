@@ -12,6 +12,7 @@ export interface ICourseInfo {
 	difficulty: number;
 	createdAt: string;
 	instructor: string;
+	hashtags: string[];
 	category1: string;
 	category2: string;
 }

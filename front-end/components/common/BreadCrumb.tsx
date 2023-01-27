@@ -25,6 +25,9 @@ const BreadCrumb = ({
 		</Container>
 	);
 };
+
+export default React.memo(BreadCrumb);
+
 const Container = styled.div<Partial<IBreadCrumb>>`
 	position: relative;
 	display: flex;
@@ -49,4 +52,3 @@ const SubCategory = styled.span`
 		color: #454545;
 	}
 `;
-export default React.memo(BreadCrumb);

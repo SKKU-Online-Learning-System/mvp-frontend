@@ -20,6 +20,12 @@
 		},
 		"typeRoots": ["./node_modules/@types", "./@types"]
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/404.js"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"pages/404.js",
+		"components/Questions/AnswerSet.jsx"
+	],
 	"exclude": ["node_modules"]
 }

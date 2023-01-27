@@ -90,6 +90,8 @@ const TopSearchbar = () => {
 	);
 };
 
+export default React.memo(TopSearchbar);
+
 const Title = styled.div`
 	display: flex;
 	column-gap: 2px;
@@ -126,5 +128,3 @@ const Input = styled.input`
 		outline: 0;
 	}
 `;
-
-export default React.memo(TopSearchbar);

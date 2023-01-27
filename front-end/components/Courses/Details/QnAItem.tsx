@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 interface IQnAItem {
 	questionTitle: string;
 	answer: string;
@@ -22,6 +23,7 @@ const QnAItem = ({ questionTitle, answer }: IQnAItem) => {
 };
 
 export default QnAItem;
+
 const Question = styled.div`
 	font-family: 'Noto Sans KR';
 	padding: 15px 0 0 10px;

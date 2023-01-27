@@ -13,6 +13,7 @@ import { selectIsLoggined } from '../store/feature/common/commonSelector';
 interface LinkProps {
 	isThisPage: boolean;
 }
+
 const linkStyle = {
 	margin: '34px 1rem',
 	cursor: 'pointer',
@@ -86,6 +87,7 @@ const Header = () => {
 			)}
 		</ul>
 	);
+
 	return (
 		<Container>
 			<div style={{ display: 'flex', alignItems: 'center' }}>
@@ -135,6 +137,7 @@ const Header = () => {
 };
 
 export default Header;
+
 const Container = styled.div`
 	width: ${DEVICE_BREAKPOINT.DESKTOP};
 	display: flex;

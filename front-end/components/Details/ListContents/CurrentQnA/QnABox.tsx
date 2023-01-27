@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 interface QnAProps {
 	question: string;
 	answer: string;
@@ -22,6 +23,7 @@ const QnABox = ({ question, answer }: QnAProps) => {
 };
 
 export default QnABox;
+
 const Question = styled.div`
 	font-family: 'Noto Sans KR';
 	padding: 15px 0 0 10px;
@@ -30,12 +32,14 @@ const Question = styled.div`
 	font-size: 0.8rem;
 	margin-bottom: 35px;
 `;
+
 const Answer = styled.div`
 	font-family: 'Noto Sans KR';
 	padding: 15px 0 0 10px;
 	color: #393939;
 	font-weight: bold;
 `;
+
 const LineDeco = styled.div`
 	position: absolute;
 	top: 40px;

@@ -12,7 +12,7 @@ interface ILecturePicker {
 	courseId?: string;
 }
 
-export const LecturePicker = ({ courseId }: ILecturePicker) => {
+const LecturePicker = ({ courseId }: ILecturePicker) => {
 	const router = useRouter();
 
 	const [isCollapsed, setIsCollapsed] = useState<boolean[]>([]); // true면 펼쳐짐, false면 닫힘.
@@ -66,6 +66,8 @@ export const LecturePicker = ({ courseId }: ILecturePicker) => {
 		</LecturePickerWrapper>
 	);
 };
+
+export default LecturePicker;
 
 const LecturePickerWrapper = styled.div`
 	border: 1px solid #e7e9eb;

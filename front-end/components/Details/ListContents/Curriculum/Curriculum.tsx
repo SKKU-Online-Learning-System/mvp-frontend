@@ -1,12 +1,14 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axiosInstance from 'apis';
+
 const Curriculum = () => {
 	const courceId = 1;
+
 	const [lectureData, setLectureData] = useState([
 		{ title: '', lectures: [{ title: '', duration: 0, id: '', teacher: '' }] },
 	]);
+
 	useEffect(() => {
 		const getLecture = async () => {
 			const response = await axiosInstance(
@@ -17,7 +19,8 @@ const Curriculum = () => {
 		};
 		getLecture();
 	}, []);
-	function leadingZeros(n, digits) {
+
+	function leadingZeros(n: number | string, digits: number) {
 		var zero = '';
 		n = n.toString();
 
@@ -26,6 +29,7 @@ const Curriculum = () => {
 		}
 		return zero + n;
 	}
+
 	return (
 		<Container>
 			<header>

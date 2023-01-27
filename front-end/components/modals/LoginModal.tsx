@@ -11,12 +11,12 @@ interface LogInModalProps {
 	onOpenSignUp: Function;
 }
 
-function LoginModal({
+const LoginModal = ({
 	show,
 	onClose,
 	onOpenSignUp,
 	children,
-}: LogInModalProps) {
+}: LogInModalProps) => {
 	const [isBrowser, setIsBrowser] = useState(false);
 
 	useEffect(() => {
@@ -50,7 +50,7 @@ function LoginModal({
 	} else {
 		return null;
 	}
-}
+};
 
 export default LoginModal;
 

@@ -69,6 +69,8 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory) => {
 	);
 };
 
+export default CourseCategory;
+
 const Card = styled.div`
 	display: flex;
 	border: 1px solid #e4e4e4;
@@ -97,5 +99,3 @@ const SubItem = styled.div`
 		background: #cfcccc;
 	}
 `;
-
-export default CourseCategory;

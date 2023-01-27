@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axiosInstance from 'apis';
+
 const MainText = () => {
 	const [courseData, setCourseData] = useState({
 		title: '',
@@ -10,6 +11,7 @@ const MainText = () => {
 		category2: '',
 		hashtag: [],
 	});
+
 	useEffect(() => {
 		const courceId = 1;
 		const getCourse = async () => {

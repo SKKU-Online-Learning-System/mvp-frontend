@@ -36,6 +36,7 @@ const QuestionBox = ({ question, courseName }: any) => {
 };
 
 export default QuestionBox;
+
 export const Wrapper = styled.li`
 	margin: auto;
 	:hover {

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import QnAItem from './QnAItem';
 import { useRouter } from 'next/router';
 import { IQna } from 'types/Course';
+
 interface IQnA {
 	courseId: string;
 	qna: IQna[];

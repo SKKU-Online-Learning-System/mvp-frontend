@@ -7,43 +7,6 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 330px;
-	margin-top: 50px;
-`;
-
-const Input = styled.input`
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	height: 40px;
-	margin: 0 0 8px;
-	padding: 5px 39px 5px 11px;
-	border: solid 1px #dadada;
-	border-radius: 5px;
-	background: #fff;
-	box-sizing: border-box;
-`;
-
-const Button = styled.button`
-	font-size: 18px;
-	font-weight: 700;
-	line-height: 49px;
-	display: block;
-	width: 100%;
-	height: 49px;
-	margin: 20px 0 0 0;
-	cursor: pointer;
-	text-align: center;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	background-color: rgba(148, 186, 101, 0.9);
-`;
-
 enum CHECK_STATUS {
 	NONE = 0,
 	CHECKED = 1,
@@ -52,7 +15,7 @@ enum CHECK_STATUS {
 
 //이메일 닉네임 값 받기
 //값없으면 disabled
-function SignUpForm({ onClose }: any) {
+const SignUpForm = ({ onClose }: any) => {
 	const router = useRouter();
 
 	// 0: 중복, 1: 중복확인 통과, 2: 초기 상태
@@ -203,9 +166,46 @@ function SignUpForm({ onClose }: any) {
 			)}
 		</>
 	);
-}
+};
 
 export default SignUpForm;
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 330px;
+	margin-top: 50px;
+`;
+
+const Input = styled.input`
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 40px;
+	margin: 0 0 8px;
+	padding: 5px 39px 5px 11px;
+	border: solid 1px #dadada;
+	border-radius: 5px;
+	background: #fff;
+	box-sizing: border-box;
+`;
+
+const Button = styled.button`
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 49px;
+	display: block;
+	width: 100%;
+	height: 49px;
+	margin: 20px 0 0 0;
+	cursor: pointer;
+	text-align: center;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	background-color: rgba(148, 186, 101, 0.9);
+`;
 
 const InputBox = styled.div`
 	display: flex;

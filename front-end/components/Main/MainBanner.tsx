@@ -59,6 +59,8 @@ const MainBanner = () => {
 	);
 };
 
+export default MainBanner;
+
 const Container = styled.div`
 	min-width: 1440px;
 	display: flex;
@@ -67,5 +69,3 @@ const Container = styled.div`
 	background: linear-gradient(#1f5191, #022240);
 	padding: 50px 60px;
 `;
-
-export default MainBanner;

@@ -4,6 +4,7 @@ import LearningStatus from '@components/Details/ListContents/LearningStatus/Lear
 import LectureIntroduction from '@components/Details/ListContents/LectureIntroduction/LectureIntroduction';
 import MainBanner from '@components/Details/MainBanner/MainBanner';
 import styled from 'styled-components';
+
 const DetailsPage = () => (
 	<>
 		<MainBanner />

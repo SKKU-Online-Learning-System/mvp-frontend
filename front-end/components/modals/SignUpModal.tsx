@@ -9,7 +9,7 @@ interface SignUpModalProps {
 	children?: React.ReactNode;
 }
 
-function SignUpModal({ show, onClose, children }: SignUpModalProps) {
+const SignUpModal = ({ show, onClose, children }: SignUpModalProps) => {
 	const [isBrowser, setIsBrowser] = useState(false);
 	useEffect(() => {
 		setIsBrowser(true);
@@ -42,9 +42,10 @@ function SignUpModal({ show, onClose, children }: SignUpModalProps) {
 	} else {
 		return null;
 	}
-}
+};
 
 export default SignUpModal;
+
 export const Backdrop = styled.div`
 	background-color: rgba(0, 0, 0, 0.5);
 	position: fixed;

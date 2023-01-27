@@ -109,6 +109,8 @@ const Learning = () => {
 	);
 };
 
+export default Learning;
+
 export const GridWrapper = styled.div`
 	display: grid;
 	border: 1px solid grey;
@@ -142,5 +144,3 @@ export const GridWrapper = styled.div`
 		aspect-ratio: 16/9;
 	}
 `;
-
-export default Learning;

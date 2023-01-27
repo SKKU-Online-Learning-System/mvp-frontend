@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const AnswerDetail = ({ answers }: any) => {
 	const date = new Date(answers?.createdAt);
+
 	return (
 		<Container>
 			<Wrapper>

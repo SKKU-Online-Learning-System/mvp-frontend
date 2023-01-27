@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const QuestionDetailQ = ({ question }: any) => {
 	const date = new Date(question?.createdAt);
+
 	return (
 		<Container>
 			<Wrapper>

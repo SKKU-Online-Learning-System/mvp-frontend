@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+
 interface ICardProps {
 	title: string;
 	type: string[];
@@ -56,6 +57,9 @@ const DifficultyList = ({ title, type }: ICardProps) => {
 		</Wrapper>
 	);
 };
+
+export default DifficultyList;
+
 const Wrapper = styled.div`
 	justify-content: center;
 	align-items: center;
@@ -70,5 +74,3 @@ const TypeHeader = styled.div`
 	padding: 0.5rem;
 	align-items: center;
 `;
-
-export default DifficultyList;

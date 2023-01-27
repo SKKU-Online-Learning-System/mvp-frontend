@@ -42,6 +42,7 @@ const QuestionForm = ({ courseId }: IQuestionForm) => {
 };
 
 export default QuestionForm;
+
 const Wrapper = styled.div`
 	.form-style {
 		display: flex;

@@ -47,6 +47,8 @@ const MidBanner = () => {
 	);
 };
 
+export default MidBanner;
+
 const Wrapper = styled.div`
 	position: relative;
 	width: 100%;
@@ -55,5 +57,3 @@ const Wrapper = styled.div`
 	flex-direction: column;
 	margin: 120px 0;
 `;
-
-export default MidBanner;

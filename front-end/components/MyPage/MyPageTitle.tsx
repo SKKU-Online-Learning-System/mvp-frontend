@@ -2,7 +2,7 @@ interface IMyPageProps {
 	title?: string;
 }
 
-export const MyPageTitle = ({ title }: IMyPageProps) => {
+const MyPageTitle = ({ title }: IMyPageProps) => {
 	return (
 		<div
 			style={{
@@ -21,3 +21,5 @@ export const MyPageTitle = ({ title }: IMyPageProps) => {
 		</div>
 	);
 };
+
+export default MyPageTitle;

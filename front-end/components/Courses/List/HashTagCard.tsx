@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+
 interface CardProps {
 	name: string;
 	height?: number;
 	bgColor?: string;
 	onClick?: () => void;
 }
+
 const HashTagCard = ({
 	name,
 	height,
@@ -19,6 +21,9 @@ const HashTagCard = ({
 	);
 };
 
+//export default React.memo(TagCard);
+export default HashTagCard;
+
 const Card = styled.div<Pick<CardProps, 'height' | 'bgColor'>>`
 	display: inline-flex;
 	align-items: center;
@@ -31,5 +36,3 @@ const Card = styled.div<Pick<CardProps, 'height' | 'bgColor'>>`
 	font-size: 1rem;
 	cursor: pointer;
 `;
-//export default React.memo(TagCard);
-export default HashTagCard;

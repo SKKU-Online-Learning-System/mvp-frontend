@@ -11,6 +11,8 @@ const ErrorPage = ({ statusCode }: { statusCode: number }) => {
 	);
 };
 
+export default ErrorPage;
+
 const Wrapper = styled.div`
 	width: 100%;
 	height: 100%;
@@ -19,5 +21,3 @@ const Wrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 `;
-
-export default ErrorPage;

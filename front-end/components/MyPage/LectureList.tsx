@@ -1,5 +1,25 @@
 import styled from 'styled-components';
 
+const CommonHeader = ({ text, color }: any) => {
+	return (
+		<Wrapper>
+			<div style={{ position: 'relative' }}>
+				<div
+					style={{
+						width: '20px',
+						height: '2px',
+						background: color,
+						position: 'absolute',
+						top: -2,
+						left: '3px',
+					}}
+				/>
+				{text}
+			</div>
+		</Wrapper>
+	);
+};
+
 const LectureList = ({ headerText, headerColor, data }: any) => {
 	return (
 		<div>
@@ -32,25 +52,7 @@ const LectureList = ({ headerText, headerColor, data }: any) => {
 	);
 };
 
-const CommonHeader = ({ text, color }: any) => {
-	return (
-		<Wrapper>
-			<div style={{ position: 'relative' }}>
-				<div
-					style={{
-						width: '20px',
-						height: '2px',
-						background: color,
-						position: 'absolute',
-						top: -2,
-						left: '3px',
-					}}
-				/>
-				{text}
-			</div>
-		</Wrapper>
-	);
-};
+export default LectureList;
 
 const Wrapper = styled.div`
 	width: 75vw;
@@ -78,5 +80,3 @@ const HashTagChip = styled.div`
 	padding: 3px 6px;
 	margin: 8px 0;
 `;
-
-export default LectureList;

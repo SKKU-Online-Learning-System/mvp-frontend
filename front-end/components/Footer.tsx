@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { DEVICE_BREAKPOINT } from 'constants/breakpoint';
+
 const Footer = () => {
 	return (
 		<Container>

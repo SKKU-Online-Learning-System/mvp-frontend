@@ -19,6 +19,8 @@ const Layout = ({ children }: LayoutProps) => (
 	</LayoutBox>
 );
 
+export default Layout;
+
 const LayoutBox = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -30,5 +32,3 @@ const LayoutBox = styled.div`
 const ContentsBox = styled.div`
 	flex: 1;
 `;
-
-export default Layout;

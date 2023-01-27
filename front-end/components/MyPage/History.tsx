@@ -87,6 +87,8 @@ const History = () => {
 	);
 };
 
+export default History;
+
 export const GridWrapper = styled.div`
 	display: grid;
 	border: 1px solid grey;
@@ -136,5 +138,3 @@ const ProgressBar = styled.div<Props>`
 		background-color: red;
 	}
 `;
-
-export default History;

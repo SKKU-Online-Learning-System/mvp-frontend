@@ -18,6 +18,7 @@ interface ICourseHeader {
 interface UrlProps {
 	url: string;
 }
+
 const CourseHeader = ({
 	courseDetail,
 	courseId,

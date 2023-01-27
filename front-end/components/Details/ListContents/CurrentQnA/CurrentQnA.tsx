@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import QnABox from './QnABox';
 import axiosInstance from 'apis';
+
 const CurrentQnA = () => {
-	const courceId = 1;
 	const [qna, setQna] = useState([
 		{ id: 0, contents: '', answers: [{ contents: '' }] },
 	]);
+
+	const courceId = 1;
+
 	useEffect(() => {
 		const getQnA = async () => {
 			const response = await axiosInstance('/questions/course/' + courceId);
@@ -16,6 +19,7 @@ const CurrentQnA = () => {
 		};
 		getQnA();
 	}, []);
+
 	return (
 		<Container>
 			<header>
@@ -43,6 +47,7 @@ const CurrentQnA = () => {
 };
 
 export default CurrentQnA;
+
 const Container = styled.div`
 	width: 940px;
 	font-family: 'Noto Sans KR';

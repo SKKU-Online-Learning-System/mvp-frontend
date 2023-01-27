@@ -1,5 +1,6 @@
 import React, { Children } from 'react';
 import styled from 'styled-components';
+
 interface CardProps {
 	children?: React.ReactNode;
 	header?: string;
@@ -35,6 +36,7 @@ const CategoryCard = ({
 };
 
 export default CategoryCard;
+
 const CardWrapper = styled.div`
 	.header {
 		position: relative;

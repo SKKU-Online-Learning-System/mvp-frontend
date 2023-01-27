@@ -1,8 +1,4 @@
-import axiosInstance from 'apis';
-import API from 'apis/QnA/qnaApi';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { ICourseDetail, IQna } from 'types/Course';
+import { IQna } from 'types/Course';
 import QuestionBox from './QuestionBox';
 
 interface IQuestionTable {

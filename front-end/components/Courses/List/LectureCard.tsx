@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import HashTagCard from './HashTagCard';
-import styled from 'styled-components';
 import { SyntheticEvent } from 'react';
 import { defaultErrorImage } from 'constants/index';
 import { ICourseInfo } from 'types/Course/index';
@@ -41,7 +40,7 @@ const LectureCard = ({ course }: ILectureCard) => {
 					overflowY: 'auto',
 				}}
 			>
-				{course.hashtag.map((name: string, idx: number) => (
+				{course.hashtags.map((name: string, idx: number) => (
 					<HashTagCard name={name} key={idx} />
 				))}
 			</div>
