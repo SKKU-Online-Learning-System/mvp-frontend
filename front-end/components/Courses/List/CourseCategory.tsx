@@ -1,4 +1,4 @@
-import React, { useState, useEffect, SetStateAction, Dispatch } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useCourseCategoriesFetch } from 'query/hooks/CourseList/index';
@@ -11,7 +11,7 @@ interface ICourseCategory {
 	handleClickMenu: (menu: string[]) => void;
 }
 
-const CourseCategory = ({ handleClickMenu }: ICourseCategory) => {
+const CourseCategory = ({ handleClickMenu }: ICourseCategory): ReactElement => {
 	const router = useRouter();
 	const { data: courseCategories, isLoading } = useCourseCategoriesFetch();
 	const [isClickedCategory, setIsClickedCategory] = useState<boolean[]>([]);
@@ -69,6 +69,8 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory) => {
 	);
 };
 
+export default CourseCategory;
+
 const Card = styled.div`
 	display: flex;
 	border: 1px solid #e4e4e4;
@@ -78,13 +80,11 @@ const Card = styled.div`
 	font-weight: 600;
 	color: #595959;
 `;
-
 const SubItemBody = styled.div<ToggleType>`
 	max-height: ${(props) => (props.isClicked ? '100em' : '0')};
 	overflow-y: hidden;
 	transition: max-height 0.3s ease;
 `;
-
 const SubItem = styled.div`
 	border: 0.1px #e4e4e4;
 	padding: 0.8rem 0.8rem 0.8rem 1.5rem;
@@ -97,5 +97,3 @@ const SubItem = styled.div`
 		background: #cfcccc;
 	}
 `;
-
-export default CourseCategory;

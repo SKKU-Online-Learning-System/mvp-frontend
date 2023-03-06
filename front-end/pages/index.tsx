@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+
 import MainBanner from '@components/Main/MainBanner';
 import CourseList from '@components/Main/CourseList';
 import MidBanner from '@components/Main/MidBanner';
 import { RecentLecture } from '@components/Main/RecentLecture';
 import { selectIsLoggined } from 'store/feature/common/commonSelector';
-import { useSelector } from 'react-redux';
 import { userLoginAuthState } from 'constants/commonState';
-/*
-TODO. <img> 컴포넌트 next에서 지원하는 Image로 변경 (장점 공부 후에 적용)
-*/
-const Index = () => {
+
+const Index = (): ReactElement => {
 	const isLoggined = useSelector(selectIsLoggined);
 
 	return (

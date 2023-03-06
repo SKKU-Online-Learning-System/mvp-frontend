@@ -1,10 +1,11 @@
+import React, { ReactElement, useRef } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import styled from 'styled-components';
-import { useRef } from 'react';
 import { useRouter } from 'next/router';
+import Error from 'next/error';
+
 import { LecturePicker } from '@components/Lectures/LecturePicker';
 import { HTTP_STATUS_CODE } from 'constants/http';
-import Error from 'next/error';
 import {
 	useLectureVideoUrlFetch,
 	useLectureHistoryFetch,
@@ -17,7 +18,7 @@ type RouterQueryString = {
 	courseId: string;
 };
 
-const LecturePlayer = () => {
+const LecturePlayer = (): ReactElement => {
 	const router = useRouter();
 	const { lectureId, courseId } = router.query as RouterQueryString;
 	const ref = useRef<ReactPlayer | null>(null);
@@ -70,7 +71,7 @@ const LecturePlayer = () => {
 							muted={true} // 자동 재생 on
 							controls={true} // 플레이어 컨트롤 노출 여부
 							light={false} // 플레이어 모드
-							pip={true} // pip 모드 설정 여부
+							pip={true} // pip 모드(작은 화면 모달) 설정 여부
 							poster={
 								'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
 							} // 플레이어 초기 포스터 사진
@@ -89,6 +90,8 @@ const LecturePlayer = () => {
 	);
 };
 
+export default LecturePlayer;
+
 const LecturePlayerWrapper = styled.div`
 	font-family: 'Noto Sans KR';
 	display: flex;
@@ -97,5 +100,3 @@ const LecturePlayerWrapper = styled.div`
 	align-items: center;
 	height: 100%;
 `;
-
-export default LecturePlayer;

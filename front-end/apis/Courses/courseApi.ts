@@ -1,53 +1,57 @@
 import axiosInstance from 'apis';
+import { AxiosResponse } from 'axios';
+
 import { ICourseDetail, ICourseCategory, ISearchedCourse } from 'types/Course';
 import { ILectureList } from 'types/Lecture';
 
-export default {
-	fetchCourseDetail: (courseId?: string): Promise<ICourseDetail> => {
-		return axiosInstance.get(`/courses/${courseId}`).then((res) => res.data);
+const functions = {
+	fetchCourseDetail: async (courseId?: string): Promise<ICourseDetail> => {
+		const res = await axiosInstance.get(`/courses/${courseId}`);
+		return res.data;
 	},
-	fetchCourseDetailLectures: (courseId?: string): Promise<ILectureList[]> => {
-		return axiosInstance
-			.get(`/courses/${courseId}/lectures`)
-			.then((res) => res.data);
+	fetchCourseDetailLectures: async (
+		courseId?: string,
+	): Promise<ILectureList[]> => {
+		const res = await axiosInstance.get(`/courses/${courseId}/lectures`);
+		return res.data;
 	},
-	fetchAllCourseCategories: (): Promise<ICourseCategory[]> => {
-		return axiosInstance.get(`courses/categories`).then((res) => res.data);
+	fetchAllCourseCategories: async (): Promise<ICourseCategory[]> => {
+		const res = await axiosInstance.get(`courses/categories`);
+		return res.data;
 	},
-	fetchCourseList: (category?: string): Promise<ISearchedCourse> => {
-		return axiosInstance
-			.get('courses/search', {
-				params: {
-					category2Id: category,
-				},
-			})
-			.then((res) => res.data);
+	fetchCourseList: async (category?: string): Promise<ISearchedCourse> => {
+		const res = await axiosInstance.get('courses/search', {
+			params: {
+				category2Id: category,
+			},
+		});
+		return res.data;
 	},
-	fetchSearchedCourseList: (
+	fetchSearchedCourseList: async (
 		keyword?: string,
 		difficulty?: string,
 	): Promise<ISearchedCourse> => {
-		return axiosInstance
-			.get('courses/search', {
-				params: {
-					keyword,
-					difficulty,
-				},
-			})
-			.then((res) => res.data);
+		const res = await axiosInstance.get('courses/search', {
+			params: {
+				keyword,
+				difficulty,
+			},
+		});
+		return res.data;
 	},
-	fetchAllCoursesPerPage: (pageNum: number) => {
+	fetchAllCoursesPerPage: (pageNum: number): Promise<AxiosResponse> => {
 		return axiosInstance.get('courses/search', {
 			params: {
 				page: pageNum,
 			},
 		});
 	},
-	enrollCourse: (courseId: number): Promise<any> => {
-		return axiosInstance
-			.post('enrollment', {
-				courseId,
-			})
-			.then((res) => res.data);
+	enrollCourse: async (courseId: number): Promise<AxiosResponse> => {
+		const res = await axiosInstance.post('enrollment', {
+			courseId,
+		});
+		return res.data;
 	},
 };
+
+export default functions;

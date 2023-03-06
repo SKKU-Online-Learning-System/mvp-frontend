@@ -1,11 +1,16 @@
-import axiosInstance from '..';
-import { ICourse } from 'types/Main';
+import { AxiosResponse } from 'axios';
 
-export default {
-	fetchBannerImgUrls: () => {
+import { ICourse } from 'types/Main';
+import axiosInstance from '..';
+
+const functions = {
+	fetchBannerImgUrls: (): Promise<AxiosResponse> => {
 		return axiosInstance.get('/banners');
 	},
-	fetchPopularCourses: (): Promise<ICourse[]> => {
-		return axiosInstance.get('/courses/popular').then((res) => res.data);
+	fetchPopularCourses: async (): Promise<ICourse[]> => {
+		const res = await axiosInstance.get('/courses/popular');
+		return res.data;
 	},
 };
+
+export default functions;

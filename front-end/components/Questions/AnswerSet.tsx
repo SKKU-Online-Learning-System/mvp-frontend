@@ -1,16 +1,19 @@
-import { Container } from 'pages/questions/[questionId]';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
+import { Container } from 'pages/questions/[questionId]';
 import AnswerDetail from './AnswerDetail';
 
 const AnswerSet = ({ answers }: any) => {
 	const [orderedAnswer, setorderedAnswer] = useState<any[]>([]);
+
 	useEffect(() => {
 		const orderedDate = answers?.sort(
 			(a, b) => new Date(a.createdAt) - new Date(b.createdAt),
 		);
 		setorderedAnswer(orderedDate);
 	}, [answers]);
+
 	return (
 		<Wrapper>
 			<Container>
@@ -26,6 +29,7 @@ const AnswerSet = ({ answers }: any) => {
 };
 
 export default AnswerSet;
+
 const Wrapper = styled.div`
 	border: solid;
 	margin: 2rem auto;

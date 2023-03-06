@@ -1,10 +1,12 @@
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
 
-const LoginMailSuccess = () => {
+const LoginMailSuccess = (): ReactElement => {
 	return (
 		<Container>
 			<MessageBox>
-				<img src="/images/mail.png" width={180} height={165} />
+				<Image src="/images/mail.png" width={180} height={165} alt="mail" />
 				<h1>로그인 메일이 발송되었습니다!</h1>
 				<div>이메일의 링크를 클릭하여 로그인 할 수 있습니다.</div>
 			</MessageBox>

@@ -1,8 +1,9 @@
-import { Container } from 'pages/questions/[questionId]';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
-const QuestionDetailQ = ({ question }: any) => {
+import { Container } from 'pages/questions/[questionId]';
+
+const QuestionDetailQ = ({ question }: any): ReactElement => {
 	const date = new Date(question?.createdAt);
 	return (
 		<Container>

@@ -1,5 +1,7 @@
-import React, { Children } from 'react';
+import React, { ReactElement } from 'react';
+import Image from 'next/image';
 import styled from 'styled-components';
+
 interface CardProps {
 	children?: React.ReactNode;
 	header?: string;
@@ -8,23 +10,26 @@ interface CardProps {
 	width?: string;
 	margin?: string;
 }
+
 const CategoryCard = ({
 	header,
 	children,
 	smallHeader,
 	width,
 	margin,
-}: CardProps) => {
+}: CardProps): ReactElement => {
 	return (
 		<CardWrapper style={{ width: `${width}`, margin: `${margin}` }}>
 			<div className="header">
 				<div className="small-header"> {smallHeader}</div>
-				<img
-					style={{ right: 0, top: 0, position: 'absolute', cursor: 'pointer' }}
-					src={'images/plus_icon.png'}
-					width="24px"
-					onClick={() => alert('plus')}
-				></img>
+				<ImageContainer>
+					<Image
+						src={'images/plus_icon.png'}
+						width="24px"
+						onClick={() => alert('plus')}
+						alt="plus icon"
+					/>
+				</ImageContainer>
 				{header || ''}
 			</div>
 			<CardContentWrapper>
@@ -59,11 +64,16 @@ const CardContentWrapper = styled.div`
 	border-color: #e2e2e2;
 	border-width: thin;
 `;
-
 const CardChildren = styled.div`
 	margin: 0 20px;
 	padding: 8px 0;
 	&:not(:last-child) {
 		border-bottom: 1px solid gray;
 	}
+`;
+const ImageContainer = styled.div`
+	position: absolute;
+	right: 0;
+	top: 0;
+	pointer: cursor;
 `;

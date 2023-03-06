@@ -1,7 +1,7 @@
+import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
-import withRouteGuard from '@components/withRouteGuard';
-import { MYPAGE_PATH } from 'constants/MyPage';
 
+import { MYPAGE_PATH } from 'constants/MyPage';
 import Bookmark from '@components/MyPage/Bookmark';
 import Completed from '@components/MyPage/Completed';
 import History from '@components/MyPage/History';
@@ -9,7 +9,7 @@ import Learning from '@components/MyPage/Learning';
 import MyQnA from '@components/MyPage/MyQna';
 import Wishlist from '@components/MyPage/wishlist';
 
-const MyPage = () => {
+const MyPage = (): ReactElement | null => {
 	const router = useRouter();
 	const { category } = router.query as { category: string };
 

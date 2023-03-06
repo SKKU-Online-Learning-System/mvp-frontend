@@ -1,11 +1,16 @@
-import { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { selectErrorInfo } from 'store/feature/common/commonSelector';
 import { commonActions } from 'store/feature/common/commonSlice';
 import ErrorPage from './ErrorPage';
 
-const ErrorManager = ({ children }: any) => {
+const ErrorManager = ({
+	children,
+}: {
+	children?: ReactElement;
+}): ReactElement => {
 	const errorInfo = useSelector(selectErrorInfo);
 	const router = useRouter();
 	const dispatch = useDispatch();
@@ -22,7 +27,7 @@ const ErrorManager = ({ children }: any) => {
 		return () => {
 			router.events.off('routeChangeStart', handleRouteChange);
 		};
-	}, [errorInfo]);
+	}, [dispatch, errorInfo, router.events]);
 
 	return <>{!!errorInfo ? <ErrorPage statusCode={errorInfo} /> : children}</>;
 };

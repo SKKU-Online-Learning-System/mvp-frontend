@@ -7,38 +7,37 @@ import {
 	IMyQuestion,
 } from 'types/MyPage';
 
-export default {
-	fetchRecentLectures: (): Promise<ILatestLecture[]> => {
-		return axiosInstance
-			.get('history', { willUseCustomErrorHandler: true })
-			.then((res) => res.data);
+const functions = {
+	fetchRecentLectures: async (): Promise<ILatestLecture[]> => {
+		const res = await axiosInstance.get('history', {
+			willUseCustomErrorHandler: true,
+		});
+		return res.data;
 	},
-
-	fetchCompletedCourses: (): Promise<ICourseInfo[]> => {
-		return axiosInstance
-			.get('completed', { willUseCustomErrorHandler: true })
-			.then((res) => res.data);
+	fetchCompletedCourses: async (): Promise<ICourseInfo[]> => {
+		const res = await axiosInstance.get('completed', {
+			willUseCustomErrorHandler: true,
+		});
+		return res.data;
 	},
-
-	fetchCurrentLearningCourses: (): Promise<ICourseInfo[]> => {
-		return axiosInstance
-			.get('enrollment', {
-				willUseCustomErrorHandler: true,
-			})
-			.then((res) => res.data);
+	fetchCurrentLearningCourses: async (): Promise<ICourseInfo[]> => {
+		const res = await axiosInstance.get('enrollment', {
+			willUseCustomErrorHandler: true,
+		});
+		return res.data;
 	},
-
-	fetchLectureCounts: (): Promise<ILectureCount[]> => {
-		return axiosInstance.get('/lectures/count').then((res) => res.data);
+	fetchLectureCounts: async (): Promise<ILectureCount[]> => {
+		const res = await axiosInstance.get('/lectures/count');
+		return res.data;
 	},
-
-	fetchFinishedLectureList: (): Promise<IFinishedLectureCount[]> => {
-		return axiosInstance
-			.get('/history/lectures/finished')
-			.then((res) => res.data);
+	fetchFinishedLectureList: async (): Promise<IFinishedLectureCount[]> => {
+		const res = await axiosInstance.get('/history/lectures/finished');
+		return res.data;
 	},
-
-	fetchQuestions: (): Promise<IMyQuestion[]> => {
-		return axiosInstance.get('/questions').then((res) => res.data);
+	fetchQuestions: async (): Promise<IMyQuestion[]> => {
+		const res = await axiosInstance.get('/questions');
+		return res.data;
 	},
 };
+
+export default functions;

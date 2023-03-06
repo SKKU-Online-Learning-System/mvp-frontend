@@ -1,8 +1,9 @@
+import React, { ReactElement } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import styled from 'styled-components';
 
 // TODO : 접근 못하게 막아야함. 보여줄 영상이 없음.
-const LecturePlayer = () => {
+const LecturePlayer = (): ReactElement => {
 	return (
 		<LecturePlayerWrapper>
 			<div className="player-wrapper">

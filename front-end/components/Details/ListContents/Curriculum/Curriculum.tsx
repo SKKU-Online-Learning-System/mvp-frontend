@@ -1,12 +1,14 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import styled from 'styled-components';
+
 import axiosInstance from 'apis';
-const Curriculum = () => {
+
+const Curriculum = (): ReactElement => {
 	const courceId = 1;
 	const [lectureData, setLectureData] = useState([
 		{ title: '', lectures: [{ title: '', duration: 0, id: '', teacher: '' }] },
 	]);
+
 	useEffect(() => {
 		const getLecture = async () => {
 			const response = await axiosInstance(
@@ -17,15 +19,17 @@ const Curriculum = () => {
 		};
 		getLecture();
 	}, []);
-	function leadingZeros(n, digits) {
-		var zero = '';
+
+	function leadingZeros(n: number | string, digits: number) {
+		let zero = '';
 		n = n.toString();
 
 		if (n.length < digits) {
-			for (var i = 0; i < digits - n.length; i++) zero += '0';
+			for (let i = 0; i < digits - n.length; i++) zero += '0';
 		}
 		return zero + n;
 	}
+
 	return (
 		<Container>
 			<header>

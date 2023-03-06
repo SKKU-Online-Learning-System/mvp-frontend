@@ -1,7 +1,9 @@
-import { HTTP_ERROR_MESSAGE } from 'constants/http';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
-const ErrorPage = ({ statusCode }: { statusCode: number }) => {
+import { HTTP_ERROR_MESSAGE } from 'constants/http';
+
+const ErrorPage = ({ statusCode }: { statusCode: number }): ReactElement => {
 	return (
 		<Wrapper>
 			<div style={{ fontSize: '100px', fontWeight: 'bold' }}>{statusCode}</div>

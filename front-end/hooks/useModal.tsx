@@ -1,5 +1,5 @@
 //header의 로그인, 회원가입을 사용할 수 있는 커스텀 훅
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import LoginModal from '@components/modals/LoginModal';
 import SignUpModal from '@components/modals/SignUpModal';
 

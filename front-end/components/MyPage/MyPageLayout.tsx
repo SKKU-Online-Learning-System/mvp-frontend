@@ -1,11 +1,13 @@
-import SideMenu from '@components/MyPage/SideMenu';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
-interface Props {
-	children: React.ReactNode;
-}
+import SideMenu from '@components/MyPage/SideMenu';
 
-const MyPageLayout = ({ children }: Props) => {
+const MyPageLayout = ({
+	children,
+}: {
+	children: ReactElement;
+}): ReactElement => {
 	return (
 		<Container>
 			<SideMenuBox>
@@ -24,7 +26,6 @@ const Container = styled.div`
 	margin: 0 auto;
 	font-family: 'Noto Sans KR';
 `;
-
 const SideMenuBox = styled.div`
 	padding: 10px 20px;
 	width: 20%;
@@ -33,7 +34,6 @@ const SideMenuBox = styled.div`
 		padding: 0;
 	}
 `;
-
 const ContentsBox = styled.div`
 	padding: 10px 20px;
 	width: 80%;

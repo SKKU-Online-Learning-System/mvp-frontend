@@ -1,14 +1,14 @@
+import React, { ReactElement, useState } from 'react';
+import styled from 'styled-components';
+
 import CourseHeader from '@components/Courses/Details/CourseHeader';
 import QuestionTable from '@components/Questions/QuestionTable';
-import { useState } from 'react';
-import styled from 'styled-components';
-import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
-
 import QuestionForm from '@components/Questions/QuestionForm';
+import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
 /*
 로그인 && 강의 등록이 되어있어야 등록 가능.
 */
-const QuestionsByCoursePage = () => {
+const QuestionsByCoursePage = (): ReactElement => {
 	const { courseId, qna, course, showModal, onOpenLoginModal, renderModal } =
 		useCourseDetailInfo();
 	const [openForm, setOpenForm] = useState(false);

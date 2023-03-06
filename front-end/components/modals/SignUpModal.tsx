@@ -1,22 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import SignUpForm from './SignUpForm';
 
 interface SignUpModalProps {
 	show: boolean;
-	onClose: Function;
-	children?: React.ReactNode;
+	onClose: () => void;
 }
 
-function SignUpModal({ show, onClose, children }: SignUpModalProps) {
+const SignUpModal = ({
+	show,
+	onClose,
+}: SignUpModalProps): ReactElement | null => {
 	const [isBrowser, setIsBrowser] = useState(false);
 	useEffect(() => {
 		setIsBrowser(true);
 	}, []);
 
-	const handleCloseClick = (e: any) => {
-		e.preventDefault();
+	const handleCloseClick = () => {
 		onClose();
 	};
 
@@ -37,14 +38,15 @@ function SignUpModal({ show, onClose, children }: SignUpModalProps) {
 	) : null;
 
 	if (isBrowser) {
-		const portalDiv = document.getElementById('modal-root')!;
+		const portalDiv = document.getElementById('modal-root') as HTMLElement;
 		return ReactDOM.createPortal(modalContent, portalDiv);
 	} else {
 		return null;
 	}
-}
+};
 
 export default SignUpModal;
+
 export const Backdrop = styled.div`
 	background-color: rgba(0, 0, 0, 0.5);
 	position: fixed;
@@ -58,14 +60,12 @@ const StyledModalBody = styled.div`
 		margin: 0;
 	}
 `;
-
 const StyledModalHeader = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	font-size: 30px;
 	cursor: pointer;
 `;
-
 const StyledModal = styled.div`
 	z-index: 2;
 	background: white;

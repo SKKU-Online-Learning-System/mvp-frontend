@@ -1,8 +1,7 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-
-const dodbogiLocation = 'images/dodbogi.png';
+import Image from 'next/image';
 
 const TopSearchbar = () => {
 	const router = useRouter();
@@ -40,12 +39,14 @@ const TopSearchbar = () => {
 	return (
 		<Wrapper>
 			<Title>
-				<img
-					src={dodbogiLocation}
-					width="40px"
-					height="40px"
-					style={{ paddingTop: '5px' }}
-				/>
+				<ImageContainer1>
+					<Image
+						src="/images/dodbogi.png"
+						width="40px"
+						height="40px"
+						alt="돋보기"
+					/>
+				</ImageContainer1>
 				<div
 					style={{
 						display: 'flex',
@@ -78,11 +79,14 @@ const TopSearchbar = () => {
 						style={{ padding: '16px 4px', cursor: 'pointer' }}
 						onClick={handleSearchClick}
 					>
-						<img
-							src="/images/search_btn.png"
-							style={{ opacity: '0.6' }}
-							width="32px"
-						/>
+						<ImageContainer2>
+							<Image
+								src="/images/search_btn.png"
+								width="40px"
+								height="40px"
+								alt="search button image"
+							/>
+						</ImageContainer2>
 					</span>
 				</Searchbar>
 			</SearchBarWrapper>
@@ -90,13 +94,14 @@ const TopSearchbar = () => {
 	);
 };
 
+export default React.memo(TopSearchbar);
+
 const Title = styled.div`
 	display: flex;
 	column-gap: 2px;
 	align-items: center;
 	padding-bottom: 1rem;
 `;
-
 const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -104,7 +109,6 @@ const Wrapper = styled.div`
 	border-top: 1px solid #dedede;
 	padding: 25px 0 30px 0;
 `;
-
 const SearchBarWrapper = styled.div`
 	display: flex;
 	column-gap: 20px;
@@ -116,7 +120,6 @@ const Searchbar = styled.form`
 	display: flex;
 	align-items: center;
 `;
-
 const Input = styled.input`
 	width: 100%;
 	height: 100%;
@@ -126,5 +129,9 @@ const Input = styled.input`
 		outline: 0;
 	}
 `;
-
-export default React.memo(TopSearchbar);
+const ImageContainer1 = styled.div`
+	padding-top: 5px;
+`;
+const ImageContainer2 = styled.div`
+	opacity: 0.6;
+`;

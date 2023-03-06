@@ -2,16 +2,16 @@ import axiosInstance from '..';
 import { ILatestLecture } from 'types/MyPage';
 import { ILectureVideo } from 'types/Lecture';
 
-export default {
-	fetchLectureVideoUrl: (lectureId: string): Promise<ILectureVideo[]> => {
-		return axiosInstance.get(`lectures/${lectureId}`).then((res) => res.data);
+const functions = {
+	fetchLectureVideoUrl: async (lectureId: string): Promise<ILectureVideo[]> => {
+		const res = await axiosInstance.get(`lectures/${lectureId}`);
+		return res.data;
 	},
-	fetchLectureHistory: (lectureId: string): Promise<ILatestLecture> => {
-		return axiosInstance
-			.get(`/history/lectures/${lectureId}`, {
-				willUseCustomErrorHandler: true,
-			})
-			.then((res) => res.data);
+	fetchLectureHistory: async (lectureId: string): Promise<ILatestLecture> => {
+		const res = await axiosInstance.get(`/history/lectures/${lectureId}`, {
+			willUseCustomErrorHandler: true,
+		});
+		return res.data;
 	},
 	updateLectureHistory: ({
 		lectureId,
@@ -26,3 +26,5 @@ export default {
 		return axiosInstance.post('/completed', { courseId });
 	},
 };
+
+export default functions;

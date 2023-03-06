@@ -1,11 +1,13 @@
-import API from 'apis/QnA/qnaApi';
+import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
-import { Container } from 'pages/questions/[questionId]';
 import axios, { AxiosError } from 'axios';
+
+import { Container } from 'pages/questions/[questionId]';
 import { HTTP_STATUS_CODE } from 'constants/http';
 import { useModal } from 'hooks/useModal';
+import API from 'apis/QnA/qnaApi';
 
-const AnswerForm = ({ questionId }: any) => {
+const AnswerForm = ({ questionId }: any): ReactElement => {
 	const router = useRouter();
 	const { showModal, onOpenLoginModal, renderModal } = useModal();
 

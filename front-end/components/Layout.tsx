@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import styled from 'styled-components';
 
 import Header from './Header';
-import styled from 'styled-components';
 import Footer from './Footer';
 import ErrorManager from '../pages/ErrorManager';
 
-interface LayoutProps {
-	children?: React.ReactNode;
-}
-
-const Layout = ({ children }: LayoutProps) => (
+const Layout = ({ children }: { children?: ReactElement }): ReactElement => (
 	<LayoutBox>
 		<Header />
 		<ErrorManager>
@@ -26,7 +22,6 @@ const LayoutBox = styled.div`
 	width: 100vw;
 	max-width: 100%; // 100vw scrollbar issue
 `;
-
 const ContentsBox = styled.div`
 	flex: 1;
 `;

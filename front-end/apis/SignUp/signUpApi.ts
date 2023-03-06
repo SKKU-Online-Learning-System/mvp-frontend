@@ -1,17 +1,31 @@
-import axiosInstance from "apis"
+import { AxiosResponse } from 'axios';
 
-export const sendSignUpRequest = async (email: string, nickname: string) => {
-    return axiosInstance.post('/auth/signup', { destination: email, nickname: nickname });
-}
+import axiosInstance from 'apis';
 
-export const fetchSignUpCallback = async (token: string) => {
-    return axiosInstance.get(`/auth/signup/callback?token=${token}`);
-}
+export const sendSignUpRequest = async (
+	email: string,
+	nickname: string,
+): Promise<AxiosResponse> => {
+	return axiosInstance.post('/auth/signup', {
+		destination: email,
+		nickname: nickname,
+	});
+};
 
-export const fetchEmailCheck = async (email: string) => {
-    return axiosInstance.get(`/auth/email-check/${email}`);
-}
+export const fetchSignUpCallback = async (
+	token: string,
+): Promise<AxiosResponse> => {
+	return axiosInstance.get(`/auth/signup/callback?token=${token}`);
+};
 
-export const fetchNicknameCheck = async (nickname: string) => {
-    return axiosInstance.get(`/auth/nickname-check/${nickname}`);
-}
+export const fetchEmailCheck = async (
+	email: string,
+): Promise<AxiosResponse> => {
+	return axiosInstance.get(`/auth/email-check/${email}`);
+};
+
+export const fetchNicknameCheck = async (
+	nickname: string,
+): Promise<AxiosResponse> => {
+	return axiosInstance.get(`/auth/nickname-check/${nickname}`);
+};

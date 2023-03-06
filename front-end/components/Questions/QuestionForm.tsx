@@ -1,12 +1,14 @@
-import API from 'apis/QnA/qnaApi';
+import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+
+import API from 'apis/QnA/qnaApi';
 
 interface IQuestionForm {
 	courseId: string;
 }
 
-const QuestionForm = ({ courseId }: IQuestionForm) => {
+const QuestionForm = ({ courseId }: IQuestionForm): ReactElement => {
 	const router = useRouter();
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
@@ -42,6 +44,7 @@ const QuestionForm = ({ courseId }: IQuestionForm) => {
 };
 
 export default QuestionForm;
+
 const Wrapper = styled.div`
 	.form-style {
 		display: flex;

@@ -1,4 +1,3 @@
-import { QUERY_KEYS } from './queryKeys';
 import {
 	useMutation,
 	UseMutationResult,
@@ -6,7 +5,9 @@ import {
 	UseQueryOptions,
 	UseQueryResult,
 } from '@tanstack/react-query';
+
 import lectureAPI from 'apis/Lectures/lectureApi';
+import { QUERY_KEYS } from './queryKeys';
 
 export const useLectureVideoUrlFetch = (
 	lectureId: string,

@@ -1,14 +1,16 @@
+import { AxiosResponse } from 'axios';
+
 import { IQna } from 'types/Course';
 import axiosInstance from '..';
 
-export default {
+const functions = {
 	postAnswer: ({
 		questionId,
 		contents,
 	}: {
 		questionId: number;
 		contents: string;
-	}) => {
+	}): Promise<AxiosResponse> => {
 		return axiosInstance.post(`/answers`, {
 			questionId,
 			contents,
@@ -22,7 +24,7 @@ export default {
 		courseId: number;
 		title: string;
 		contents: string;
-	}) => {
+	}): Promise<AxiosResponse> => {
 		return axiosInstance.post(`/questions`, {
 			courseId,
 			title,
@@ -35,3 +37,5 @@ export default {
 			.then((res) => res.data);
 	},
 };
+
+export default functions;

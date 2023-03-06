@@ -1,17 +1,18 @@
+import React, { ReactElement, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+
 import CategoryCard from '@components/common/CategoryCard';
 import MyPageLayout from '@components/MyPage/MyPageLayout';
-import styled from 'styled-components';
 import withRouteGuard from '@components/withRouteGuard';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 
-const MyPageIndex = () => {
+const MyPageIndex = (): ReactElement => {
 	const margin = '5px';
 	const router = useRouter();
 
 	useEffect(() => {
 		router.replace('/my-page/history');
-	}, []);
+	}, [router]);
 
 	return (
 		<MyPageLayout>

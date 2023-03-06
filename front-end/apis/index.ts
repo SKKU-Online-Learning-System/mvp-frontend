@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
+
 import { commonErrorHandler } from './commonErrorHandler';
 
 const axiosInstance = axios.create({
@@ -8,7 +9,7 @@ const axiosInstance = axios.create({
 
 const setResponseInterceptor = (
 	instance: AxiosInstance,
-	customErrorHandler: Function,
+	customErrorHandler: (err: AxiosError) => undefined,
 ) => {
 	const onFulfilled = (response: AxiosResponse) => response;
 

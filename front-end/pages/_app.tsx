@@ -1,23 +1,24 @@
-import React, { useEffect } from 'react';
-
-import { AppProps } from 'next/app';
-import { NextPage } from 'next';
-import Head from 'next/head';
-import GlobalStyles from 'styles/GlobalStyles';
+import React, { ReactElement, useEffect } from 'react';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { store } from 'store/app/store';
-import Layout from '@components/Layout';
-import axiosInstance from 'apis';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { NextPage } from 'next';
+import { AppProps } from 'next/app';
+import Head from 'next/head';
 import { AxiosError, AxiosResponse } from 'axios';
+
+import { store } from 'store/app/store';
 import { userLoginAuthState } from '../constants/commonState';
 import { HTTP_STATUS_CODE } from '../constants/http';
 import { selectIsLoggined } from 'store/feature/common/commonSelector';
 import { commonActions } from 'store/feature/common/commonSlice';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import GlobalStyles from 'styles/GlobalStyles';
+import Layout from '@components/Layout';
+import axiosInstance from 'apis';
 
 if (process.env.NODE_ENV === 'development') {
 	require('../mocks/index');
 }
+
 // TODO. 옵션 찾아보고 필요한것 확인.
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -27,7 +28,7 @@ const queryClient = new QueryClient({
 	},
 });
 
-function MyComponent({ children }: any) {
+function MyComponent({ children }: { children: ReactElement }) {
 	const dispatch = useDispatch();
 	const isLoggined = useSelector(selectIsLoggined);
 
@@ -52,7 +53,7 @@ function MyComponent({ children }: any) {
 					}
 				});
 		}
-	}, []);
+	}, [dispatch, isLoggined]);
 
 	return <>{children}</>;
 }

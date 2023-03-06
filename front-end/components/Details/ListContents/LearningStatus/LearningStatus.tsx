@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import Image from 'next/image';
 import styled from 'styled-components';
 
-const LearningStatus = () => {
+const LearningStatus = (): ReactElement => {
 	return (
 		<Container>
 			<div style={{ color: '#9a9a9a', fontSize: '0.5rem', fontWeight: 'bold' }}>
@@ -13,7 +14,11 @@ const LearningStatus = () => {
 			<div style={{ display: 'flex', justifyContent: 'space-around' }}>
 				<ContentBox>
 					<div style={{ display: 'flex', textAlign: 'center' }}>
-						<img src="/images/complete-course.png" className="badge" />
+						<Image
+							src="/images/complete-course.png"
+							className="badge"
+							alt="badge"
+						/>
 						<div className="badge-text">
 							<span style={{ fontWeight: 'bold' }}>14</span> / 36
 						</div>
@@ -22,7 +27,11 @@ const LearningStatus = () => {
 				</ContentBox>
 				<ContentBox>
 					<div style={{ display: 'flex', textAlign: 'center' }}>
-						<img src="/images/total-learning-time.png" className="badge" />
+						<Image
+							src="/images/total-learning-time.png"
+							className="badge"
+							alt="badge"
+						/>
 						<div className="badge-text">
 							<span style={{ fontWeight: 'bold' }}>2</span>h{' '}
 							<span style={{ fontWeight: 'bold' }}>53</span>m
@@ -32,7 +41,11 @@ const LearningStatus = () => {
 				</ContentBox>
 				<ContentBox>
 					<div style={{ display: 'flex', textAlign: 'center' }}>
-						<img src="/images/complete-rate.png" className="badge" />
+						<Image
+							src="/images/complete-rate.png"
+							className="badge"
+							alt="badge"
+						/>
 						<div className="badge-text">
 							{' '}
 							<span style={{ fontWeight: 'bold' }}>53 </span>%

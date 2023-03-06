@@ -1,11 +1,13 @@
-import { fetchSignUpCallback } from 'apis/SignUp/signUpApi';
-import { AxiosResponse } from 'axios';
-import { userLoginAuthState } from 'constants/commonState';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { commonActions } from 'store/feature/common/commonSlice';
+import React, { ReactElement, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-const SignUpCallback = () => {
+import { useRouter } from 'next/router';
+import { AxiosResponse } from 'axios';
+
+import { fetchSignUpCallback } from 'apis/SignUp/signUpApi';
+import { userLoginAuthState } from 'constants/commonState';
+import { commonActions } from 'store/feature/common/commonSlice';
+
+const SignUpCallback = (): ReactElement => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 
@@ -22,11 +24,11 @@ const SignUpCallback = () => {
 						router.replace('/auth/callbackError', '/');
 					}
 				})
-				.catch((err: any) => console.log(err));
+				.catch((err: Error) => console.log(err));
 		} else {
 			return;
 		}
-	}, [router.isReady]);
+	}, [dispatch, router]);
 
 	return (
 		<div>

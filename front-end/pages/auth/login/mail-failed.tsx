@@ -1,10 +1,17 @@
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
 
-const LoginMailFailed = () => {
+const LoginMailFailed = (): ReactElement => {
 	return (
 		<Container>
 			<MessageBox>
-				<img src="/images/mail_failed.jpg" width={200} height={180} />
+				<Image
+					src="/images/mail_failed.jpg"
+					width={200}
+					height={180}
+					alt="mail failed"
+				/>
 				<h1>이메일이 발송되지 않았습니다</h1>
 				<div>이메일 주소를 확인 후 다시 진행해주세요.</div>
 			</MessageBox>
@@ -22,7 +29,6 @@ const Container = styled.div`
 	align-items: center;
 	background-color: #f0f0f0;
 `;
-
 const MessageBox = styled.div`
 	display: flex;
 	flex-direction: column;

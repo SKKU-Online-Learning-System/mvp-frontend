@@ -1,16 +1,18 @@
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
 
-const MidBanner = () => {
+const MidBanner = (): ReactElement => {
 	return (
 		<Wrapper>
-			<img
-				style={{
-					position: 'absolute',
-					right: '20px',
-					top: '-80px',
-				}}
-				src={'/images/lightball.png'}
-			></img>
+			<ImageContainer>
+				<Image
+					src={'/images/lightball.png'}
+					width="350px"
+					height="362px"
+					alt=""
+				/>
+			</ImageContainer>
 			<div style={{ padding: '30px 30px 30px 180px' }}>
 				<div
 					style={{
@@ -54,6 +56,11 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin: 120px 0;
+`;
+const ImageContainer = styled.div`
+	position: absolute;
+	right: 20px;
+	top: -80px;
 `;
 
 export default MidBanner;

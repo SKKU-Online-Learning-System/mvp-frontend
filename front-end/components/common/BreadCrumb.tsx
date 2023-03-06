@@ -25,13 +25,15 @@ const BreadCrumb = ({
 		</Container>
 	);
 };
+
+export default React.memo(BreadCrumb);
+
 const Container = styled.div<Partial<IBreadCrumb>>`
 	position: relative;
 	display: flex;
 	padding: ${(props) =>
 		props.containerPadding ? props.containerPadding : undefined};
 `;
-
 const Category = styled.div<Partial<IBreadCrumb>>`
 	// inline류 style은 first-letter x (ex: span)
 	&::first-letter {
@@ -40,7 +42,6 @@ const Category = styled.div<Partial<IBreadCrumb>>`
 	}
 	opacity: 0.7;
 `;
-
 const SubCategory = styled.span`
 	& ::before {
 		padding-left: 8px;
@@ -49,4 +50,3 @@ const SubCategory = styled.span`
 		color: #454545;
 	}
 `;
-export default React.memo(BreadCrumb);

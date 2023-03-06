@@ -4,8 +4,6 @@ import commonReducer from 'store/feature/common/commonSlice';
 export const store = configureStore({
 	reducer: {
 		common: commonReducer,
-		// This is where we add reducers.
-		// Since we don't have any yet, leave this empty
 	},
 });
 
