@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import ErrorManager from '../pages/ErrorManager';
 
-const Layout = ({ children }: { children?: ReactElement }): ReactElement => (
+const Layout = ({ children }: any): ReactElement => (
 	<LayoutBox>
 		<Header />
 		<ErrorManager>
