@@ -1,13 +1,12 @@
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
 import QnA from '@components/Courses/Details/QnA';
 import LectureList from '@components/Courses/Details/LectureList';
-
 import CourseHeader from '@components/Courses/Details/CourseHeader';
-
 import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
 
-const CourseDetailPage = () => {
+const CourseDetailPage = (): ReactElement => {
 	const {
 		courseId,
 		course,
