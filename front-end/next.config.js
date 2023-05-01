@@ -2,8 +2,9 @@
 const path = require('path');
 const withImages = require('next-images');
 module.exports = withImages();
+
 module.exports = {
-	webpack5: false,
+
 	typescript: {
 		// TODO : 타입 다 채워서 이거 빼고도 빌드 되어야함.
 		ignoreBuildErrors: true,
@@ -40,6 +41,7 @@ module.exports = {
 		};
 		return config;
 	},
+	
 	async redirects() {
 		return [
 			{
