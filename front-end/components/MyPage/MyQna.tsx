@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { getTimeBefore } from 'utils/getTimeBefore';
 import { Wrapper } from '@components/Questions/QuestionBox';
 import { useMyQnaFetch } from 'query/hooks/MyPage';
-
+import React from 'react';
 const menu = [MYPAGE_MENU.MY_QNA];
 
 const MyQnA = () => {

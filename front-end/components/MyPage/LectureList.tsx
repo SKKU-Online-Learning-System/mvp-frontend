@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import React from 'react';
 const LectureList = ({ headerText, headerColor, data }: any) => {
 	return (
 		<div>
@@ -14,7 +14,7 @@ const LectureList = ({ headerText, headerColor, data }: any) => {
 				}}
 			>
 				{data.map((item: any) => (
-					<LectureCardWrapper>
+					<LectureCardWrapper key={item}>
 						<img src="images/lecture_thumbnail.png" />
 						<div style={{ display: 'flex', gap: '5px' }}>
 							<HashTagChip>#python</HashTagChip>

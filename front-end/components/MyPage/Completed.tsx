@@ -5,7 +5,7 @@ import { MYPAGE_MENU } from 'constants/MyPage';
 import { GridWrapper } from './History';
 import { useRouter } from 'next/router';
 import { useCompletedCourseFetch } from 'query/hooks/MyPage';
-
+import React from 'react';
 const menu = [MYPAGE_MENU.COMPLETED_WATCHING_LECTURES];
 
 const Completed = () => {

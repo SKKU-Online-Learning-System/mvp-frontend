@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { CommonHeader } from './CourseList';
 import { useRecentLecturesFetch } from 'query/hooks/Main/index';
-
+import React from 'react';
 type Props = {
 	percentage: number;
 };

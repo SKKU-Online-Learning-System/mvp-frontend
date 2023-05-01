@@ -17,6 +17,8 @@ module.exports = {
 		];
 	},
 	images: {
+		default: 'fill',
+		domains: ["mrdang-lectures.s3.ap-northeast-2.amazonaws.com"],
 		disableStaticImages: true,
 	},
 	webpack(config, options) {

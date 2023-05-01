@@ -9,7 +9,7 @@ import { commonActions } from 'store/feature/common/commonSlice';
 import { DEVICE_BREAKPOINT } from '../constants/breakpoint';
 import { useModal } from '../hooks/useModal';
 import { selectIsLoggined } from '../store/feature/common/commonSelector';
-
+import React from 'react';
 interface LinkProps {
 	isThisPage: boolean;
 }
@@ -92,7 +92,7 @@ const Header = () => {
 				<Link href="https://www.skku.edu/skku/index.do">
 					<img src="/images/main_logo.png" style={{ zoom: '80%' }} />
 				</Link>
-				<a href="/">
+				<Link href="/">
 					<span
 						style={{
 							fontFamily: 'Gugi',
@@ -103,7 +103,7 @@ const Header = () => {
 					>
 						온라인 명륜당
 					</span>
-				</a>
+				</Link>
 				<input
 					type="text"
 					ref={inputRef}

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { SyntheticEvent } from 'react';
 import { defaultErrorImage } from 'constants/index';
 import { ICourseInfo } from 'types/Course/index';
+import React from 'react';
 
 interface ILectureCard {
 	course: ICourseInfo;

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import LectureCard from './LectureCard';
 import { useRouter } from 'next/router';
 import { useCourseListFetch } from 'query/hooks/CourseList';
+import React from 'react';
 
 type RouterQueryString = {
 	keyword: string;

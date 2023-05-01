@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import { MYPAGE_PATH, MYPAGE_MENU } from 'constants/MyPage';
-
+import React from 'react';
 const SideMenu = () => {
 	const root = '/my-page';
 	const menus = [

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { ICourseDetail, IQna } from 'types/Course';
 import QuestionBox from './QuestionBox';
-
+import React from 'react';
 interface IQuestionTable {
 	courseName: string;
 	qna: IQna[];

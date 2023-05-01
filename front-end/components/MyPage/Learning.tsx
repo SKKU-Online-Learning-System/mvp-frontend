@@ -6,7 +6,7 @@ import { MyPageTitle } from './MyPageTitle';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useCurrentLeaningCourseListFetch } from 'query/hooks/MyPage';
-
+import React from 'react';
 const menu = [MYPAGE_MENU.CURRENT_WATCHING_LECTURES];
 
 interface ILectureStatusCount {

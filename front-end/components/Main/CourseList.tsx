@@ -58,7 +58,8 @@ const CourseCard = ({ course }: ICourseCardProps) => {
 	return (
 		<CourseCardWrapper onClick={() => handleClick(course.id)}>
 			<Image
-				width={'100%'}
+				width={'300px'}
+				height={'200px'}
 				src={course.thumbnail}
 				onError={handleImgError}
 				alt="course thumbnail"

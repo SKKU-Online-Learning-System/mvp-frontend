@@ -1,5 +1,5 @@
 import MyPageLayout from '@components/MyPage/MyPageLayout';
-
+import React from 'react';
 const wishlists = [
 	{
 		id: 1,

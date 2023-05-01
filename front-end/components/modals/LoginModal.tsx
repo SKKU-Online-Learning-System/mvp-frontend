@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ReactPortal, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import LogInForm from './LoginForm';
@@ -6,9 +6,9 @@ import { Backdrop, StyledModalOverlay } from './SignUpModal';
 
 interface LogInModalProps {
 	show: boolean;
-	onClose: Function;
+	onClose: () => void;
 	children?: React.ReactNode;
-	onOpenSignUp: Function;
+	onOpenSignUp: () => void;
 }
 
 function LoginModal({
@@ -16,7 +16,7 @@ function LoginModal({
 	onClose,
 	onOpenSignUp,
 	children,
-}: LogInModalProps) {
+}: LogInModalProps): null | ReactPortal {
 	const [isBrowser, setIsBrowser] = useState(false);
 
 	useEffect(() => {
