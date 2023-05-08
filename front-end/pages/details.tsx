@@ -1,10 +1,13 @@
+import React, { ReactElement } from 'react';
+import styled from 'styled-components';
+
+import MainBanner from '@components/Details/MainBanner/MainBanner';
 import CurrentQnA from '@components/Details/ListContents/CurrentQnA/CurrentQnA';
 import Curriculum from '@components/Details/ListContents/Curriculum/Curriculum';
 import LearningStatus from '@components/Details/ListContents/LearningStatus/LearningStatus';
 import LectureIntroduction from '@components/Details/ListContents/LectureIntroduction/LectureIntroduction';
-import MainBanner from '@components/Details/MainBanner/MainBanner';
-import styled from 'styled-components';
-const DetailsPage = () => (
+
+const DetailsPage = (): ReactElement => (
 	<>
 		<MainBanner />
 		<Container>

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import MainText from './MainText';
 
-const MainBanner = () => {
+const MainBanner = (): ReactElement => {
 	return (
 		<Container>
 			<LectureImg />

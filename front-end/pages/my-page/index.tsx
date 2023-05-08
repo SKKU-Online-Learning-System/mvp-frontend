@@ -1,37 +1,25 @@
-import React from 'react';
-import Layout from '@components/MyPage/Layout';
-import CategoryCard from '@components/common/CategoryCard';
+import React, { ReactElement, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import CommonHeader from '@components/common/CommonHeader';
-import DashProfile from '@components/MyPage/Dashboard/DashProfile';
-import DashNoti from '@components/MyPage/Dashboard/DashNoti';
-const index = () => {
+
+import CategoryCard from '@components/common/CategoryCard';
+import MyPageLayout from '@components/MyPage/MyPageLayout';
+import withRouteGuard from '@components/withRouteGuard';
+
+const MyPageIndex = (): ReactElement => {
 	const margin = '5px';
+	const router = useRouter();
+
+	useEffect(() => {
+		router.replace('/my-page/history');
+	}, [router]);
+
 	return (
-		<Layout>
-			<CommonHeader lineColor="orange" cat1="MY PAGE" cat2="DASHBOARD" />
+		<MyPageLayout>
 			<Container>
-				<DashProfile />
-				<DashNoti />
 				<CategoryCard
 					smallHeader="DASHBOARD"
-					header="최근 내 질문"
-					margin={margin}
-				>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
-					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
-					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
-					repellat quam.
-				</CategoryCard>
-				<CategoryCard smallHeader="DASHBOARD" header="학습통계" margin={margin}>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
-					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
-					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
-					repellat quam.
-				</CategoryCard>
-				<CategoryCard
-					smallHeader="DASHBOARD"
-					header="최근 학습중인 강좌/강의"
+					header="MY PROFILE"
 					margin={margin}
 				>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
@@ -41,7 +29,47 @@ const index = () => {
 				</CategoryCard>
 				<CategoryCard
 					smallHeader="DASHBOARD"
-					header="완료한 강좌"
+					header="MY PROFILE"
+					margin={margin}
+				>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
+					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
+					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
+					repellat quam.
+				</CategoryCard>
+				<CategoryCard
+					smallHeader="DASHBOARD"
+					header="MY PROFILE"
+					margin={margin}
+				>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
+					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
+					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
+					repellat quam.
+				</CategoryCard>
+				<CategoryCard
+					smallHeader="DASHBOARD"
+					header="MY PROFILE"
+					margin={margin}
+				>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
+					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
+					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
+					repellat quam.
+				</CategoryCard>
+				<CategoryCard
+					smallHeader="DASHBOARD"
+					header="MY PROFILE"
+					margin={margin}
+				>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
+					expedita et. Soluta pariatur impedit, earum amet quis eum asperiores
+					sed iste, assumenda voluptates ducimus quaerat aperiam nihil labore,
+					repellat quam.
+				</CategoryCard>
+				<CategoryCard
+					smallHeader="DASHBOARD"
+					header="MY PROFILE"
 					margin={margin}
 				>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae,
@@ -50,13 +78,13 @@ const index = () => {
 					repellat quam.
 				</CategoryCard>
 			</Container>
-		</Layout>
+		</MyPageLayout>
 	);
 };
 
-export default index;
+export default withRouteGuard(MyPageIndex);
+
 const Container = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	margin-top: 1rem;
 `;

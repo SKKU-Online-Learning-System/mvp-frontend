@@ -1,19 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { DEVICE_BREAKPOINT } from 'constants/breakpoint';
 const Footer = () => {
 	return (
 		<Container>
 			<div
 				style={{
 					display: 'flex',
+					width: DEVICE_BREAKPOINT.DESKTOP,
 					justifyContent: 'space-between',
-					maxWidth: '1650px',
-					margin: 'auto',
 				}}
 			>
 				<InfoBox>
 					<div style={{ display: 'flex' }}>
-						<img src="images/main_logo.png" />
+						<img src="/images/main_logo.png" />
 						<div
 							style={{
 								fontFamily: 'Gugi',
@@ -27,17 +27,18 @@ const Footer = () => {
 					</div>
 					<p>성균관대학교 소프트웨어융합대학</p>
 					<p>경기도 수원시 장안구 서부로 2066 성균관대학교 자연과학캠퍼스</p>
-					<p>소프트웨어융합대학 Copyrght ⓒ 2022 S</p>
+					<p>
+						소프트웨어융합대학 Copyrght ⓒ 2022 SUNGKYUNKWAN UNIVERSITY ALL
+						RIGHTS RESERVED.
+					</p>
 				</InfoBox>
 				<InfoBox>
 					<a href="https://www.skku.edu/skku/etc/pop_email.do">
 						이메일 무단수집거부
 					</a>
-					<span> | </span>
 					<a href="https://www.skku.edu/skku/etc/private.do">
 						개인정보처리방침
 					</a>
-					<span> | </span>
 					<a>Contact us</a>
 				</InfoBox>
 			</div>
@@ -48,10 +49,13 @@ const Footer = () => {
 export default Footer;
 
 const Container = styled.div`
-	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: ${DEVICE_BREAKPOINT.DESKTOP};
 	background-color: #323232;
 	color: #fefefe;
-	padding: 0 65px;
+	margin-top: 60px;
 `;
 const InfoBox = styled.div`
 	margin: 34px;
@@ -61,5 +65,8 @@ const InfoBox = styled.div`
 	}
 	& a:hover {
 		color: #c2d45e;
+	}
+	& a:not(:last-child):after {
+		content: ' | ';
 	}
 `;

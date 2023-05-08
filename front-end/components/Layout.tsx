@@ -1,34 +1,29 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import styled from 'styled-components';
 
 import Header from './Header';
-import styled from 'styled-components';
 import Footer from './Footer';
+import ErrorManager from '../pages/ErrorManager';
 
-interface LayoutProps {
-	children?: React.ReactNode;
-}
-
-const Layout = ({ children }: LayoutProps) => (
+const Layout = ({ children }: any): ReactElement => (
 	<LayoutBox>
 		<Header />
-		{children}
+		<ErrorManager>
+			<ContentsBox>{children}</ContentsBox>
+		</ErrorManager>
 		<Footer />
 	</LayoutBox>
 );
 
 const LayoutBox = styled.div`
 	display: flex;
-	//white-space: nowrap;
 	flex-direction: column;
-	margin-left: auto;
-	margin-right: auto;
-	@media only screen and (min-width: 1440px) {
-		/* width: 1650px; */
-		width: 100vw;
-	}
-	@media only screen and (max-width: 1440px) {
-		width: 100vw;
-	}
+	height: 100vh;
+	width: 100vw;
+	max-width: 100%; // 100vw scrollbar issue
+`;
+const ContentsBox = styled.div`
+	flex: 1;
 `;
 
 export default Layout;

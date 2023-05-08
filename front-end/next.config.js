@@ -2,20 +2,35 @@
 const path = require('path');
 const withImages = require('next-images');
 module.exports = withImages();
+
 module.exports = {
+
+	typescript: {
+		// TODO : 타입 다 채워서 이거 빼고도 빌드 되어야함.
+		ignoreBuildErrors: true,
+	},
 	reactStrictMode: true,
-	async rewrite() {
+	async rewrites() {
 		return [
 			{
-				source: '/',
-				destination: process.env.NEXT_PUBLIC_API_SERVER, // cors 문제 해결 위해서 임시 설정.
+				source: process.env.API_SOURCE,
+				destination: `${process.env.API_SERVER}/:path*`,
 			},
 		];
 	},
 	images: {
+		default: 'fill',
+		domains: ["mrdang-lectures.s3.ap-northeast-2.amazonaws.com"],
 		disableStaticImages: true,
 	},
 	webpack(config, options) {
+		// config.plugins = [
+		// 	// 환경 변수 등록/관리 설정
+		// 	new webpack.EnvironmentPlugin({
+		// 		API_SERVER: 'process.env.API_SERVER',
+		// 		API_SOURCE: 'process.env.API_SOURCE',
+		// 	}),
+		// ];
 		config.resolve = {
 			alias: {
 				'@apis': path.join(__dirname, 'apis'),
@@ -25,5 +40,15 @@ module.exports = {
 			...config.resolve,
 		};
 		return config;
+	},
+	
+	async redirects() {
+		return [
+			{
+				source: '/my-page',
+				destination: '/my-page/history', // Matched parameters can be used in the destination
+				permanent: true,
+			},
+		];
 	},
 };

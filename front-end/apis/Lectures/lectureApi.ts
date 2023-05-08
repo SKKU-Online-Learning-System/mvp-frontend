@@ -1,22 +1,30 @@
 import axiosInstance from '..';
+import { ILatestLecture } from 'types/MyPage';
+import { ILectureVideo } from 'types/Lecture';
 
-export const fetchAllLectureCategories = () => {
-	return axiosInstance.get(`courses/categories`);
+const functions = {
+	fetchLectureVideoUrl: async (lectureId: string): Promise<ILectureVideo[]> => {
+		const res = await axiosInstance.get(`lectures/${lectureId}`);
+		return res.data;
+	},
+	fetchLectureHistory: async (lectureId: string): Promise<ILatestLecture> => {
+		const res = await axiosInstance.get(`/history/lectures/${lectureId}`, {
+			willUseCustomErrorHandler: true,
+		});
+		return res.data;
+	},
+	updateLectureHistory: ({
+		lectureId,
+		lastTime,
+	}: {
+		lectureId: number;
+		lastTime: number;
+	}): Promise<void> => {
+		return axiosInstance.patch('/history', { lectureId, lastTime });
+	},
+	updateLectureComplete: (courseId: number): Promise<void> => {
+		return axiosInstance.post('/completed', { courseId });
+	},
 };
 
-export const fetchLectureLists = (category: string) => {
-	return axiosInstance.get(`courses/search?category2Id=${category}`);
-};
-
-export const fetchSearchedData = (name: string, difficulty: string) => {
-	if (difficulty) {
-		return axiosInstance.get(`courses?s=${name}&difficulty=${difficulty}`);
-	} else {
-		return axiosInstance.get(`courses/search?keyword=${name}`);
-	}
-};
-
-export const fetchAllLecturesPerPage = (pageNum: number) => {
-	//console.log(pageNum);
-	return axiosInstance.get(`courses/search?page=${pageNum}`);
-};
+export default functions;
