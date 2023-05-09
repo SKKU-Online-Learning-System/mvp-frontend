@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 import { selectIsLoggined } from '../store/feature/common/commonSelector';
 import { commonActions } from 'store/feature/common/commonSlice';
@@ -11,26 +11,6 @@ import { DEVICE_BREAKPOINT } from '../constants/breakpoint';
 import { useModal } from '../hooks/useModal';
 import axiosInstance from '../apis/index';
 
-interface LinkProps {
-	isThisPage: boolean;
-}
-const linkStyle = {
-	margin: '34px 1rem',
-	cursor: 'pointer',
-};
-const textBoxStyle = {
-	width: '300px',
-	height: '35px',
-	borderRadius: '20px',
-	padding: '0 40px 0 16px',
-};
-const aTagStyle = {
-	textDecoration: 'none',
-	fontSize: '0.88rem',
-	color: 'black',
-	margin: '0 1rem',
-	cursor: 'pointer',
-};
 const listStyle = {
 	margin: '0 1rem',
 	listStyleType: 'none',
@@ -81,14 +61,20 @@ const Header = () => {
 
 	const menuBar = (
 		<div>
-			<ul style={{ margin: '0', padding: '0', display: 'flex' }}>
+			<ul
+				className="m-0 p-0 flex"
+				style={{ margin: '0', padding: '0', display: 'flex' }}
+			>
 				{menuData.map((menu) =>
 					isLoggined !== userLoginAuthState.LOGGINED &&
 					menu.name === '마이페이지' ? (
 						''
 					) : (
 						<li key={menu.id} style={listStyle}>
-							<a href={menu.path} style={aTagStyle}>
+							<a
+								href={menu.path}
+								className="no-underline text-sm text-black mx-4 cursor-pointer"
+							>
 								{menu.name}
 							</a>
 						</li>
@@ -99,35 +85,35 @@ const Header = () => {
 	);
 
 	const upperHeader = (
-		<div
-			style={{
-				display: 'flex',
-				alignItems: 'center',
-				justifyContent: 'flex-end',
-				marginRight: '2rem',
-				height: '2rem',
-			}}
-		>
-			<a style={aTagStyle}>ENG</a>
-
+		<div className="flex items-center justify-end mr-8 h-8">
+			<a className="no-underline text-sm text-black mx-4 cursor-pointer">ENG</a>
 			{!!isLoggined &&
 				(isLoggined === userLoginAuthState.LOGGINED ? (
 					<div>
-						<a href="" style={aTagStyle} onClick={handleLogout}>
+						<a
+							href=""
+							className="no-underline text-sm text-black mx-4 cursor-pointer"
+							onClick={handleLogout}
+						>
 							로그아웃
 						</a>
 					</div>
 				) : (
 					<div>
-						<a style={aTagStyle} onClick={onOpenLoginModal}>
+						<a
+							className="no-underline text-sm text-black mx-4 cursor-pointer"
+							onClick={onOpenLoginModal}
+						>
 							로그인
 						</a>
-						<a style={aTagStyle} onClick={onOpenSignUp}>
+						<a
+							className="no-underline text-sm text-black mx-4 cursor-pointer"
+							onClick={onOpenSignUp}
+						>
 							회원가입
 						</a>
 					</div>
 				))}
-
 			{menuBar}
 		</div>
 	);
@@ -176,7 +162,7 @@ const Header = () => {
 						type="text"
 						ref={inputRef}
 						placeholder="배우고 싶은 지식을 입력하세요."
-						style={textBoxStyle}
+						className="w-[300px] h-[35px] rounded-[20px] pr-[40px] pl-[16px]"
 						onChange={handleInput}
 						onKeyPress={handleKeyPress}
 					/>
@@ -205,14 +191,6 @@ const Container = styled.div`
 		color: black;
 	}
 `;
-const LinkMenu = styled.a<LinkProps>`
-	color: ${(props) => (props.isThisPage ? '#5094fa' : 'black')};
-	text-decoration: none;
-	cursor: pointer;
-	&:hover {
-		color: #5094fa;
-	}
-`;
 const SearchButton = styled.button`
 	background: none;
 	background-image: url('/images/search_btn.png');
@@ -226,55 +204,4 @@ const SearchButton = styled.button`
 	}
 	padding: none;
 	cursor: pointer;
-`;
-const LoginButton = styled.button`
-	background: #69c97f;
-	color: #ffffff;
-	margin: 0 5px 0 0;
-	padding: 0.4rem 0.8rem;
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 1rem;
-	font-weight: 400;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: 0.3s;
-	&:hover {
-		background: #34a84d;
-		outline: 0;
-	}
-`;
-const LogoutButton = styled.button`
-	background: #eab106;
-	color: #ffffff;
-	margin: 0;
-	padding: 0.4rem 0.8rem;
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 1rem;
-	font-weight: 400;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: 0.3s;
-	&:hover {
-		background: #b08911;
-		outline: 0;
-	}
-`;
-const SignupButton = styled.button`
-	background: #d58e6d;
-	color: #ffffff;
-	margin: 0;
-	padding: 0.4rem 0.8rem;
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 1rem;
-	font-weight: 400;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: 0.3s;
-	&:hover {
-		background: #c7643d;
-		outline: 0;
-	}
 `;
