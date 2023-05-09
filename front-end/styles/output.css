@@ -538,12 +538,12 @@ video {
   margin: 0px;
 }
 
-.m-\[34px\] {
-  margin: 34px;
-}
-
 .m-4 {
   margin: 1rem;
+}
+
+.m-\[34px\] {
+  margin: 34px;
 }
 
 .mx-0 {
@@ -589,14 +589,6 @@ video {
 
 .mt-\[60px\] {
   margin-top: 60px;
-}
-
-.ml-\[1rem\] {
-  margin-left: 1rem;
-}
-
-.ml-\[0\.6rem\] {
-  margin-left: 0.6rem;
 }
 
 .block {
