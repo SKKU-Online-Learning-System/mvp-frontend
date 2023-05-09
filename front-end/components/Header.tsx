@@ -1,26 +1,20 @@
-import React, { useRef } from 'react';
+import React, { ReactElement, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import Link from 'next/link';
 
 import { selectIsLoggined } from '../store/feature/common/commonSelector';
 import { commonActions } from 'store/feature/common/commonSlice';
 import { userLoginAuthState } from '../constants/commonState';
-import { DEVICE_BREAKPOINT } from '../constants/breakpoint';
 import { useModal } from '../hooks/useModal';
 import axiosInstance from '../apis/index';
 
-const listStyle = {
-	margin: '0 1rem',
-	listStyleType: 'none',
-};
 const menuData = [
 	{ id: 1, name: '마이페이지', path: '/my-page/history' },
 	{ id: 2, name: '강좌 List', path: '/courses' },
 ];
 
-const Header = () => {
+const Header = (): ReactElement => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const isLoggined = useSelector(selectIsLoggined);
@@ -51,7 +45,7 @@ const Header = () => {
 		}
 	};
 
-	const handleKeyPress = (e: any) => {
+	const handleKeyPress = (e: React.KeyboardEvent) => {
 		if (e.key === 'Enter') {
 			e.preventDefault();
 			handleClickSearchLectures();
@@ -61,16 +55,13 @@ const Header = () => {
 
 	const menuBar = (
 		<div>
-			<ul
-				className="m-0 p-0 flex"
-				style={{ margin: '0', padding: '0', display: 'flex' }}
-			>
+			<ul className="m-0 p-0 flex">
 				{menuData.map((menu) =>
 					isLoggined !== userLoginAuthState.LOGGINED &&
 					menu.name === '마이페이지' ? (
 						''
 					) : (
-						<li key={menu.id} style={listStyle}>
+						<li key={menu.id} className="my-0 mx-4 list-none">
 							<a
 								href={menu.path}
 								className="no-underline text-sm text-black mx-4 cursor-pointer"
@@ -121,41 +112,28 @@ const Header = () => {
 	return (
 		<div>
 			{upperHeader}
-			<Container>
-				<div
-					style={{
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'space-between',
-					}}
-				>
-					<Link href="/">
-						<span
-							style={{
-								fontFamily: 'Gugi',
-								fontSize: '1.7rem',
-								cursor: 'pointer',
-							}}
-						>
+			<div className="dt:py-0 dt:px-[10px] flex justify-around items-center mt-[0.2rem] mb-4 mx-0 py-[8px]">
+				<div className="flex items-center justify-between">
+					<Link href="/" passHref>
+						<span className="text-[1.7rem] cursor-pointer font-[Gugi]">
 							온라인 명륜당
 						</span>
 					</Link>
-					<ul
-						style={{
-							display: 'flex',
-							listStyleType: 'none',
-							paddingLeft: '0',
-							margin: '0 8rem',
-						}}
-					>
-						<li style={listStyle}>
-							<a href="">Lectures</a>
+					<ul className="flex list-none pl-0 mx-[8rem]">
+						<li className="my-0 mx-4 list-none">
+							<a href="" className="no-underline visited:text-black">
+								Lectures
+							</a>
 						</li>
-						<li style={listStyle}>
-							<a href="">Q&A</a>
+						<li className="my-0 mx-4 list-none">
+							<a href="" className="no-underline visited:text-black">
+								Q&A
+							</a>
 						</li>
-						<li style={listStyle}>
-							<a href="">Recommendation</a>
+						<li className="my-0 mx-4 list-none">
+							<a href="" className="no-underline visited:text-black">
+								Recommendation
+							</a>
 						</li>
 					</ul>
 					<input
@@ -166,42 +144,15 @@ const Header = () => {
 						onChange={handleInput}
 						onKeyPress={handleKeyPress}
 					/>
-					<SearchButton onClick={handleClickSearchLectures} />
+					<button
+						className="focus:outline-none bg-cover bg-[url('/images/search_btn.png')] cursor-pointer p-0 ml-[-40px] border-none w-[30px] h-[30px] "
+						onClick={handleClickSearchLectures}
+					/>
 				</div>
 				{showModal && renderModal()}
-			</Container>
+			</div>
 		</div>
 	);
 };
 
 export default Header;
-const Container = styled.div`
-	width: ${DEVICE_BREAKPOINT.DESKTOP};
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	margin: 0.2rem 0 1rem 0;
-	padding: 8px 0;
-	@media only screen and (max-width: ${DEVICE_BREAKPOINT.DESKTOP}) {
-		padding: 0 10px;
-	}
-	a,
-	a:visited {
-		text-decoration: none;
-		color: black;
-	}
-`;
-const SearchButton = styled.button`
-	background: none;
-	background-image: url('/images/search_btn.png');
-	background-size: cover;
-	margin-left: -40px;
-	border: none;
-	width: 30px;
-	height: 30px;
-	&:focus {
-		outline: none;
-	}
-	padding: none;
-	cursor: pointer;
-`;
