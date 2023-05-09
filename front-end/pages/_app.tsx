@@ -14,6 +14,7 @@ import { commonActions } from 'store/feature/common/commonSlice';
 import GlobalStyles from 'styles/GlobalStyles';
 import Layout from '@components/Layout';
 import axiosInstance from 'apis';
+import '../styles/output.css';
 
 if (process.env.NODE_ENV === 'development') {
 	require('../mocks/index');
