@@ -8,6 +8,9 @@ module.exports = {
 		screens: {
 			dt: { max: DEVICE_BREAKPOINT.DESKTOP },
 		},
+		minWidth: {
+			desktop: DEVICE_BREAKPOINT.DESKTOP,
+		},
 		extend: {},
 	},
 	plugins: [],
