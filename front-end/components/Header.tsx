@@ -1,15 +1,16 @@
-import Link from 'next/link';
-import { useRef } from 'react';
-import styled from 'styled-components';
-import { useRouter } from 'next/router';
+import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLoginAuthState } from '../constants/commonState';
-import axiosInstance from '../apis/index';
+import styled from 'styled-components';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import { selectIsLoggined } from '../store/feature/common/commonSelector';
 import { commonActions } from 'store/feature/common/commonSlice';
+import { userLoginAuthState } from '../constants/commonState';
 import { DEVICE_BREAKPOINT } from '../constants/breakpoint';
 import { useModal } from '../hooks/useModal';
-import { selectIsLoggined } from '../store/feature/common/commonSelector';
-import React from 'react';
+import axiosInstance from '../apis/index';
+
 interface LinkProps {
 	isThisPage: boolean;
 }
@@ -23,9 +24,20 @@ const textBoxStyle = {
 	borderRadius: '20px',
 	padding: '0 40px 0 16px',
 };
+const aTagStyle = {
+	textDecoration: 'none',
+	fontSize: '0.88rem',
+	color: 'black',
+	margin: '0 1rem',
+	cursor: 'pointer',
+};
+const listStyle = {
+	margin: '0 1rem',
+	listStyleType: 'none',
+};
 const menuData = [
-	{ id: 1, name: '강좌 List', path: '/courses' },
-	{ id: 2, name: '마이페이지', path: '/my-page/history' },
+	{ id: 1, name: '마이페이지', path: '/my-page/history' },
+	{ id: 2, name: '강좌 List', path: '/courses' },
 ];
 
 const Header = () => {
@@ -68,69 +80,111 @@ const Header = () => {
 	};
 
 	const menuBar = (
-		<ul>
-			{menuData.map((menu) =>
-				isLoggined !== userLoginAuthState.LOGGINED &&
-				menu.name === '마이페이지' ? (
-					''
-				) : (
-					<li key={menu.id} style={{ display: 'inline' }}>
-						<LinkMenu
-							href={menu.path}
-							isThisPage={menu.path === router.pathname}
-						>
-							{menu.name}
-						</LinkMenu>
-					</li>
-				),
-			)}
-		</ul>
+		<div>
+			<ul style={{ margin: '0', padding: '0', display: 'flex' }}>
+				{menuData.map((menu) =>
+					isLoggined !== userLoginAuthState.LOGGINED &&
+					menu.name === '마이페이지' ? (
+						''
+					) : (
+						<li key={menu.id} style={listStyle}>
+							<a href={menu.path} style={aTagStyle}>
+								{menu.name}
+							</a>
+						</li>
+					),
+				)}
+			</ul>
+		</div>
 	);
-	return (
-		<Container>
-			<div style={{ display: 'flex', alignItems: 'center' }}>
-				<Link href="https://www.skku.edu/skku/index.do">
-					<img src="/images/main_logo.png" style={{ zoom: '80%' }} />
-				</Link>
-				<Link href="/">
-					<span
-						style={{
-							fontFamily: 'Gugi',
-							fontSize: '1.7rem',
-							margin: '0 10px',
-							cursor: 'pointer',
-						}}
-					>
-						온라인 명륜당
-					</span>
-				</Link>
-				<input
-					type="text"
-					ref={inputRef}
-					placeholder="배우고 싶은 지식을 입력하세요."
-					style={textBoxStyle}
-					onChange={handleInput}
-					onKeyPress={handleKeyPress}
-				/>
-				<SearchButton onClick={handleClickSearchLectures} />
 
-				{menuBar}
-			</div>
+	const upperHeader = (
+		<div
+			style={{
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'flex-end',
+				marginRight: '2rem',
+				height: '2rem',
+			}}
+		>
+			<a style={aTagStyle}>ENG</a>
 
 			{!!isLoggined &&
 				(isLoggined === userLoginAuthState.LOGGINED ? (
 					<div>
-						<LogoutButton onClick={handleLogout}>로그아웃</LogoutButton>
+						<a href="" style={aTagStyle} onClick={handleLogout}>
+							로그아웃
+						</a>
 					</div>
 				) : (
 					<div>
-						<LoginButton onClick={onOpenLoginModal}>로그인</LoginButton>
-						<SignupButton onClick={onOpenSignUp}>회원가입</SignupButton>
+						<a style={aTagStyle} onClick={onOpenLoginModal}>
+							로그인
+						</a>
+						<a style={aTagStyle} onClick={onOpenSignUp}>
+							회원가입
+						</a>
 					</div>
 				))}
 
-			{showModal && renderModal()}
-		</Container>
+			{menuBar}
+		</div>
+	);
+
+	return (
+		<div>
+			{upperHeader}
+			<Container>
+				<div
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'space-between',
+					}}
+				>
+					<Link href="/">
+						<span
+							style={{
+								fontFamily: 'Gugi',
+								fontSize: '1.7rem',
+								cursor: 'pointer',
+							}}
+						>
+							온라인 명륜당
+						</span>
+					</Link>
+					<ul
+						style={{
+							display: 'flex',
+							listStyleType: 'none',
+							paddingLeft: '0',
+							margin: '0 8rem',
+						}}
+					>
+						<li style={listStyle}>
+							<a href="">Lectures</a>
+						</li>
+						<li style={listStyle}>
+							<a href="">Q&A</a>
+						</li>
+						<li style={listStyle}>
+							<a href="">Recommendation</a>
+						</li>
+					</ul>
+					<input
+						type="text"
+						ref={inputRef}
+						placeholder="배우고 싶은 지식을 입력하세요."
+						style={textBoxStyle}
+						onChange={handleInput}
+						onKeyPress={handleKeyPress}
+					/>
+					<SearchButton onClick={handleClickSearchLectures} />
+				</div>
+				{showModal && renderModal()}
+			</Container>
+		</div>
 	);
 };
 
@@ -140,12 +194,11 @@ const Container = styled.div`
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	margin: auto;
+	margin: 0.2rem 0 1rem 0;
 	padding: 8px 0;
 	@media only screen and (max-width: ${DEVICE_BREAKPOINT.DESKTOP}) {
 		padding: 0 10px;
 	}
-
 	a,
 	a:visited {
 		text-decoration: none;
@@ -153,13 +206,11 @@ const Container = styled.div`
 	}
 `;
 const LinkMenu = styled.a<LinkProps>`
-	color: ${(props) => (props.isThisPage ? '#f5af1a' : 'black')};
+	color: ${(props) => (props.isThisPage ? '#5094fa' : 'black')};
 	text-decoration: none;
-	font-weight: bold;
-	margin: 34px 1rem;
 	cursor: pointer;
 	&:hover {
-		color: #f5af1a;
+		color: #5094fa;
 	}
 `;
 const SearchButton = styled.button`
