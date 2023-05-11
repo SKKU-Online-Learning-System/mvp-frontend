@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import axiosInstance from 'apis';
 
-const SignupPage = () => {
+const SignupPage = (): ReactElement => {
 	const login = async () => {
 		try {
 			const res = await axiosInstance.get('auth/temp-login');
