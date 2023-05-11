@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-
 import { DEVICE_BREAKPOINT } from 'constants/breakpoint';
 
 const Footer = (): ReactElement => {
@@ -7,12 +6,10 @@ const Footer = (): ReactElement => {
 		<div className="flex justify-center items-center min-w-[desktop] bg-[#323232] text-[#fefefe] mt-[60px]">
 			<div
 				className="flex justify-between"
-				style={{
-					width: DEVICE_BREAKPOINT.DESKTOP,
-				}}
+				style={{ width: DEVICE_BREAKPOINT.DESKTOP }}
 			>
 				<div className="m-[34px]">
-					<div style={{ display: 'flex' }}>
+					<div className="flex">
 						<img src="/images/main_logo.png" alt="Main Logo Image" />
 						<div className="font-[Gugi] text-[2rem] my-0 mx-[10px] text-[#c7c6c6]">
 							온라인 명륜당
