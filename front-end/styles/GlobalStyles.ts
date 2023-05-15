@@ -31,7 +31,8 @@ html, body, #root {
   --color-green-100: rgb(237, 255, 241);
   --color-green-300: rgb(80,118,81);
   --color-green-500: rgb(43, 102, 83);
-  --color-green-700: rgb(0, 62, 33);
+  --color-green-700: #35644f;
+  --color-green-900: rgb(32,68,52);
 
   --color-white-0: rgb(254, 254, 254);
 
