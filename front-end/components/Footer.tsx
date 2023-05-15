@@ -1,27 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { ReactElement } from 'react';
+
 import { DEVICE_BREAKPOINT } from 'constants/breakpoint';
-const Footer = () => {
+
+const Footer = (): ReactElement => {
 	return (
-		<Container>
+		<div className="flex justify-center items-center min-w-[desktop] bg-[#323232] text-[#fefefe] mt-[60px]">
 			<div
+				className="flex justify-between"
 				style={{
-					display: 'flex',
 					width: DEVICE_BREAKPOINT.DESKTOP,
-					justifyContent: 'space-between',
 				}}
 			>
-				<InfoBox>
+				<div className="m-[34px]">
 					<div style={{ display: 'flex' }}>
-						<img src="/images/main_logo.png" />
-						<div
-							style={{
-								fontFamily: 'Gugi',
-								fontSize: '2rem',
-								margin: '0 10px',
-								color: '#c7c6c6',
-							}}
-						>
+						<img src="/images/main_logo.png" alt="Main Logo Image" />
+						<div className="font-[Gugi] text-[2rem] my-0 mx-[10px] text-[#c7c6c6]">
 							온라인 명륜당
 						</div>
 					</div>
@@ -31,42 +24,39 @@ const Footer = () => {
 						소프트웨어융합대학 Copyrght ⓒ 2022 SUNGKYUNKWAN UNIVERSITY ALL
 						RIGHTS RESERVED.
 					</p>
-				</InfoBox>
-				<InfoBox>
-					<a href="https://www.skku.edu/skku/etc/pop_email.do">
-						이메일 무단수집거부
+				</div>
+				<div className="m-[34px]">
+					<a
+						href="https://www.skku.edu/skku/etc/pop_email.do"
+						className="text-[#fefefe] no-underline hover:text-[#c2d45e]"
+					>
+						이메일
 					</a>
-					<a href="https://www.skku.edu/skku/etc/private.do">
+					<span className="m-4">|</span>
+					<a
+						href="https://www.skku.edu/skku/etc/pop_email.do"
+						className="text-[#fefefe] no-underline hover:text-[#c2d45e]"
+					>
+						무단수집거부
+					</a>
+					<span className="m-4">|</span>
+					<a
+						href="https://www.skku.edu/skku/etc/private.do"
+						className="text-[#fefefe] no-underline hover:text-[#c2d45e]"
+					>
 						개인정보처리방침
 					</a>
-					<a>Contact us</a>
-				</InfoBox>
+					<span className="m-4">|</span>
+					<a
+						href=""
+						className="text-[#fefefe] no-underline hover:text-[#c2d45e]"
+					>
+						Contact us
+					</a>
+				</div>
 			</div>
-		</Container>
+		</div>
 	);
 };
 
 export default Footer;
-
-const Container = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-width: ${DEVICE_BREAKPOINT.DESKTOP};
-	background-color: #323232;
-	color: #fefefe;
-	margin-top: 60px;
-`;
-const InfoBox = styled.div`
-	margin: 34px;
-	& a {
-		color: #fefefe;
-		text-decoration: none;
-	}
-	& a:hover {
-		color: #c2d45e;
-	}
-	& a:not(:last-child):after {
-		content: ' | ';
-	}
-`;
