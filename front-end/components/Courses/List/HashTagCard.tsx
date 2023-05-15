@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 interface CardProps {
 	name: string;
@@ -11,7 +11,7 @@ const HashTagCard = ({
 	height,
 	bgColor,
 	onClick: handleClick,
-}: CardProps) => {
+}: CardProps): ReactElement => {
 	return (
 		<Card height={height} bgColor={bgColor} onClick={handleClick}>
 			{name}

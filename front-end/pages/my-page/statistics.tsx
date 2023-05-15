@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Layout from '@components/MyPage/Layout';
 
-const statistics = () => {
+const statistics = (): ReactElement => {
 	return <Layout>statistics</Layout>;
 };
 

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Layout from '@components/MyPage/Layout';
 
-const question = () => {
+const question = (): ReactElement => {
 	return <Layout>question</Layout>;
 };
 
