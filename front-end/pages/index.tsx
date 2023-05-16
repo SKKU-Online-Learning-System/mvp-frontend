@@ -15,7 +15,7 @@ const Index = (): ReactElement => {
 	return (
 		<>
 			<MainBanner />
-			<Wrapper>
+			<div className='w-[1440px] m-auto font-["Noto Sans KR"]'>
 				{!!isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
 					<RecentLecture />
 				)}
@@ -29,15 +29,9 @@ const Index = (): ReactElement => {
 					headerText={'보안 분야 인기 강좌 모음'}
 					headerColor={'#df4bff'}
 				/>
-			</Wrapper>
+			</div>
 		</>
 	);
 };
 
 export default Index;
-
-const Wrapper = styled.div`
-	width: 1440px;
-	margin: auto;
-	font-family: Noto Sans KR;
-`;
