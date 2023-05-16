@@ -1,8 +1,7 @@
-import React, { ReactPortal, useEffect, useRef, useState } from 'react';
+import React, { ReactPortal, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+
 import LogInForm from './LoginForm';
-import { Backdrop, StyledModalOverlay } from './SignUpModal';
 
 interface LogInModalProps {
 	show: boolean;
@@ -29,19 +28,22 @@ function LoginModal({
 	};
 
 	const modalContent = show ? (
-		<StyledModalOverlay>
-			<StyledModal>
-				<StyledModalHeader>
+		<div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+			<div className="z-[2] bg-white w-[450px] h-[450px] rounded-[15px] py-10 px-[60px]">
+				<div className="flex justify-end text-3xl cursor-pointer">
 					<div onClick={handleCloseClick}>X</div>
-				</StyledModalHeader>
+				</div>
 
-				<StyledModalBody>
-					<h1>로그인</h1>
+				<div>
+					<h1 className="m-0">로그인</h1>
 					<LogInForm onClose={onClose} onOpenSignUp={onOpenSignUp} />
-				</StyledModalBody>
-			</StyledModal>
-			<Backdrop onClick={handleCloseClick} />
-		</StyledModalOverlay>
+				</div>
+			</div>
+			<div
+				className="fixed top-0 left-0 w-full h-full bg-black/[0.5]"
+				onClick={handleCloseClick}
+			/>
+		</div>
 	) : null;
 
 	if (isBrowser) {
@@ -53,36 +55,3 @@ function LoginModal({
 }
 
 export default LoginModal;
-
-const StyledModalBody = styled.div`
-	h1 {
-		margin: 0;
-	}
-`;
-
-const StyledModalHeader = styled.div`
-	display: flex;
-	justify-content: flex-end;
-	font-size: 30px;
-	cursor: pointer;
-`;
-
-const StyledModal = styled.div`
-	z-index: 2;
-	background: white;
-	width: 450px;
-	height: 450px;
-	border-radius: 15px;
-	padding: 40px 60px;
-`;
-// const StyledModalOverlay = styled.div`
-// 	position: fixed;
-// 	top: 0;
-// 	left: 0;
-// 	width: 100%;
-// 	height: 100%;
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-// 	background-color: rgba(0, 0, 0, 0.5);
-// `;

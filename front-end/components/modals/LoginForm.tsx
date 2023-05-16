@@ -1,46 +1,8 @@
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+
 import { sendLogInRequest } from 'apis/LogIn/logInApi';
 import { fetchEmailCheck } from 'apis/SignUp/signUpApi';
-import { AxiosResponse } from 'axios';
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
-import styled from 'styled-components';
-
-const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 150px;
-	margin-top: 50px;
-`;
-
-const Input = styled.input`
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	height: 40px;
-	margin: 0 0 8px;
-	padding: 5px 39px 5px 11px;
-	border: solid 1px #dadada;
-	border-radius: 5px;
-	background: #fff;
-	box-sizing: border-box;
-`;
-
-const Button = styled.button`
-	font-size: 18px;
-	font-weight: 700;
-	line-height: 49px;
-	display: block;
-	width: 100%;
-	height: 49px;
-	margin: 20px 0 0 0;
-	cursor: pointer;
-	text-align: center;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	background-color: rgba(148, 186, 101, 0.9);
-`;
 
 //이메일 값 받기
 //값없으면 disabled
@@ -93,55 +55,43 @@ function LoginForm({ onClose, onOpenSignUp }: any) {
 	return (
 		<>
 			{sendingMail ? (
-				<LoadingBox>
+				<div className="flex justify-center items-center h-[300px]">
 					<img
 						src="https://mblogthumb-phinf.pstatic.net/MjAxODEwMjNfNjAg/MDAxNTQwMjg2OTk2NTcw.mfWKPtzKVO1mJaBBIFKIkVBlMQQIF1Vc-yrlbbGaoP0g.KNJWAgMmhsfQrZI3n0UT-LMi_qpHAZls4qPMvbNaJBcg.GIF.chingguhl/Spinner-1s-200px.gif?type=w800"
 						alt="loading"
+						className="w-[100px]"
 					/>
-				</LoadingBox>
+				</div>
 			) : (
-				<Container>
+				<div className="flex flex-col justify-between h-[150px] mt-[50px]">
 					<form onSubmit={handleSubmit}>
-						<Input
+						<input
+							className="relative overflow-hidden w-full h-10 mb-2 py-[5px] pr-[39px] pl-[11px] border-[1px] border-solid border-slate-400 rounded-[5px] bg-white box-border"
 							id="email"
 							name="email"
 							placeholder="로그인할 이메일을 입력해주세요"
 						/>
-						<Button type="submit">로그인</Button>
+						<button
+							type="submit"
+							className="text-lg font-bold leading-[49px] block w-full h-[49px] mt-5 cursor-pointer text-center text-white border-none rounded-[5px] bg-[#94c865]/[0.9]"
+						>
+							로그인
+						</button>
 					</form>
 					<hr />
-					<SignupBox>
+					<div className="flex h-[60px] py-0 px-10 justify-evenly items-center">
 						처음이신가요?{' '}
-						<span className="signupButton" onClick={handleOpenSignUpClick}>
+						<span
+							className="font-bold cursor-pointer"
+							onClick={handleOpenSignUpClick}
+						>
 							회원가입
 						</span>
-					</SignupBox>
-				</Container>
+					</div>
+				</div>
 			)}
 		</>
 	);
 }
 
 export default LoginForm;
-
-const LoadingBox = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 300px;
-	img {
-		width: 100px;
-	}
-`;
-const SignupBox = styled.div`
-	display: flex;
-	height: 60px;
-	padding: 0 40px;
-	justify-content: space-evenly;
-	align-items: center;
-
-	.signupButton {
-		font-weight: 700;
-		cursor: pointer;
-	}
-`;
