@@ -64,8 +64,12 @@ const Container = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: linear-gradient(#1f5191, #022240);
+	/* background: linear-gradient(#1f5191, #022240); */
+	background: var(--color-green-900);
 	padding: 50px 60px;
 `;
 
 export default MainBanner;
+
+// https://flowbite.com/docs/components/carousel/
+// image slider 이거 활용해서 넣으면 될듯

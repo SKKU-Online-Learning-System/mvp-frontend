@@ -25,16 +25,19 @@ html, body, #root {
   /* 컬러 수정 해야함 */
   /* color: var(--color-blue-600); */
 
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 :root {
   --color-green-100: rgb(237, 255, 241);
   --color-green-300: rgb(80,118,81);
   --color-green-500: rgb(43, 102, 83);
-  --color-green-700: rgb(0, 62, 33);
+  --color-green-700: #35644f;
+  --color-green-900: rgb(32,68,52);
 
   --color-white-0: rgb(254, 254, 254);
 
   --color-grey-100: rgb(236, 236, 236);
+
   --color-grey-200: rgb(139, 139, 139);
   --color-grey-300: rgb(90, 91, 92);
   --color-grey-400: rgb(41, 41, 41); 
