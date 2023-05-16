@@ -13,15 +13,8 @@ const MidBanner = (): ReactElement => {
 					alt=""
 				/>
 			</ImageContainer>
-			<div style={{ padding: '30px 30px 30px 180px' }}>
-				<div
-					style={{
-						margin: 0,
-						padding: '0 0 10px 0',
-						fontFamily: 'Gugi',
-						fontSize: '2.5rem',
-					}}
-				>
+			<div className="py-[30px] pr-[30px] pl-[180px]">
+				<div className='m-0 px-0 pt-0 pb-[10px] font-["Gugi"] text-[2.5rem]'>
 					온라인 명륜당?
 				</div>
 				<div>
@@ -32,16 +25,7 @@ const MidBanner = (): ReactElement => {
 					온라인 명륜당은 성균관대 소프트웨어 융합대학에서 개발했고 당신의
 					성장을 도와드립니다.
 				</div>
-				<div
-					style={{
-						marginTop: '20px',
-						textAlign: 'center',
-						width: '80px',
-						color: 'white',
-						border: '1px solid white',
-						fontSize: '8px',
-					}}
-				>
+				<div className="mt-[20px] text-center w-[80px] text-white border-[1px] text-[8px] border-solid border-white">
 					MORE VIEW
 				</div>
 			</div>
