@@ -1,5 +1,4 @@
 import React, { ReactElement, SyntheticEvent } from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
@@ -11,12 +10,10 @@ interface ICourseListProps {
 	headerText: string;
 	headerColor: string;
 }
-
 interface ICommonHeaderProps {
 	text: string;
 	color: string;
 }
-
 interface ICourseCardProps {
 	course: ICourse;
 }
@@ -26,21 +23,14 @@ export const CommonHeader = ({
 	color,
 }: ICommonHeaderProps): ReactElement => {
 	return (
-		<Wrapper>
-			<div style={{ position: 'relative' }}>
+		<div className="w-full text-[2rem] font-bold pb-3 pl-[45px] pt-[60px] border-b-2 border-b-solid border-b-black/[0.2]">
+			<div className="relative">
 				<div
-					style={{
-						width: '20px',
-						height: '2px',
-						background: color,
-						position: 'absolute',
-						top: -2,
-						left: '3px',
-					}}
+					className={'w-[20px] h-[2px] absolute top-[-2] left-[3px] ${color}'}
 				/>
 				{text}
 			</div>
-		</Wrapper>
+		</div>
 	);
 };
 
@@ -56,7 +46,10 @@ const CourseCard = ({ course }: ICourseCardProps) => {
 	};
 
 	return (
-		<CourseCardWrapper onClick={() => handleClick(course.id)}>
+		<div
+			className="cursor-pointer w-full overflow-hidden relative"
+			onClick={() => handleClick(course.id)}
+		>
 			<Image
 				width={'300px'}
 				height={'200px'}
@@ -64,11 +57,9 @@ const CourseCard = ({ course }: ICourseCardProps) => {
 				onError={handleImgError}
 				alt="course thumbnail"
 			/>
-			<div style={{ fontWeight: 'bold' }}>{course.title}</div>
-			<div style={{ fontSize: '12px', opacity: '0.6' }}>
-				{course.description}
-			</div>
-		</CourseCardWrapper>
+			<div className="font-bold">{course.title}</div>
+			<div className="text-xs opacity-[0.6]">{course.description}</div>
+		</div>
 	);
 };
 
@@ -83,36 +74,13 @@ const CourseList = ({
 	return (
 		<div>
 			<CommonHeader text={headerText} color={headerColor} />
-			<GridWrapper>
+			<div className="grid gap-x-4 gap-y-4 py-5 px-[35px] grid-cols-5">
 				{popularCourses?.slice(0, 5).map((course, idx) => (
 					<CourseCard key={idx} course={course} />
 				))}
-			</GridWrapper>
+			</div>
 		</div>
 	);
 };
-
-const Wrapper = styled.div`
-	width: 100%;
-	font-size: 32px;
-	font-weight: bold;
-	border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-	padding-bottom: 12px;
-	padding-left: 45px;
-	padding-top: 60px;
-`;
-const GridWrapper = styled.div`
-	display: grid;
-	grid-column-gap: 16px;
-	grid-row-gap: 16px;
-	grid-template-columns: repeat(5, 1fr);
-	padding: 20px 35px;
-`;
-const CourseCardWrapper = styled.div`
-	cursor: pointer;
-	width: 100%;
-	overflow: hidden;
-	position: relative;
-`;
 
 export default CourseList;

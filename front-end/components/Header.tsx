@@ -112,10 +112,10 @@ const Header = (): ReactElement => {
 	return (
 		<div>
 			{upperHeader}
-			<div className="dt:py-0 dt:px-[10px] flex justify-around items-center mt-[0.2rem] mb-4 mx-0 py-[8px]">
+			<div className="dt:py-0 dt:px-[10px] flex justify-around items-center mt-[0.2rem] mb-6 mx-0 py-2">
 				<div className="flex items-center justify-between">
 					<Link href="/" passHref>
-						<span className="text-[1.7rem] cursor-pointer font-[Gugi]">
+						<span className="text-[2rem] cursor-pointer font-['Gugi']">
 							온라인 명륜당
 						</span>
 					</Link>
@@ -140,7 +140,7 @@ const Header = (): ReactElement => {
 						type="text"
 						ref={inputRef}
 						placeholder="배우고 싶은 지식을 입력하세요."
-						className="w-[300px] h-[35px] rounded-[20px] pr-[40px] pl-[16px]"
+						className="w-[300px] h-[35px] rounded-5 pr-10 pl-4"
 						onChange={handleInput}
 						onKeyPress={handleKeyPress}
 					/>
