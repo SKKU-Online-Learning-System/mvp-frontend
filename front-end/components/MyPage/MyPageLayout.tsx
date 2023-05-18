@@ -1,40 +1,20 @@
 import React, { ReactElement } from 'react';
-import styled from 'styled-components';
 
 import SideMenu from '@components/MyPage/SideMenu';
 
 const MyPageLayout = ({
 	children,
 }: {
-	children: ReactElement;
+	children: ReactElement[] | string;
 }): ReactElement => {
 	return (
-		<Container>
-			<SideMenuBox>
+		<div className="flex w-[1280px] my-0 mx-auto font-['Noto Sans KR']">
+			<div className="py-[10px] px-5 w-[20%]">
 				<SideMenu />
-			</SideMenuBox>
-			<ContentsBox>{children}</ContentsBox>
-		</Container>
+			</div>
+			<div className="py-[10px] px-5 w-[80%]">{children}</div>
+		</div>
 	);
 };
 
 export default MyPageLayout;
-
-const Container = styled.div`
-	display: flex;
-	width: 1200px;
-	margin: 0 auto;
-	font-family: 'Noto Sans KR';
-`;
-const SideMenuBox = styled.div`
-	padding: 10px 20px;
-	width: 20%;
-	ul {
-		margin: 0;
-		padding: 0;
-	}
-`;
-const ContentsBox = styled.div`
-	padding: 10px 20px;
-	width: 80%;
-`;
