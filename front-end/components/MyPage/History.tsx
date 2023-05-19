@@ -8,10 +8,6 @@ import BreadCrumb from '@components/common/BreadCrumb';
 import { MYPAGE_MENU } from 'constants/MyPage';
 import { MyPageTitle } from './MyPageTitle';
 
-type Props = {
-	percentage: number;
-};
-
 const menu = [MYPAGE_MENU.RECENT_WATCHING_LECTURES];
 
 const History = () => {
