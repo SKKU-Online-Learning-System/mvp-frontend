@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
+import { useCurrentLeaningCourseListFetch } from 'query/hooks/MyPage';
 import MyPageLayout from '@components/MyPage/MyPageLayout';
 import BreadCrumb from '@components/common/BreadCrumb';
 import { MYPAGE_MENU } from 'constants/MyPage';
 import { MyPageTitle } from './MyPageTitle';
-import styled from 'styled-components';
-import { useRouter } from 'next/router';
-import { useCurrentLeaningCourseListFetch } from 'query/hooks/MyPage';
-import React from 'react';
+
 const menu = [MYPAGE_MENU.CURRENT_WATCHING_LECTURES];
 
 interface ILectureStatusCount {
@@ -85,62 +85,29 @@ const Learning = () => {
 			/>
 
 			<MyPageTitle title={MYPAGE_MENU.CURRENT_WATCHING_LECTURES} />
-			<GridWrapper>
+			<div className="grid border-[1px] border-solid border-gray-700 gap-x-4 gap-y-4 grid-rows-3 grid-cols-4 p-5">
 				{currentLearningCourseList.map((elem, index) => (
 					<div
-						className="wrapper"
+						className="w-full overflow-hidden relative cursor-pointer"
 						onClick={handleClick(elem.course.id)}
 						key={index}
 					>
 						<img
-							className="image"
-							width={'100%'}
+							className="aspect-video w-full"
 							src={elem.course.thumbnail}
 						></img>
-						<div className="title">{elem.course.title}</div>
-						<div className="time">
+						<div className="text-base text-ellipsis overflow-hidden whitespace-nowrap">
+							{elem.course.title}
+						</div>
+						<div className="text-ellipsis overflow-hidden whitespace-nowrap text-black/[0.5]">
 							{learningLectureCount &&
 								showLectureProgressStatus(learningLectureCount[index])}
 						</div>
 					</div>
 				))}
-			</GridWrapper>
+			</div>
 		</MyPageLayout>
 	);
 };
-
-export const GridWrapper = styled.div`
-	display: grid;
-	border: 1px solid grey;
-	grid-column-gap: 16px;
-	grid-row-gap: 16px;
-	grid-template-rows: repeat(3, 1fr);
-	grid-template-columns: repeat(4, 1fr);
-	padding: 20px;
-	.wrapper {
-		cursor: pointer;
-		width: 100%;
-		overflow: hidden;
-		position: relative;
-	}
-
-	.title {
-		font-size: 16px;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
-	}
-
-	.time {
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
-		color: rgba(0, 0, 0, 0.5);
-	}
-
-	.image {
-		aspect-ratio: 16/9;
-	}
-`;
 
 export default Learning;

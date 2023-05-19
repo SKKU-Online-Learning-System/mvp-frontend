@@ -1,11 +1,12 @@
+import React from 'react';
+import { useRouter } from 'next/router';
+
+import { useCompletedCourseFetch } from 'query/hooks/MyPage';
 import MyPageLayout from '@components/MyPage/MyPageLayout';
 import BreadCrumb from '@components/common/BreadCrumb';
-import { MyPageTitle } from './MyPageTitle';
 import { MYPAGE_MENU } from 'constants/MyPage';
-import { GridWrapper } from './History';
-import { useRouter } from 'next/router';
-import { useCompletedCourseFetch } from 'query/hooks/MyPage';
-import React from 'react';
+import { MyPageTitle } from './MyPageTitle';
+
 const menu = [MYPAGE_MENU.COMPLETED_WATCHING_LECTURES];
 
 const Completed = () => {
@@ -27,26 +28,28 @@ const Completed = () => {
 				containerPadding={'1rem 0'}
 			/>
 			<MyPageTitle title={MYPAGE_MENU.COMPLETED_WATCHING_LECTURES} />
-			<GridWrapper>
+			<div className="grid gap-x-4 gap-y-4 border-[1px] border-solid border-gray-700 grid-rows-3 grid-cols-4 p-5">
 				{!completedCourseList?.length ? (
 					<div>완료된 강의가 없습니다.</div>
 				) : (
 					completedCourseList?.map((elem, index) => (
 						<div
-							className="wrapper"
+							className="w-full overflow-hidden relative cursor-pointer"
 							onClick={handleClick(elem.course.id)}
 							key={index}
 						>
 							<img
-								className="image"
+								className="aspect-video"
 								width={'100%'}
 								src={elem.course.thumbnail}
 							></img>
-							<div className="title">{elem.course.title}</div>
+							<div className="text-base text-ellipsis overflow-hidden whitespace-nowrap">
+								{elem.course.title}
+							</div>
 						</div>
 					))
 				)}
-			</GridWrapper>
+			</div>
 		</MyPageLayout>
 	);
 };

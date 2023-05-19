@@ -1,14 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 interface LayoutProps {
 	children?: React.ReactNode;
 }
 interface LinkProps {
 	isThisPage: boolean;
 }
+
 const myPage = '/my-page';
+
 const MENU = [
 	{ title: 'DASHBOARD', path: myPage },
 	{ title: '내 알림보기/알림 설정', path: myPage + '/notification' },
@@ -23,70 +25,40 @@ const MENU = [
 const Layout = ({ children }: LayoutProps) => {
 	const router = useRouter();
 	return (
-		<LayoutBox>
-			<div className="menuBar">
-				<ul>
+		<div className="my-0 mx-5 flex justify-start w-[1400px] my-0 mx-auto">
+			<div className="mr-[1%] min-w-[230px] text-[0.8rem]">
+				<ul className="list-none border-solid border-[#e2e2e2] border-2 p-0 h-full">
 					{MENU.map((ele) => {
+						const isThisPage = ele.path === router.pathname;
+
 						return (
-							<li key={ele.path}>
+							<li
+								className="border-solid border-[#e2e2e2] border-2 leading-[1.6rem]"
+								key={ele.path}
+							>
 								<Link href={ele.path}>
-									<LinkMenu isThisPage={ele.path === router.pathname}>
+									<a
+										className={`bg-[${
+											isThisPage ? '#e2e2e2' : 'white'
+										}] block no-underline font-bold py-[10px] px-5 cursor-pointer hover:bg-[#e2e2e2]`}
+									>
 										{ele.title}
-									</LinkMenu>
+									</a>
 								</Link>
 							</li>
 						);
 					})}
 				</ul>
 			</div>
-			<div style={{ display: 'block', marginTop: '20px' }}>{children}</div>
-		</LayoutBox>
+			<div className="block mt-5">{children}</div>
+		</div>
 	);
 };
 
 export default Layout;
-
-const LayoutBox = styled.div`
-	margin: 0 20px;
-	display: flex;
-	justify-content: flex-start;
-	.menuBar {
-		margin-right: 1%;
-		min-width: 230px;
-		font-size: 0.8rem;
-
-		ul {
-			list-style: none;
-			border: solid;
-			border-color: #e2e2e2;
-			border-width: thin;
-			padding: 0;
-			height: 100%;
-		}
-		li {
-			border-bottom: solid;
-			border-color: #e2e2e2;
-			border-width: thin;
-			line-height: 1.6rem;
-		}
-		a {
-			display: block;
-		}
-	}
-
-	@media only screen and (min-width: 1400px) {
-		margin: 0 auto;
-		width: 1400px;
-	}
-`;
-const LinkMenu = styled.a<LinkProps>`
-	/* color: ${(props) => (props.isThisPage ? '#68722f' : 'black')}; */
-	background-color: ${(props) => (props.isThisPage ? '#e2e2e2' : 'white')};
-	text-decoration: none;
-	font-weight: bold;
-	padding: 10px 20px;
-	cursor: pointer;
-	&:hover {
-		background-color: #e2e2e2;
-	}
-`;
+// const LayoutBox = styled.div`
+// 	@media only screen and (min-width: 1400px) {
+// 		margin: 0 auto;
+// 		width: 1400px;
+// 	}
+// `;
