@@ -10,30 +10,22 @@ import LectureIntroduction from '@components/Details/ListContents/LectureIntrodu
 const DetailsPage = (): ReactElement => (
 	<>
 		<MainBanner />
-		<Container>
-			<div style={{ display: 'flex', margin: '63px auto' }}>
-				<div className="leftBox">
+		<div className="my-0 mx-auto">
+			<div className="flex my-[63px] mx-auto">
+				<div className="my-0 mr-[56px] ml-0">
 					<LearningStatus />
 					<LectureIntroduction />
 				</div>
-
 				<CurrentQnA />
 			</div>
 			<Curriculum />
-		</Container>
+		</div>
 	</>
 );
 
 export default DetailsPage;
-
-const Container = styled.div`
-	.leftBox {
-		margin: 0 56px 0 0;
-		width: 50%;
-	}
-	margin: 0 auto;
-	@media only screen and (min-width: 1300px) {
-		/* width: 1650px; */
-		width: 1300px;
-	}
-`;
+// const Container = styled.div`
+// 	@media only screen and (min-width: 1300px) {
+// 		width: 1300px;
+// 	}
+// `;
