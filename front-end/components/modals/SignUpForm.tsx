@@ -110,7 +110,9 @@ function SignUpForm({ onClose }: any) {
 				<form onSubmit={handleSubmit}>
 					<div className="flex flex-col justify-between h-[330px] mt-[50px]">
 						<div className="flex flex-col justify-between h-[110px]">
-							<label htmlFor="email">이메일</label>
+							<label htmlFor="email" className="font-bold">
+								이메일
+							</label>
 							<input
 								className="relative box-border rounded-[5px] bg-white overflow-hidden w-full h-10 mx-0 mt-0 mb-2 py-[5px] pr-[39px] pl-[11px] border-[1px] border-solid border-slate-400"
 								id="email"
@@ -121,7 +123,7 @@ function SignUpForm({ onClose }: any) {
 							/>
 							<div className="flex flex-row-reverse">
 								<button
-									className="w-[80px] font-normal leading-5 rounded-[3px] bg-[#fcfcfc]"
+									className="hover:text-black/[0.6] duration-150 w-[80px] font-normal leading-5 rounded-[3px] bg-[#fcfcfc]"
 									onClick={handleClickEmailCheck}
 								>
 									중복 체크
@@ -142,7 +144,9 @@ function SignUpForm({ onClose }: any) {
 						</div>
 
 						<div className="flex flex-col justify-between h-[110px]">
-							<label htmlFor="nickname">닉네임</label>
+							<label htmlFor="nickname" className="font-bold">
+								닉네임
+							</label>
 							<input
 								className="relative box-border rounded-[5px] bg-white overflow-hidden w-full h-10 mx-0 mt-0 mb-2 py-[5px] pr-[39px] pl-[11px] border-[1px] border-solid border-slate-400"
 								id="nickname"
@@ -152,7 +156,7 @@ function SignUpForm({ onClose }: any) {
 							/>
 							<div className="flex flex-row-reverse">
 								<button
-									className="w-[80px] font-normal leading-5 rounded-[3px] bg-[#fcfcfc]"
+									className="hover:text-black/[0.6] duration-150 w-[80px] font-normal leading-5 rounded-[3px] bg-[#fcfcfc]"
 									onClick={handleClickNicknameCheck}
 								>
 									중복 체크

@@ -35,7 +35,7 @@ function LoginModal({
 				</div>
 
 				<div>
-					<h1 className="m-0">로그인</h1>
+					<h1 className="m-0 font-bold text-2xl">로그인</h1>
 					<LogInForm onClose={onClose} onOpenSignUp={onOpenSignUp} />
 				</div>
 			</div>

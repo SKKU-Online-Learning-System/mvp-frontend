@@ -140,7 +140,7 @@ const Header = (): ReactElement => {
 						type="text"
 						ref={inputRef}
 						placeholder="배우고 싶은 지식을 입력하세요."
-						className="w-[300px] h-[35px] rounded-5 pr-10 pl-4"
+						className="w-[300px] h-[35px] rounded-5 pr-10 pl-4 border-2 border-solid border-[black]/[0.7] rounded-xl"
 						onChange={handleInput}
 						onKeyPress={handleKeyPress}
 					/>

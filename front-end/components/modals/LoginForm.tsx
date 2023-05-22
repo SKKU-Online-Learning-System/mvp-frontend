@@ -65,8 +65,11 @@ function LoginForm({ onClose, onOpenSignUp }: any) {
 			) : (
 				<div className="flex flex-col justify-between h-[150px] mt-[50px]">
 					<form onSubmit={handleSubmit}>
+						<label htmlFor="email" className="font-bold">
+							이메일
+						</label>
 						<input
-							className="relative overflow-hidden w-full h-10 mb-2 py-[5px] pr-[39px] pl-[11px] border-[1px] border-solid border-slate-400 rounded-[5px] bg-white box-border"
+							className="relative overflow-hidden w-full h-10 my-2 py-[5px] pr-[39px] pl-[11px] border-[1px] border-solid border-slate-400 rounded-[5px] bg-white box-border"
 							id="email"
 							name="email"
 							placeholder="로그인할 이메일을 입력해주세요"
@@ -79,7 +82,7 @@ function LoginForm({ onClose, onOpenSignUp }: any) {
 						</button>
 					</form>
 					<hr />
-					<div className="flex h-[60px] py-0 px-10 justify-evenly items-center">
+					<div className="flex mt-2 h-[60px] py-0 px-10 justify-evenly items-center">
 						처음이신가요?{' '}
 						<span
 							className="font-bold cursor-pointer"

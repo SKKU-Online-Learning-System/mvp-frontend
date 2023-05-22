@@ -29,7 +29,7 @@ const SignUpModal = ({
 				</div>
 
 				<div>
-					<h1 className="m-0">회원가입</h1>
+					<h1 className="m-0 font-bold text-2xl">회원가입</h1>
 					<SignUpForm onClose={onClose} />
 				</div>
 			</div>
