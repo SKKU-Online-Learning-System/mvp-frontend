@@ -1,48 +1,11 @@
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+
 import {
 	fetchEmailCheck,
 	fetchNicknameCheck,
 	sendSignUpRequest,
 } from 'apis/SignUp/signUpApi';
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
-import styled from 'styled-components';
-
-const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 330px;
-	margin-top: 50px;
-`;
-
-const Input = styled.input`
-	position: relative;
-	overflow: hidden;
-	width: 100%;
-	height: 40px;
-	margin: 0 0 8px;
-	padding: 5px 39px 5px 11px;
-	border: solid 1px #dadada;
-	border-radius: 5px;
-	background: #fff;
-	box-sizing: border-box;
-`;
-
-const Button = styled.button`
-	font-size: 18px;
-	font-weight: 700;
-	line-height: 49px;
-	display: block;
-	width: 100%;
-	height: 49px;
-	margin: 20px 0 0 0;
-	cursor: pointer;
-	text-align: center;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	background-color: rgba(148, 186, 101, 0.9);
-`;
 
 enum CHECK_STATUS {
 	NONE = 0,
@@ -136,69 +99,87 @@ function SignUpForm({ onClose }: any) {
 	return (
 		<>
 			{sendingMail ? (
-				<LoadingBox>
+				<div className="flex justify-center items-center h-[400px]">
 					<img
+						className="w-[100px]"
 						src="https://mblogthumb-phinf.pstatic.net/MjAxODEwMjNfNjAg/MDAxNTQwMjg2OTk2NTcw.mfWKPtzKVO1mJaBBIFKIkVBlMQQIF1Vc-yrlbbGaoP0g.KNJWAgMmhsfQrZI3n0UT-LMi_qpHAZls4qPMvbNaJBcg.GIF.chingguhl/Spinner-1s-200px.gif?type=w800"
 						alt="loading"
 					/>
-				</LoadingBox>
+				</div>
 			) : (
 				<form onSubmit={handleSubmit}>
-					<Container>
-						<InputBox>
+					<div className="flex flex-col justify-between h-[330px] mt-[50px]">
+						<div className="flex flex-col justify-between h-[110px]">
 							<label htmlFor="email">이메일</label>
-							<Input
+							<input
+								className="relative box-border rounded-[5px] bg-white overflow-hidden w-full h-10 mx-0 mt-0 mb-2 py-[5px] pr-[39px] pl-[11px] border-[1px] border-solid border-slate-400"
 								id="email"
 								name="email"
 								type="email"
 								placeholder="이메일을 입력해주세요"
 								onChange={handleChange(setEmailValue, setEmailUnique)}
 							/>
-							<CheckBox>
-								<CheckButton onClick={handleClickEmailCheck}>
+							<div className="flex flex-row-reverse">
+								<button
+									className="w-[80px] font-normal leading-5 rounded-[3px] bg-[#fcfcfc]"
+									onClick={handleClickEmailCheck}
+								>
 									중복 체크
-								</CheckButton>
-								<CheckMessage>
+								</button>
+								<span className="pr-[10px] align-middle">
 									{emailUnique === CHECK_STATUS.NONE ? null : emailUnique ===
 									  CHECK_STATUS.CHECKED ? (
-										<CheckMessageOK>사용 가능한 이메일입니다.</CheckMessageOK>
+										<span className="font-green-400 align-middle">
+											사용 가능한 이메일입니다.
+										</span>
 									) : (
-										<CheckMessageConflict>
+										<span className="text-red-500 align-middle">
 											이미 사용 중인 이메일입니다.
-										</CheckMessageConflict>
+										</span>
 									)}
-								</CheckMessage>
-							</CheckBox>
-						</InputBox>
+								</span>
+							</div>
+						</div>
 
-						<InputBox>
+						<div className="flex flex-col justify-between h-[110px]">
 							<label htmlFor="nickname">닉네임</label>
-							<Input
+							<input
+								className="relative box-border rounded-[5px] bg-white overflow-hidden w-full h-10 mx-0 mt-0 mb-2 py-[5px] pr-[39px] pl-[11px] border-[1px] border-solid border-slate-400"
 								id="nickname"
 								name="nickname"
 								placeholder="닉네임을 입력해주세요"
 								onChange={handleChange(setNicknameValue, setNicknameUnique)}
 							/>
-							<CheckBox>
-								<CheckButton onClick={handleClickNicknameCheck}>
+							<div className="flex flex-row-reverse">
+								<button
+									className="w-[80px] font-normal leading-5 rounded-[3px] bg-[#fcfcfc]"
+									onClick={handleClickNicknameCheck}
+								>
 									중복 체크
-								</CheckButton>
-								<CheckMessage>
+								</button>
+								<span className="pr-[10px] align-middle">
 									{nicknameUnique ===
 									CHECK_STATUS.NONE ? null : nicknameUnique ===
 									  CHECK_STATUS.CHECKED ? (
-										<CheckMessageOK>사용 가능한 닉네임입니다.</CheckMessageOK>
+										<span className="font-green-400 align-middle">
+											사용 가능한 닉네임입니다.
+										</span>
 									) : (
-										<CheckMessageConflict>
+										<span className="text-red-500 align-middle">
 											이미 사용 중인 닉네임입니다.
-										</CheckMessageConflict>
+										</span>
 									)}
-								</CheckMessage>
-							</CheckBox>
-						</InputBox>
+								</span>
+							</div>
+						</div>
 
-						<Button type="submit">회원가입</Button>
-					</Container>
+						<button
+							className="bg-[#94c865]/[0.9] text-lg font-bold leading-[49px] block w-full h-[49px] mt-5 cursor-pointer text-center text-white border-none rounded-[5px]"
+							type="submit"
+						>
+							회원가입
+						</button>
+					</div>
 				</form>
 			)}
 		</>
@@ -206,48 +187,3 @@ function SignUpForm({ onClose }: any) {
 }
 
 export default SignUpForm;
-
-const InputBox = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 110px;
-`;
-
-const CheckBox = styled.div`
-	display: flex;
-	flex-direction: row-reverse;
-`;
-
-const CheckMessage = styled.span`
-	padding-right: 10px;
-	vertical-align: middle;
-`;
-
-const CheckMessageOK = styled.span`
-	color: green;
-	vertical-align: middle;
-`;
-
-const CheckMessageConflict = styled.span`
-	color: red;
-	vertical-align: middle;
-`;
-
-const CheckButton = styled.button`
-	width: 80px;
-	font-weight: 400;
-	line-height: 20px;
-	border-radius: 3px;
-	background-color: #fcfcfc;
-`;
-
-const LoadingBox = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 400px;
-	img {
-		width: 100px;
-	}
-`;

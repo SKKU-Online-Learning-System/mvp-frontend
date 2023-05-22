@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { useRouter } from 'next/router';
-import { useCourseDetailLectureFetch } from 'query/hooks/CourseDetail/index';
 
-type ToggleType = {
-	isCollapsed: boolean;
-};
+import { durationToHhMmSs } from 'utils/durationToHhMmSs';
+import { useCourseDetailLectureFetch } from 'query/hooks/CourseDetail/index';
 
 interface ILecturePicker {
 	courseId?: string;
@@ -39,82 +35,48 @@ export const LecturePicker = ({ courseId }: ILecturePicker) => {
 	if (isLoading) return <div>Loading...</div>;
 
 	return (
-		<LecturePickerWrapper>
+		<div className="border-[1px] border-solid border-[#e7e9eb] h-[768px] overflow-y-scroll min-w-[300px]">
 			{lectureList?.map((elem, idx) => {
+				const ic = isCollapsed[idx];
 				return (
 					<React.Fragment key={idx}>
-						<LectureTitleHeader
-							isCollapsed={isCollapsed[idx]}
+						<div
+							className={
+								ic
+									? 'after:rotate-45 '
+									: 'after:rotate-[-45deg] ' +
+									  `after:duration-200 after:my-[10px] after:p-[2.5px] after:content-[''] after:inline-block after:border-solid after:border-[#595959] after:border-r-2 border-b-2 cursor-pointer flex min-w-[200px] p-[10px] justify-between bg-[#e7e9eb] text-[#595959]`
+							}
+							// isCollapsed={isCollapsed[idx]}
 							onClick={() => handleToggleCollapse(idx)}
 						>
 							{elem?.title}
-						</LectureTitleHeader>
-						<CollpaseBody isCollapsed={isCollapsed[idx]}>
-							{elem?.lectures.map((item, _idx: number) => (
-								<LectureHeader
-									key={_idx}
-									onClick={() => handleMoveToAnotherLecture(item.id)}
-								>
-									<li>{item.title}</li>
-									<li>{durationToHhMmSs(item.duration)}</li>
-								</LectureHeader>
-							))}
-						</CollpaseBody>
+						</div>
+						<div
+							className={
+								// row 1개당 45px기준, 목록 100개.
+								ic
+									? 'max-h-[4500px] '
+									: 'max-h-0 ' +
+									  `overflow-y-hidden transition-[max-height] ease-in-out duration-300`
+							}
+						>
+							{elem?.lectures.map((item, _idx: number) => {
+								return (
+									<div
+										className="hover:bg-[#efefef] cursor-pointer flex justify-between gap-x-4 gap-y-2 list-none p-[10px]"
+										key={_idx}
+										onClick={() => handleMoveToAnotherLecture(item.id)}
+									>
+										<li>{item.title}</li>
+										<li>{durationToHhMmSs(item.duration)}</li>
+									</div>
+								);
+							})}
+						</div>
 					</React.Fragment>
 				);
 			})}
-		</LecturePickerWrapper>
+		</div>
 	);
 };
-
-const LecturePickerWrapper = styled.div`
-	border: 1px solid #e7e9eb;
-	height: 768px;
-	overflow-y: scroll;
-	min-width: 300px;
-`;
-
-const LectureTitleHeader = styled.div<ToggleType>`
-	cursor: pointer;
-	display: flex;
-	min-width: 200px;
-	padding: 10px;
-	justify-content: space-between;
-	background-color: #e7e9eb;
-	color: #595959;
-
-	&::after {
-		content: '';
-		display: inline-block;
-		border: solid #595959;
-		border-width: 0 2px 2px 0;
-		padding: 2.5px;
-		margin-bottom: 10px;
-		margin-top: 10px;
-		transform: ${(props) =>
-			props.isCollapsed ? 'rotate(45deg)' : 'rotate(-45deg)'};
-		transition: transform 0.2s;
-	}
-`;
-
-const LectureHeader = styled.div`
-	cursor: pointer;
-	display: flex;
-	justify-content: space-between;
-	column-gap: 16px;
-	row-gap: 8px;
-	list-style: none;
-	padding: 10px;
-
-	& :hover {
-		background-color: #efefef;
-	}
-`;
-
-const CollpaseBody = styled.div<ToggleType>`
-	// transition 걸기위해서 필요
-	overflow-y: hidden;
-	max-height: ${(props) => (props.isCollapsed ? '4500px' : '0')};
-	// row 1개당 45px기준, 목록 100개.
-	transition: max-height 0.3s ease;
-`;

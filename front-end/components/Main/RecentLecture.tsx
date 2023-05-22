@@ -1,12 +1,9 @@
-import styled from 'styled-components';
+import React from 'react';
 import { useRouter } from 'next/router';
+
+import { useRecentLecturesFetch } from 'query/hooks/Main/index';
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { CommonHeader } from './CourseList';
-import { useRecentLecturesFetch } from 'query/hooks/Main/index';
-import React from 'react';
-type Props = {
-	percentage: number;
-};
 
 export const RecentLecture = () => {
 	const router = useRouter();
@@ -42,81 +39,38 @@ export const RecentLecture = () => {
 	return (
 		<>
 			<CommonHeader text={'최근 수강 강의'} color={'red'} />
-			<GridWrapper>
-				{recentLectures?.slice(0, 5).map((elem, index) => (
-					<div
-						className="wrapper"
-						onClick={handleClick(elem.lecture.course.id, elem.lecture.id)}
-						key={index}
-					>
-						<img
-							className="image"
-							width={'100%'}
-							src={elem.lecture.course.thumbnail}
-						></img>
-						<ProgressBar
-							percentage={getProgressPercentage(
-								elem.lastTime,
-								elem.lecture.duration,
-							)}
+			<div className="grid gap-x-4 gap-y-4 grid-cols-5 py-5 px-[35px]">
+				{recentLectures?.slice(0, 5).map((elem, index) => {
+					const percentage = getProgressPercentage(
+						elem.lastTime,
+						elem.lecture.duration,
+					);
+
+					return (
+						<div
+							className="cursor-pointer w-full overflow-hidden relative"
+							onClick={handleClick(elem.lecture.course.id, elem.lecture.id)}
+							key={index}
 						>
-							<div className="current_progress_position"></div>
-						</ProgressBar>
-						<div className="title">{elem.lecture.title}</div>
-						<div className="time">
-							{showTimeProgress(elem.lastTime, elem.lecture.duration)}
+							<img
+								className="w-full aspect-video"
+								src={elem.lecture.course.thumbnail}
+							></img>
+							<div
+								className={`w-[${percentage}] absolute bottom-[50px] right-0 left-0 h-1 bg-[#717171]`}
+							>
+								<div className="absolute h-full bg-red-600"></div>
+							</div>
+							<div className="text-base text-ellipsis overflow-hidden whitespace-nowrap">
+								{elem.lecture.title}
+							</div>
+							<div className="text-ellipsis overflow-hidden whitespace-nowrap text-black/[0.5]">
+								{showTimeProgress(elem.lastTime, elem.lecture.duration)}
+							</div>
 						</div>
-					</div>
-				))}
-			</GridWrapper>
+					);
+				})}
+			</div>
 		</>
 	);
 };
-
-export const GridWrapper = styled.div`
-	display: grid;
-	grid-column-gap: 16px;
-	grid-row-gap: 16px;
-	grid-template-columns: repeat(5, 1fr);
-	padding: 20px 35px;
-	.wrapper {
-		cursor: pointer;
-		width: 100%;
-		overflow: hidden;
-		position: relative;
-	}
-
-	.title {
-		font-size: 16px;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
-	}
-
-	.time {
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
-		color: rgba(0, 0, 0, 0.5);
-	}
-
-	.image {
-		aspect-ratio: 16/9;
-	}
-`;
-
-const ProgressBar = styled.div<Props>`
-	position: absolute;
-	bottom: 50px;
-	right: 0;
-	left: 0;
-	height: 4px;
-	background-color: #717171;
-
-	.current_progress_position {
-		position: absolute;
-		height: 100%;
-		width: ${(props) => `${props.percentage}%`};
-		background-color: red;
-	}
-`;

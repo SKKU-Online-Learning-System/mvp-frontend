@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import styled from 'styled-components';
+
 import axiosInstance from 'apis';
-const MainText = () => {
+
+const MainText = (): ReactElement => {
 	const [courseData, setCourseData] = useState({
 		title: '',
 		description: '',
@@ -21,7 +23,7 @@ const MainText = () => {
 	}, []);
 
 	return (
-		<Container>
+		<div className="flex">
 			<h4>{`${courseData.category1} > ${courseData.category2}`}</h4>
 			<h2>{courseData.title}</h2>
 			<h4>{courseData.description}</h4>
@@ -31,7 +33,7 @@ const MainText = () => {
 					return <div key={ele} className="hashtag">{`#${ele}`}</div>;
 				})}
 			</div>
-		</Container>
+		</div>
 	);
 };
 

@@ -17,7 +17,7 @@ const BreadCrumb = ({
 }: IBreadCrumb) => {
 	return (
 		<Container containerPadding={containerPadding}>
-			<div style={{ display: 'flex', fontSize: '28px', color: '#454545' }}>
+			<div className="flex text-[28px] text-[#454545]">
 				<Category categoryColor={categoryColor}>{category}</Category>
 				{menu.length > 0 &&
 					menu.map((elem, idx) => <SubCategory key={idx}>{elem}</SubCategory>)}
@@ -35,7 +35,6 @@ const Container = styled.div<Partial<IBreadCrumb>>`
 		props.containerPadding ? props.containerPadding : undefined};
 `;
 const Category = styled.div<Partial<IBreadCrumb>>`
-	// inline류 style은 first-letter x (ex: span)
 	&::first-letter {
 		border-top: 3px solid
 			${(props) => (props.categoryColor ? props.categoryColor : '#25c3f3')};

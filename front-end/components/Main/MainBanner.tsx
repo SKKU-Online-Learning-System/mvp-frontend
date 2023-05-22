@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import { useRouter } from 'next/router';
+
 import API from 'apis/Main';
 import { IMainBanners } from 'types/Main';
-import { useRouter } from 'next/router';
+
 // TODO. query string 형식으로 요청 보내기
 const MainBanner = () => {
 	const router = useRouter();
@@ -35,39 +36,25 @@ const MainBanner = () => {
 	}, []);
 
 	return (
-		<Container>
+		<div className="min-w-[1440px] flex justify-center items-center bg-[var(--color-green-900)] py-[50px] px-[60px]">
 			{bannerList.length > 0 &&
 				bannerList.map((banner, index) => (
 					<div
 						key={index}
-						style={{
-							paddingRight: '10px',
-							overflow: 'auto',
-							cursor: 'pointer',
-						}}
+						className="pl-[10px] overflow-auto cursor-pointer"
 						onClick={handleImageClick(banner.category2Id)}
 					>
 						<img
 							crossOrigin="anonymous"
 							src={getImageUrl(banner.filename)}
 							alt="bannerItem"
-							style={{ maxWidth: '250px', width: '250px', height: '250px' }}
+							className="max-w-[250px] w-[250px] h-[250px]"
 						/>
 					</div>
 				))}
-		</Container>
+		</div>
 	);
 };
-
-const Container = styled.div`
-	min-width: 1440px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	/* background: linear-gradient(#1f5191, #022240); */
-	background: var(--color-green-900);
-	padding: 50px 60px;
-`;
 
 export default MainBanner;
 

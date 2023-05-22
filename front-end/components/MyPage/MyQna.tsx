@@ -1,12 +1,13 @@
+import React from 'react';
+import { useRouter } from 'next/router';
+
 import MyPageLayout from '@components/MyPage/MyPageLayout';
 import BreadCrumb from '@components/common/BreadCrumb';
+import { getTimeBefore } from 'utils/getTimeBefore';
+import { useMyQnaFetch } from 'query/hooks/MyPage';
 import { MYPAGE_MENU } from 'constants/MyPage';
 import { MyPageTitle } from './MyPageTitle';
-import { useRouter } from 'next/router';
-import { getTimeBefore } from 'utils/getTimeBefore';
-import { Wrapper } from '@components/Questions/QuestionBox';
-import { useMyQnaFetch } from 'query/hooks/MyPage';
-import React from 'react';
+
 const menu = [MYPAGE_MENU.MY_QNA];
 
 const MyQnA = () => {
@@ -32,21 +33,23 @@ const MyQnA = () => {
 			<MyPageTitle title={MYPAGE_MENU.MY_QNA} />
 			<div>
 				{qna?.map((elem, index) => (
-					<Wrapper
-						style={{ width: '100%' }}
+					<li
+						className="w-full hover:bg-[#f8f9fa] hover:duration-300 m-auto cursor-pointer p-5 border-b-[1px] border-solid border-[#dee2e6] flex w-[1000px] list-none text-ellipsis"
 						key={index}
 						onClick={handleClick(elem.id)}
 					>
-						<div className="left">
-							<header className="title">{elem.title || '제목없음'}</header>
-							<section className="contents">{elem.contents}</section>
-							<div className="info">
+						<div className="w-[85%]">
+							<header className="font-bold">{elem.title || '제목없음'}</header>
+							<section className="text-[0.8rem] text-[#616568] my-[10px] mx-0 text-ellipsis overflow-hidden break-words line-clamp-3">
+								{elem.contents}
+							</section>
+							<div className="text-[0.8rem] text-[#858a8d]">
 								{`${'이름'} · ${getTimeBefore(elem.createdAt)} · ${
 									elem.course.title
 								}`}
 							</div>
 						</div>
-					</Wrapper>
+					</li>
 				))}
 			</div>
 		</MyPageLayout>

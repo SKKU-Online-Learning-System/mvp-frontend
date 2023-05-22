@@ -1,7 +1,8 @@
-import Link from 'next/link';
-import styled from 'styled-components';
-import { MYPAGE_PATH, MYPAGE_MENU } from 'constants/MyPage';
 import React from 'react';
+import Link from 'next/link';
+
+import { MYPAGE_PATH, MYPAGE_MENU } from 'constants/MyPage';
+
 const SideMenu = () => {
 	const root = '/my-page';
 	const menus = [
@@ -23,12 +24,12 @@ const SideMenu = () => {
 
 	return (
 		<>
-			<ul>
+			<ul className="m-0 p-0">
 				{menus.map((menu, idx) => (
 					<Link key={idx} href={menu.path}>
-						<MenuBox>
+						<div className="hover:bg-[#e2e2e2] text-[#595959] py-[0.8rem] px-4 list-none border-[1px] border-solid border-[#e4e4e4] cursor-pointer bg-[#fafafa] font-bold">
 							<li>{menu.title}</li>
-						</MenuBox>
+						</div>
 					</Link>
 				))}
 			</ul>
@@ -37,16 +38,3 @@ const SideMenu = () => {
 };
 
 export default SideMenu;
-
-const MenuBox = styled.div`
-	padding: 0.8rem 1rem;
-	list-style: none;
-	border: 1px solid #e4e4e4;
-	cursor: pointer;
-	background: #fafafa;
-	font-weight: bold;
-	color: #595959;
-	&:hover {
-		background-color: #e2e2e2;
-	}
-`;
