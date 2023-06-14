@@ -24,8 +24,9 @@ const MENU = [
 
 const Layout = ({ children }: LayoutProps) => {
 	const router = useRouter();
+
 	return (
-		<div className="my-0 mx-5 flex justify-start w-[1400px] my-0 mx-auto">
+		<div className="my-0 mx-5 flex justify-start w-[1400px]">
 			<div className="mr-[1%] min-w-[230px] text-[0.8rem]">
 				<ul className="list-none border-solid border-[#e2e2e2] border-2 p-0 h-full">
 					{MENU.map((ele) => {
