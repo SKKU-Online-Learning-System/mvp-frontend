@@ -1,5 +1,6 @@
 import React, { useState, useEffect, ReactElement } from 'react';
 import styled from 'styled-components';
+
 import { useRouter } from 'next/router';
 import { useCourseCategoriesFetch } from 'query/hooks/CourseList/index';
 
@@ -52,7 +53,7 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory): ReactElement => {
 		<div>
 			{courseCategories?.map((content, index) => (
 				<React.Fragment key={index}>
-					<Card onClick={handleCardClick(index)}>{content.name}</Card>
+					<div className='flex font-semibold text-[#595959] border-[1px] border-solid border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[#fafafa]' onClick={handleCardClick(index)}>{content.name}</div>
 					<SubItemBody isClicked={isClickedCategory[index]}>
 						{content.category2s?.map((elem, index) => (
 							<SubItem
@@ -71,15 +72,6 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory): ReactElement => {
 
 export default CourseCategory;
 
-const Card = styled.div`
-	display: flex;
-	border: 1px solid #e4e4e4;
-	cursor: pointer;
-	padding: 0.85rem;
-	background: #fafafa;
-	font-weight: 600;
-	color: #595959;
-`;
 const SubItemBody = styled.div<ToggleType>`
 	max-height: ${(props) => (props.isClicked ? '100em' : '0')};
 	overflow-y: hidden;
