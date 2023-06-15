@@ -34,7 +34,7 @@ const MyQnA = () => {
 			<div>
 				{qna?.map((elem, index) => (
 					<li
-						className="w-full hover:bg-[#f8f9fa] hover:duration-300 m-auto cursor-pointer p-5 border-b-[1px] border-solid border-[#dee2e6] flex w-[1000px] list-none text-ellipsis"
+						className="hover:bg-[#f8f9fa] hover:duration-300 m-auto cursor-pointer p-5 border-b-[1px] border-solid border-[#dee2e6] flex w-[1000px] list-none text-ellipsis"
 						key={index}
 						onClick={handleClick(elem.id)}
 					>

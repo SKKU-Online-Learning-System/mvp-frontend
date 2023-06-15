@@ -1,16 +1,13 @@
+import React, { SyntheticEvent } from 'react';
 import { useRouter } from 'next/router';
-import HashTagCard from './HashTagCard';
-import styled from 'styled-components';
-import { SyntheticEvent } from 'react';
+
 import { defaultErrorImage } from 'constants/index';
-import { ICourseInfo } from 'types/Course/index';
-import React from 'react';
+import { ICourseDetail } from 'types/Course/index';
+import HashTagCard from './HashTagCard';
 
 interface ILectureCard {
-	course: ICourseInfo;
+	course: ICourseDetail;
 }
-
-const width = ~~(1140 / 4);
 
 const LectureCard = ({ course }: ILectureCard) => {
 	const router = useRouter();
@@ -25,7 +22,7 @@ const LectureCard = ({ course }: ILectureCard) => {
 
 	return (
 		<span
-			style={{ paddingRight: '1rem', cursor: 'pointer', width: width }}
+			className={`pr-4 cursor-pointer w-[${~~(1140 / 4)}]`}
 			onClick={() => handleClick(course.id)}
 			key={course.id}
 		>
@@ -35,34 +32,15 @@ const LectureCard = ({ course }: ILectureCard) => {
 				onError={handleImgError}
 				alt="no"
 			/>
-			<div
-				style={{
-					display: 'flex',
-					gap: '4px',
-					overflowY: 'auto',
-				}}
-			>
+			<div className="flex gap-1 overflow-auto">
 				{course.hashtag.map((name: string, idx: number) => (
 					<HashTagCard name={name} key={idx} />
 				))}
 			</div>
-			<div
-				style={{
-					fontWeight: 700,
-					textOverflow: 'ellipsis',
-					overflow: 'hidden',
-				}}
-			>
+			<div className="font-bold text-ellipsis overflow-hidden">
 				{course.title}
 			</div>
-			<div
-				style={{
-					color: '#7d7d7d',
-					fontSize: '0.9rem',
-					overflow: 'hidden',
-					height: '100px',
-				}}
-			>
+			<div className="text-[#7d7d7d] text-[0.9rem] overflow-hidden h-[100px]">
 				{course.description}
 			</div>
 		</span>
