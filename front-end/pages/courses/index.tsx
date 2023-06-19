@@ -20,10 +20,12 @@ const CoursesListPage = (): ReactElement => {
 			{/* 화면 전체 */}
 			<Wrapper>
 				{/* 왼쪽 sidebar 전체 */}
-				<SidebarLeft>
-					<CourseCategory handleClickMenu={handleClickMenu} />
-					<DifficultyList title={'난이도'} type={['초급', '중급', '고급']} />
-				</SidebarLeft>
+				<div className="bg-[var(--color-green-700)] min-w-[300px] p-16">
+					<SidebarLeft>
+						<CourseCategory handleClickMenu={handleClickMenu} />
+						<DifficultyList title={'난이도'} type={['초급', '중급', '고급']} />
+					</SidebarLeft>
+				</div>
 
 				{/* 오른쪽 전체, 그 안에서 위(검색창) 아래(강의 리스트) 나눔*/}
 				<LectureBody>
@@ -50,8 +52,8 @@ const Wrapper = styled.div`
 	font-family: Noto Sans KR;
 `;
 const SidebarLeft = styled.div`
-	min-width: 300px;
-	padding: 0 2rem;
+	/* min-width: 300px; */
+	/* padding: 0 2rem; */
 `;
 const LectureBody = styled.div`
 	width: 100%;

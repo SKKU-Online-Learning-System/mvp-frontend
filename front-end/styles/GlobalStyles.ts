@@ -35,12 +35,14 @@ html, body, #root {
   --color-green-900: rgb(32,68,52);
 
   --color-white-0: rgb(254, 254, 254);
+  --color-white-100: #FBFBFB;
 
   --color-grey-100: rgb(236, 236, 236);
+  --color-grey-200: #D9D9D9;
 
-  --color-grey-200: rgb(139, 139, 139);
-  --color-grey-300: rgb(90, 91, 92);
-  --color-grey-400: rgb(41, 41, 41); 
+  --color-grey-300: rgb(139, 139, 139);
+  --color-grey-400: rgb(90, 91, 92);
+  --color-grey-500: rgb(41, 41, 41); 
 
   --font-NotoSans: 'Noto Sans KR';
   /* fontWeight 100, 300, 400, 500, 700, 900 있음 */

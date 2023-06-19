@@ -25,9 +25,13 @@ export const CommonHeader = ({
 	return (
 		<div className="w-full text-[2rem] font-bold pb-3 pl-[45px] pt-[60px] border-b-2 border-b-solid border-b-black/[0.2]">
 			<div className="relative">
+				{/* 위에 작은 하이픈 모양으로 색깔 있는 건데 지금 색 없어서 안 보임*/}
 				<div
 					className={`w-[20px] h-[2px] absolute top-[-2] left-[3px] ${color}`}
 				/>
+				{/* 변경 예정
+				인기강좌, 프로그래밍 분야 인기 강좌 모음, 보안 분야 인기 강좌 모음 => 
+				인기 컨텐츠, 신규 컨텐츠, 인기카테고리1 컨텐츠, 인기카테고리2 컨텐츠 */}
 				{text}
 			</div>
 		</div>
@@ -47,18 +51,25 @@ const CourseCard = ({ course }: ICourseCardProps) => {
 
 	return (
 		<div
-			className="cursor-pointer w-full overflow-hidden relative"
+			className="relative overflow-hidden rounded-lg cursor-pointer bg-[var(--color-white-0)]"
 			onClick={() => handleClick(course.id)}
 		>
-			<Image
+			<div className="px-3 font-bold bg-[var(--color-green-700)] h-36 text-[var(--color-white-100)]">
+				{course.title}
+			</div>
+			{/* <Image
 				width={'300px'}
 				height={'200px'}
 				src={course.thumbnail}
 				onError={handleImgError}
 				alt="course thumbnail"
-			/>
-			<div className="font-bold">{course.title}</div>
-			<div className="text-xs opacity-[0.6]">{course.description}</div>
+			/> */}
+			<div className="px-3 h-36">
+				<div className="font-bold">{course.title}</div>
+				<div className="text-xs opacity-[0.6]">
+					{course.description} description 내용이 없음
+				</div>
+			</div>
 		</div>
 	);
 };

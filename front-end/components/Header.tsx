@@ -55,16 +55,16 @@ const Header = (): ReactElement => {
 
 	const menuBar = (
 		<div>
-			<ul className="m-0 p-0 flex">
+			<ul className="flex p-0 m-0">
 				{menuData.map((menu) =>
 					isLoggined !== userLoginAuthState.LOGGINED &&
 					menu.name === '마이페이지' ? (
 						''
 					) : (
-						<li key={menu.id} className="my-0 mx-4 list-none">
+						<li key={menu.id} className="mx-4 my-0 list-none">
 							<a
 								href={menu.path}
-								className="no-underline text-sm text-black mx-4 cursor-pointer"
+								className="mx-4 text-sm text-black no-underline cursor-pointer"
 							>
 								{menu.name}
 							</a>
@@ -76,14 +76,14 @@ const Header = (): ReactElement => {
 	);
 
 	const upperHeader = (
-		<div className="flex items-center justify-end mr-8 h-8">
-			<a className="no-underline text-sm text-black mx-4 cursor-pointer">ENG</a>
+		<div className="flex items-center justify-end h-8 mr-8">
+			<a className="mx-4 text-sm text-black no-underline cursor-pointer">ENG</a>
 			{!!isLoggined &&
 				(isLoggined === userLoginAuthState.LOGGINED ? (
 					<div>
 						<a
 							href=""
-							className="no-underline text-sm text-black mx-4 cursor-pointer"
+							className="mx-4 text-sm text-black no-underline cursor-pointer"
 							onClick={handleLogout}
 						>
 							로그아웃
@@ -92,13 +92,13 @@ const Header = (): ReactElement => {
 				) : (
 					<div>
 						<a
-							className="no-underline text-sm text-black mx-4 cursor-pointer"
+							className="mx-4 text-sm text-black no-underline cursor-pointer"
 							onClick={onOpenLoginModal}
 						>
 							로그인
 						</a>
 						<a
-							className="no-underline text-sm text-black mx-4 cursor-pointer"
+							className="mx-4 text-sm text-black no-underline cursor-pointer"
 							onClick={onOpenSignUp}
 						>
 							회원가입
@@ -115,24 +115,19 @@ const Header = (): ReactElement => {
 			<div className="dt:py-0 dt:px-[10px] flex justify-around items-center mt-[0.2rem] mb-6 mx-0 py-2">
 				<div className="flex items-center justify-between">
 					<Link href="/" passHref>
-						<span className="text-[2rem] cursor-pointer font-['Gugi']">
+						<span className="text-[2rem] cursor-pointer font-noto-sans font-semibold">
 							온라인 명륜당
 						</span>
 					</Link>
 					<ul className="flex list-none pl-0 mx-[8rem]">
-						<li className="my-0 mx-4 list-none">
+						<li className="mx-4 my-0 list-none">
 							<a href="" className="no-underline visited:text-black">
-								Lectures
+								courses
 							</a>
 						</li>
-						<li className="my-0 mx-4 list-none">
+						<li className="mx-4 my-0 list-none">
 							<a href="" className="no-underline visited:text-black">
-								Q&A
-							</a>
-						</li>
-						<li className="my-0 mx-4 list-none">
-							<a href="" className="no-underline visited:text-black">
-								Recommendation
+								공지사항
 							</a>
 						</li>
 					</ul>
