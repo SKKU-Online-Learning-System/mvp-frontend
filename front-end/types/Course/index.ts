@@ -14,7 +14,7 @@ export interface ICourseInfo {
 	instructor: string;
 	category1: string;
 	category2: string;
-	// how_many_enrolled: number; // 2023/06/15 추가 for 메인배너/인기강좌 관리를 위한 통계 산출
+	// num_enrolled: number;
 }
 
 export interface ICourseCategory {
