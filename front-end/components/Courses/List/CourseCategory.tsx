@@ -53,7 +53,12 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory): ReactElement => {
 		<div>
 			{courseCategories?.map((content, index) => (
 				<React.Fragment key={index}>
-					<div className='flex font-semibold text-[#595959] border-[1px] border-solid border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[#fafafa]' onClick={handleCardClick(index)}>{content.name}</div>
+					<div
+						className=" flex font-semibold text-[#595959] border-[1px] border-solid border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[#fafafa]"
+						onClick={handleCardClick(index)}
+					>
+						{content.name}
+					</div>
 					<SubItemBody isClicked={isClickedCategory[index]}>
 						{content.category2s?.map((elem, index) => (
 							<SubItem

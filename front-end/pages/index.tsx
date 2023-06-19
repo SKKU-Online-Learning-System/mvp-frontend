@@ -17,13 +17,14 @@ const Index = (): ReactElement => {
 				{!!isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
 					<RecentLecture />
 				)}
-				<CourseList headerText={'인기 강좌'} headerColor={'red'} />
+				<CourseList headerText={'인기 컨텐츠'} headerColor={'red'} />
+				<CourseList headerText={'신규 컨텐츠'} headerColor={'purple'} />
 				<CourseList
-					headerText={'프로그래밍 분야 인기 강좌 모음'}
-					headerColor={'purple'}
+					headerText={'인기카테고리1 컨텐츠'}
+					headerColor={'#df4bff'}
 				/>
 				<CourseList
-					headerText={'보안 분야 인기 강좌 모음'}
+					headerText={'인기카테고리2 컨텐츠'}
 					headerColor={'#df4bff'}
 				/>
 			</div>

@@ -46,12 +46,6 @@ const CourseHeader = ({
 				}
 			},
 			onError: () => {
-
-
-
-
-
-				
 				alert('오류로 인해 신청에 실패했습니다. 다시 시도해주세요.');
 			},
 		});
@@ -59,7 +53,7 @@ const CourseHeader = ({
 	// url={courseDetail.thumbnail}
 	return (
 		<div className="flex w-3/6 h-[25rem] bg-[#063f80] py-0 px-[40px]">
-			<div className="h-full w-3/6 bg-no-repeat bg-cover " />
+			<div className="w-3/6 h-full bg-no-repeat bg-cover " />
 			<div className="flex h-full w-[50%]">
 				<div className="flex flex-col justify-center text-white py-0 px-[50px] ">
 					<h4 className="m-[5px]">{`${courseDetail.category1.name} > ${courseDetail.category2.name}`}</h4>

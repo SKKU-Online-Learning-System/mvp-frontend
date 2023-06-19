@@ -39,46 +39,27 @@ const TopSearchbar = () => {
 	return (
 		<Wrapper>
 			<Title>
-				<ImageContainer1>
-					<Image
-						src="/images/dodbogi.png"
-						width="40px"
-						height="40px"
-						alt="돋보기"
-					/>
-				</ImageContainer1>
 				<div
 					style={{
 						display: 'flex',
 						flexDirection: 'column',
 						lineHeight: '20px',
 					}}
-				>
-					<div
-						style={{
-							fontSize: '0.5rem',
-							opacity: '0.6',
-						}}
-					>
-						ONLINE MYEONGRYUNDANG
-					</div>
-					<div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-						배우고 싶은 지식을 검색해보세요!
-					</div>
-				</div>
+				></div>
 			</Title>
 			<SearchBarWrapper>
 				<Searchbar onSubmit={handleSearchClick}>
 					<Input
 						type="text"
 						value={text}
-						placeholder="강의 검색하기"
+						placeholder="강좌명 검색"
 						onChange={handleChangeInput}
 					/>
 					<span
 						style={{ padding: '16px 4px', cursor: 'pointer' }}
 						onClick={handleSearchClick}
 					>
+						{/* 돋보기 이미지 => svg로 바꿀 것 */}
 						<ImageContainer2>
 							<Image
 								src="/images/search_btn.png"
@@ -128,9 +109,6 @@ const Input = styled.input`
 	& :focus {
 		outline: 0;
 	}
-`;
-const ImageContainer1 = styled.div`
-	padding-top: 5px;
 `;
 const ImageContainer2 = styled.div`
 	opacity: 0.6;

@@ -37,7 +37,7 @@ const LectureCard = ({ course }: ILectureCard) => {
 					<HashTagCard name={name} key={idx} />
 				))}
 			</div>
-			<div className="font-bold text-ellipsis overflow-hidden">
+			<div className="overflow-hidden font-bold text-ellipsis">
 				{course.title}
 			</div>
 			<div className="text-[#7d7d7d] text-[0.9rem] overflow-hidden h-[100px]">
