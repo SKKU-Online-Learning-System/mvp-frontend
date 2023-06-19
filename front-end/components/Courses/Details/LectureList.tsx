@@ -1,6 +1,6 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { ICourseDetail } from 'types/Course';
 import {
@@ -48,98 +48,46 @@ const LectureList = ({
 	};
 
 	return (
-		<Container>
+		<div className="w-[80%] m-auto p-[25px] font-['Noto Sans KR']">
 			<header>
-				<div
-					style={{ fontSize: '0.5rem', color: '#c2c1c1', fontWeight: 'bold' }}
-				>
-					CURRICULUM
-				</div>
-				<h2>강의 커리큘럼</h2>
+				<div className="text-[0.5rem] text-[#c2c1c1] font-bold">CURRICULUM</div>
+				<h2 className="m-0 mb-[5px] text-[#393939] font-bold">강의 커리큘럼</h2>
 			</header>
 
 			{lectures.map((section, index) => {
+				const show = isCollapsed[index];
 				return (
 					<React.Fragment key={index}>
-						<SectionBox onClick={handleCollaseClick(index)}>
+						<div
+							className="flex text-lg font-bold items-center cursor-pointer bg-[#f0f0f0] h-[50px] m-0 mt-[15px] mb-[5px] pl-[1.5rem] text-[#5d5c5c]"
+							onClick={handleCollaseClick(index)}
+						>
 							{section.title}
-						</SectionBox>
-						<LecturesBox show={isCollapsed[index]}>
+						</div>
+						<div className={show ? 'block' : 'hidden'}>
 							{section.lectures?.map((lecture: ILectureInfo, index: number) => {
 								return (
 									<div onClick={handleLectureClick(lecture.id)} key={index}>
-										<LectureContainer>
-											<span className="index">{index + 1}</span>
-											<span className="title">{lecture.title}</span>
-											<span className="duration">
+										<div className="flex items-center h-12 cursor-pointer hover:bg-[#eaeaea]">
+											<span className="w-[10%] text-center text-[#404040] text-base">
+												{index + 1}
+											</span>
+											<span className="w-[75%] pl-[5px] text-[#404040] text-base">
+												{lecture.title}
+											</span>
+											<span className="w-[15%] text-center text-[#404040] text-base">
 												{durationToHhMmSs(lecture.duration)}
 											</span>
-										</LectureContainer>
+										</div>
 									</div>
 								);
 							})}
-						</LecturesBox>
+						</div>
 					</React.Fragment>
 				);
 			})}
-		</Container>
+		</div>
 	);
 };
 
 export default LectureList;
-
-const Container = styled.div`
-	width: 80%;
-	margin: auto;
-	padding: 25px;
-	font-family: 'Noto Sans KR';
-
-	h2 {
-		margin: 0 0 5px 0;
-		color: #393939;
-		font-weight: bold;
-	}
-`;
-
-const SectionBox = styled.div`
-	display: flex;
-	background-color: #f0f0f0;
-	height: 50px;
-	margin: 15px 0 5px 0;
-	padding-left: 1.5rem;
-	color: #5d5c5c;
-	font-size: 18px;
-	font-weight: bold;
-	align-items: center;
-	cursor: pointer;
-`;
-
-const LecturesBox = styled.div<{ show: boolean }>`
-	display: ${(props) => (props.show ? 'block' : 'none')};
-`;
-
-const LectureContainer = styled.div`
-	display: flex;
-	height: 48px;
-	align-items: center;
-	cursor: pointer;
-	span {
-		color: #404040;
-		font-size: 16px;
-	}
-	.index {
-		width: 10%;
-		text-align: center;
-	}
-	.title {
-		width: 75%;
-		padding-left: 5px;
-	}
-	.duration {
-		width: 15%;
-		text-align: center;
-	}
-	&:hover {
-		background-color: #eaeaea;
-	}
-`;
