@@ -1,7 +1,6 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-import styled from 'styled-components';
-
 import { useRouter } from 'next/router';
+
 import { useCourseCategoriesFetch } from 'query/hooks/CourseList/index';
 
 type ToggleType = {
@@ -51,46 +50,38 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory): ReactElement => {
 
 	return (
 		<div>
-			{courseCategories?.map((content, index) => (
-				<React.Fragment key={index}>
-					<div
-						className=" flex font-semibold text-[#595959] border-[1px] border-solid border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[#fafafa]"
-						onClick={handleCardClick(index)}
-					>
-						{content.name}
-					</div>
-					<SubItemBody isClicked={isClickedCategory[index]}>
-						{content.category2s?.map((elem, index) => (
-							<SubItem
-								onClick={handleSubItemClick(elem.id, [content.name, elem.name])}
-								key={index}
-							>
-								{elem.name}
-							</SubItem>
-						))}
-					</SubItemBody>
-				</React.Fragment>
-			))}
+			{courseCategories?.map((content, index) => {
+				const isClicked = isClickedCategory[index];
+				return (
+					<React.Fragment key={index}>
+						<div
+							className=" flex font-semibold text-[#595959] border-[1px] border-solid border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[#fafafa]"
+							onClick={handleCardClick(index)}
+						>
+							{content.name}
+						</div>
+						<div
+							className={`overflow-y-hidden transition-[max-height] duration-300 ease-in
+								${isClicked ? `100em` : `0`}`}
+						>
+							{content.category2s?.map((elem, index) => (
+								<div
+									className="bg-[#fafafa] hover:bg-[#cfcccc] cursor-pointer font-normal text-[#595959] border-[0.1px] border-b-[0.5px] border-[#e4e4e4] border-solid p-[0.8rem] pl-[1.5rem]"
+									onClick={handleSubItemClick(elem.id, [
+										content.name,
+										elem.name,
+									])}
+									key={index}
+								>
+									{elem.name}
+								</div>
+							))}
+						</div>
+					</React.Fragment>
+				);
+			})}
 		</div>
 	);
 };
 
 export default CourseCategory;
-
-const SubItemBody = styled.div<ToggleType>`
-	max-height: ${(props) => (props.isClicked ? '100em' : '0')};
-	overflow-y: hidden;
-	transition: max-height 0.3s ease;
-`;
-const SubItem = styled.div`
-	border: 0.1px #e4e4e4;
-	padding: 0.8rem 0.8rem 0.8rem 1.5rem;
-	border-bottom: 0.5px solid #e4e4e4;
-	cursor: pointer;
-	background: #fafafa;
-	font-weight: 400;
-	color: #595959;
-	&:hover {
-		background: #cfcccc;
-	}
-`;

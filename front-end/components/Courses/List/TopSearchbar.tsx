@@ -37,79 +37,40 @@ const TopSearchbar = () => {
 	}, [router.isReady, keyword]);
 
 	return (
-		<Wrapper>
-			<Title>
-				<div
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						lineHeight: '20px',
-					}}
-				></div>
-			</Title>
-			<SearchBarWrapper>
-				<Searchbar onSubmit={handleSearchClick}>
-					<Input
+		<div className="flex flex-col border-y-[1px] border-solid border-[#dedede] pt-[25px] pb-[30px]">
+			<div className="flex gap-x-0.5 items-center pb-4">
+				<div className="flex flex-col leading-5"></div>
+			</div>
+			<div className="flex gap-x-5">
+				<form
+					className="border-2 border-solid boredr-[#dedede] min-w-[500px] h-20 flex items-center"
+					onSubmit={handleSearchClick}
+				>
+					<input
+						className="w-full h-full border-none text-[1.5rem] focus:outline-0"
 						type="text"
 						value={text}
 						placeholder="강좌명 검색"
 						onChange={handleChangeInput}
 					/>
 					<span
-						style={{ padding: '16px 4px', cursor: 'pointer' }}
+						className="px-1 py-4 cursor-pointer"
 						onClick={handleSearchClick}
 					>
 						{/* 돋보기 이미지 => svg로 바꿀 것 */}
-						<ImageContainer2>
+						<div className="opacity-[.6]">
 							<Image
 								src="/images/search_btn.png"
 								width="40px"
 								height="40px"
 								alt="search button image"
 							/>
-						</ImageContainer2>
+						</div>
 					</span>
-				</Searchbar>
-			</SearchBarWrapper>
-		</Wrapper>
+				</form>
+			</div>
+		</div>
 	);
 };
 
 export default React.memo(TopSearchbar);
-
-const Title = styled.div`
-	display: flex;
-	column-gap: 2px;
-	align-items: center;
-	padding-bottom: 1rem;
-`;
-const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	border-bottom: 1px solid #dedede;
-	border-top: 1px solid #dedede;
-	padding: 25px 0 30px 0;
-`;
-const SearchBarWrapper = styled.div`
-	display: flex;
-	column-gap: 20px;
-`;
-const Searchbar = styled.form`
-	border: 2px solid #dedede;
-	min-width: 500px;
-	height: 80px;
-	display: flex;
-	align-items: center;
-`;
-const Input = styled.input`
-	width: 100%;
-	height: 100%;
-	border: none;
-	font-size: 1.5rem;
-	& :focus {
-		outline: 0;
-	}
-`;
-const ImageContainer2 = styled.div`
-	opacity: 0.6;
-`;

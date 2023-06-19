@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import LectureCard from './LectureCard';
-import { useRouter } from 'next/router';
-import { useCourseListFetch } from 'query/hooks/CourseList';
 import React from 'react';
+import { useRouter } from 'next/router';
+
+import LectureCard from './LectureCard';
+import { useCourseListFetch } from 'query/hooks/CourseList';
 
 type RouterQueryString = {
 	keyword: string;
@@ -23,7 +23,7 @@ const LectureList = () => {
 	if (isLoading) return <div>로딩중입니다...</div>;
 
 	return (
-		<Wrapper>
+		<div className="grid grid-cols-4 gap-y-4">
 			{!!courseList?.length ? (
 				courseList?.map((course, index) => (
 					<LectureCard course={course} key={index} />
@@ -31,13 +31,8 @@ const LectureList = () => {
 			) : (
 				<div>검색 결과가 없습니다!!!</div>
 			)}
-		</Wrapper>
+		</div>
 	);
 };
-const Wrapper = styled.div`
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	row-gap: 1rem;
-`;
 
 export default LectureList;

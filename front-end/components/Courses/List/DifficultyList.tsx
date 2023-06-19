@@ -46,29 +46,17 @@ const DifficultyList = ({ title, type }: ICardProps) => {
 	}, [checkedList]);
 
 	return (
-		<Wrapper>
-			<TypeHeader>{title}</TypeHeader>
+		<div className="items-center justify-center">
+			<div className="my-4 mx-0 p-[0.5rem] items-center font-bold text-[rgb(89, 89, 89)] border-y-[1px] border-solid border-[rgb(228, 228, 228)]">
+				{title}
+			</div>
 			{type.map((x, index) => (
-				<div key={x} style={{ color: 'rgb(120, 120, 120)' }}>
+				<div className="text-[rgb(120, 120, 120)]" key={x}>
 					<input type="checkbox" onClick={handleClick(index)} name={x} /> {x}
 				</div>
 			))}
-		</Wrapper>
+		</div>
 	);
 };
-const Wrapper = styled.div`
-	justify-content: center;
-	align-items: center;
-`;
-
-const TypeHeader = styled.div`
-	font-weight: 700;
-	color: rgb(89, 89, 89);
-	border-bottom: 1px solid rgb(228, 228, 228);
-	border-top: 1px solid rgb(228, 228, 228);
-	margin: 1rem 0;
-	padding: 0.5rem;
-	align-items: center;
-`;
 
 export default DifficultyList;
