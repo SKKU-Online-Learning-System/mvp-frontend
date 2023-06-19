@@ -3,7 +3,7 @@ import { DEVICE_BREAKPOINT } from 'constants/breakpoint';
 
 const Footer = (): ReactElement => {
 	return (
-		<div className="flex justify-center items-center min-w-[desktop] bg-[#323232] text-[#fefefe] mt-[60px]">
+		<div className="flex justify-center items-center min-w-[desktop] bg-[#323232] text-[#fefefe]">
 			<div
 				className="flex justify-between"
 				style={{ width: DEVICE_BREAKPOINT.DESKTOP }}
