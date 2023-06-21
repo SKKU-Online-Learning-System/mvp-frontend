@@ -122,7 +122,7 @@ const Header = (): ReactElement => {
 					<ul className="flex list-none pl-0 mx-[8rem]">
 						<li className="mx-4 my-0 list-none">
 							<Link href="/courses">
-								<span className="text-lg no-underline decoration-black relative bottom-0 transition-[bottom] hover:bottom-0.5">
+								<span className="text-lg cursor-pointer no-underline decoration-black relative bottom-0 transition-[bottom] hover:bottom-0.5">
 									강좌 List
 								</span>
 							</Link>
@@ -130,7 +130,7 @@ const Header = (): ReactElement => {
 						<li className="mx-4 my-0 list-none">
 							<a
 								href=""
-								className="text-lg no-underline decoration-black relative bottom-0 transition-[bottom] hover:bottom-0.5"
+								className="text-lg cursor-pointer no-underline decoration-black relative bottom-0 transition-[bottom] hover:bottom-0.5"
 							>
 								공지사항
 							</a>
