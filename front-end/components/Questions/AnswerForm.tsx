@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import { useRouter } from 'next/router';
 import axios, { AxiosError } from 'axios';
+import { useRouter } from 'next/router';
 
 import { Container } from 'pages/questions/[questionId]';
 import { HTTP_STATUS_CODE } from 'constants/http';

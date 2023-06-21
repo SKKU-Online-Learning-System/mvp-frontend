@@ -1,30 +1,17 @@
 import React, { ReactElement } from 'react';
-import styled from 'styled-components';
 
 import Header from './Header';
 import Footer from './Footer';
 import ErrorManager from '../pages/ErrorManager';
 
 const Layout = ({ children }: any): ReactElement => (
-	<LayoutBox>
+	<div className="flex flex-col w-screen h-screen max-w-full">
 		<Header />
 		<ErrorManager>
-			<ContentsBox>{children}</ContentsBox>
+			<div className="flex-1 pb-15">{children}</div>
 		</ErrorManager>
 		<Footer />
-	</LayoutBox>
+	</div>
 );
-
-const LayoutBox = styled.div`
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-	width: 100vw;
-	max-width: 100%; // 100vw scrollbar issue
-`;
-const ContentsBox = styled.div`
-	flex: 1;
-	padding-bottom: 60px;
-`;
 
 export default Layout;

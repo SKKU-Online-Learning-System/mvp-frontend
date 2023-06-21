@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import styled from 'styled-components';
 
 import { Container } from 'pages/questions/[questionId]';
 
@@ -7,43 +6,18 @@ const QuestionDetailQ = ({ question }: any): ReactElement => {
 	const date = new Date(question?.createdAt);
 	return (
 		<Container>
-			<Wrapper>
-				<div className="title">
-					<span className="q-title">Q. </span>
+			<div className="p-4">
+				<div className="text-2xl font-bold">
+					<span className="font-['Gugi'] text-[#ea0000]">Q. </span>
 					{question?.title || '제목없음'}
 				</div>
-				<div className="title-date">
+				<div className="border-b-[1px] border-solid border-[#adb5bd] text-[#adb5bd] px-0 py-[7px] mb-5">
 					{question?.author.nickname} · {date.toLocaleString()}
 				</div>
-				<div className="contents">{question?.contents || '내용없음'}</div>
-			</Wrapper>
+				<div className="leading-[1.7]">{question?.contents || '내용없음'}</div>
+			</div>
 		</Container>
 	);
 };
 
 export default QuestionDetailQ;
-
-const Wrapper = styled.div`
-	padding: 1rem;
-	.title {
-		font-size: 1.5rem;
-		font-weight: bold;
-	}
-	.a-title {
-		font-family: 'Gugi';
-		color: #086ac5;
-	}
-	.q-title {
-		font-family: 'Gugi';
-		color: #ea0000;
-	}
-	.title-date {
-		border-bottom: 1px solid #adb5bd;
-		color: #adb5bd;
-		padding: 7px 0;
-		margin-bottom: 20px;
-	}
-	.contents {
-		line-height: 1.7;
-	}
-`;
