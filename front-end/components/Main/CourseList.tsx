@@ -51,7 +51,7 @@ const CourseCard = ({ course }: ICourseCardProps) => {
 
 	return (
 		<div
-			className="relative overflow-hidden rounded-lg cursor-pointer bg-[var(--color-white-0)]"
+			className="relative overflow-hidden rounded-lg cursor-pointer bg-[#f2f2f2]"
 			onClick={() => handleClick(course.id)}
 		>
 			<div className="px-3 font-bold bg-[var(--color-green-700)] h-36 text-[var(--color-white-100)]">

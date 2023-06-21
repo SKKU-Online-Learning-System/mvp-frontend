@@ -23,8 +23,6 @@ const LayoutBox = styled.div`
 	max-width: 100%; // 100vw scrollbar issue
 `;
 const ContentsBox = styled.div`
-	// header를 제외한 배경색
-	background-color: var(--color-grey-100);
 	flex: 1;
 	padding-bottom: 60px;
 `;
