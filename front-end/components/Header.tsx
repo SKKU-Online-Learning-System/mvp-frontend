@@ -11,7 +11,7 @@ import axiosInstance from '../apis/index';
 
 const menuData = [
 	{ id: 1, name: '마이페이지', path: '/my-page/history' },
-	{ id: 2, name: '강좌 List', path: '/courses' },
+	{ id: 2, name: 'Admin', path: '/' },
 ];
 
 const Header = (): ReactElement => {
@@ -56,7 +56,7 @@ const Header = (): ReactElement => {
 	const menuBar = (
 		<div>
 			<ul className="flex p-0 m-0">
-				{menuData.map((menu) =>
+				{menuData.map((menu) => {
 					isLoggined !== userLoginAuthState.LOGGINED &&
 					menu.name === '마이페이지' ? (
 						''
@@ -69,8 +69,8 @@ const Header = (): ReactElement => {
 								{menu.name}
 							</a>
 						</li>
-					),
-				)}
+					);
+				})}
 			</ul>
 		</div>
 	);
@@ -115,18 +115,23 @@ const Header = (): ReactElement => {
 			<div className="dt:py-0 dt:px-[10px] flex justify-around items-center mt-[0.2rem] mb-6 mx-0 py-2">
 				<div className="flex items-center justify-between">
 					<Link href="/" passHref>
-						<span className="text-[2rem] cursor-pointer font-noto-sans font-semibold">
+						<span className="text-[2rem] cursor-pointer font-['Gugi'] text-[#1b1b1b]">
 							온라인 명륜당
 						</span>
 					</Link>
 					<ul className="flex list-none pl-0 mx-[8rem]">
 						<li className="mx-4 my-0 list-none">
-							<a href="" className="no-underline visited:text-black">
-								courses
-							</a>
+							<Link href="/courses">
+								<span className="text-lg no-underline decoration-black relative bottom-0 transition-[bottom] hover:bottom-0.5">
+									강좌 List
+								</span>
+							</Link>
 						</li>
 						<li className="mx-4 my-0 list-none">
-							<a href="" className="no-underline visited:text-black">
+							<a
+								href=""
+								className="text-lg no-underline decoration-black relative bottom-0 transition-[bottom] hover:bottom-0.5"
+							>
 								공지사항
 							</a>
 						</li>
