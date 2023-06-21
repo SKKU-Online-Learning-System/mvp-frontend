@@ -9,9 +9,9 @@ const Footer = (): ReactElement => {
 				style={{ width: DEVICE_BREAKPOINT.DESKTOP }}
 			>
 				<div className="m-[34px]">
-					<div className="flex">
+					<div className="flex mb-4">
 						<img src="/images/main_logo.png" alt="Main Logo Image" />
-						<div className="font-[Gugi] text-[2rem] my-0 mx-[10px] text-[#c7c6c6]">
+						<div className="font-[Gugi] text-[2rem] my-0 ml-[20px] text-[#c7c6c6]">
 							온라인 명륜당
 						</div>
 					</div>
@@ -22,7 +22,7 @@ const Footer = (): ReactElement => {
 						RIGHTS RESERVED.
 					</p>
 				</div>
-				<div className="m-[34px]">
+				<div className="m-[34px] mt-11">
 					<a
 						href="https://www.skku.edu/skku/etc/pop_email.do"
 						className="text-[#fefefe] no-underline hover:text-[#c2d45e]"
