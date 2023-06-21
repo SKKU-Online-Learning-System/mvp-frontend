@@ -28,6 +28,19 @@ html, body, #root {
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 :root {
+
+  --color-Primary: #2b6653;
+  --color-onPrimary: #f2f2f2;
+  --color-onPrimary-100: #f4f4f4;
+
+  --color-Surface: #f2f2f2;
+  --color-onSurface: #1b1b1b;
+  --color-onSurface-100: #b1b1b1;
+
+  --color-Background: #FBFBFB;
+  --color-onBackground: #1b1b1b;
+  --color-onBackground-100: #9a9a9a;
+
   --color-green-100: rgb(237, 255, 241);
   --color-green-300: rgb(80,118,81);
   --color-green-500: rgb(43, 102, 83);
