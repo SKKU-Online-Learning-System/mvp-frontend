@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -10,9 +10,12 @@ import { useModal } from '../hooks/useModal';
 import axiosInstance from '../apis/index';
 
 const menuData = [
-	{ id: 1, name: '마이페이지', path: '/my-page/history' },
-	{ id: 2, name: 'Admin', path: '/' },
+	{ id: 1, name: 'Admin', path: '/admin' },
+	{ id: 2, name: '마이페이지', path: '/my-page/history' },
 ];
+
+const upperHeaderStyle =
+	'mx-4 text-sm text-black font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
 
 const Header = (): ReactElement => {
 	const router = useRouter();
@@ -20,6 +23,7 @@ const Header = (): ReactElement => {
 	const isLoggined = useSelector(selectIsLoggined);
 	const inputRef = useRef<HTMLInputElement | null>(null);
 	const { showModal, onOpenLoginModal, onOpenSignUp, renderModal } = useModal();
+	const [isAdminOpen, setIsAdminOpen] = useState(false);
 
 	const handleLogout = () => {
 		axiosInstance.get('/auth/logout').then(() => {
@@ -53,59 +57,103 @@ const Header = (): ReactElement => {
 		}
 	};
 
-	const menuBar = (
-		<div>
-			<ul className="flex p-0 m-0">
-				{menuData.map((menu) => {
-					isLoggined !== userLoginAuthState.LOGGINED &&
-					menu.name === '마이페이지' ? (
-						''
-					) : (
-						<li key={menu.id} className="mx-4 my-0 list-none">
-							<a
-								href={menu.path}
-								className="mx-4 text-sm text-black no-underline cursor-pointer"
-							>
-								{menu.name}
-							</a>
-						</li>
-					);
-				})}
-			</ul>
-		</div>
-	);
+	const handleClickAdminBtn = () => {
+		setIsAdminOpen(!isAdminOpen);
+	};
+
+	const handleClickAdminBtns = (e: React.MouseEvent<HTMLButtonElement>) => {
+		router.push(`/${e.target.id}`);
+	};
 
 	const upperHeader = (
 		<div className="flex items-center justify-end h-8 mr-8">
-			<a className="mx-4 text-sm text-black no-underline cursor-pointer">ENG</a>
+			<a className={upperHeaderStyle}>ENG</a>
 			{!!isLoggined &&
 				(isLoggined === userLoginAuthState.LOGGINED ? (
-					<div>
-						<a
-							href=""
-							className="mx-4 text-sm text-black no-underline cursor-pointer"
-							onClick={handleLogout}
-						>
+					<div className="relative">
+						<a href="" className={upperHeaderStyle} onClick={handleLogout}>
 							로그아웃
 						</a>
+						<a href="/my-page/history" className={upperHeaderStyle}>
+							마이페이지
+						</a>
+						<a className={upperHeaderStyle} onClick={handleClickAdminBtn}>
+							Admin
+						</a>
+						{isAdminOpen ? (
+							<div className="absolute right-[-30px] flex flex-col w-auto bg-[#e9e9e9] p-4">
+								<ul>
+									<li>
+										<button
+											className="mb-2 hover:font-semibold"
+											onClick={handleClickAdminBtns}
+											id="admin"
+										>
+											Admin 관리
+										</button>
+									</li>
+									<li>
+										<button
+											className="mb-2 hover:font-semibold"
+											onClick={handleClickAdminBtns}
+											id="main-banner"
+										>
+											메인베너 관리
+										</button>
+									</li>
+									<li>
+										<button
+											className="mb-2 hover:font-semibold"
+											onClick={handleClickAdminBtns}
+											id="course-contents"
+										>
+											강좌 관리
+										</button>
+									</li>
+									<li>
+										<button
+											className="hover:font-semibold"
+											onClick={handleClickAdminBtns}
+											id="user-ranking"
+										>
+											유저 랭킹
+										</button>
+									</li>
+								</ul>
+							</div>
+						) : (
+							''
+						)}
 					</div>
 				) : (
 					<div>
-						<a
-							className="mx-4 text-sm text-black no-underline cursor-pointer"
-							onClick={onOpenLoginModal}
-						>
+						<a className={upperHeaderStyle} onClick={onOpenLoginModal}>
 							로그인
 						</a>
-						<a
-							className="mx-4 text-sm text-black no-underline cursor-pointer"
-							onClick={onOpenSignUp}
-						>
+						<a className={upperHeaderStyle} onClick={onOpenSignUp}>
 							회원가입
 						</a>
 					</div>
 				))}
-			{menuBar}
+			{/* <div>
+				<ul className="flex p-0 m-0">
+					{menuData.map((menu) => {
+						isLoggined !== userLoginAuthState.LOGGINED &&
+						menu.name === '마이페이지' ? (
+							''
+						) : (
+							<li key={menu.id} className="mx-4 my-0 list-none">
+								<a
+									href={menu.path}
+									className={upperHeaderStyle}
+								>
+									{menu.name}
+								</a>
+							</li>
+						);
+					})}
+				</ul>
+			</div> */}
 		</div>
 	);
 
