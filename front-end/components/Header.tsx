@@ -17,13 +17,15 @@ const menuData = [
 const upperHeaderStyle =
 	'mx-4 text-sm text-black font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
 
+const headerStyle =
+	'text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]';
+
 const Header = (): ReactElement => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const isLoggined = useSelector(selectIsLoggined);
 	const inputRef = useRef<HTMLInputElement | null>(null);
 	const { showModal, onOpenLoginModal, onOpenSignUp, renderModal } = useModal();
-	const [isAdminOpen, setIsAdminOpen] = useState(false);
 
 	const handleLogout = () => {
 		axiosInstance.get('/auth/logout').then(() => {
@@ -58,11 +60,7 @@ const Header = (): ReactElement => {
 	};
 
 	const handleClickAdminBtn = () => {
-		setIsAdminOpen(!isAdminOpen);
-	};
-
-	const handleClickAdminBtns = (e: React.MouseEvent<HTMLButtonElement>) => {
-		router.push(`/${e.target.id}`);
+		router.push(`/admin`);
 	};
 
 	const upperHeader = (
@@ -70,7 +68,7 @@ const Header = (): ReactElement => {
 			<a className={upperHeaderStyle}>ENG</a>
 			{!!isLoggined &&
 				(isLoggined === userLoginAuthState.LOGGINED ? (
-					<div className="relative">
+					<div>
 						<a href="" className={upperHeaderStyle} onClick={handleLogout}>
 							로그아웃
 						</a>
@@ -80,50 +78,6 @@ const Header = (): ReactElement => {
 						<a className={upperHeaderStyle} onClick={handleClickAdminBtn}>
 							Admin
 						</a>
-						{isAdminOpen ? (
-							<div className="absolute right-[-30px] flex flex-col w-auto bg-[#e9e9e9] p-4">
-								<ul>
-									<li>
-										<button
-											className="mb-2 hover:font-semibold"
-											onClick={handleClickAdminBtns}
-											id="admin"
-										>
-											Admin 관리
-										</button>
-									</li>
-									<li>
-										<button
-											className="mb-2 hover:font-semibold"
-											onClick={handleClickAdminBtns}
-											id="main-banner"
-										>
-											메인베너 관리
-										</button>
-									</li>
-									<li>
-										<button
-											className="mb-2 hover:font-semibold"
-											onClick={handleClickAdminBtns}
-											id="course-contents"
-										>
-											강좌 관리
-										</button>
-									</li>
-									<li>
-										<button
-											className="hover:font-semibold"
-											onClick={handleClickAdminBtns}
-											id="user-ranking"
-										>
-											유저 랭킹
-										</button>
-									</li>
-								</ul>
-							</div>
-						) : (
-							''
-						)}
 					</div>
 				) : (
 					<div>
@@ -170,16 +124,11 @@ const Header = (): ReactElement => {
 					<ul className="flex list-none pl-0 mx-[8rem]">
 						<li className="mx-4 my-0 list-none">
 							<Link href="/courses">
-								<span className="text-lg cursor-pointer no-underline decoration-black relative bottom-0 transition-[bottom] hover:bottom-0.5">
-									강좌 List
-								</span>
+								<span className={headerStyle}>강좌 List</span>
 							</Link>
 						</li>
 						<li className="mx-4 my-0 list-none">
-							<a
-								href=""
-								className="text-lg cursor-pointer no-underline decoration-black relative bottom-0 transition-[bottom] hover:bottom-0.5"
-							>
+							<a href="" className={headerStyle}>
 								공지사항
 							</a>
 						</li>
