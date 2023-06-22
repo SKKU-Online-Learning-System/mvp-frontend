@@ -5,10 +5,10 @@ import Footer from './Footer';
 import ErrorManager from '../pages/ErrorManager';
 
 const Layout = ({ children }: any): ReactElement => (
-	<div className="flex flex-col w-screen h-screen max-w-full">
+	<div className="flex flex-col bg-[var(--color-Background)] w-screen h-screen max-w-full">
 		<Header />
 		<ErrorManager>
-			<div className="flex-1 pb-15 mb-[100px]">{children}</div>
+			<div className="flex-1 pb-15">{children}</div>
 		</ErrorManager>
 		<Footer />
 	</div>
