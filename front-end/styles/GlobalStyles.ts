@@ -32,6 +32,7 @@ html, body, #root {
   --color-Primary: #2b6653;
   --color-onPrimary: #f2f2f2;
   --color-onPrimary-100: #f4f4f4;
+  --color-onPrimary-200: #cccccc;
 
   --color-Surface: #f2f2f2;
   --color-onSurface: #1b1b1b;
