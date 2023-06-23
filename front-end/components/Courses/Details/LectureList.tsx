@@ -48,7 +48,7 @@ const LectureList = ({
 	};
 
 	return (
-		<div className="w-[80%] m-auto p-[25px] font-['Noto Sans KR']">
+		<div className="w-[80%] m-auto p-[25px] font-[var(--font-NotoSans)]">
 			<header>
 				<div className="text-[0.5rem] text-[#c2c1c1] font-bold">CURRICULUM</div>
 				<h2 className="m-0 mb-[5px] text-[#393939] font-bold">강의 커리큘럼</h2>

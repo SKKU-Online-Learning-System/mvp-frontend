@@ -17,7 +17,7 @@ const QnA = ({ courseId, qna }: IQnA) => {
 	};
 
 	return (
-		<div className="w-[80%] m-auto p-[25px] font-['Noto Sans KR']">
+		<div className="w-[80%] m-auto p-[25px] font-[var(--font-NotoSans)]">
 			<header className="m-0 mb-4 ml-[18px]">
 				<div className="text-[0.5rem] text-[#c2c1c1] font-bold">
 					Recent Questions
