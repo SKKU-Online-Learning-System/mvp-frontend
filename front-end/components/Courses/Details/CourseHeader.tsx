@@ -59,7 +59,8 @@ const CourseHeader = ({
 					<h4 className="m-[5px]">{`${courseDetail.category1.name} > ${courseDetail.category2.name}`}</h4>
 					<h2 className="m-[5px]">{courseDetail.title}</h2>
 					<h4 className="m-[5px]">{courseDetail.description}</h4>
-					<p className="m-[5px]">{`강사: ${courseDetail.instructor.nickname}`}</p>
+					// Todo: Backend 작업 완료 되면 강사 정보 불러오기
+					<p className="m-[5px]">{`강사: `}</p>
 					<div>
 						{courseDetail.hashtags?.map((ele) => {
 							return (
@@ -70,7 +71,6 @@ const CourseHeader = ({
 							);
 						})}
 					</div>
-
 					<button
 						className={`bg-[#7dad47] text-white border-0 rounded w-[150px] h-6 text-base opacity-[${
 							isEnrolled ? '0.6' : '1.0'
