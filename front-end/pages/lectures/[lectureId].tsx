@@ -28,8 +28,11 @@ const LecturePlayer = (): ReactElement => {
 	const { isLoading: isRecentLectureHistoryLoading } = useLectureHistoryFetch(
 		lectureId,
 		{
-			onSuccess: (lastTime: number) =>
-				ref?.current?.seekTo(lastTime, 'seconds'),
+			onSuccess: (lastTime: number) => {
+				if (ref.current) {
+					ref.current.seekTo(lastTime, 'seconds');
+				}
+			},
 		},
 	);
 	const updateLectureHistory = useLectureHistoryUpdate();

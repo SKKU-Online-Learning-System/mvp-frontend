@@ -51,15 +51,15 @@ const CourseHeader = ({
 		});
 	};
 	// url={courseDetail.thumbnail}
+	// Todo: Backend 작업 완료 되면 강사 정보 불러오기
 	return (
-		<div className="flex w-3/6 h-[25rem] bg-[#063f80] py-0 px-[40px]">
+		<div className="flex w-3/6 h-[25rem] bg-[#063f80] py-0 px-10">
 			<div className="w-3/6 h-full bg-no-repeat bg-cover " />
 			<div className="flex h-full w-[50%]">
 				<div className="flex flex-col justify-center text-white py-0 px-[50px] ">
 					<h4 className="m-[5px]">{`${courseDetail.category1.name} > ${courseDetail.category2.name}`}</h4>
 					<h2 className="m-[5px]">{courseDetail.title}</h2>
 					<h4 className="m-[5px]">{courseDetail.description}</h4>
-					(// Todo: Backend 작업 완료 되면 강사 정보 불러오기)
 					<p className="m-[5px]">{`강사: `}</p>
 					<div>
 						{courseDetail.hashtags?.map((ele) => {

@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from 'react';
+import React, { ReactElement, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -72,9 +72,9 @@ const Header = (): ReactElement => {
 						<a href="" className={upperHeaderStyle} onClick={handleLogout}>
 							로그아웃
 						</a>
-						<a href="/my-page/history" className={upperHeaderStyle}>
-							마이페이지
-						</a>
+						<Link href="/my-page/history">
+							<span className={upperHeaderStyle}>마이페이지</span>
+						</Link>
 						<a className={upperHeaderStyle} onClick={handleClickAdminBtn}>
 							Admin
 						</a>
