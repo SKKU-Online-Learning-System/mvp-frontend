@@ -9,7 +9,7 @@ const Footer = (): ReactElement => {
 				style={{ width: DEVICE_BREAKPOINT.DESKTOP }}
 			>
 				<div className="m-[34px]">
-					<div className="flex mb-4">
+					<div className="flex mb-6">
 						<img src="/images/main_logo.png" alt="Main Logo Image" />
 						<div className="font-[Gugi] text-[2rem] my-0 ml-[20px] text-[#c7c6c6]">
 							온라인 명륜당
