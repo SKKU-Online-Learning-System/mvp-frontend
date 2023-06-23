@@ -10,8 +10,8 @@ const Compose = () => {
 		>
 			<AdminCard title="인기 컨텐츠" />
 			<AdminCard title="신규 컨텐츠" />
-			<AdminCard title="보안" />
-			<AdminCard title="웹 개발" />
+			<AdminCard title="데이터 사이언스" />
+			<AdminCard title="교양" />
 		</div>
 	);
 };

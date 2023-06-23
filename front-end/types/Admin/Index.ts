@@ -10,3 +10,13 @@ export interface INewCourseInfo {
 	thumbnail: string;
 	title: string;
 }
+
+export interface ICourseRetrieveInfo {
+	id: number;
+	category1: string;
+	courseTitle: string;
+	instructorName: string;
+	enrollmentCount: number;
+	courseCreatedAt: string;
+	updatedAt: string;
+}
