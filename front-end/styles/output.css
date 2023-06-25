@@ -1939,6 +1939,14 @@ video {
   padding-top: 60px;
 }
 
+.pb-24 {
+  padding-bottom: 6rem;
+}
+
+.pb-28 {
+  padding-bottom: 7rem;
+}
+
 .text-center {
   text-align: center;
 }
