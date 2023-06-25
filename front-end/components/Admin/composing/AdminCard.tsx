@@ -72,7 +72,10 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 						? popContents.map((item, idx) => {
 								const date = item.courseCreatedAt.split('T')[0];
 								return (
-									<tr className="flex items-center mt-6 text-center justify-normal">
+									<tr
+										key={idx}
+										className="flex items-center mt-6 text-center justify-normal"
+									>
 										<td className="w-1/12">{idx + 1}</td>
 										<td className="w-1/5">{date}</td>
 										<td className="w-1/3">{item.courseTitle}</td>
@@ -92,7 +95,10 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 						? newContents.map((item, idx) => {
 								const date = item.createdAt.split('T')[0];
 								return (
-									<tr className="flex items-center mt-6 text-center justify-normal">
+									<tr
+										key={idx}
+										className="flex items-center mt-6 text-center justify-normal"
+									>
 										<td className="w-1/5">{date}</td>
 										<td className="w-1/3">{item.title}</td>
 										<td className="w-1/6 ">{item.instructor}</td>
@@ -110,7 +116,10 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 						? cat1Contents.map((item, idx) => {
 								const date = item.courseCreatedAt.split('T')[0];
 								return (
-									<tr className="flex items-center mt-6 text-center justify-normal">
+									<tr
+										key={idx}
+										className="flex items-center mt-6 text-center justify-normal"
+									>
 										<td className="w-1/12">{idx + 1}</td>
 										<td className="w-1/5">{date}</td>
 										<td className="w-1/3">{item.courseTitle}</td>
@@ -130,7 +139,10 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 						? cat2Contents.map((item, idx) => {
 								const date = item.courseCreatedAt.split('T')[0];
 								return (
-									<tr className="flex items-center mt-6 text-center justify-normal">
+									<tr
+										key={idx}
+										className="flex items-center mt-6 text-center justify-normal"
+									>
 										<td className="w-1/12">{idx + 1}</td>
 										<td className="w-1/5">{date}</td>
 										<td className="w-1/3">{item.courseTitle}</td>
