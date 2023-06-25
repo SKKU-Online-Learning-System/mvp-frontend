@@ -113,10 +113,17 @@ const AdminIndex = (): ReactElement => {
 						</li>
 					</ul>
 				</div>
-				{isComposeOpen ? <Compose /> : ''}
-				{isAdminManageOpen ? <AdminManage /> : ''}
-				{isUserRankingOpen ? <UserRanking /> : ''}
-				{isContentsManageOpen ? <ContentsManage /> : ''}
+				{isComposeOpen ? (
+					<Compose />
+				) : isAdminManageOpen ? (
+					<AdminManage />
+				) : isUserRankingOpen ? (
+					<UserRanking />
+				) : isContentsManageOpen ? (
+					<ContentsManage />
+				) : (
+					''
+				)}
 			</div>
 		</div>
 	);

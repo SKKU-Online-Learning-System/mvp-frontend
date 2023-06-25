@@ -4,6 +4,13 @@ import { faArrowRotateForward } from '@fortawesome/free-solid-svg-icons';
 
 import API from '../../../apis/Admin/adminAPI';
 import { INewCourseInfo, ICourseRetrieveInfo } from 'types/Admin/Index';
+import { usePopularCoursesFetch } from 'query/hooks/Admin/index';
+// Todo: react-query 사용법 알아보고 적용시키기
+// Todo: Main Page Popular Contents도 해당 query hook으로 바꿀 것
+
+const selectBtnStyle =
+	'ml-4 p-2 text-lg font-semibold bg-[#e2e3e4] rounded-lg hover:bg-[#929394] duration-150';
+const tableContentsStyle = 'flex items-center mt-6 text-center justify-normal';
 
 const AdminCard = ({ title }: { title: string }): ReactElement => {
 	const [popContents, setPopContents] = useState<ICourseRetrieveInfo[]>([]);
@@ -11,12 +18,12 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 	const [cat1Contents, setCat1Contents] = useState<ICourseRetrieveInfo[]>([]);
 	const [cat2Contents, setCat2Contents] = useState<ICourseRetrieveInfo[]>([]);
 
-	const handleNewContentsRetrieve = async () => {
-		const res = await API.fetchNewContentsInfo();
-		return res;
-	};
 	const handlePopularContentsRetrieve = async () => {
 		const res = await API.fetchPopularContentsInfo();
+		return res;
+	};
+	const handleNewContentsRetrieve = async () => {
+		const res = await API.fetchNewContentsInfo();
 		return res;
 	};
 	const handleCat1ContentsRetrieve = async () => {
@@ -26,6 +33,11 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 	const handleCat2ContentsRetrieve = async () => {
 		const res = await API.fetchCat2ContentsInfo();
 		return res;
+	};
+
+	const onRefreshBtnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		handlePopularContentsRetrieve();
+		// 1분 간 disabled 시키는 기능 구현
 	};
 
 	useEffect(() => {
@@ -40,16 +52,22 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 			setCat1Contents(cat1Contents);
 			setCat2Contents(cat2Contents);
 		};
+
 		fetchData();
 	}, []);
 
-	// Todo: 인기 카테고리 title은 나중에 drop down으로 변경할 것
+	// Todo: 인기 카테고리 title은 나중에 drop down으로 변경
+	// Todo: 인기 카테고리 Refresh 버튼 한 번 클릭 시 1분 간 disabled
+	// Todo: 선택 버튼 function 제작 -> Backend 측에 Main Banner 관련 API 제작 요청
 	return (
-		<div className="h-full p-12 shadow-xl rounded-xl bg-[#fff] min-w-[768px]">
+		<div className="flex flex-col h-full p-12 shadow-xl rounded-xl bg-[#fff] min-w-[768px]">
 			<h3 className="pl-10 mb-10 text-3xl font-extrabold select-none">
 				{title === '인기 컨텐츠' ? (
-					<button>
-						<FontAwesomeIcon icon={faArrowRotateForward} className="mr-6" />
+					<button
+						className="mr-6 transition-transform hover:rotate-45 disabled:rotate-0 disabled:text-[var(--color-grey-300)]"
+						onClick={onRefreshBtnClick}
+					>
+						<FontAwesomeIcon icon={faArrowRotateForward} />
 					</button>
 				) : (
 					''
@@ -72,10 +90,7 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 						? popContents.map((item, idx) => {
 								const date = item.courseCreatedAt.split('T')[0];
 								return (
-									<tr
-										key={idx}
-										className="flex items-center mt-6 text-center justify-normal"
-									>
+									<tr key={idx} className={tableContentsStyle}>
 										<td className="w-1/12">{idx + 1}</td>
 										<td className="w-1/5">{date}</td>
 										<td className="w-1/3">{item.courseTitle}</td>
@@ -83,7 +98,7 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 										<td className="w-1/12">{item.enrollmentCount}</td>
 										<button
 											onClick={handleNewContentsRetrieve}
-											className="ml-4 p-2 text-lg font-semibold bg-[#6fd6a1] rounded-lg"
+											className={selectBtnStyle}
 										>
 											선택
 										</button>
@@ -95,16 +110,13 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 						? newContents.map((item, idx) => {
 								const date = item.createdAt.split('T')[0];
 								return (
-									<tr
-										key={idx}
-										className="flex items-center mt-6 text-center justify-normal"
-									>
+									<tr key={idx} className={tableContentsStyle}>
 										<td className="w-1/5">{date}</td>
 										<td className="w-1/3">{item.title}</td>
 										<td className="w-1/6 ">{item.instructor}</td>
 										<button
 											onClick={handleNewContentsRetrieve}
-											className="ml-4 p-2 text-lg font-semibold bg-[#6fd6a1] rounded-lg"
+											className={selectBtnStyle}
 										>
 											선택
 										</button>
@@ -116,10 +128,7 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 						? cat1Contents.map((item, idx) => {
 								const date = item.courseCreatedAt.split('T')[0];
 								return (
-									<tr
-										key={idx}
-										className="flex items-center mt-6 text-center justify-normal"
-									>
+									<tr key={idx} className={tableContentsStyle}>
 										<td className="w-1/12">{idx + 1}</td>
 										<td className="w-1/5">{date}</td>
 										<td className="w-1/3">{item.courseTitle}</td>
@@ -127,7 +136,7 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 										<td className="w-1/12">{item.enrollmentCount}</td>
 										<button
 											onClick={handleNewContentsRetrieve}
-											className="ml-4 p-2 text-lg font-semibold bg-[#6fd6a1] rounded-lg"
+											className={selectBtnStyle}
 										>
 											선택
 										</button>
@@ -139,10 +148,7 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 						? cat2Contents.map((item, idx) => {
 								const date = item.courseCreatedAt.split('T')[0];
 								return (
-									<tr
-										key={idx}
-										className="flex items-center mt-6 text-center justify-normal"
-									>
+									<tr key={idx} className={tableContentsStyle}>
 										<td className="w-1/12">{idx + 1}</td>
 										<td className="w-1/5">{date}</td>
 										<td className="w-1/3">{item.courseTitle}</td>
@@ -150,7 +156,7 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 										<td className="w-1/12">{item.enrollmentCount}</td>
 										<button
 											onClick={handleNewContentsRetrieve}
-											className="ml-4 p-2 text-lg font-semibold bg-[#6fd6a1] rounded-lg"
+											className={selectBtnStyle}
 										>
 											선택
 										</button>
