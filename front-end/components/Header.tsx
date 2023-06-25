@@ -114,7 +114,7 @@ const Header = (): ReactElement => {
 	return (
 		<div>
 			{upperHeader}
-			<div className="dt:py-0 dt:px-[10px] flex justify-around items-center mt-[0.2rem] mb-6 mx-0 py-2">
+			<div className="dt:py-0 dt:px-[10px] flex justify-around items-center mb-4">
 				<div className="flex items-center justify-between">
 					<Link href="/" passHref>
 						<span className="text-[2rem] cursor-pointer font-['Gugi'] text-[#1b1b1b]">

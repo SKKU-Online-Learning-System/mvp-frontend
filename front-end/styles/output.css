@@ -786,6 +786,10 @@ video {
   margin-top: 50px;
 }
 
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -944,6 +948,14 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.h-5 {
+  height: 1.25rem;
 }
 
 .max-h-0 {
@@ -1140,6 +1152,11 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.rotate-45 {
+  --tw-rotate: 45deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -1273,6 +1290,14 @@ video {
 
 .gap-y-4 {
   row-gap: 1rem;
+}
+
+.self-center {
+  align-self: center;
+}
+
+.justify-self-center {
+  justify-self: center;
 }
 
 .overflow-auto {
@@ -1590,6 +1615,36 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#f2f3f4\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 243 244 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#a2a3a4\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(162 163 164 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#d2d3d4\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(210 211 212 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#c2c3c4\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(194 195 196 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#b2b3b4\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(178 179 180 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#e2e3e4\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 227 228 / var(--tw-bg-opacity));
+}
+
 .bg-\[url\(\'\/images\/search_btn\.png\'\)\] {
   background-image: url('/images/search_btn.png');
 }
@@ -1776,6 +1831,16 @@ video {
 .py-\[7px\] {
   padding-top: 7px;
   padding-bottom: 7px;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .pb-0 {
@@ -2203,6 +2268,12 @@ video {
   transition-duration: 150ms;
 }
 
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .duration-150 {
   transition-duration: 150ms;
 }
@@ -2213,6 +2284,10 @@ video {
 
 .duration-500 {
   transition-duration: 500ms;
+}
+
+.duration-200 {
+  transition-duration: 200ms;
 }
 
 .ease-in {
@@ -2285,6 +2360,11 @@ video {
   left: 0.125rem;
 }
 
+.hover\:rotate-45:hover {
+  --tw-rotate: 45deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .hover\:bg-\[\#cfcccc\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(207 204 204 / var(--tw-bg-opacity));
@@ -2308,6 +2388,44 @@ video {
 .hover\:bg-\[\#f8f9fa\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(248 249 250 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[var\(--color-green-700\)\]:hover {
+  background-color: var(--color-green-700);
+}
+
+.hover\:bg-\[var\(--color-green-300\)\]:hover {
+  background-color: var(--color-green-300);
+}
+
+.hover\:bg-\[var\(--color-gray-100\)\]:hover {
+  background-color: var(--color-gray-100);
+}
+
+.hover\:bg-\[var\(--color-gray-200\)\]:hover {
+  background-color: var(--color-gray-200);
+}
+
+.hover\:bg-\[var\(--color-gray-300\)\]:hover {
+  background-color: var(--color-gray-300);
+}
+
+.hover\:bg-\[var\(--color-grey-500\)\]:hover {
+  background-color: var(--color-grey-500);
+}
+
+.hover\:bg-\[var\(--color-grey-300\)\]:hover {
+  background-color: var(--color-grey-300);
+}
+
+.hover\:bg-\[\#a2a3a4\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(162 163 164 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#929394\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(146 147 148 / var(--tw-bg-opacity));
 }
 
 .hover\:text-\[\#c2d45e\]:hover {
@@ -2339,6 +2457,15 @@ video {
 
 .focus\:outline-0:focus {
   outline-width: 0px;
+}
+
+.disabled\:rotate-0:disabled {
+  --tw-rotate: 0deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.disabled\:text-\[var\(--color-grey-300\)\]:disabled {
+  color: var(--color-grey-300);
 }
 
 .group:hover .group-hover\:block {
