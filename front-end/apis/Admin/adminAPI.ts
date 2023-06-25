@@ -6,7 +6,7 @@ const functions = {
 	fetchPopularContentsInfo: async (): Promise<ICourseRetrieveInfo[]> => {
 		const res = await axiosInstance.get('/popular-courses', {
 			params: {
-				limit: 5,
+				limit: 8,
 			},
 		});
 		return res.data;
@@ -18,7 +18,7 @@ const functions = {
 	fetchCat1ContentsInfo: async (): Promise<ICourseRetrieveInfo[]> => {
 		const res = await axiosInstance.get('/popular-courses', {
 			params: {
-				limit: 5,
+				limit: 8,
 				category1: '데이터 사이언스',
 			},
 		});
@@ -27,7 +27,7 @@ const functions = {
 	fetchCat2ContentsInfo: async (): Promise<ICourseRetrieveInfo[]> => {
 		const res = await axiosInstance.get('/popular-courses', {
 			params: {
-				limit: 5,
+				limit: 8,
 				category1: '교양',
 			},
 		});
