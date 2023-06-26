@@ -88,11 +88,12 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 				<tbody className="flex flex-col">
 					{title === '인기 컨텐츠'
 						? popContents.map((item, idx) => {
-								const date = item.courseCreatedAt.split('T')[0];
 								return (
 									<tr key={idx} className={tableContentsStyle}>
 										<td className="w-1/12">{idx + 1}</td>
-										<td className="w-1/5">{date}</td>
+										<td className="w-1/5">
+											{item.courseCreatedAt.split('T')[0]}
+										</td>
 										<td className="w-1/3">{item.courseTitle}</td>
 										<td className="w-1/6 ">{item.instructorName}</td>
 										<td className="w-1/12">{item.enrollmentCount}</td>
@@ -108,10 +109,9 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 						: ''}
 					{title === '신규 컨텐츠'
 						? newContents.map((item, idx) => {
-								const date = item.createdAt.split('T')[0];
 								return (
 									<tr key={idx} className={tableContentsStyle}>
-										<td className="w-1/5">{date}</td>
+										<td className="w-1/5">{item.createdAt.split('T')[0]}</td>
 										<td className="w-1/3">{item.title}</td>
 										<td className="w-1/6 ">{item.instructor}</td>
 										<button
@@ -126,11 +126,12 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 						: ''}
 					{title === '데이터 사이언스'
 						? cat1Contents.map((item, idx) => {
-								const date = item.courseCreatedAt.split('T')[0];
 								return (
 									<tr key={idx} className={tableContentsStyle}>
 										<td className="w-1/12">{idx + 1}</td>
-										<td className="w-1/5">{date}</td>
+										<td className="w-1/5">
+											{item.courseCreatedAt.split('T')[0]}
+										</td>
 										<td className="w-1/3">{item.courseTitle}</td>
 										<td className="w-1/6 ">{item.instructorName}</td>
 										<td className="w-1/12">{item.enrollmentCount}</td>
@@ -146,11 +147,12 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 						: ''}
 					{title === '교양'
 						? cat2Contents.map((item, idx) => {
-								const date = item.courseCreatedAt.split('T')[0];
 								return (
 									<tr key={idx} className={tableContentsStyle}>
 										<td className="w-1/12">{idx + 1}</td>
-										<td className="w-1/5">{date}</td>
+										<td className="w-1/5">
+											{item.courseCreatedAt.split('T')[0]}
+										</td>
 										<td className="w-1/3">{item.courseTitle}</td>
 										<td className="w-1/6 ">{item.instructorName}</td>
 										<td className="w-1/12">{item.enrollmentCount}</td>
