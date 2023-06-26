@@ -15,20 +15,24 @@ const functions = {
 		const res = await axiosInstance.get('/courses/recent');
 		return res.data;
 	},
-	fetchCat1ContentsInfo: async (): Promise<ICourseRetrieveInfo[]> => {
+	fetchCat1ContentsInfo: async (
+		mostPopularCategoryTitle: string,
+	): Promise<ICourseRetrieveInfo[]> => {
 		const res = await axiosInstance.get('/popular-courses', {
 			params: {
 				limit: 8,
-				category1: '데이터 사이언스',
+				category1: mostPopularCategoryTitle,
 			},
 		});
 		return res.data;
 	},
-	fetchCat2ContentsInfo: async (): Promise<ICourseRetrieveInfo[]> => {
+	fetchCat2ContentsInfo: async (
+		mostPopularCategoryTitle: string,
+	): Promise<ICourseRetrieveInfo[]> => {
 		const res = await axiosInstance.get('/popular-courses', {
 			params: {
 				limit: 8,
-				category1: '교양',
+				category1: mostPopularCategoryTitle,
 			},
 		});
 		return res.data;

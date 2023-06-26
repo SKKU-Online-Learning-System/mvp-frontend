@@ -4,7 +4,7 @@ import { faArrowRotateForward } from '@fortawesome/free-solid-svg-icons';
 
 import API from '../../../apis/Admin/adminAPI';
 import { INewCourseInfo, ICourseRetrieveInfo } from 'types/Admin/Index';
-import { usePopularCoursesFetch } from 'query/hooks/Admin/index';
+// import { usePopularCoursesFetch } from 'query/hooks/Admin/index';
 // Todo: react-query 사용법 알아보고 적용시키기
 // Todo: Main Page Popular Contents도 해당 query hook으로 바꿀 것
 
@@ -19,20 +19,20 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 	const [cat2Contents, setCat2Contents] = useState<ICourseRetrieveInfo[]>([]);
 
 	const handlePopularContentsRetrieve = async () => {
-		const res = await API.fetchPopularContentsInfo();
-		return res;
+		const data = await API.fetchPopularContentsInfo();
+		return data;
 	};
 	const handleNewContentsRetrieve = async () => {
-		const res = await API.fetchNewContentsInfo();
-		return res;
+		const data = await API.fetchNewContentsInfo();
+		return data;
 	};
 	const handleCat1ContentsRetrieve = async () => {
-		const res = await API.fetchCat1ContentsInfo();
-		return res;
+		const data = await API.fetchCat1ContentsInfo(title);
+		return data;
 	};
 	const handleCat2ContentsRetrieve = async () => {
-		const res = await API.fetchCat2ContentsInfo();
-		return res;
+		const data = await API.fetchCat2ContentsInfo(title);
+		return data;
 	};
 
 	const onRefreshBtnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
