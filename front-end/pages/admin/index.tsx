@@ -2,30 +2,25 @@ import React, { ReactElement, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faChartSimple,
-	faUser,
 	faBookOpen,
 	faRankingStar,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Compose from '../../components/Admin/composing/Compose';
-import AdminManage from '../../components/Admin/admin-manage/AdminManage';
 import UserRanking from '../../components/Admin/user-ranking/UserRanking';
 import ContentsManage from '../../components/Admin/contents-manage/ContentsManage';
 
 const AdminIndex = (): ReactElement => {
 	const [isComposeOpen, setIsComposeOpen] = useState(true);
-	const [isAdminManageOpen, setIsAdminManageOpen] = useState(false);
 	const [isUserRankingOpen, setIsUserRankingOpen] = useState(false);
 	const [isContentsManageOpen, setIsContentsManageOpen] = useState(false);
 
 	const modeController = (
 		compose: boolean,
-		admin: boolean,
 		rank: boolean,
 		contents: boolean,
 	) => {
 		setIsComposeOpen(compose);
-		setIsAdminManageOpen(admin);
 		setIsUserRankingOpen(rank);
 		setIsContentsManageOpen(contents);
 	};
@@ -33,16 +28,13 @@ const AdminIndex = (): ReactElement => {
 	const handleSidebarBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		switch (e.target.id) {
 			case 'compose':
-				modeController(true, false, false, false);
-				break;
-			case 'admin-manage':
-				modeController(false, true, false, false);
+				modeController(true, false, false);
 				break;
 			case 'user-ranking':
-				modeController(false, false, true, false);
+				modeController(false, true, false);
 				break;
 			case 'contents-manage':
-				modeController(false, false, false, true);
+				modeController(false, false, true);
 				break;
 		}
 	};
@@ -83,16 +75,6 @@ const AdminIndex = (): ReactElement => {
 						</li>
 						<li className="relative w-full">
 							<button
-								id="admin-manage"
-								className={handleSidebarBtnStyle(isAdminManageOpen)}
-								onClick={handleSidebarBtnClick}
-							>
-								<FontAwesomeIcon icon={faUser} className="mr-4" />
-								ADMIN 관리
-							</button>
-						</li>
-						<li className="relative w-full">
-							<button
 								id="user-ranking"
 								className={handleSidebarBtnStyle(isUserRankingOpen)}
 								onClick={handleSidebarBtnClick}
@@ -115,8 +97,6 @@ const AdminIndex = (): ReactElement => {
 				</div>
 				{isComposeOpen ? (
 					<Compose />
-				) : isAdminManageOpen ? (
-					<AdminManage />
 				) : isUserRankingOpen ? (
 					<UserRanking />
 				) : isContentsManageOpen ? (
