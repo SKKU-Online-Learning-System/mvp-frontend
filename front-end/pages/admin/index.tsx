@@ -26,7 +26,7 @@ const AdminIndex = (): ReactElement => {
 	};
 
 	const handleSidebarBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		switch (e.target.id) {
+		switch (e.currentTarget.id) {
 			case 'compose':
 				modeController(true, false, false);
 				break;
