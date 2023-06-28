@@ -11,6 +11,72 @@ import { RxDotFilled } from 'react-icons/rx';
 // npm install react-icons --save
 
 // TODO. query string 형식으로 요청 보내기
+
+const Curation = () => {
+	// 동그라미들: 카테고리로 연결하는 역할
+	// const router = useRouter();
+	// const [bannerList, setBannerList] = useState<IMainBanners[]>([]);
+
+	// const getImageUrl = (path: string) => {
+	// 	const url = new URL(`${process.env.NEXT_PUBLIC_API_SERVER}`);
+	// 	if (url.pathname === '/') url.pathname = path;
+	// 	else {
+	// 		url.pathname = `${url.pathname}${path}`;
+	// 	}
+
+	// 	return url.toString();
+	// };
+
+	// const handleCircleClick = (category2sId: number | null) => () => {
+	// 	router.push({ pathname: '/courses', query: { category2sId } });
+	// };
+
+	// useEffect(() => {
+	// 	API.fetchBannerImgUrls()
+	// 		.then((res) => setBannerList(res.data))
+	// 		.catch((err) => console.log(err));
+	// }, []);
+	const navigationLinks = [
+		{ category: '프로그래밍 언어', url: './courses?category2sId=6' },
+		{ category: '인공지능', url: './courses?category2sId=18' },
+		{ category: '웹개발', url: './courses?category2sId=1' },
+		{ category: '블록체인', url: './courses?category2sId=15' },
+		{ category: '보안', url: './courses?category2sId=12' },
+	];
+
+	return (
+		<div className="my-4">
+			<ul className="flex justify-center space-x-10 text-center place-items-center">
+				{navigationLinks.map((link, index) => (
+					<a key={index} href={link.url}>
+						<li className="bg-[var(--color-Surface)] w-20 h-20 rounded-full my-2"></li>
+						<div className="text-[var(--color-onBackground)]">
+							{link.category}
+						</div>
+					</a>
+				))}
+			</ul>
+			{/* <ul className="flex justify-center space-x-10 text-center place-items-center">
+				{bannerList.length > 0 &&
+					bannerList.map((banner, index) => (
+						<div
+							key={index}
+							className="pl-[10px] overflow-auto cursor-pointer"
+							onClick={handleCircleClick(banner.category2Id)}
+						>
+							<img
+								crossOrigin="anonymous"
+								src={getImageUrl(banner.filename)}
+								alt="bannerItem"
+								className="max-w-[250px] w-[250px] h-[250px]"
+							/>
+						</div>
+					))}
+			</ul> */}
+		</div>
+	);
+};
+
 const MainBanner = () => {
 	const slides = [
 		{
@@ -50,38 +116,39 @@ const MainBanner = () => {
 	};
 
 	return (
-		<div>
-			<div className="h-[680px] w-full group bg-[var(--color-green-700)]">
-				<div
-					style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-					className="w-full h-full duration-500 bg-center bg-cover max-w-[1400px] m-auto py-16 px-4 relative"
-				>
-					<div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-						<BsChevronCompactLeft onClick={prevSlide} size={30} />
-					</div>
-					<div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-						<BsChevronCompactRight onClick={nextSlide} size={30} />
-					</div>
+		// <div>
+		<div className="h-[680px] w-full group bg-[var(--color-green-700)]">
+			<div
+				style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
+				className="w-full h-full duration-500 bg-center bg-cover max-w-[1400px] m-auto py-16 px-4 relative"
+			>
+				<div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
+					<BsChevronCompactLeft onClick={prevSlide} size={30} />
 				</div>
-				<div className="flex justify-center py-2 top-4">
-					{slides.map((slide, slideIndex) => (
-						<div
-							key={slideIndex}
-							onClick={() => goToSlide(slideIndex)}
-							className="text-2xl cursor-pointer"
-						>
-							<RxDotFilled
-								color={
-									currentIndex === slideIndex
-										? 'var(--color-green-700)'
-										: 'var(--color-grey-200)'
-								}
-							/>
-						</div>
-					))}
+				<div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
+					<BsChevronCompactRight onClick={nextSlide} size={30} />
 				</div>
 			</div>
+			<div className="flex justify-center py-2 top-4">
+				{slides.map((slide, slideIndex) => (
+					<div
+						key={slideIndex}
+						onClick={() => goToSlide(slideIndex)}
+						className="text-2xl cursor-pointer"
+					>
+						<RxDotFilled
+							color={
+								currentIndex === slideIndex
+									? 'var(--color-green-700)'
+									: 'var(--color-grey-200)'
+							}
+						/>
+					</div>
+				))}
+			</div>
+			<Curation />
 		</div>
+		// </div>
 	);
 };
 
