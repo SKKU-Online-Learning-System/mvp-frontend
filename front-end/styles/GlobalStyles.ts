@@ -29,18 +29,23 @@ html, body, #root {
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 :root {
 
-  --color-Primary: #2b6653;
-  --color-onPrimary: #f2f2f2;
+  --color-Primary: #2B6653;
+  --color-onPrimary: #FBFBFB;
   --color-onPrimary-100: #f4f4f4;
   --color-onPrimary-200: #cccccc;
 
   --color-Surface: #f2f2f2;
   --color-onSurface: #1b1b1b;
-  --color-onSurface-100: #b1b1b1;
+  --color-onSurface-100: #D9D9D9;
+  --color-onSurface-200: #B1B1B1;
+  --color-onSurface-300: #686868;
+
 
   --color-Background: #FBFBFB;
-  --color-onBackground: #1b1b1b;
-  --color-onBackground-100: #9a9a9a;
+  --color-onBackground: #383838;
+  --color-onBackground-100: #9A9A9A;
+  --color-onBackground-200: #5A5B5C;
+  --color-onBackground-300: #3F3F40;
 
   --color-green-100: rgb(237, 255, 241);
   --color-green-300: rgb(80,118,81);
