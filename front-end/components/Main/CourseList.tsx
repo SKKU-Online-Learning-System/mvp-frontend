@@ -52,17 +52,17 @@ const CourseCard = ({ course }: ICourseCardProps) => {
 			className="relative overflow-hidden rounded-lg cursor-pointer bg-[#f2f2f2]"
 			onClick={() => handleClick(course.id)}
 		>
-			<div className="px-3 font-bold bg-[var(--color-green-700)] h-36 text-[var(--color-white-100)]">
+			{/* <div className="px-3 font-bold bg-[var(--color-green-700)] h-36 text-[var(--color-white-100)]">
 				{course.title}
-			</div>
-			{/* <Image
+			</div> */}
+			<Image
 				width={'300px'}
 				height={'200px'}
 				src={course.thumbnail}
 				onError={handleImgError}
 				alt="course thumbnail"
-			/> */}
-			<div className="px-3 h-36">
+			/>
+			<div className="px-3 h-30">
 				<div className="font-bold">{course.title}</div>
 				<div className="text-xs opacity-[0.6]">
 					{course.description} description 내용이 없음
