@@ -13,7 +13,7 @@ const Index = (): ReactElement => {
 	return (
 		<>
 			<MainBanner />
-			<div className="w-[1280px] m-auto font-['Noto Sans KR']">
+			<div className="w-[1280px] m-auto font-['Noto Sans KR'] my-24">
 				{!!isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
 					<RecentLecture />
 				)}
