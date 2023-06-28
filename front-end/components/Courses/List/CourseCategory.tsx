@@ -46,7 +46,7 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory): ReactElement => {
 		setIsClickedCategory(new Array(categoryLength).fill(false));
 	}, [courseCategories]);
 
-	if (isLoading) return <div>Loading....</div>;
+	if (isLoading) return <div>Loading . . .</div>;
 
 	return (
 		<div>
@@ -55,7 +55,7 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory): ReactElement => {
 				return (
 					<React.Fragment key={index}>
 						<div
-							className=" flex font-semibold text-[#595959] border-[1px] border-solid border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[#fafafa]"
+							className="flex font-semibold text-[#595959] border-[1px] border-solid border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[#fafafa]"
 							onClick={handleCardClick(index)}
 						>
 							{content.name}

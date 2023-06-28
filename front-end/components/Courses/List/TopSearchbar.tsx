@@ -47,7 +47,7 @@ const TopSearchbar = () => {
 					onSubmit={handleSearchClick}
 				>
 					<input
-						className="w-full h-full border-none text-[1.5rem] focus:outline-0"
+						className="w-full h-full text-2xl border-none focus:outline-0"
 						type="text"
 						value={text}
 						placeholder="강좌명 검색"
