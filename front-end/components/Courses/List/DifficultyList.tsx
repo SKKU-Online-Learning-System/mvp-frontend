@@ -1,7 +1,6 @@
-import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+
 interface ICardProps {
 	title: string;
 	type: string[];

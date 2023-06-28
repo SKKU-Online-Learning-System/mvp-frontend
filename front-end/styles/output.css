@@ -582,6 +582,10 @@ video {
   top: 50%;
 }
 
+.top-\[-2px\] {
+  top: -2px;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -1402,6 +1406,10 @@ video {
 
 .border-l-\[3px\] {
   border-left-width: 3px;
+}
+
+.border-t-2 {
+  border-top-width: 2px;
 }
 
 .border-solid {
