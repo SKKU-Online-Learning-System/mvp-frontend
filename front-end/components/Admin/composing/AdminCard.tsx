@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRotateForward } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,7 +11,7 @@ const selectBtnStyle =
 	'ml-4 p-2 text-lg font-semibold bg-[#e2e3e4] rounded-lg hover:bg-[#929394] duration-150';
 const tableContentsStyle = 'flex items-center mt-6 text-center justify-normal';
 
-const AdminCard = ({ title }: { title: string }): ReactElement => {
+const AdminCard = ({ title }: { title: string }) => {
 	const { data: popularContents, isLoading: isPopularCoursesLoading } =
 		usePopularCoursesFetch(title === '인기 컨텐츠' ? '' : title);
 	const { data: newContents, isLoading: isNewCoursesLoading } =
@@ -31,14 +31,15 @@ const AdminCard = ({ title }: { title: string }): ReactElement => {
 		return <h2>Loading . . .</h2>;
 	}
 
-	// Todo: 선택 버튼 function 제작 -> Backend 측에 Main Banner 관련 API 제작 요청
+	// Todo: 선택 버튼 기능 function 제작 및 Backend API와 연동
+	// Todo:
 	return (
-		<div className="flex flex-col h-full p-12 shadow-xl rounded-xl bg-white min-w-[768px]">
+		<div className="flex flex-col h-full p-10 bg-white shadow-xl rounded-xl">
 			<h3 className="pl-10 mb-10 text-3xl font-extrabold select-none">
 				{title === '인기 컨텐츠' ? (
 					<div>
 						<button
-							className="mr-4 transition-transform hover:rotate-45 disabled:rotate-0 disabled:text-[var(--color-grey-300)]"
+							className="mr-4 rounded-full transition-transform hover:rotate-45 disabled:rotate-0 disabled:text-[var(--color-grey-300)]"
 							onClick={onRefreshBtnClick}
 							disabled={disabled}
 						>

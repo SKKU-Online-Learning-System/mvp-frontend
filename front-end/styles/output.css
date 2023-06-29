@@ -1145,6 +1145,10 @@ video {
   width: 800px;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .min-w-\[1440px\] {
   min-width: 1440px;
 }
@@ -1179,6 +1183,10 @@ video {
 
 .min-w-\[desktop\] {
   min-width: desktop;
+}
+
+.min-w-\[280px\] {
+  min-width: 280px;
 }
 
 .max-w-\[1400px\] {
@@ -1768,6 +1776,10 @@ video {
 
 .p-\[25px\] {
   padding: 25px;
+}
+
+.p-10 {
+  padding: 2.5rem;
 }
 
 .px-0 {
