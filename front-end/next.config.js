@@ -10,14 +10,14 @@ module.exports = {
 		ignoreBuildErrors: true,
 	},
 	reactStrictMode: true,
-	async rewrites() {
-		return [
-			{
-				source: process.env.API_SOURCE,
-				destination: `${process.env.API_SERVER}/:path*`,
-			},
-		];
-	},
+	//async rewrites() {
+	//	return [
+	//		{
+	//			source: process.env.API_SOURCE,
+	//			destination: `${process.env.API_SERVER}/:path*`,
+	//		},
+	//	];
+	//},
 	images: {
 		default: 'fill',
 		domains: ["mrdang-lectures.s3.ap-northeast-2.amazonaws.com"],
