@@ -32,7 +32,6 @@ const AdminCard = ({ title }: { title: string }) => {
 	}
 
 	// Todo: 선택 버튼 기능 function 제작 및 Backend API와 연동
-	// Todo:
 	return (
 		<div className="flex flex-col h-full p-10 bg-white shadow-xl rounded-xl">
 			<h3 className="pl-10 mb-10 text-3xl font-extrabold select-none">

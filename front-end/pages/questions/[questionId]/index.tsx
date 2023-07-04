@@ -1,6 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 
 import QuestionDetailQ from '@components/Questions/QuestionDetailQ';
 import AnswerForm from '@components/Questions/AnswerForm';
@@ -39,8 +38,3 @@ const QuestionDetailPage = (): ReactElement => {
 };
 
 export default QuestionDetailPage;
-
-export const Container = styled.div`
-	width: 800px;
-	margin: auto;
-`;

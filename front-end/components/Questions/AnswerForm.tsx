@@ -2,12 +2,11 @@ import React, { ReactElement } from 'react';
 import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 
-import { Container } from 'pages/questions/[questionId]';
 import { HTTP_STATUS_CODE } from 'constants/http';
 import { useModal } from 'hooks/useModal';
 import API from 'apis/QnA/qnaApi';
 
-const AnswerForm = ({ questionId }: any): ReactElement => {
+const AnswerForm = ({ questionId }: any) => {
 	const router = useRouter();
 	const { showModal, onOpenLoginModal, renderModal } = useModal();
 
@@ -38,7 +37,7 @@ const AnswerForm = ({ questionId }: any): ReactElement => {
 	};
 
 	return (
-		<Container>
+		<div className="w-[800px] m-auto">
 			<form onSubmit={handleSubmit}>
 				<textarea
 					name="contents"
@@ -50,7 +49,7 @@ const AnswerForm = ({ questionId }: any): ReactElement => {
 				<button type="submit">답변 입력</button>
 			</form>
 			{showModal && renderModal()}
-		</Container>
+		</div>
 	);
 };
 

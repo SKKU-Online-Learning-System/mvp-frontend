@@ -11,7 +11,7 @@ interface ICourseCategory {
 	handleClickMenu: (menu: string[]) => void;
 }
 
-const CourseCategory = ({ handleClickMenu }: ICourseCategory): ReactElement => {
+const CourseCategory = ({ handleClickMenu }: ICourseCategory) => {
 	const router = useRouter();
 	const { data: courseCategories, isLoading } = useCourseCategoriesFetch();
 	const [isClickedCategory, setIsClickedCategory] = useState<boolean[]>([]);
@@ -53,7 +53,7 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory): ReactElement => {
 			{courseCategories?.map((content, index) => {
 				const isClicked = isClickedCategory[index];
 				return (
-					<React.Fragment key={index}>
+					<div key={index}>
 						<div
 							className="flex font-semibold text-[#595959] border-[1px] border-solid border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[#fafafa]"
 							onClick={handleCardClick(index)}
@@ -77,7 +77,7 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory): ReactElement => {
 								</div>
 							))}
 						</div>
-					</React.Fragment>
+					</div>
 				);
 			})}
 		</div>

@@ -1,5 +1,4 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
@@ -29,11 +28,7 @@ const TopSearchbar = () => {
 	useEffect(() => {
 		if (!router.isReady) return;
 
-		if (keyword) {
-			setText(keyword);
-		} else {
-			setText('');
-		}
+		keyword ? setText(keyword) : setText('');
 	}, [router.isReady, keyword]);
 
 	return (
@@ -58,7 +53,7 @@ const TopSearchbar = () => {
 						onClick={handleSearchClick}
 					>
 						{/* 돋보기 이미지 => svg로 바꿀 것 */}
-						<div className="opacity-[.6]">
+						<div className="opacity-60">
 							<Image
 								src="/images/search_btn.png"
 								width="40px"

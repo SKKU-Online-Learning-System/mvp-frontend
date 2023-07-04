@@ -14,7 +14,6 @@ export interface ICourseInfo {
 	instructor: string;
 	category1: string;
 	category2: string;
-	// num_enrolled: number;
 }
 
 export interface ICourseCategory {

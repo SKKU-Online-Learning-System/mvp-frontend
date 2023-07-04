@@ -2,14 +2,9 @@ import React, { SyntheticEvent } from 'react';
 import { useRouter } from 'next/router';
 
 import { defaultErrorImage } from 'constants/index';
-import { ICourseDetail } from 'types/Course/index';
-import HashTagCard from './HashTagCard';
+import { ICourseInfo } from 'types/Course/index';
 
-interface ILectureCard {
-	course: ICourseDetail;
-}
-
-const LectureCard = ({ course }: ILectureCard) => {
+const LectureCard = ({ course }: { course: ICourseInfo }) => {
 	const router = useRouter();
 
 	const handleImgError = (e: SyntheticEvent<HTMLImageElement>) => {
@@ -32,11 +27,6 @@ const LectureCard = ({ course }: ILectureCard) => {
 				onError={handleImgError}
 				alt="no"
 			/>
-			<div className="flex gap-1 overflow-auto">
-				{course.hashtag.map((name: string, idx: number) => (
-					<HashTagCard name={name} key={idx} />
-				))}
-			</div>
 			<div className="overflow-hidden font-bold text-ellipsis">
 				{course.title}
 			</div>

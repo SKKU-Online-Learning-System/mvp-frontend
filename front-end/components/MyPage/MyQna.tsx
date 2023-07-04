@@ -44,7 +44,7 @@ const MyQnA = () => {
 								{elem.contents}
 							</section>
 							<div className="text-[0.8rem] text-[#858a8d]">
-								{`${'이름'} · ${getTimeBefore(elem.createdAt)} · ${
+								{`이름 · ${getTimeBefore(elem.createdAt)} · ${
 									elem.course.title
 								}`}
 							</div>

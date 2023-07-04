@@ -1,12 +1,11 @@
 import React, { ReactElement } from 'react';
-import styled from 'styled-components';
 
 interface QnAProps {
 	question: string;
 	answer: string;
 }
 
-const QnABox = ({ question, answer }: QnAProps): ReactElement => {
+const QnABox = ({ question, answer }: QnAProps) => {
 	return (
 		<div className="mb-20">
 			<div className="relative flex overflow-hidden">

@@ -5,8 +5,8 @@ import SideMenu from '@components/MyPage/SideMenu';
 const MyPageLayout = ({
 	children,
 }: {
-	children: ReactElement[] | string;
-}): ReactElement => {
+	children: ReactElement[] | ReactElement<any, string> | string;
+}) => {
 	return (
 		<div className="flex w-[1280px] my-0 mx-auto font-['Noto Sans KR']">
 			<div className="py-[10px] px-5 w-[20%]">

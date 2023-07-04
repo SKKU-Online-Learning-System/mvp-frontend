@@ -1,11 +1,9 @@
 import React, { ReactElement } from 'react';
 
-import { Container } from 'pages/questions/[questionId]';
-
-const QuestionDetailQ = ({ question }: any): ReactElement => {
+const QuestionDetailQ = ({ question }: any) => {
 	const date = new Date(question?.createdAt);
 	return (
-		<Container>
+		<div className="w-[800px] m-auto">
 			<div className="p-4">
 				<div className="text-2xl font-bold">
 					<span className="font-['Gugi'] text-[#ea0000]">Q. </span>
@@ -16,7 +14,7 @@ const QuestionDetailQ = ({ question }: any): ReactElement => {
 				</div>
 				<div className="leading-[1.7]">{question?.contents || '내용없음'}</div>
 			</div>
-		</Container>
+		</div>
 	);
 };
 

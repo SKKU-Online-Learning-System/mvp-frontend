@@ -39,7 +39,7 @@ export const LecturePicker = ({ courseId }: ILecturePicker) => {
 			{lectureList?.map((elem, idx) => {
 				const ic = isCollapsed[idx];
 				return (
-					<React.Fragment key={idx}>
+					<div key={idx}>
 						<div
 							className={
 								ic
@@ -74,7 +74,7 @@ export const LecturePicker = ({ courseId }: ILecturePicker) => {
 								);
 							})}
 						</div>
-					</React.Fragment>
+					</div>
 				);
 			})}
 		</div>
