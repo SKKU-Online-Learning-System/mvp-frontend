@@ -42,7 +42,6 @@ const Curation = () => {
 							className="flex flex-col items-center justify-center"
 						>
 							<link.asset className="w-20 h-20 my-2 hover:scale-[1.08] transition" />
-							{/* <div className=""></div> */}
 							<span className="text-[var(--color-onBackground)]">
 								{link.category}
 							</span>
@@ -82,7 +81,7 @@ const MainBanner = () => {
 	};
 
 	return (
-		<div className="h-[680px] mb-48 w-full group bg-[var(--color-green-700)]">
+		<div className="h-[680px] mb-48 w-full group bg-[var(--color-onSurface)]">
 			<div
 				style={{
 					backgroundImage: `url(${slides[currentIndex]?.thumbnail})`,
