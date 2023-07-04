@@ -64,7 +64,7 @@ const Header = (): ReactElement => {
 	};
 
 	const upperHeader = (
-		<div className="fixed top-0 z-10 flex items-center justify-end w-screen h-8 px-10 mr-8">
+		<div className="fixed top-0 z-10 flex items-center justify-end w-screen h-8 px-10 mr-8 bg-white">
 			<a className={upperHeaderStyle}>ENG</a>
 			{!!isLoggined &&
 				(isLoggined === userLoginAuthState.LOGGINED ? (
