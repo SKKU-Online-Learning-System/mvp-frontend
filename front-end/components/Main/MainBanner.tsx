@@ -1,45 +1,53 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-
-import API from 'apis/Main';
-import { IMainBanners } from 'types/Main';
-
+import React, { useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-// npm install react-icons
-
+import { HiOutlineDesktopComputer } from 'react-icons/hi';
+import { TbMessageLanguage } from 'react-icons/tb';
+import { SiHiveBlockchain } from 'react-icons/si';
 import { RxDotFilled } from 'react-icons/rx';
-// npm install react-icons --save
-
-// TODO. query string 형식으로 요청 보내기
+import { MdSecurity } from 'react-icons/md';
+import { GiBrain } from 'react-icons/gi';
 
 import { ICourse } from 'types/Main';
 import { usePopularCoursesFetch } from 'query/hooks/Main/index';
 
-// interface ICourseCardProps {
-// 	course: ICourse;
-// }
-
 const Curation = () => {
-	// 동그라미들: 카테고리로 연결하는 역할
 	const navigationLinks = [
-		{ category: '프로그래밍 언어', url: './courses?category2sId=6' },
-		{ category: '인공지능', url: './courses?category2sId=18' },
-		{ category: '웹개발', url: './courses?category2sId=1' },
-		{ category: '블록체인', url: './courses?category2sId=15' },
-		{ category: '보안', url: './courses?category2sId=12' },
+		{
+			category: '프로그래밍 언어',
+			url: './courses?category2sId=6',
+			asset: TbMessageLanguage,
+		},
+		{ category: '인공지능', url: './courses?category2sId=18', asset: GiBrain },
+		{
+			category: '웹개발',
+			url: './courses?category2sId=1',
+			asset: HiOutlineDesktopComputer,
+		},
+		{
+			category: '블록체인',
+			url: './courses?category2sId=15',
+			asset: SiHiveBlockchain,
+		},
+		{ category: '보안', url: './courses?category2sId=12', asset: MdSecurity },
 	];
 
 	return (
-		<div className="my-4">
-			{/* <CourseList /> */}
-			<ul className="flex justify-center space-x-10 text-center place-items-center">
+		<div className="mt-8">
+			<ul className="flex items-center justify-center text-center space-x-14">
 				{navigationLinks.map((link, index) => (
-					<a key={index} href={link.url}>
-						<li className="bg-[var(--color-Surface)] w-20 h-20 rounded-full my-2"></li>
-						<div className="text-[var(--color-onBackground)]">
-							{link.category}
-						</div>
-					</a>
+					<li className="min-w-[130px]">
+						<a
+							key={index}
+							href={link.url}
+							className="flex flex-col items-center justify-center"
+						>
+							<link.asset className="w-20 h-20 my-2 hover:scale-[1.08] transition" />
+							{/* <div className=""></div> */}
+							<span className="text-[var(--color-onBackground)]">
+								{link.category}
+							</span>
+						</a>
+					</li>
 				))}
 			</ul>
 		</div>
@@ -47,7 +55,6 @@ const Curation = () => {
 };
 
 const MainBanner = () => {
-	// 매인배너 썸네일 가져오기
 	const { data: popularCourses } = usePopularCoursesFetch();
 	const slides: { thumbnail: string; url: string }[] = (
 		popularCourses ?? []
@@ -75,8 +82,7 @@ const MainBanner = () => {
 	};
 
 	return (
-		<div className="h-[680px] w-full group bg-[var(--color-green-700)]">
-			{/* <CourseList /> */}
+		<div className="h-[680px] mb-48 w-full group bg-[var(--color-green-700)]">
 			<div
 				style={{
 					backgroundImage: `url(${slides[currentIndex]?.thumbnail})`,
@@ -87,16 +93,15 @@ const MainBanner = () => {
 					href={slides[currentIndex]?.url}
 					className="absolute inset-0 w-full h-full"
 				/>
-				<div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
+				<div className="hidden group-hover:block absolute top-1/2 translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
 					<BsChevronCompactLeft onClick={prevSlide} size={30} />
 				</div>
-				<div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
+				<div className="hidden group-hover:block absolute top-1/2 translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
 					<BsChevronCompactRight onClick={nextSlide} size={30} />
 				</div>
 			</div>
-			{/* 위치 표시해주는 동그라미들 */}
 			<div className="flex justify-center py-2 top-4">
-				{slides.map((slide, slideIndex) => (
+				{slides.map((_, slideIndex) => (
 					<div
 						key={slideIndex}
 						onClick={() => goToSlide(slideIndex)}
