@@ -116,7 +116,7 @@ const Header = (): ReactElement => {
 			{upperHeader}
 			<div className="dt:py-0 dt:px-[10px] mt-8 flex justify-around items-center mb-4">
 				<div className="flex items-center justify-between">
-					<Link href="/" passHref>
+					<Link href="/">
 						<span className="text-[2rem] cursor-pointer font-['Gugi'] text-[#1b1b1b]">
 							온라인 명륜당
 						</span>
