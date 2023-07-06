@@ -1,14 +1,15 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 import CourseRegisterCard from './CourseRegisterCard';
 
 const ContentsManage = () => {
 	return (
-		<div>
+		<div className="flex flex-col items-center justify-start w-full p-10 mt-14">
 			<CourseRegisterCard />
-			<FontAwesomeIcon icon={faPlusCircle} />
+			<button className="hover:scale-[1.05] transition">
+				<AiOutlinePlusCircle className="text-7xl mt-14" />
+			</button>
 		</div>
 	);
 };

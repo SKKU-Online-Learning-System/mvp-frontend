@@ -1,14 +1,21 @@
 import React from 'react';
 
+import CourseRegisterCardHeader from './CourseRegisterCardHeader';
+import CourseRegisterCardBody from './CourseRegisterCardBody';
+
 const CourseRegisterCard = () => {
 	return (
-		<div className="w-3/6">
-			<div id="upper" className="flex w-3/6 bg-red">
-				<span>Operating</span>
-				<h3>title</h3>
-				<span>Instructor</span>
-			</div>
-			<div id="lower"></div>
+		<div className="w-1/2 bg-[var(--color-onSurface-100)]">
+			<CourseRegisterCardHeader
+				isOperating={true}
+				title="파이썬 초급"
+				instructor="이성균"
+			/>
+			<CourseRegisterCardBody
+				description="This is the description for this course"
+				category="category"
+				numberOfLectures={7}
+			/>
 		</div>
 	);
 };
