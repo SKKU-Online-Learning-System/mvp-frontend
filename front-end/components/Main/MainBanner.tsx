@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { HiOutlineDesktopComputer } from 'react-icons/hi';
 import { TbMessageLanguage } from 'react-icons/tb';
-import { SiHiveBlockchain } from 'react-icons/si';
+import { RiFilePaper2Line } from 'react-icons/ri';
 import { RxDotFilled } from 'react-icons/rx';
 import { MdSecurity } from 'react-icons/md';
 import { GiBrain } from 'react-icons/gi';
@@ -25,7 +25,7 @@ const navigationLinks = [
 	{
 		category: '교양',
 		url: './courses?category2sId=44',
-		asset: SiHiveBlockchain,
+		asset: RiFilePaper2Line,
 	},
 	{ category: '보안', url: './courses?category2sId=12', asset: MdSecurity },
 ];
