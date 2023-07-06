@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import { useRecentLecturesFetch } from 'query/hooks/Main/index';
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
-import { CommonHeader } from './CourseList';
+import CourseHeader from './CourseHeader';
 
 export const RecentLecture = () => {
 	const router = useRouter();
@@ -38,7 +38,7 @@ export const RecentLecture = () => {
 
 	return (
 		<>
-			<CommonHeader text={'최근 수강 강의'} color={'red'} />
+			<CourseHeader title={'최근 수강 강의'} color={'red'} />
 			<div className="grid gap-x-4 gap-y-4 grid-cols-5 py-5 px-[35px]">
 				{recentLectures?.slice(0, 5).map((elem, index) => {
 					const percentage = getProgressPercentage(
@@ -48,7 +48,7 @@ export const RecentLecture = () => {
 
 					return (
 						<div
-							className="cursor-pointer w-full overflow-hidden relative"
+							className="relative w-full overflow-hidden cursor-pointer"
 							onClick={handleClick(elem.lecture.course.id, elem.lecture.id)}
 							key={index}
 						>
@@ -61,7 +61,7 @@ export const RecentLecture = () => {
 							>
 								<div className="absolute h-full bg-red-600"></div>
 							</div>
-							<div className="text-base text-ellipsis overflow-hidden whitespace-nowrap">
+							<div className="overflow-hidden text-base text-ellipsis whitespace-nowrap">
 								{elem.lecture.title}
 							</div>
 							<div className="text-ellipsis overflow-hidden whitespace-nowrap text-black/[0.5]">
