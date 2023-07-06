@@ -35,7 +35,7 @@ const Curation = () => {
 		<div className="mt-8">
 			<ul className="flex items-center justify-center text-center space-x-14">
 				{navigationLinks.map((link, index) => (
-					<li className="min-w-[130px]">
+					<li key={index} className="min-w-[130px]">
 						<a
 							key={index}
 							href={link.url}
