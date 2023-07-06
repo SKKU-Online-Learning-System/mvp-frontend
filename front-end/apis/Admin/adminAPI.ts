@@ -1,6 +1,10 @@
 import axiosInstance from 'apis';
 
-import { INewCourseInfo, ICourseRetrieveInfo } from 'types/Admin/Index';
+import {
+	INewCourseInfo,
+	ICourseRetrieveInfo,
+	ICourseOrdersInfo,
+} from 'types/Admin/Index';
 
 const functions = {
 	fetchPopularContentsInfo: async (
@@ -18,6 +22,22 @@ const functions = {
 		const res = await axiosInstance.get('/courses/recent');
 		return res.data;
 	},
+	sendPopularCourseOrders: async (
+		courseOrdersInfo: ICourseOrdersInfo,
+	): Promise<ICourseOrdersInfo> => {
+		const res = await axiosInstance.post('/course_layout/popular', {
+			courseOrdersInfo,
+		});
+		return res.data;
+	},
+	// sendCateogryCourseOrders: async (courseOrdersInfo: ICourseOrdersInfo): Promise<ICourseOrdersInfo> => {
+	// 	const res = await axiosInstance.post(`/course_layout/${category}`, {
+	// 		courseId: number
+	// 		thumbnailLink: string
+	// 		order: number
+	// 	});
+	// 	return res.data;
+	// },
 };
 
 export default functions;

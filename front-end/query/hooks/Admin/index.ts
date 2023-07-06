@@ -1,6 +1,10 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
-import { ICourseRetrieveInfo, INewCourseInfo } from 'types/Admin/Index';
+import {
+	ICourseRetrieveInfo,
+	INewCourseInfo,
+	ICourseOrdersInfo,
+} from 'types/Admin/Index';
 import { QUERY_KEYS } from 'query/hooks/Admin/queryKeys';
 import adminAPI from 'apis/Admin/adminAPI';
 
@@ -23,5 +27,13 @@ export const useNewCoursesFetch = (): UseQueryResult<INewCourseInfo[]> => {
 		{
 			staleTime: 10 * 60 * 1000,
 		},
+	);
+};
+
+export const usePopularCourseOrdersSend = (
+	courseOrdersInfo: ICourseOrdersInfo,
+): UseQueryResult<ICourseOrdersInfo> => {
+	return useQuery<ICourseOrdersInfo>([QUERY_KEYS.SEND_COURSE_ORDERS], () =>
+		adminAPI.sendPopularCourseOrders(courseOrdersInfo),
 	);
 };

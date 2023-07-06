@@ -20,3 +20,9 @@ export interface ICourseRetrieveInfo {
 	courseCreatedAt: string;
 	updatedAt: string;
 }
+
+export interface ICourseOrdersInfo {
+	courseId: number;
+	thumbnailLink: string;
+	order: number;
+}
