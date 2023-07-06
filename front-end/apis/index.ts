@@ -29,6 +29,7 @@ const setResponseInterceptor = (
 
 setResponseInterceptor(axiosInstance, commonErrorHandler);
 
+
 export default axiosInstance;
 /*
 안에 들어가는 인수는 아래 링크에서 확인 가능
