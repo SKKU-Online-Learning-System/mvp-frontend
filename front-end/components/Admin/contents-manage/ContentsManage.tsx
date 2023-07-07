@@ -6,7 +6,7 @@ import CourseRegisterCard from './CourseRegisterCard';
 const ContentsManage = () => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
 	const [pageNumber, setPageNumber] = useState<number>(1);
-	const maxPageNumber = 99;
+	const maxPageNumber = 99; // Todo: 총 강좌 개수
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { current } = inputRef;
@@ -15,20 +15,20 @@ const ContentsManage = () => {
 			current.value = e.target.value;
 		}
 	};
-	const onSearchCoursesClick = () => {};
+	// const onSearchCoursesClick = () => {};
 	const onKeyPress = (e: React.KeyboardEvent) => {
 		if (e.key === 'Enter') {
 			e.preventDefault();
-			onSearchCoursesClick();
+			// onSearchCoursesClick();
 			return;
 		}
 	};
 	const onPageControllerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		if ((e.target as HTMLButtonElement).id === 'left-btn' || pageNumber !== 1) {
+		if ((e.target as HTMLButtonElement).id === 'left-btn' && pageNumber > 1) {
 			setPageNumber((pageNumber) => pageNumber - 1);
 			// Todo: API 호출해서 (pageNumber * 5 - 4 ~ pageNumber * 5)까지 5개 강좌 정보 띄우기
 		} else if (
-			(e.target as HTMLButtonElement).id === 'right-btn' ||
+			(e.target as HTMLButtonElement).id === 'right-btn' &&
 			pageNumber < maxPageNumber
 		) {
 			setPageNumber((pageNumber) => pageNumber + 1);

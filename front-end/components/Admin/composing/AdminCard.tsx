@@ -35,7 +35,7 @@ const AdminCard = ({ title }: { title: string }) => {
 	};
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const id = +e.target.id;
-		let arr = [...order];
+		const arr = [...order];
 		arr[id] = +e.target.value;
 		setOrder(arr);
 		console.log(arr);
