@@ -6,19 +6,22 @@ import {
 	usePopularCoursesFetch,
 	useNewCoursesFetch,
 } from 'query/hooks/Admin/index';
+import adminAPI from '../../../apis/Admin/adminAPI';
 
-const AdminCard = ({ title }: { title: string }) => {
+type PropType = { title: string; order: number };
+
+const AdminCard = ({ title, order }: PropType) => {
 	const { data: newContents, isLoading: isNewCoursesLoading } =
 		useNewCoursesFetch();
 	const { data: popularContents, isLoading: isPopularCoursesLoading } =
 		usePopularCoursesFetch(title === '인기 컨텐츠' ? '' : title);
 
 	const [disabled, setDisabled] = useState<boolean>(false);
-	const dataLength =
+	const numberOfCourses =
 		title === '신규 컨텐츠' ? newContents?.length : popularContents?.length;
-	const [order, setOrder] = useState<Array<number>>(() => {
+	const [sequence, setSequence] = useState<Array<number>>(() => {
 		const arr = [];
-		for (let i = 0; i < dataLength!; i++) {
+		for (let i = 0; i < numberOfCourses!; i++) {
 			arr.push(0);
 		}
 		return arr;
@@ -34,19 +37,80 @@ const AdminCard = ({ title }: { title: string }) => {
 		}
 	};
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (
+			e.target.value !== '1' &&
+			e.target.value !== '2' &&
+			e.target.value !== '3' &&
+			e.target.value !== '4' &&
+			e.target.value !== '5'
+		) {
+			alert('강좌 순서 값은 1에서 5 사이 값으로 입력해주시기 바랍니다.');
+			e.target.value = '';
+			return;
+		}
 		const id = +e.target.id;
-		const arr = [...order];
+		const arr = [...sequence];
 		arr[id] = +e.target.value;
-		setOrder(arr);
+		setSequence(arr);
 		console.log(arr);
 	};
-	const onSaveClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		// Todo1: order 순서에 따라 백엔드에 인기컨텐츠 5개 백엔드에 전달 (courseID, thumbnailLink, order)
-		// Todo2: 백엔드 API 제작
-		// Todo3: Admin이 설정한 순서대로 정렬된 강좌 정보 받는 React Query 제작
-		// Todo4: Todo3에서 제작한 query 사용하여 메인페이지 파일(/pages/index.tsx)에서 적절하게 배치
+	const onSaveClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+		const seen = new Set();
+		const duplicates = sequence.filter(
+			(num) => seen.size === seen.add(num).size,
+		);
+
+		if (duplicates.length !== 0) {
+			alert('강좌 순서 설정값 중 중복값이 있습니다. 재입력 해주시기 바랍니다.');
+			return;
+		}
+		for (let i = 0; i < numberOfCourses!; i++) {
+			if (sequence[i] < 1 || sequence[i] > 5) {
+				alert('강좌 순서는 1~5인 값으로 입력해주시기 바랍니다.');
+			}
+		}
+
+		const objs = newContents?.forEach((content, idx) => {
+			return {
+				courseId: content.id,
+				order,
+				sequence: sequence[idx],
+			};
+		});
+		console.log(objs);
+		return;
+
+		const res = await adminAPI.sendPopularCourseOrders([
+			{
+				courseId: 1,
+				order,
+				sequence: sequence[0],
+			},
+			{
+				courseId: 2,
+				order,
+				sequence: sequence[1],
+			},
+			{
+				courseId: 3,
+				order,
+				sequence: sequence[2],
+			},
+			{
+				courseId: 4,
+				order,
+				sequence: sequence[3],
+			},
+			{
+				courseId: 5,
+				order,
+				sequence: sequence[4],
+			},
+		]);
+		console.log(res);
 	};
 
+	// Todo: loading UI 변경할 것
 	if (isPopularCoursesLoading || isNewCoursesLoading) {
 		return <h2>Loading . . .</h2>;
 	}

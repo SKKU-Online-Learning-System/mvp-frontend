@@ -1,4 +1,5 @@
 import axiosInstance from 'apis';
+import { AxiosResponse } from 'axios';
 
 import {
 	INewCourseInfo,
@@ -23,10 +24,10 @@ const functions = {
 		return res.data;
 	},
 	sendPopularCourseOrders: async (
-		courseOrdersInfo: ICourseOrdersInfo,
-	): Promise<ICourseOrdersInfo> => {
+		courseOrdersInfos: ICourseOrdersInfo[],
+	): Promise<AxiosResponse> => {
 		const res = await axiosInstance.post('/course_layout/popular', {
-			courseOrdersInfo,
+			courseOrdersInfos,
 		});
 		return res.data;
 	},

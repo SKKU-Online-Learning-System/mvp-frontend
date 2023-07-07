@@ -23,6 +23,6 @@ export interface ICourseRetrieveInfo {
 
 export interface ICourseOrdersInfo {
 	courseId: number;
-	thumbnailLink: string;
 	order: number;
+	sequence: number;
 }

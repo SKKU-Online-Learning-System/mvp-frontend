@@ -29,11 +29,3 @@ export const useNewCoursesFetch = (): UseQueryResult<INewCourseInfo[]> => {
 		},
 	);
 };
-
-export const usePopularCourseOrdersSend = (
-	courseOrdersInfo: ICourseOrdersInfo,
-): UseQueryResult<ICourseOrdersInfo> => {
-	return useQuery<ICourseOrdersInfo>([QUERY_KEYS.SEND_COURSE_ORDERS], () =>
-		adminAPI.sendPopularCourseOrders(courseOrdersInfo),
-	);
-};
