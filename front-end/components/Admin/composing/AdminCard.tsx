@@ -69,7 +69,7 @@ const AdminCard = ({ title }: { title: string }) => {
 				)}
 				<button
 					onClick={onSaveClick}
-					className="ml-6 p-2 text-lg font-semibold bg-[#dbe9cf] rounded-lg hover:bg-[#8ac13f] duration-150"
+					className="ml-6 p-2 text-lg font-semibold bg-[#b3df8c] rounded-lg hover:bg-[#b9c7ad] duration-150"
 				>
 					순서 저장
 				</button>
