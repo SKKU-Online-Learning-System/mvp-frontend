@@ -3,31 +3,31 @@ import { BsTrash3Fill } from 'react-icons/bs';
 import { GiGraduateCap } from 'react-icons/gi';
 
 type PropType = {
-	isOperating: boolean;
 	title: string;
 	instructor: string;
 };
 
-const CourseRegisterCardHeader = ({
-	isOperating,
-	title,
-	instructor,
-}: PropType) => {
+const CourseRegisterCardHeader = ({ title, instructor }: PropType) => {
 	const onTrashcanBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		alert('정말 해당 강좌를 삭제하시겠습니까?');
+		confirm('정말 해당 강좌를 삭제하시겠습니까?');
 	};
 
 	return (
 		<div
 			id="upper"
-			className="flex items-center justify-between px-[5%] py-[2.5%] bg-red"
+			className="flex items-center justify-between bg-[var(--color-onSurface-100)] px-[5%] py-[2.5%] bg-red"
 		>
 			<div className="flex items-center justify-between w-7/12">
 				<div className="flex items-center justify-center">
-					<GiGraduateCap className="mr-2 text-3xl" />
-					<span className="text-2xl font-bold">
-						{isOperating ? '운영 중' : '미운영'}
-					</span>
+					<GiGraduateCap className="text-3xl" />
+					<select
+						className=" cursor-pointer text-center text-2xl font-bold focus:outline-none bg-[var(--color-onSurface-100)]"
+						name="operating"
+						id="operating"
+					>
+						<option value="0">운영</option>
+						<option value="1">미운영</option>
+					</select>
 				</div>
 				<h3 className="text-3xl font-bold">{title}</h3>
 				<span>{instructor} 교수</span>
