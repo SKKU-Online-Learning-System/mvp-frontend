@@ -142,7 +142,7 @@ const Header = (): ReactElement => {
 						onKeyPress={handleKeyPress}
 					/>
 					<button
-						className="focus:outline-none bg-cover bg-[url('/images/search_btn.png')] cursor-pointer p-0 ml-[-40px] border-none w-[30px] h-[30px] "
+						className="focus:outline-none bg-cover bg-[url('/images/search_btn.png')] cursor-pointer p-0 -ml-10 border-none w-[30px] h-[30px] "
 						onClick={handleClickSearchLectures}
 					/>
 				</div>
