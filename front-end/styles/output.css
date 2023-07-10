@@ -626,6 +626,10 @@ video {
   margin: auto;
 }
 
+.m-0\.5 {
+  margin: 0.125rem;
+}
+
 .mx-0 {
   margin-left: 0px;
   margin-right: 0px;
@@ -719,6 +723,11 @@ video {
 .mx-20 {
   margin-left: 5rem;
   margin-right: 5rem;
+}
+
+.my-\[30px\] {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .mb-10 {
@@ -875,6 +884,10 @@ video {
 
 .mb-\[1\%\] {
   margin-bottom: 1%;
+}
+
+.mt-\[10px\] {
+  margin-top: 10px;
 }
 
 .box-border {
@@ -1229,6 +1242,18 @@ video {
   width: 28%;
 }
 
+.w-\[700px\] {
+  width: 700px;
+}
+
+.w-\[1200px\] {
+  width: 1200px;
+}
+
+.w-\[600px\] {
+  width: 600px;
+}
+
 .min-w-\[130px\] {
   min-width: 130px;
 }
@@ -1510,6 +1535,14 @@ video {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-\[4px\] {
+  border-radius: 4px;
+}
+
+.rounded-\[30px\] {
+  border-radius: 30px;
 }
 
 .border {
@@ -1805,6 +1838,11 @@ video {
   background-color: rgb(179 223 140 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#69c97f\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(105 201 127 / var(--tw-bg-opacity));
+}
+
 .bg-\[url\(\'\/images\/search_btn\.png\'\)\] {
   background-image: url('/images/search_btn.png');
 }
@@ -2030,6 +2068,11 @@ video {
   padding-bottom: 7px;
 }
 
+.py-\[0\.4rem\] {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
 .pb-0 {
   padding-bottom: 0px;
 }
@@ -2130,6 +2173,10 @@ video {
   padding-top: 60px;
 }
 
+.pb-\[50px\] {
+  padding-bottom: 50px;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2164,6 +2211,10 @@ video {
 
 .font-\[Gugi\] {
   font-family: Gugi;
+}
+
+.font-\[\] {
+  font-family: ;
 }
 
 .text-2xl {
@@ -2705,6 +2756,11 @@ input::-webkit-inner-spin-button {
   background-color: rgb(185 199 173 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-\[\#34a84d\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(52 168 77 / var(--tw-bg-opacity));
+}
+
 .hover\:text-\[\#c2d45e\]:hover {
   --tw-text-opacity: 1;
   color: rgb(194 212 94 / var(--tw-text-opacity));
@@ -2726,6 +2782,11 @@ input::-webkit-inner-spin-button {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:outline-none:hover {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 .hover\:duration-300:hover {

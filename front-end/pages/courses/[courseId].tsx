@@ -1,12 +1,11 @@
-import React, { ReactElement } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 
 import QnA from '@components/Courses/Details/QnA';
 import LectureList from '@components/Courses/Details/LectureList';
 import CourseHeader from '@components/Courses/Details/CourseHeader';
 import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
 
-const CourseDetailPage = (): ReactElement => {
+const CourseDetailPage = () => {
 	const {
 		courseId,
 		course,
@@ -29,7 +28,7 @@ const CourseDetailPage = (): ReactElement => {
 						courseDetail={course}
 						courseId={courseId}
 					/>
-					<Container>
+					<div className="w-[1200px] my-[30px] mx-auto">
 						{lecture && (
 							<LectureList
 								lectures={lecture}
@@ -38,7 +37,7 @@ const CourseDetailPage = (): ReactElement => {
 							/>
 						)}
 						{qna && <QnA courseId={courseId as string} qna={qna} />}
-					</Container>
+					</div>
 				</>
 			)}
 			{showModal && renderModal()}
@@ -47,8 +46,3 @@ const CourseDetailPage = (): ReactElement => {
 };
 
 export default CourseDetailPage;
-
-const Container = styled.div`
-	width: 1200px;
-	margin: 30px auto;
-`;

@@ -1,6 +1,5 @@
 import React, { ReactElement, useRef } from 'react';
 import ReactPlayer from 'react-player/lazy';
-import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Error from 'next/error';
 
@@ -63,7 +62,7 @@ const LecturePlayer = (): ReactElement => {
 	return (
 		<>
 			{courseId ? (
-				<LecturePlayerWrapper>
+				<div className="font-['Noto Sans KR'] flex justify-center items-center h-full">
 					<div className="player-wrapper">
 						<ReactPlayer
 							ref={ref}
@@ -85,7 +84,7 @@ const LecturePlayer = (): ReactElement => {
 						/>
 					</div>
 					{router.isReady && <LecturePicker courseId={courseId} />}
-				</LecturePlayerWrapper>
+				</div>
 			) : (
 				<Error statusCode={HTTP_STATUS_CODE.NOT_FOUND} />
 			)}
@@ -94,12 +93,3 @@ const LecturePlayer = (): ReactElement => {
 };
 
 export default LecturePlayer;
-
-const LecturePlayerWrapper = styled.div`
-	font-family: 'Noto Sans KR';
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-`;

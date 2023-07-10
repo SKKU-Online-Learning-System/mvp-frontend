@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react';
+import React, { ReactNode } from 'react';
 import Image from 'next/image';
 
-const LearningStatus = (): ReactElement => {
+const LearningStatus = () => {
 	return (
 		<div className="w-full py-[18px] px-[23px] bg-[#343535] text-white font-['Noto Sans KR'] font-thin">
 			<div className="text-[#9a9a9a] text-[0.5rem] font-bold">

@@ -1,6 +1,5 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 
 import API from 'apis/QnA/qnaApi';
 
@@ -8,7 +7,7 @@ interface IQuestionForm {
 	courseId: string;
 }
 
-const QuestionForm = ({ courseId }: IQuestionForm): ReactElement => {
+const QuestionForm = ({ courseId }: IQuestionForm) => {
 	const router = useRouter();
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
@@ -21,14 +20,15 @@ const QuestionForm = ({ courseId }: IQuestionForm): ReactElement => {
 	};
 
 	return (
-		<Wrapper>
-			<form onSubmit={handleSubmit} className="form-style">
+		<div>
+			<form onSubmit={handleSubmit} className="flex flex-col">
 				<textarea
 					name="title"
 					cols={150}
 					rows={2}
 					placeholder="제목을 입력하세요."
 					required
+					className="m-0.5"
 				></textarea>
 				<textarea
 					name="contents"
@@ -36,24 +36,14 @@ const QuestionForm = ({ courseId }: IQuestionForm): ReactElement => {
 					rows={5}
 					placeholder="질문을 입력하세요."
 					required
+					className="m-0.5"
 				></textarea>
-				<button type="submit">질문 입력</button>
+				<button type="submit" className="w-[100px]">
+					질문 입력
+				</button>
 			</form>
-		</Wrapper>
+		</div>
 	);
 };
 
 export default QuestionForm;
-
-const Wrapper = styled.div`
-	.form-style {
-		display: flex;
-		flex-direction: column;
-	}
-	button {
-		width: 100px;
-	}
-	textarea {
-		margin: 2px;
-	}
-`;

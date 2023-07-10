@@ -52,7 +52,6 @@ const AdminCard = ({ title, order }: PropType) => {
 		const arr = [...sequence];
 		arr[id] = +e.target.value;
 		setSequence(arr);
-		console.log(arr);
 	};
 	const onSaveClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
 		const seen = new Set();
