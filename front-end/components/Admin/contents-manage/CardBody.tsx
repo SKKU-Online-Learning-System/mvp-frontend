@@ -6,11 +6,7 @@ type PropType = {
 	numberOfLectures: number;
 };
 
-const CourseRegisterCardBody = ({
-	description,
-	category,
-	numberOfLectures,
-}: PropType) => {
+const CardBody = ({ description, category, numberOfLectures }: PropType) => {
 	return (
 		<div className="h-fit bg-[var(--color-Surface)] px-[7%] py-[4%] flex justify-between items-center">
 			<div className="flex flex-col w-[65%]">
@@ -31,4 +27,4 @@ const CourseRegisterCardBody = ({
 	);
 };
 
-export default CourseRegisterCardBody;
+export default CardBody;

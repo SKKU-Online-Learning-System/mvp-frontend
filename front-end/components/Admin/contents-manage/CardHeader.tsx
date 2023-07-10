@@ -7,7 +7,7 @@ type PropType = {
 	instructor: string;
 };
 
-const CourseRegisterCardHeader = ({ title, instructor }: PropType) => {
+const CardHeader = ({ title, instructor }: PropType) => {
 	const onTrashcanBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		confirm('정말 해당 강좌를 삭제하시겠습니까?');
 	};
@@ -44,4 +44,4 @@ const CourseRegisterCardHeader = ({ title, instructor }: PropType) => {
 	);
 };
 
-export default CourseRegisterCardHeader;
+export default CardHeader;
