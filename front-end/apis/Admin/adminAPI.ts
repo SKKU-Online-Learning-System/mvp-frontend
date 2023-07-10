@@ -26,19 +26,12 @@ const functions = {
 	sendPopularCourseOrders: async (
 		courseOrdersInfos: ICourseOrdersInfo[],
 	): Promise<AxiosResponse> => {
-		const res = await axiosInstance.post('/course_layout/popular', {
+		const res = await axiosInstance.post(
+			'/main-layout/update',
 			courseOrdersInfos,
-		});
+		);
 		return res.data;
 	},
-	// sendCateogryCourseOrders: async (courseOrdersInfo: ICourseOrdersInfo): Promise<ICourseOrdersInfo> => {
-	// 	const res = await axiosInstance.post(`/course_layout/${category}`, {
-	// 		courseId: number
-	// 		thumbnailLink: string
-	// 		order: number
-	// 	});
-	// 	return res.data;
-	// },
 };
 
 export default functions;
