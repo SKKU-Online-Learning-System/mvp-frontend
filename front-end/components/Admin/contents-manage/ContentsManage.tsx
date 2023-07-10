@@ -38,7 +38,7 @@ const ContentsManage = () => {
 
 	return (
 		<div className="flex flex-col items-center justify-start w-full p-10 mt-14">
-			<div className="w-1/2 mb-[1%] flex justify-between">
+			<div className="w-1/2 mb-[2%] flex justify-between">
 				<input
 					type="text"
 					ref={inputRef}
