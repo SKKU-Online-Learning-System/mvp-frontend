@@ -2,18 +2,20 @@ import React from 'react';
 
 import CardHeader from './CardHeader';
 import CardBody from './CardBody';
+import { CourseInfo } from 'types/Admin/Index';
 
-const dummyText =
-	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+type PropsType = {
+	course: CourseInfo;
+};
 
-const CourseRegisterCard = () => {
+const CourseRegisterCard = ({ course }: PropsType) => {
 	return (
 		<div className="w-1/2 mb-[4%]">
-			<CardHeader title="파이썬 초급" instructor="이성균" />
+			<CardHeader title={course.title} instructor={course.instructor} />
 			<CardBody
-				description={dummyText}
-				category="프로그래밍 언어"
-				numberOfLectures={7}
+				description={course.description}
+				category={course.category1}
+				numberOfLectures={course.lectureCnt}
 			/>
 		</div>
 	);

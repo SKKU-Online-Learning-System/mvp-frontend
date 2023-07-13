@@ -26,3 +26,62 @@ export interface ICourseOrdersInfo {
 	order: number;
 	sequence: number;
 }
+
+export interface CourseInfo {
+	id: number;
+	title: string;
+	summary: string;
+	description: string;
+	instructor: string;
+	category1: Category1;
+	category1Id: number;
+	category2: Category2;
+	category2Id: number;
+	thumbnail: string;
+	difficulty: number;
+	lectureCnt: number;
+	createdAt: string;
+	enrollments: Enrollment[];
+	hashtags: Hashtag[];
+}
+
+export interface Category1 {
+	id: number;
+	name: string;
+	category2s: Category2[];
+}
+
+interface Category2 {
+	id: number;
+	name: string;
+	category1: string;
+	category1Id: number;
+}
+
+interface Enrollment {
+	id: number;
+	User: User;
+	userId: number;
+	course: string;
+	courseId: number;
+	createdAt: string;
+	completed: boolean;
+	completedAt: string;
+	bookmark: boolean;
+}
+
+interface User {
+	id: number;
+	email: string;
+	nickname: string;
+	joinedAt: string;
+	role: number;
+	watchedLecturesCount: number;
+	commentsCount: number;
+}
+
+interface Hashtag {
+	id: number;
+	tag: string;
+	courses: string[];
+}

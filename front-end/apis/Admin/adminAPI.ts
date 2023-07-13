@@ -5,6 +5,7 @@ import {
 	INewCourseInfo,
 	ICourseRetrieveInfo,
 	ICourseOrdersInfo,
+	CourseInfo,
 } from 'types/Admin/Index';
 
 const functions = {
@@ -30,6 +31,10 @@ const functions = {
 			'/main-layout/update',
 			courseOrdersInfos,
 		);
+		return res.data;
+	},
+	fetchAllCourses: async (): Promise<CourseInfo[]> => {
+		const res = await axiosInstance.get('/courses/all');
 		return res.data;
 	},
 };

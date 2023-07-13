@@ -1,12 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 import CourseRegisterCard from './CourseRegisterCard';
+import { useAllCoursesFetch } from 'query/hooks/Admin';
 
 const ContentsManage = () => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
 	const [pageNumber, setPageNumber] = useState<number>(1);
-	const maxPageNumber = 99; // Todo: 총 강좌 개수
+	const { data: allCourses, isLoading } = useAllCoursesFetch();
+	const maxPageNumber = allCourses?.length;
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { current } = inputRef;
@@ -15,7 +17,9 @@ const ContentsManage = () => {
 			current.value = e.target.value;
 		}
 	};
+
 	// const onSearchCoursesClick = () => {};
+
 	const onKeyPress = (e: React.KeyboardEvent) => {
 		if (e.key === 'Enter') {
 			e.preventDefault();
@@ -23,12 +27,14 @@ const ContentsManage = () => {
 			return;
 		}
 	};
+
 	const onPageControllerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		if ((e.target as HTMLButtonElement).id === 'left-btn' && pageNumber > 1) {
 			setPageNumber((pageNumber) => pageNumber - 1);
 			// Todo: API 호출해서 (pageNumber * 5 - 4 ~ pageNumber * 5)까지 5개 강좌 정보 띄우기
 		} else if (
 			(e.target as HTMLButtonElement).id === 'right-btn' &&
+			maxPageNumber &&
 			pageNumber < maxPageNumber
 		) {
 			setPageNumber((pageNumber) => pageNumber + 1);
@@ -36,6 +42,7 @@ const ContentsManage = () => {
 		}
 	};
 
+	if (isLoading) return <div>loading . . .</div>;
 	return (
 		<div className="flex flex-col items-center justify-start w-full p-10 mt-14">
 			<div className="w-1/2 mb-[2%] flex justify-between">
@@ -51,9 +58,10 @@ const ContentsManage = () => {
 					운영 정보 저장
 				</button>
 			</div>
-			<CourseRegisterCard />
-			<CourseRegisterCard />
-			<CourseRegisterCard />
+			{allCourses?.map((course, idx) => {
+				return <CourseRegisterCard key={idx} course={course} />;
+			})}
+
 			<div className="flex items-center justify-center text-3xl">
 				<button onClick={onPageControllerClick}>
 					<BsChevronLeft id="left-btn" />
