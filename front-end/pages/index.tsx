@@ -18,10 +18,26 @@ const Index = (): ReactElement => {
 				{!!isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
 					<RecentLecture />
 				)}
-				<CourseList headerText={'인기 컨텐츠'} headerColor="#ff0000" />
-				<CourseList headerText={'신규 컨텐츠'} headerColor="#ff0000" />
-				<CourseList headerText={'인기카테고리1 컨텐츠'} headerColor="#ff0000" />
-				<CourseList headerText={'인기카테고리2 컨텐츠'} headerColor="#ff0000" />
+				<CourseList
+					headerText={'인기 컨텐츠'}
+					headerColor="#ff0000"
+					order={0}
+				/>
+				<CourseList
+					headerText={'신규 컨텐츠'}
+					headerColor="#ff0000"
+					order={1}
+				/>
+				<CourseList
+					headerText={'인기카테고리1 컨텐츠'}
+					headerColor="#ff0000"
+					order={2}
+				/>
+				<CourseList
+					headerText={'인기카테고리2 컨텐츠'}
+					headerColor="#ff0000"
+					order={3}
+				/>
 			</div>
 		</>
 	);
