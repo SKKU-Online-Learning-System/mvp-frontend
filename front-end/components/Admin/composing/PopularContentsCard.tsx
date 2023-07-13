@@ -65,8 +65,8 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 		}
 
 		try {
-			const res = await adminAPI.sendPopularCourseOrders(objs);
-			console.log(res);
+			await adminAPI.sendPopularCourseOrders(objs);
+			alert('편성 정보가 업데이트 되었습니다.');
 		} catch (err) {
 			throw new Error(
 				'Error occured during updating main page course recommendation layout.',
