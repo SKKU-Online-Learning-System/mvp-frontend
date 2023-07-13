@@ -1,45 +1,23 @@
 import React, { useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import { HiOutlineDesktopComputer } from 'react-icons/hi';
-import { TbMessageLanguage } from 'react-icons/tb';
-import { RiFilePaper2Line } from 'react-icons/ri';
 import { RxDotFilled } from 'react-icons/rx';
-import { MdSecurity } from 'react-icons/md';
-import { GiBrain } from 'react-icons/gi';
 
-import { ICourse } from 'types/Main';
-import { usePopularCoursesFetch } from 'query/hooks/Main/index';
-
-const navigationLinks = [
-	{
-		category: '프로그래밍 언어',
-		url: './courses?category2sId=6',
-		asset: TbMessageLanguage,
-	},
-	{ category: '인공지능', url: './courses?category2sId=18', asset: GiBrain },
-	{
-		category: '웹개발',
-		url: './courses?category2sId=1',
-		asset: HiOutlineDesktopComputer,
-	},
-	{
-		category: '교양',
-		url: './courses?category2sId=44',
-		asset: RiFilePaper2Line,
-	},
-	{ category: '보안', url: './courses?category2sId=12', asset: MdSecurity },
-];
+import { useRecommendedCoursesFetch } from 'query/hooks/Main/index';
+import { curations } from 'constants/mainCuration';
 
 const MainBanner = () => {
-	const { data: popularCourses } = usePopularCoursesFetch();
-	const slides: { thumbnail: string; url: string }[] = (
-		popularCourses ?? []
-	).map((course: ICourse) => ({
-		thumbnail: course.thumbnail,
-		url: `/courses/${course.id}`,
-	}));
-
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const recommendedCoursesList = useRecommendedCoursesFetch(0);
+	console.log(recommendedCoursesList);
+
+	const slides = recommendedCoursesList?.map((course) => {
+		return {
+			// thumbnail: course?.thumbnailLink,
+			// url: `/courses/${course?.courseId}`,
+			thumbnail: '',
+			url: `/courses/1`,
+		};
+	});
 
 	const prevSlide = () => {
 		const isFirstSlide = currentIndex === 0;
@@ -95,14 +73,14 @@ const MainBanner = () => {
 			</div>
 			<div className="mt-8">
 				<ul className="flex items-center justify-center text-center space-x-14">
-					{navigationLinks.map((link, index) => (
+					{curations.map((link, index) => (
 						<li key={index} className="min-w-[130px]">
 							<a
 								key={index}
 								href={link.url}
 								className="flex flex-col items-center justify-center"
 							>
-								<link.asset className="w-20 h-20 my-2 hover:scale-[1.08] transition" />
+								<link.logoIconImage className="w-20 h-20 my-2 hover:scale-[1.08] transition" />
 								<span className="text-[var(--color-onBackground)]">
 									{link.category}
 								</span>
