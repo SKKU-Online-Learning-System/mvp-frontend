@@ -1,20 +1,20 @@
 import React, { ReactElement, useEffect } from 'react';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { NextPage } from 'next';
-import { AppProps } from 'next/app';
-import Head from 'next/head';
 import { AxiosError, AxiosResponse } from 'axios';
+import { AppProps } from 'next/app';
+import { NextPage } from 'next';
+import Head from 'next/head';
 
-import { store } from 'store/app/store';
-import { userLoginAuthState } from '../constants/commonState';
-import { HTTP_STATUS_CODE } from '../constants/http';
 import { selectIsLoggined } from 'store/feature/common/commonSelector';
 import { commonActions } from 'store/feature/common/commonSlice';
+import { userLoginAuthState } from '../constants/commonState';
+import { HTTP_STATUS_CODE } from '../constants/http';
+import { store } from 'store/app/store';
+import GlobalStyles from 'styles/GlobalStyles';
 import Layout from '@components/Layout';
 import axiosInstance from 'apis';
 import '../styles/output.css';
-import 'styles/GlobalStyles';
 
 if (process.env.NODE_ENV === 'development') {
 	require('../mocks/index');
@@ -68,7 +68,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
 			<Provider store={store}>
 				<MyComponent>
 					<Layout>
-						{/* <GlobalStyles /> */}
+						<GlobalStyles />
 						<Component {...pageProps} />
 					</Layout>
 				</MyComponent>
