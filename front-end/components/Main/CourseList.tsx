@@ -57,7 +57,7 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 							onError={handleImgError}
 							alt="course thumbnail"
 						/>
-						<div className="px-3 pt-2 pb-3 h-30">
+						<div className="flex flex-col justify-between px-3 pt-2 pb-3 h-30 h-[92px]">
 							<div className="font-bold">{course.title}</div>
 							<div className="text-xs opacity-[0.6] mt-2 overflow-ellipsis">
 								{course.instructor}
