@@ -7,15 +7,16 @@ import { curations } from 'constants/mainCuration';
 
 const MainBanner = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const recommendedCoursesList = useRecommendedCoursesFetch(0);
-	console.log(recommendedCoursesList);
+	const { data: recommendedCoursesList, isLoading } =
+		useRecommendedCoursesFetch(0);
+
+	if (!recommendedCoursesList)
+		return <div>Main banner contents are being loaded . . .</div>;
 
 	const slides = recommendedCoursesList?.map((course) => {
 		return {
-			// thumbnail: course?.thumbnailLink,
-			// url: `/courses/${course?.courseId}`,
-			thumbnail: '',
-			url: `/courses/1`,
+			thumbnail: course?.thumbnailLink,
+			url: `/courses/${course?.courseId}`,
 		};
 	});
 
