@@ -10,12 +10,14 @@ const MainBanner = () => {
 	const { data: recommendedCoursesList, isLoading } =
 		useRecommendedCoursesFetch(0);
 
+	if (isLoading) return <div>Loading . . .</div>;
+
 	if (!recommendedCoursesList)
 		return <div>Main banner contents are being loaded . . .</div>;
 
 	const slides = recommendedCoursesList?.map((course) => {
 		return {
-			thumbnail: course?.thumbnailLink,
+			thumbnail: course.thumbnail,
 			url: `/courses/${course?.courseId}`,
 		};
 	});

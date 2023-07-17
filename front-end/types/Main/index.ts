@@ -30,8 +30,10 @@ export interface ICourse {
 export interface MainCourse {
 	id: number;
 	courseId: number;
-	thumbnailLink: string;
 	order: number;
 	sequence: number;
-	category: string;
+	thumbnail: string;
+	category1: string;
+	title: string;
+	description: string;
 }

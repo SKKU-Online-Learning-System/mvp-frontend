@@ -52,13 +52,12 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 						<Image
 							width={'300'}
 							height={'180'}
-							src={course.thumbnailLink}
+							src={course.thumbnail}
 							onError={handleImgError}
 							alt="course thumbnail"
 						/>
 						<div className="px-3 pt-2 pb-3 h-30">
-							// Todo: course title과 description 받아오도록 BE API 수정 대기
-							<div className="font-bold">Course Title</div>
+							<div className="font-bold">{course.title}</div>
 							<div className="text-xs opacity-[0.6] mt-2 overflow-ellipsis">
 								{/* {course.description} */}
 							</div>
@@ -68,7 +67,6 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 			</div>
 		</div>
 	);
-	return <div>Hi</div>;
 };
 
 export default CourseList;
