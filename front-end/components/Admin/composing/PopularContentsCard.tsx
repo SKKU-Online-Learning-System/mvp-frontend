@@ -9,8 +9,9 @@ import { ICourseOrdersInfo } from '../../../types/Admin/Index';
 type PropsType = { title: string; order: number };
 
 const PopularContentsCard = ({ title, order }: PropsType) => {
-	const { data: popularContents, isLoading: isPopularCoursesLoading } =
-		usePopularCoursesFetch(title === '인기 컨텐츠' ? '' : title);
+	const { data: popularContents, isLoading } = usePopularCoursesFetch(
+		title === '인기 컨텐츠' ? '' : title,
+	);
 
 	const [disabled, setDisabled] = useState<boolean>(false);
 	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
@@ -21,9 +22,10 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 			setTimeout(() => {
 				setDisabled(false);
 			}, 60 * 1000);
-			// Todo: react-query 불러올 것
 		}
 	};
+
+	if (isLoading) return <h2>Loading . . .</h2>;
 
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (
@@ -74,9 +76,6 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 		}
 	};
 
-	if (isPopularCoursesLoading) {
-		return <h2>Loading . . .</h2>;
-	}
 	return (
 		<div className="flex flex-col h-full p-10 bg-white shadow-xl rounded-xl">
 			<h3 className="flex justify-between pl-10 mb-10 text-3xl font-extrabold select-none">
