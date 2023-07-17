@@ -14,7 +14,10 @@ interface PropsType {
 
 const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 	const router = useRouter();
-	const recommendedCoursesList = useRecommendedCoursesFetch(order);
+	const { data: recommendedCoursesList, isLoading } =
+		useRecommendedCoursesFetch(order);
+
+	if (isLoading) return <div>Loading...</div>;
 
 	const handleClick = (id: number | undefined) => {
 		if (typeof id === 'undefined') {
@@ -28,7 +31,14 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 		(e.target as HTMLImageElement).src = defaultErrorImage;
 	};
 
-	if (recommendedCoursesList[0].isLoading) return <div>Loading...</div>;
+	if (!recommendedCoursesList || recommendedCoursesList.length === 0) {
+		return (
+			<div>
+				<p>Failed to find recommended courses . . .</p>
+			</div>
+		);
+	}
+
 	return (
 		<div>
 			<CourseHeader title={headerText} color={headerColor} />
@@ -37,19 +47,20 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 					<div
 						key={idx}
 						className="relative overflow-hidden rounded-lg transition hover:scale-[1.03] cursor-pointer bg-[var(--color-Surface)]"
-						// onClick={() => handleClick(course.data![0].courseId)}
+						onClick={() => handleClick(course.courseId)}
 					>
-						{/* <Image
+						<Image
 							width={'300'}
 							height={'180'}
-							src={course.data![0].thumbnailLink}
+							src={course.thumbnailLink}
 							onError={handleImgError}
 							alt="course thumbnail"
-						/> */}
+						/>
 						<div className="px-3 pt-2 pb-3 h-30">
+							// Todo: course title과 description 받아오도록 BE API 수정 대기
 							<div className="font-bold">Course Title</div>
 							<div className="text-xs opacity-[0.6] mt-2 overflow-ellipsis">
-								{/* {course.data[0]!.description} */}
+								{/* {course.description} */}
 							</div>
 						</div>
 					</div>
@@ -57,6 +68,7 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 			</div>
 		</div>
 	);
+	return <div>Hi</div>;
 };
 
 export default CourseList;
