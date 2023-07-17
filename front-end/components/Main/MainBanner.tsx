@@ -39,7 +39,7 @@ const MainBanner = () => {
 	};
 
 	return (
-		<div className="h-[680px] mb-48 w-full group bg-[var(--color-onSurface)]">
+		<div className="h-[680px] mb-48 w-full group bg-[var(--color-green-700)]">
 			<div
 				style={{
 					backgroundImage: `url(${slides[currentIndex]?.thumbnail})`,
