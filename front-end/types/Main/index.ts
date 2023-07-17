@@ -36,4 +36,5 @@ export interface MainCourse {
 	category1: string;
 	title: string;
 	description: string;
+	instructor: string;
 }

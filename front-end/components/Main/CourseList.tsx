@@ -17,6 +17,7 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 	const { data: recommendedCoursesList, isLoading } =
 		useRecommendedCoursesFetch(order);
 
+	console.log(recommendedCoursesList);
 	if (isLoading) return <div>Loading...</div>;
 
 	const handleClick = (id: number | undefined) => {
@@ -59,7 +60,7 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 						<div className="px-3 pt-2 pb-3 h-30">
 							<div className="font-bold">{course.title}</div>
 							<div className="text-xs opacity-[0.6] mt-2 overflow-ellipsis">
-								{/* {course.description} */}
+								{course.instructor}
 							</div>
 						</div>
 					</div>
