@@ -11,11 +11,8 @@ const functions = {
 		const res = await axiosInstance.get('/courses/popular');
 		return res.data;
 	},
-	fetchRecommendedCourse: async (
-		order: number,
-		sequence: number,
-	): Promise<MainCourse> => {
-		const res = await axiosInstance.get(`/main-layout/${order}/${sequence}`);
+	fetchRecommendedCourse: async (order: number): Promise<MainCourse[]> => {
+		const res = await axiosInstance.get(`/main-layout/${order}`);
 		return res.data;
 	},
 };
