@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { DEVICE_BREAKPOINT } from 'constants/breakpoint';
 
-const Footer = (): ReactElement => {
+const Footer = () => {
 	return (
 		<div className="flex justify-center items-center min-w-[desktop] bg-[#323232] text-[#fefefe]">
 			<div

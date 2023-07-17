@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -20,7 +20,7 @@ const upperHeaderStyle =
 const headerStyle =
 	'text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]';
 
-const Header = (): ReactElement => {
+const Header = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const isLoggined = useSelector(selectIsLoggined);

@@ -11,10 +11,10 @@ import { userLoginAuthState } from '../constants/commonState';
 import { HTTP_STATUS_CODE } from '../constants/http';
 import { selectIsLoggined } from 'store/feature/common/commonSelector';
 import { commonActions } from 'store/feature/common/commonSlice';
-import GlobalStyles from 'styles/GlobalStyles';
 import Layout from '@components/Layout';
 import axiosInstance from 'apis';
 import '../styles/output.css';
+import 'styles/GlobalStyles';
 
 if (process.env.NODE_ENV === 'development') {
 	require('../mocks/index');
@@ -68,7 +68,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
 			<Provider store={store}>
 				<MyComponent>
 					<Layout>
-						<GlobalStyles />
+						{/* <GlobalStyles /> */}
 						<Component {...pageProps} />
 					</Layout>
 				</MyComponent>
