@@ -34,7 +34,7 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 			e.target.valueAsNumber !== 3 &&
 			e.target.valueAsNumber !== 4 &&
 			e.target.valueAsNumber !== 5 &&
-			e.target.value !== '' // For deletion
+			e.target.value !== ''
 		) {
 			alert('강좌 순서 값은 1에서 5 사이 값으로 입력해주시기 바랍니다.');
 			e.target.value = '';
@@ -45,7 +45,7 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 			// Todo: Delete an element corresponding to idx of the row.
 		} else {
 			const obj = {
-				courseId: popularContents![+e.target.id].id,
+				courseId: popularContents![+e.target.id].course.id,
 				order,
 				sequence: e.target.valueAsNumber,
 			};

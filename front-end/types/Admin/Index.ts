@@ -19,6 +19,21 @@ export interface ICourseRetrieveInfo {
 	enrollmentCount: number;
 	courseCreatedAt: string;
 	updatedAt: string;
+	course: Course;
+}
+
+interface Course {
+	id: number;
+	title: string;
+	summary: string;
+	description: string;
+	instructor: string;
+	category1Id: number;
+	category2Id: number;
+	thumbnail: string;
+	difficulty: number;
+	lectureCnt: number;
+	createdAt: string;
 }
 
 export interface ICourseOrdersInfo {
