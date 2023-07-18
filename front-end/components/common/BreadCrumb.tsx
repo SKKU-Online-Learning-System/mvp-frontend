@@ -8,33 +8,21 @@ interface IBreadCrumb {
 	containerPadding?: string;
 }
 
-const BreadCrumb = ({
-	category,
-	menu = [],
-	categoryColor,
-	containerPadding,
-}: IBreadCrumb) => {
-	const padding = containerPadding ? containerPadding : undefined;
-	const color = categoryColor ? categoryColor : '#25c3f3';
-
+const BreadCrumb = ({ category, menu = [], containerPadding }: IBreadCrumb) => {
 	return (
-		<div className={`flex relative p-${padding}`}>
-			<div className="flex text-[28px] text-[#454545]">
-				<div
-					className={`opacity-70 first-letter:border-t-[3px] first-letter:border-solid first-letter:border-[${color}]`}
-				>
-					{category}
-				</div>
-				{menu.length > 0 &&
-					menu.map((elem, idx) => (
-						<span
-							className="before:pl-2 before:opacity-70 before:text-[#454545] before:content-[' > ']"
-							key={idx}
-						>
+		<div
+			className={`flex text-2xl text-[var(--color-onBackground-100)] ${containerPadding} `}
+		>
+			<div>{category}</div>
+			{menu.length > 0 &&
+				menu.map((elem, idx) => (
+					<span key={idx}>
+						<span className="pl-2 opacity-70">&gt;</span>
+						<span className="pl-2 text-[var(--color-onBackground)]">
 							{elem}
 						</span>
-					))}
-			</div>
+					</span>
+				))}
 		</div>
 	);
 };
