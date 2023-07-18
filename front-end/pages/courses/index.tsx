@@ -19,7 +19,7 @@ const CoursesListPage = (): ReactElement => {
 			{/* 화면 전체 */}
 			<div className='flex m-auto w-[1440px] font-["Noto Sans KR"]'>
 				{/* 왼쪽 sidebar 전체 */}
-				<div className="bg-[var(--color-green-700)] min-w-[300px] p-16">
+				<div className="min-w-[300px] p-16">
 					<div>
 						<CourseCategory handleClickMenu={handleClickMenu} />
 						<DifficultyList title={'난이도'} type={['초급', '중급', '고급']} />
