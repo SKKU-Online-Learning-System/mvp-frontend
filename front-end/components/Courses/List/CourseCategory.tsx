@@ -54,29 +54,33 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory) => {
 				const isClicked = isClickedCategory[index];
 				return (
 					<div key={index}>
+						{/* 카테고리1 */}
 						<div
-							className="flex font-semibold text-[#595959] border-[1px] border-solid border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[#fafafa]"
+							className="flex font-semibold text-[#595959] border-[1px] border-solid
+								border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[var(--color-Surface)]"
 							onClick={handleCardClick(index)}
 						>
 							{content.name}
 						</div>
-						<div
-							className={`overflow-y-hidden transition-[max-height] duration-300 ease-in
-								${isClicked ? `100em` : `0`}`}
-						>
-							{content.category2s?.map((elem, index) => (
-								<div
-									className="bg-[#fafafa] hover:bg-[#cfcccc] cursor-pointer font-normal text-[#595959] border-[0.1px] border-b-[0.5px] border-[#e4e4e4] border-solid p-[0.8rem] pl-[1.5rem]"
-									onClick={handleSubItemClick(elem.id, [
-										content.name,
-										elem.name,
-									])}
-									key={index}
-								>
-									{elem.name}
-								</div>
-							))}
-						</div>
+
+						{/* 카테고리2 */}
+						{isClicked && (
+							<div>
+								{content.category2s?.map((elem, index) => (
+									<div
+										className="bg-[var(--color-Surface] hover:bg-[var(--color-Surface)] cursor-pointer font-normal 
+											text-[#595959] border-[0.1px] border-b-[0.5px] border-[#e4e4e4] border-solid p-[0.8rem] pl-[1.5rem]"
+										onClick={handleSubItemClick(elem.id, [
+											content.name,
+											elem.name,
+										])}
+										key={index}
+									>
+										{elem.name}
+									</div>
+								))}
+							</div>
+						)}
 					</div>
 				);
 			})}
