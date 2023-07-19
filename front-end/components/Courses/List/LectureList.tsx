@@ -1,3 +1,5 @@
+// 강좌리스트 페이지: 모든 카드들 배열방식 지정
+// x행 4열
 import React from 'react';
 import { useRouter } from 'next/router';
 
@@ -23,7 +25,7 @@ const LectureList = () => {
 	if (isLoading) return <div>로딩중입니다...</div>;
 
 	return (
-		<div className="grid grid-cols-4 gap-y-4">
+		<div className="grid grid-cols-4 gap-3 py-8">
 			{!!courseList?.length ? (
 				courseList?.map((course, index) => (
 					<LectureCard course={course} key={index} />

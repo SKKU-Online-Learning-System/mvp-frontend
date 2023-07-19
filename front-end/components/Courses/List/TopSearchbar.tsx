@@ -1,8 +1,9 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
+import { BiSearch } from 'react-icons/bi';
 
 const TopSearchbar = () => {
+	``;
 	const router = useRouter();
 	const [text, setText] = useState('');
 	const { keyword } = router.query as { keyword: string };
@@ -32,36 +33,26 @@ const TopSearchbar = () => {
 	}, [router.isReady, keyword]);
 
 	return (
-		<div className="flex flex-col border-y-[1px] border-solid border-[#dedede] pt-[25px] pb-[30px]">
-			<div className="flex gap-x-0.5 items-center pb-4">
-				<div className="flex flex-col leading-5"></div>
-			</div>
-			<div className="flex gap-x-5">
+		<div className="py-16">
+			<div className="flex gap-x-5 place-content-center ">
 				<form
-					className="border-2 border-solid boredr-[#dedede] min-w-[500px] h-20 flex items-center"
+					className=" rounded-[36px] min-w-[500px] h-16 flex border-solid border-2 "
 					onSubmit={handleSearchClick}
 				>
 					<input
-						className="w-full h-full text-2xl border-none focus:outline-0"
+						className="px-10 w-full h-full text-2xl focus:outline-0 min-w-[500px] rounded-[36px] bg-transparent "
 						type="text"
 						value={text}
 						placeholder="강좌명 검색"
 						onChange={handleChangeInput}
 					/>
-					<span
-						className="px-1 py-4 cursor-pointer"
+					<button
+						className="px-4 py-1 cursor-pointer w-full h-full "
 						onClick={handleSearchClick}
 					>
-						{/* 돋보기 이미지 => svg로 바꿀 것 */}
-						<div className="opacity-60">
-							<Image
-								src="/images/search_btn.png"
-								width="40px"
-								height="40px"
-								alt="search button image"
-							/>
-						</div>
-					</span>
+						{/* 돋보기 icon */}
+						<BiSearch className="opacity-60" size="36" />
+					</button>
 				</form>
 			</div>
 		</div>

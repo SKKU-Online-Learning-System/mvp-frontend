@@ -1,10 +1,12 @@
+// 강좌리스트 페이지: 강좌 카드들
 import React, { SyntheticEvent } from 'react';
 import { useRouter } from 'next/router';
 
 import { defaultErrorImage } from 'constants/index';
 import { ICourseInfo } from 'types/Course/index';
+import Image from 'next/image';
 
-const LectureCard = ({ course }: { course: ICourseInfo }) => {
+const LectureCard = ({ course }: { course: ICourseInfo }): JSX.Element => {
 	const router = useRouter();
 
 	const handleImgError = (e: SyntheticEvent<HTMLImageElement>) => {
@@ -14,26 +16,33 @@ const LectureCard = ({ course }: { course: ICourseInfo }) => {
 	const handleClick = (id: number) => {
 		router.push(`/courses/${id}`);
 	};
-
+	// console.log(course.instructor);
 	return (
-		<span
-			className={`pr-4 cursor-pointer w-[${~~(1140 / 4)}]`}
-			onClick={() => handleClick(course.id)}
-			key={course.id}
-		>
-			<img
-				width="100%"
-				src={course.thumbnail}
-				onError={handleImgError}
-				alt="no"
-			/>
-			<div className="overflow-hidden font-bold text-ellipsis">
-				{course.title}
+		<div className="px-1">
+			{/* <div className=" gap-x-2 gap-y-4 py-5 px-[35px]"> */}
+			<div
+				// className={`pr-4 cursor-pointer w-[${~~(1140 / 4)}]`}
+				className="relative overflow-hidden rounded-lg transition hover:scale-[1.03] cursor-pointer bg-[var(--color-Surface)]"
+				onClick={() => handleClick(course.id)}
+				key={course.id}
+			>
+				{/* 썸네일 이미지 */}
+				<Image
+					width={'300'}
+					height={'180'}
+					src={course.thumbnail}
+					onError={handleImgError}
+					alt="course thumbnail"
+				/>
+				{/* 썸네일 외 정보 */}
+				<div className="flex flex-col justify-between px-3 pt-2 pb-3 h-30 h-[92px]">
+					<div className="font-bold">{course.title}</div>
+					<div className="text-xs opacity-[0.6] mt-2 overflow-ellipsis">
+						{course.instructor}
+					</div>
+				</div>
 			</div>
-			<div className="text-[#7d7d7d] text-[0.9rem] overflow-hidden h-[100px]">
-				{course.description}
-			</div>
-		</span>
+		</div>
 	);
 };
 
