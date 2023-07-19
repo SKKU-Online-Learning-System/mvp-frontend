@@ -1,38 +1,14 @@
 import React, { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import { selectIsLoggined } from '../store/feature/common/commonSelector';
-import { commonActions } from 'store/feature/common/commonSlice';
-import { userLoginAuthState } from '../constants/commonState';
 import { useModal } from '../hooks/useModal';
-import axiosInstance from '../apis/index';
-
-const menuData = [
-	{ id: 1, name: 'Admin', path: '/admin' },
-	{ id: 2, name: '마이페이지', path: '/my-page/history' },
-];
-
-const upperHeaderStyle =
-	'mx-4 text-sm text-black font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
-
-const headerStyle =
-	'text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]';
+import UpperHeader from '@components/UpperHeader';
 
 const Header = () => {
 	const router = useRouter();
-	const dispatch = useDispatch();
-	const isLoggined = useSelector(selectIsLoggined);
 	const inputRef = useRef<HTMLInputElement | null>(null);
-	const { showModal, onOpenLoginModal, onOpenSignUp, renderModal } = useModal();
-
-	const handleLogout = () => {
-		axiosInstance.get('/auth/logout').then(() => {
-			dispatch(commonActions.setIsLoggined(userLoginAuthState.NOT_LOGGINED));
-			router.replace('/');
-		});
-	};
+	const { showModal, renderModal } = useModal();
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { current } = inputRef;
@@ -59,61 +35,9 @@ const Header = () => {
 		}
 	};
 
-	const handleClickAdminBtn = () => {
-		router.push(`/admin`);
-	};
-
-	const upperHeader = (
-		<div className="fixed top-0 z-10 flex items-center justify-end w-screen h-8 px-10 mr-8 bg-white">
-			<a className={upperHeaderStyle}>ENG</a>
-			{!!isLoggined &&
-				(isLoggined === userLoginAuthState.LOGGINED ? (
-					<div>
-						<a href="" className={upperHeaderStyle} onClick={handleLogout}>
-							로그아웃
-						</a>
-						<Link href="/my-page/history">
-							<span className={upperHeaderStyle}>마이페이지</span>
-						</Link>
-						<a className={upperHeaderStyle} onClick={handleClickAdminBtn}>
-							Admin
-						</a>
-					</div>
-				) : (
-					<div>
-						<a className={upperHeaderStyle} onClick={onOpenLoginModal}>
-							로그인
-						</a>
-						<a className={upperHeaderStyle} onClick={onOpenSignUp}>
-							회원가입
-						</a>
-					</div>
-				))}
-			{/* <div>
-				<ul className="flex p-0 m-0">
-					{menuData.map((menu) => {
-						isLoggined !== userLoginAuthState.LOGGINED &&
-						menu.name === '마이페이지' ? (
-							''
-						) : (
-							<li key={menu.id} className="mx-4 my-0 list-none">
-								<a
-									href={menu.path}
-									className={upperHeaderStyle}
-								>
-									{menu.name}
-								</a>
-							</li>
-						);
-					})}
-				</ul>
-			</div> */}
-		</div>
-	);
-
 	return (
 		<div className="border-b-2">
-			{upperHeader}
+			<UpperHeader />
 			<div className="dt:py-0 dt:px-[10px] mt-8 flex justify-around items-center mb-4">
 				<div className="flex items-center justify-between">
 					<Link href="/">
@@ -124,11 +48,16 @@ const Header = () => {
 					<ul className="flex pl-0 mx-32 list-none">
 						<li className="mx-4 my-0 list-none">
 							<Link href="/courses">
-								<span className={headerStyle}>강좌 List</span>
+								<span className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]">
+									강좌 List
+								</span>
 							</Link>
 						</li>
 						<li className="mx-4 my-0 list-none">
-							<a href="" className={headerStyle}>
+							<a
+								href=""
+								className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]"
+							>
 								공지사항
 							</a>
 						</li>
