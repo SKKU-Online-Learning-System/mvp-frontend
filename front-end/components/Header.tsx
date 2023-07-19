@@ -112,17 +112,16 @@ const Header = () => {
 	);
 
 	return (
-		// 구분선
 		<div className="border-b-2">
 			{upperHeader}
-			<div className="dt:py-0 dt:px-[10px] mt-8 flex justify-around items-center mb-4 ">
+			<div className="dt:py-0 dt:px-[10px] mt-8 flex justify-around items-center mb-4">
 				<div className="flex items-center justify-between">
 					<Link href="/">
 						<span className="text-[2rem] cursor-pointer font-['Gugi'] text-[#1b1b1b]">
 							온라인 명륜당
 						</span>
 					</Link>
-					<ul className="flex list-none pl-0 mx-[8rem]">
+					<ul className="flex pl-0 mx-32 list-none">
 						<li className="mx-4 my-0 list-none">
 							<Link href="/courses">
 								<span className={headerStyle}>강좌 List</span>
