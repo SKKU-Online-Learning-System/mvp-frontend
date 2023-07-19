@@ -112,9 +112,10 @@ const Header = () => {
 	);
 
 	return (
-		<div>
+		// 구분선
+		<div className="border-b-2">
 			{upperHeader}
-			<div className="dt:py-0 dt:px-[10px] mt-8 flex justify-around items-center mb-4">
+			<div className="dt:py-0 dt:px-[10px] mt-8 flex justify-around items-center mb-4 ">
 				<div className="flex items-center justify-between">
 					<Link href="/">
 						<span className="text-[2rem] cursor-pointer font-['Gugi'] text-[#1b1b1b]">
