@@ -31,7 +31,7 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 		(e.target as HTMLImageElement).src = defaultErrorImage;
 	};
 
-	if (!recommendedCoursesList || recommendedCoursesList.length === 0) {
+	if (!recommendedCoursesList) {
 		return (
 			<div>
 				<p>Failed to find recommended courses . . .</p>
@@ -42,28 +42,38 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 	return (
 		<div>
 			<CourseHeader title={headerText} color={headerColor} />
-			<div className="grid gap-x-4 gap-y-4 py-5 px-[35px] grid-cols-5">
-				{recommendedCoursesList.map((course, idx) => (
-					<div
-						key={idx}
-						className="relative overflow-hidden rounded-lg transition hover:scale-[1.03] cursor-pointer bg-[var(--color-Surface)]"
-						onClick={() => handleClick(course.courseId)}
-					>
-						<Image
-							width={'300'}
-							height={'180'}
-							src={course.thumbnail}
-							onError={handleImgError}
-							alt="course thumbnail"
-						/>
-						<div className="flex flex-col justify-between px-3 pt-2 pb-3 h-30 h-[92px]">
-							<div className="font-bold">{course.title}</div>
-							<div className="text-xs opacity-[0.6] mt-2 overflow-ellipsis">
-								{course.instructor}
+			<div>
+				{recommendedCoursesList.length !== 0 ? (
+					<div className="grid gap-x-4 gap-y-4 py-5 px-[35px] grid-cols-5">
+						{recommendedCoursesList.map((course, idx) => (
+							<div
+								key={idx}
+								className="relative overflow-hidden rounded-lg transition hover:scale-[1.03] cursor-pointer bg-[var(--color-Surface)]"
+								onClick={() => handleClick(course.courseId)}
+							>
+								<Image
+									width={'300'}
+									height={'180'}
+									src={course.thumbnail}
+									onError={handleImgError}
+									alt="course thumbnail"
+								/>
+								<div className="flex flex-col justify-between px-3 pt-2 pb-3 h-30 h-[92px]">
+									<div className="font-bold">{course.title}</div>
+									<div className="text-xs opacity-[0.6] mt-2 overflow-ellipsis">
+										{course.instructor}
+									</div>
+								</div>
 							</div>
-						</div>
+						))}
 					</div>
-				))}
+				) : (
+					<div className="flex items-center justify-center my-4">
+						<span className="rounded-lg bg-[var(--color-green-700)] text-white py-4 px-8 font-semibold text-xl">
+							해당 카테고리 강좌 정보가 없습니다.
+						</span>
+					</div>
+				)}
 			</div>
 		</div>
 	);

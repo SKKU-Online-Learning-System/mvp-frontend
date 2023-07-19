@@ -8,7 +8,7 @@ import myPageAPI from 'apis/MyPage';
 
 export const useRecommendedCoursesFetch = (order: number) => {
 	return useQuery<MainCourse[]>(
-		[QUERY_KEYS.FETCH_RECOMMENDED_COURSE],
+		[QUERY_KEYS.FETCH_RECOMMENDED_COURSE, order],
 		() => mainPageAPI.fetchRecommendedCourse(order),
 		{
 			staleTime: 1000,
