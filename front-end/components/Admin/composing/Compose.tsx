@@ -9,7 +9,7 @@ const Compose = () => {
 			<PopularContentsCard title="인기 컨텐츠" order={0} />
 			<NewContentsCard title="신규 컨텐츠" />
 			<PopularContentsCard title="인공지능" order={2} />
-			<PopularContentsCard title="프로그래밍" order={3} />
+			<PopularContentsCard title="데이터 사이언스" order={3} />
 		</div>
 	);
 };
