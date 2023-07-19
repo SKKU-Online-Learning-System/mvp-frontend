@@ -17,7 +17,6 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 	const { data: recommendedCoursesList, isLoading } =
 		useRecommendedCoursesFetch(order);
 
-	console.log(recommendedCoursesList);
 	if (isLoading) return <div>Loading...</div>;
 
 	const handleClick = (id: number | undefined) => {

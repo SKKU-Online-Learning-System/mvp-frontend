@@ -711,6 +711,11 @@ video {
   margin-bottom: 63px;
 }
 
+.mx-32 {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
 .-ml-10 {
   margin-left: -2.5rem;
 }
@@ -990,6 +995,10 @@ video {
   height: 768px;
 }
 
+.h-\[92px\] {
+  height: 92px;
+}
+
 .h-fit {
   height: -moz-fit-content;
   height: fit-content;
@@ -1001,14 +1010,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-16 {
-  height: 4rem;
-}
-
-.h-\[92px\] {
-  height: 92px;
 }
 
 .max-h-0 {
@@ -1698,10 +1699,6 @@ video {
   background-color: var(--color-onPrimary);
 }
 
-.bg-\[var\(--color-onSurface\)\] {
-  background-color: var(--color-onSurface);
-}
-
 .bg-\[var\(--color-onSurface-100\)\] {
   background-color: var(--color-onSurface-100);
 }
@@ -1726,11 +1723,6 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#282828\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(40 40 40 / var(--tw-bg-opacity));
 }
 
 .bg-\[url\(\'\/images\/search_btn\.png\'\)\] {
@@ -1991,6 +1983,10 @@ video {
   padding-left: 2.5rem;
 }
 
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
 .pl-4 {
   padding-left: 1rem;
 }
@@ -2246,11 +2242,6 @@ video {
   color: rgb(64 64 64 / var(--tw-text-opacity));
 }
 
-.text-\[\#454545\] {
-  --tw-text-opacity: 1;
-  color: rgb(69 69 69 / var(--tw-text-opacity));
-}
-
 .text-\[\#595959\] {
   --tw-text-opacity: 1;
   color: rgb(89 89 89 / var(--tw-text-opacity));
@@ -2333,6 +2324,10 @@ video {
 
 .text-\[var\(--color-onBackground\)\] {
   color: var(--color-onBackground);
+}
+
+.text-\[var\(--color-onBackground-100\)\] {
+  color: var(--color-onBackground-100);
 }
 
 .text-\[var\(--color-onPrimary-200\)\] {
@@ -2445,10 +2440,6 @@ video {
   transition-duration: 500ms;
 }
 
-.ease-in {
-  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
-}
-
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2457,30 +2448,6 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-.first-letter\:border-t-\[3px\]::first-letter {
-  border-top-width: 3px;
-}
-
-.first-letter\:border-solid::first-letter {
-  border-style: solid;
-}
-
-.before\:pl-2::before {
-  content: var(--tw-content);
-  padding-left: 0.5rem;
-}
-
-.before\:text-\[\#454545\]::before {
-  content: var(--tw-content);
-  --tw-text-opacity: 1;
-  color: rgb(69 69 69 / var(--tw-text-opacity));
-}
-
-.before\:opacity-70::before {
-  content: var(--tw-content);
-  opacity: 0.7;
 }
 
 .after\:my-\[10px\]::after {
@@ -2572,11 +2539,6 @@ input::-webkit-inner-spin-button {
   background-color: rgb(185 199 173 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-\[\#cfcccc\]:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(207 204 204 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-\[\#e2e2e2\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(226 226 226 / var(--tw-bg-opacity));
@@ -2595,6 +2557,10 @@ input::-webkit-inner-spin-button {
 .hover\:bg-\[\#f8f9fa\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(248 249 250 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[var\(--color-Surface\)\]:hover {
+  background-color: var(--color-Surface);
 }
 
 .hover\:text-\[\#c2d45e\]:hover {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const UserRanking = () => {
-	return <>User Ranking</>;
+	return <div className="w-full">User Ranking</div>;
 };
 
 export default UserRanking;
