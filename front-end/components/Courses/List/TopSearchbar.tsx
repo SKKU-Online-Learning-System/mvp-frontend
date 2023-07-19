@@ -33,7 +33,7 @@ const TopSearchbar = () => {
 	}, [router.isReady, keyword]);
 
 	return (
-		<div className="py-16">
+		<div className="mt-16 mb-10">
 			<div className="flex gap-x-5 place-content-center ">
 				<form
 					className=" rounded-[36px] min-w-[500px] h-16 flex border-solid border-2 "
@@ -47,10 +47,9 @@ const TopSearchbar = () => {
 						onChange={handleChangeInput}
 					/>
 					<button
-						className="px-4 py-1 cursor-pointer w-full h-full "
+						className="w-full h-full px-4 py-1 cursor-pointer "
 						onClick={handleSearchClick}
 					>
-						{/* 돋보기 icon */}
 						<BiSearch className="opacity-60" size="36" />
 					</button>
 				</form>
