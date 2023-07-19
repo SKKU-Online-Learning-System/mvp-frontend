@@ -3,10 +3,6 @@ import { useRouter } from 'next/router';
 
 import { useCourseCategoriesFetch } from 'query/hooks/CourseList/index';
 
-type ToggleType = {
-	isClicked: boolean;
-};
-
 interface ICourseCategory {
 	handleClickMenu: (menu: string[]) => void;
 }
@@ -49,21 +45,18 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory) => {
 	if (isLoading) return <div>Loading . . .</div>;
 
 	return (
-		<div>
+		<div className="mb-12">
 			{courseCategories?.map((content, index) => {
 				const isClicked = isClickedCategory[index];
 				return (
 					<div key={index}>
-						{/* 카테고리1 */}
 						<div
-							className="flex font-semibold text-[#595959] border-[1px] border-solid
+							className="flex font-semibold transition text-[#585858] hover:text-[#121212] border-[1px] border-solid
 								border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[var(--color-Surface)]"
 							onClick={handleCardClick(index)}
 						>
 							{content.name}
 						</div>
-
-						{/* 카테고리2 */}
 						{isClicked && (
 							<div>
 								{content.category2s?.map((elem, index) => (

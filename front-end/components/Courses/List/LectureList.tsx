@@ -22,10 +22,10 @@ const LectureList = () => {
 		difficulty,
 	});
 
-	if (isLoading) return <div>로딩중입니다...</div>;
+	if (isLoading) return <div>Loading . . .</div>;
 
 	return (
-		<div className="grid grid-cols-4 gap-3 py-8">
+		<div className="grid grid-cols-4 py-8 mb-12 gap-x-5 gap-y-14">
 			{!!courseList?.length ? (
 				courseList?.map((course, index) => (
 					<LectureCard course={course} key={index} />
