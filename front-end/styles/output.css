@@ -1204,6 +1204,10 @@ video {
   width: 230px;
 }
 
+.w-16 {
+  width: 4rem;
+}
+
 .min-w-\[130px\] {
   min-width: 130px;
 }
@@ -2427,6 +2431,15 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-\[\#c86ae2\] {
+  --tw-text-opacity: 1;
+  color: rgb(200 106 226 / var(--tw-text-opacity));
+}
+
+.text-\[\$\{\}\] {
+  color: ${};
 }
 
 .no-underline {
