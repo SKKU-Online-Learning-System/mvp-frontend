@@ -34,7 +34,7 @@ const Index = (): ReactElement => {
 					order={2}
 				/>
 				<CourseList
-					headerText={'데이터 사이언스 컨텐츠'}
+					headerText={'교양 컨텐츠'}
 					headerColor="#ff0000"
 					order={3}
 				/>
