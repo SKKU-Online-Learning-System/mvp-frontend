@@ -14,7 +14,7 @@ const functions = {
 	): Promise<ICourseRetrieveInfo[]> => {
 		const res = await axiosInstance.get('/popular-courses', {
 			params: {
-				limit: 8,
+				limit: 10,
 				category1: mostPopularCategoryTitle,
 			},
 		});
