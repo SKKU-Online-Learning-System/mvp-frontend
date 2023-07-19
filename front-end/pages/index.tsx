@@ -29,12 +29,12 @@ const Index = (): ReactElement => {
 					order={1}
 				/>
 				<CourseList
-					headerText={'인기카테고리1 컨텐츠'}
+					headerText={'인공지능 컨텐츠'}
 					headerColor="#ff0000"
 					order={2}
 				/>
 				<CourseList
-					headerText={'인기카테고리2 컨텐츠'}
+					headerText={'프로그래밍 컨텐츠'}
 					headerColor="#ff0000"
 					order={3}
 				/>
