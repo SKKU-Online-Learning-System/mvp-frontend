@@ -21,8 +21,3 @@ const DetailsPage = () => (
 );
 
 export default DetailsPage;
-// const Container = styled.div`
-// 	@media only screen and (min-width: 1300px) {
-// 		width: 1300px;
-// 	}
-// `;
