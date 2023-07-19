@@ -3,7 +3,6 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
 
 import { useRecommendedCoursesFetch } from 'query/hooks/Main/index';
-import CurationFloatingBar from './CurationFloatingBar';
 
 const MainBanner = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -39,12 +38,13 @@ const MainBanner = () => {
 	};
 
 	return (
-		<div className="h-[680px] mb-48 w-full group bg-[var(--color-green-700)]">
+		<div className="h-[680px] mb-48 w-full group bg-[#121212]">
 			<div
 				style={{
-					backgroundImage: `url(${slides[currentIndex].thumbnail})`,
+					// backgroundImage: `url(${slides[currentIndex].thumbnail})`, max-w-[1400px]
+					backgroundImage: "url('/images/banner_img.png')",
 				}}
-				className="w-full h-full duration-500 bg-center bg-cover max-w-[1400px] m-auto py-16 px-4 relative"
+				className="relative h-full px-4 py-16 m-auto duration-500 bg-center bg-cover w-[85%]"
 			>
 				<a
 					href={slides[currentIndex].url}
@@ -74,7 +74,6 @@ const MainBanner = () => {
 					</div>
 				))}
 			</div>
-			<CurationFloatingBar />
 		</div>
 	);
 };

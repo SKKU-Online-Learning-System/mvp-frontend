@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import MainBanner from '@components/Main/MainBanner';
 import CourseList from '@components/Main/CourseList';
 import { RecentLecture } from '@components/Main/RecentLecture';
+import CurationFloatingBar from '@components/Main/CurationFloatingBar';
 import { selectIsLoggined } from 'store/feature/common/commonSelector';
 import { userLoginAuthState } from 'constants/commonState';
 
@@ -13,8 +14,9 @@ const Index = (): ReactElement => {
 
 	return (
 		<>
+			<CurationFloatingBar />
 			<MainBanner />
-			<div className="w-[1280px] m-auto font-['Noto Sans KR'] my-24">
+			<div className="relative w-[1280px] m-auto font-['Noto Sans KR'] my-24">
 				{!!isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
 					<RecentLecture />
 				)}
