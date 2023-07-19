@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { useState } from 'react';
 
 import CourseCategory from '@components/Courses/List/CourseCategory';
 import DifficultyList from '@components/Courses/List/DifficultyList';
@@ -7,7 +7,7 @@ import LectureList from '@components/Courses/List/LectureList';
 import BreadCrumb from '@components/common/BreadCrumb';
 
 // TODO. 검색을 했을경우 breadCrumb 카테고리가 맞지 않는 문제 해결
-const CoursesListPage = (): ReactElement => {
+const CoursesListPage = () => {
 	const [menu, setMenu] = useState<string[]>([]);
 
 	const handleClickMenu = (menu: string[]) => {
