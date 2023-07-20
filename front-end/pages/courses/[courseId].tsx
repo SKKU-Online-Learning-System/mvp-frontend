@@ -17,7 +17,6 @@ const CourseDetailPage = () => {
 		isLoading,
 	} = useCourseDetailInfo();
 
-	console.log(course);
 	if (isLoading) return <div>Loading...</div>;
 
 	return (

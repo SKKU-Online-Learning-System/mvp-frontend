@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+
 import { useModal } from './useModal';
 import {
 	useCourseDetailFetch,
@@ -10,6 +11,7 @@ type RouterQueryString = { courseId: string };
 
 export const useCourseDetailInfo = () => {
 	const router = useRouter();
+
 	const { courseId } = router.query as RouterQueryString;
 	const { data: course, isLoading: isCourseLoading } =
 		useCourseDetailFetch(courseId);

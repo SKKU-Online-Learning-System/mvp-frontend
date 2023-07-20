@@ -1,20 +1,21 @@
-import { QUERY_KEYS } from './queryKeys';
 import {
 	useQuery,
 	UseQueryOptions,
 	UseQueryResult,
 } from '@tanstack/react-query';
-import courseAPI from 'apis/Courses/courseApi';
-import qnaApi from 'apis/QnA/qnaApi';
+
 import { ICourseDetail, IQna } from 'types/Course';
 import { ILectureList } from 'types/Lecture';
+import { QUERY_KEYS } from './queryKeys';
+import courseAPI from 'apis/Courses/courseApi';
+import qnaApi from 'apis/QnA/qnaApi';
 
 const selectCourseQnaFetch = (data: IQna[]): IQna[] => {
 	return data.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
 };
 
 export const useCourseDetailFetch = (
-	courseId?: string,
+	courseId: string,
 ): UseQueryResult<ICourseDetail> => {
 	return useQuery<ICourseDetail>(
 		[QUERY_KEYS.FETCH_COURSE_DETAIL],

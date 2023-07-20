@@ -1,4 +1,3 @@
-// course/id 페이지: 강좌 소개란 header
 import React from 'react';
 
 import { useCourseEnrollmentUpdate } from 'query/hooks/QnA/index';
@@ -78,6 +77,8 @@ const CourseHeader = ({
 };
 
 export default CourseHeader;
+
+// Todo: 아래 styled-component 구문 TailwindCSS 구문으로 변경할 것
 // const LectureImg = styled.div<UrlProps>`
 // 	background: linear-gradient(
 // 			to right,
