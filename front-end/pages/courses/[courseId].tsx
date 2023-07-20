@@ -17,6 +17,7 @@ const CourseDetailPage = () => {
 		isLoading,
 	} = useCourseDetailInfo();
 
+	console.log(course);
 	if (isLoading) return <div>Loading...</div>;
 
 	return (
@@ -36,6 +37,7 @@ const CourseDetailPage = () => {
 								courseDetail={course}
 							/>
 						)}
+						<hr className="my-6" />
 						{qna && <QnA courseId={courseId as string} qna={qna} />}
 					</div>
 				</>

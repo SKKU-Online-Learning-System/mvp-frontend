@@ -6,27 +6,23 @@ import { HTTP_STATUS_CODE } from 'constants/http';
 import { ICourseDetail } from 'types/Course';
 import { useRouter } from 'next/router';
 
-type EnrollmentType = {
-	isEnrolled: boolean;
-};
-
-interface ICourseHeader {
+type PropsType = {
 	courseDetail: ICourseDetail;
 	courseId: string;
 	onOpenLoginModal: () => void;
-}
+};
 
 const CourseHeader = ({
 	courseDetail,
 	courseId,
 	onOpenLoginModal,
-}: ICourseHeader) => {
+}: PropsType) => {
 	const router = useRouter();
-	const { has_enrolled: isEnrolled, is_logged_in: isLoggined } = courseDetail;
+	const { has_enrolled: isEnrolled, is_logged_in: isLoggedIn } = courseDetail;
 	const mutation = useCourseEnrollmentUpdate();
 
-	const handleClick = (isLoggined: boolean) => async () => {
-		if (!isLoggined) {
+	const handleClick = (isLoggedIn: boolean) => async () => {
+		if (!isLoggedIn) {
 			onOpenLoginModal();
 			return;
 		}
@@ -70,7 +66,7 @@ const CourseHeader = ({
 						className={`bg-[#7dad47] text-white border-0 rounded w-[150px] h-6 text-base opacity-[${
 							isEnrolled ? '0.6' : '1.0'
 						}] cursor-[${isEnrolled ? 'none' : 'pointer'}]`}
-						onClick={handleClick(isLoggined)}
+						onClick={handleClick(isLoggedIn)}
 						disabled={isEnrolled}
 					>
 						{isEnrolled ? '수강중' : '강좌 신청'}
@@ -82,3 +78,17 @@ const CourseHeader = ({
 };
 
 export default CourseHeader;
+// const LectureImg = styled.div<UrlProps>`
+// 	background: linear-gradient(
+// 			to right,
+// 			rgba(6, 63, 128, 1) 0%,
+// 			rgba(6, 63, 128, 0.7) 5%,
+// 			rgba(6, 63, 128, 0.5) 10%,
+// 			rgba(6, 63, 128, 0) 15%,
+// 			rgba(6, 63, 128, 0) 85%,
+// 			rgba(6, 63, 128, 0.5) 90%,
+// 			rgba(6, 63, 128, 0.7) 95%,
+// 			rgba(6, 63, 128, 1) 100%
+// 		),
+// 		url(${(props) => props.url});
+// `;

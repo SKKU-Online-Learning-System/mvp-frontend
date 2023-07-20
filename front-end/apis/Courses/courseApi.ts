@@ -7,6 +7,7 @@ import { ILectureList } from 'types/Lecture';
 const functions = {
 	fetchCourseDetail: async (courseId?: string): Promise<ICourseDetail> => {
 		const res = await axiosInstance.get(`/courses/${courseId}`);
+		console.log(res);
 		return res.data;
 	},
 	fetchCourseDetailLectures: async (

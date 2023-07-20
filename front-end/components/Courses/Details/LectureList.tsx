@@ -3,22 +3,19 @@ import { useRouter } from 'next/router';
 
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { ICourseDetail } from 'types/Course';
-import {
-	ILectureList as _ILectureList,
-	ILectureInfo,
-} from 'types/Lecture/index';
+import { ILectureList, ILectureInfo } from 'types/Lecture/index';
 
-interface ILectureList {
+type PropsType = {
 	onOpenLoginModal: () => void;
 	courseDetail: ICourseDetail;
-	lectures: _ILectureList[];
-}
+	lectures: ILectureList[];
+};
 
 const LectureList = ({
 	onOpenLoginModal,
 	courseDetail,
 	lectures,
-}: ILectureList) => {
+}: PropsType) => {
 	const router = useRouter();
 	const [isCollapsed, setIsCollapsed] = useState(
 		Array(lectures.length).fill(true),
@@ -51,13 +48,15 @@ const LectureList = ({
 		<div className="w-[80%] m-auto p-[25px] font-[var(--font-NotoSans)]">
 			<header>
 				<div className="text-[0.5rem] text-[#c2c1c1] font-bold">CURRICULUM</div>
-				<h2 className="m-0 mb-[5px] text-[#393939] font-bold">강의 커리큘럼</h2>
+				<h2 className="mb-5 text-3xl text-[#393939] font-bold">
+					강의 커리큘럼
+				</h2>
 			</header>
 
 			{lectures.map((section, index) => {
 				const show = isCollapsed[index];
 				return (
-					<React.Fragment key={index}>
+					<div key={index}>
 						<div
 							className="flex text-lg font-bold items-center cursor-pointer bg-[#f0f0f0] h-[50px] m-0 mt-[15px] mb-[5px] pl-[1.5rem] text-[#5d5c5c]"
 							onClick={handleCollaseClick(index)}
@@ -83,7 +82,7 @@ const LectureList = ({
 								);
 							})}
 						</div>
-					</React.Fragment>
+					</div>
 				);
 			})}
 		</div>
