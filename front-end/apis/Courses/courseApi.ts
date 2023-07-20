@@ -16,11 +16,11 @@ const functions = {
 		return res.data;
 	},
 	fetchAllCourseCategories: async (): Promise<ICourseCategory[]> => {
-		const res = await axiosInstance.get(`／courses/categories`);
+		const res = await axiosInstance.get(`/courses/categories`);
 		return res.data;
 	},
 	fetchCourseList: async (category?: string): Promise<ISearchedCourse> => {
-		const res = await axiosInstance.get('／courses/search', {
+		const res = await axiosInstance.get('/courses/search', {
 			params: {
 				category2Id: category,
 			},
@@ -31,7 +31,7 @@ const functions = {
 		keyword?: string,
 		difficulty?: string,
 	): Promise<ISearchedCourse> => {
-		const res = await axiosInstance.get('／courses/search', {
+		const res = await axiosInstance.get('/courses/search', {
 			params: {
 				keyword,
 				difficulty,
@@ -40,7 +40,7 @@ const functions = {
 		return res.data;
 	},
 	fetchAllCoursesPerPage: (pageNum: number): Promise<AxiosResponse> => {
-		return axiosInstance.get('／courses/search', {
+		return axiosInstance.get('/courses/search', {
 			params: {
 				page: pageNum,
 			},
