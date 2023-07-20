@@ -44,13 +44,15 @@ const CourseHeader = ({
 	// url={courseDetail.thumbnail}
 	// Todo: 강좌신청 버튼 오류 해결하기
 	return (
-		<div className="flex h-[25rem] bg-[var(--color-Primary)] px-10 justify-center">
+		<div className="flex h-[25rem] bg-gradient-to-r from-green-600 to-blue-500 px-10 justify-center">
 			<div className="flex h-full w-[50%]">
-				<div className="flex flex-col justify-center text-[var(--color-onPrimary)] py-0 px-[50px] ">
-					<h4 className="m-[5px]">{`${courseDetail.category1.name} > ${courseDetail.category2.name}`}</h4>
-					<h2 className="m-[5px]">{courseDetail.title}</h2>
-					<h4 className="m-[5px]">{courseDetail.description}</h4>
-					<p className="m-[5px]">{`강사: ${courseDetail.instructor} `}</p>
+				<div className="flex flex-col justify-center text-[var(--color-onPrimary)] px-[50px]">
+					<h4 className="m-[5px] font-semibold text-sm text-[#dddddd]">{`${courseDetail.category1.name} > ${courseDetail.category2.name}`}</h4>
+					<div className="m-[5px] flex items-end mb-8">
+						<h2 className="text-3xl font-bold">{courseDetail.title}</h2>
+						<p className="ml-6">{`강사: ${courseDetail.instructor} `}</p>
+					</div>
+					<h4 className="m-[5px] mb-8">{courseDetail.description}</h4>
 					<div>
 						{courseDetail.hashtags?.map((ele) => {
 							return (
@@ -62,7 +64,7 @@ const CourseHeader = ({
 						})}
 					</div>
 					<button
-						className={`bg-[#7dad47] text-white border-0 rounded w-[150px] h-6 text-base opacity-[${
+						className={`bg-[#7dad47] text-white text-xl border-0 rounded w-[150px] h-10 opacity-[${
 							isEnrolled ? '0.6' : '1.0'
 						}] cursor-[${isEnrolled ? 'none' : 'pointer'}]`}
 						onClick={handleClick(isLoggedIn)}
