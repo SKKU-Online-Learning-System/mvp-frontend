@@ -78,3 +78,14 @@ export interface ICourseListParams {
 	keyword?: string;
 	difficulty: string;
 }
+
+export interface IPopularCourse {
+	id: number;
+	category1: string;
+	courseTitle: string;
+	instructorName: string;
+	enrollmentCount: number;
+	courseCreatedAt: string;
+	updatedAt: string;
+	course: ICourseInfo;
+}

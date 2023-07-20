@@ -13,7 +13,7 @@ export interface ILectureInfo {
 }
 
 export interface ILectureVideo {
-	filename:string;
-	id:number;
-	title:string;
+	filename: string;
+	id: number;
+	title: string;
 }

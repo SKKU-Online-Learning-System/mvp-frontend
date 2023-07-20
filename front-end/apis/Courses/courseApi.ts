@@ -3,8 +3,13 @@ import { AxiosResponse } from 'axios';
 
 import { ICourseDetail, ICourseCategory, ISearchedCourse } from 'types/Course';
 import { ILectureList } from 'types/Lecture';
+import { IPopularCourse } from 'types/Course';
 
 const functions = {
+	fetchPopularCourse: async (courseId?: number): Promise<IPopularCourse> => {
+		const res = await axiosInstance.get(`/popular-courses/course/${courseId}`);
+		return res.data;
+	},
 	fetchCourseDetail: async (courseId: string): Promise<ICourseDetail> => {
 		const res = await axiosInstance.get(`/courses/${courseId}`);
 		return res.data;

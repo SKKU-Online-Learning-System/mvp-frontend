@@ -26,9 +26,8 @@ html, body, #root {
   /* color: var(--color-blue-600); */
 
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); */
 :root {
-
   --color-Primary: #2B6653;
   --color-onPrimary: #FBFBFB;
   --color-onPrimary-100: #f4f4f4;
