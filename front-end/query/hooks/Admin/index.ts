@@ -15,7 +15,7 @@ export const usePopularCoursesFetch = (
 		[QUERY_KEYS.FETCH_POPULAR_COURSES, title],
 		() => adminAPI.fetchPopularContentsInfo(title),
 		{
-			staleTime: 1000,
+			staleTime: 10 * 60 * 1000,
 		},
 	);
 };
