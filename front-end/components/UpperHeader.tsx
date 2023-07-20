@@ -4,10 +4,14 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import { selectIsLoggined } from '../store/feature/common/commonSelector';
-import { useModal } from 'hooks/useModal';
 import { commonActions } from 'store/feature/common/commonSlice';
 import { userLoginAuthState } from '../constants/commonState';
 import axiosInstance from '../apis/index';
+
+type PropsType = {
+	onOpenLoginModal: () => void;
+	onOpenSignUpModal: () => void;
+};
 
 const upperHeaderStyle =
 	'mx-4 text-sm text-black font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
@@ -17,11 +21,10 @@ const upperHeaderStyle =
 // 	{ id: 2, name: '마이페이지', path: '/my-page/history' },
 // ];
 
-const UpperHeader = () => {
+const UpperHeader = ({ onOpenLoginModal, onOpenSignUpModal }: PropsType) => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const isLoggined = useSelector(selectIsLoggined);
-	const { onOpenLoginModal, onOpenSignUp } = useModal();
 
 	const handleLogout = () => {
 		axiosInstance.get('/auth/logout').then(() => {
@@ -55,7 +58,7 @@ const UpperHeader = () => {
 						<a className={upperHeaderStyle} onClick={onOpenLoginModal}>
 							로그인
 						</a>
-						<a className={upperHeaderStyle} onClick={onOpenSignUp}>
+						<a className={upperHeaderStyle} onClick={onOpenSignUpModal}>
 							회원가입
 						</a>
 					</div>

@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 
 import LogInForm from './LoginForm';
 
-interface LogInModalProps {
+interface PropsType {
 	show: boolean;
 	onClose: () => void;
 	onOpenSignUp: () => void;
 }
 
-const LoginModal = ({ show, onClose, onOpenSignUp }: LogInModalProps) => {
+const LoginModal = ({ show, onClose, onOpenSignUp }: PropsType) => {
 	const [isBrowser, setIsBrowser] = useState(false);
 
 	useEffect(() => {

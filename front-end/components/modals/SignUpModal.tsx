@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 
 import SignUpForm from './SignUpForm';
 
-interface SignUpModalProps {
+interface PropsType {
 	show: boolean;
 	onClose: () => void;
 }
 
-const SignUpModal = ({ show, onClose }: SignUpModalProps) => {
+const SignUpModal = ({ show, onClose }: PropsType) => {
 	const [isBrowser, setIsBrowser] = useState(false);
 
 	useEffect(() => {

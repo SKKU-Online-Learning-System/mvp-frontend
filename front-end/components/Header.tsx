@@ -8,7 +8,7 @@ import UpperHeader from '@components/UpperHeader';
 const Header = () => {
 	const router = useRouter();
 	const inputRef = useRef<HTMLInputElement | null>(null);
-	const { showModal, renderModal } = useModal();
+	const { showModal, onOpenLoginModal, onOpenSignUp, renderModal } = useModal();
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { current } = inputRef;
@@ -37,7 +37,10 @@ const Header = () => {
 
 	return (
 		<div className="border-b-2">
-			<UpperHeader />
+			<UpperHeader
+				onOpenLoginModal={onOpenLoginModal}
+				onOpenSignUpModal={onOpenSignUp}
+			/>
 			<div className="dt:py-0 dt:px-[10px] mt-8 flex justify-around items-center mb-4">
 				<div className="flex items-center justify-between">
 					<Link href="/">
