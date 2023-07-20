@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRotateForward } from '@fortawesome/free-solid-svg-icons';
+import {
+	faChevronRight,
+	faChevronLeft,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { usePopularCoursesFetch } from 'query/hooks/Admin/index';
 import adminAPI from '../../../apis/Admin/adminAPI';
 import { ICourseOrdersInfo } from '../../../types/Admin/Index';
 
 type PropsType = { title: string; order: number };
+type BtnId = 'prev' | 'next';
 
 const PopularContentsCard = ({ title, order }: PropsType) => {
 	const { data: popularContents, isLoading } = usePopularCoursesFetch(
 		title === '인기 컨텐츠' ? '' : title,
 	);
 
-	const [disabled, setDisabled] = useState<boolean>(false);
+	const [currPage, setCurrPage] = useState(1);
+	const [disabled, setDisabled] = useState(false);
 	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
 
 	const onRefreshBtnClick = () => {
@@ -76,6 +82,16 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 		}
 	};
 
+	const onPagerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+		const btnId = e.currentTarget.id as BtnId;
+
+		if (btnId == 'next') {
+			setCurrPage((prev) => prev + 1);
+		} else {
+			setCurrPage((prev) => prev - 1);
+		}
+	};
+
 	return (
 		<div className="flex flex-col h-full p-10 bg-white shadow-xl rounded-xl">
 			<h3 className="flex justify-between pl-10 mb-10 text-3xl font-extrabold select-none">
@@ -100,7 +116,7 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 					순서 저장
 				</button>
 			</h3>
-			<table className="w-full h-fit">
+			<table className="w-full mb-10 h-fit">
 				<thead>
 					<tr className="flex justify-center text-lg select-none">
 						<th className="w-1/12">순위</th>
@@ -137,6 +153,23 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 					})}
 				</tbody>
 			</table>
+			<div className="flex items-center justify-center">
+				<button
+					id="prev"
+					onClick={onPagerClick}
+					className="text-2xl hover:scale-[1.1]"
+				>
+					<FontAwesomeIcon icon={faChevronLeft} />
+				</button>
+				<span className="mx-8 text-2xl">{currPage}</span>
+				<button
+					id="next"
+					onClick={onPagerClick}
+					className="text-2xl hover:scale-[1.1]"
+				>
+					<FontAwesomeIcon icon={faChevronRight} />
+				</button>
+			</div>
 		</div>
 	);
 };
