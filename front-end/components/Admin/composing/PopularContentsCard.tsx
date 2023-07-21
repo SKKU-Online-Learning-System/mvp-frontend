@@ -8,15 +8,16 @@ import { ICourseOrdersInfo } from '../../../types/Admin/Index';
 type PropsType = { title: string; order: number };
 
 const PopularContentsCard = ({ title, order }: PropsType) => {
-	const { data: popularContents, isLoading } = usePopularCoursesFetch(
-		title === '인기 컨텐츠' ? '' : title,
-	);
-
 	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
+	const _title = title === '인기 컨텐츠' ? '' : title;
+	const { data: popularContents, isLoading } = usePopularCoursesFetch(_title);
 
 	if (isLoading) return <h2>Loading . . .</h2>;
+	if (!popularContents) return <div>Failed to retrieve data . . .</div>;
 
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const elementId = +e.currentTarget.id;
+
 		if (
 			e.target.valueAsNumber !== 1 &&
 			e.target.valueAsNumber !== 2 &&
@@ -31,10 +32,14 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 		}
 
 		if (e.target.value === '') {
-			// Todo: Delete an element corresponding to idx of the row.
+			const remainedContent = objs.filter(
+				(obj) => obj.courseId !== popularContents[elementId].course.id,
+			);
+			const arr = [...remainedContent];
+			setObjs(arr);
 		} else {
 			const obj = {
-				courseId: popularContents![+e.target.id].course.id,
+				courseId: popularContents[elementId].course.id,
 				order,
 				sequence: e.target.valueAsNumber,
 			};

@@ -8,19 +8,23 @@ import { useNewCoursesFetch } from 'query/hooks/Admin/index';
 type PropsType = { title: string };
 
 const NewContentsCard = ({ title }: PropsType) => {
-	const { data: newContents, isLoading: isNewCoursesLoading } =
-		useNewCoursesFetch();
+	const { data: newContents, isLoading } = useNewCoursesFetch();
+
+	if (isLoading) return <h2>Loading . . .</h2>;
+	if (!newContents) return <div>Failed to retrieve data . . .</div>;
 
 	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
 
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const elementId = +e.currentTarget.id;
+
 		if (
 			e.target.valueAsNumber !== 1 &&
 			e.target.valueAsNumber !== 2 &&
 			e.target.valueAsNumber !== 3 &&
 			e.target.valueAsNumber !== 4 &&
 			e.target.valueAsNumber !== 5 &&
-			e.target.value !== '' // For deletion
+			e.target.value !== ''
 		) {
 			alert('강좌 순서 값은 1에서 5 사이 값으로 입력해주시기 바랍니다.');
 			e.target.value = '';
@@ -28,7 +32,11 @@ const NewContentsCard = ({ title }: PropsType) => {
 		}
 
 		if (e.target.value === '') {
-			// Todo: Delete an element corresponding to idx of the row.
+			const remainedContent = objs.filter(
+				(obj) => obj.courseId !== newContents[elementId].id,
+			);
+			const arr = [...remainedContent];
+			setObjs(arr);
 		} else {
 			const obj = {
 				courseId: newContents![+e.target.id].id,
@@ -41,9 +49,6 @@ const NewContentsCard = ({ title }: PropsType) => {
 		}
 	};
 
-	if (isNewCoursesLoading) {
-		return <h2>Loading . . .</h2>;
-	}
 	return (
 		<div className="flex flex-col justify-between h-full p-10 bg-white shadow-xl rounded-xl">
 			<div>
