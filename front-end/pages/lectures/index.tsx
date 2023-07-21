@@ -1,11 +1,9 @@
 import React, { ReactElement } from 'react';
 import ReactPlayer from 'react-player/lazy';
-import styled from 'styled-components';
 
-// TODO : 접근 못하게 막아야함. 보여줄 영상이 없음.
 const LecturePlayer = (): ReactElement => {
 	return (
-		<LecturePlayerWrapper>
+		<div className="flex items-center justify-center h-full">
 			<div className="player-wrapper">
 				<ReactPlayer
 					className="react-player"
@@ -24,16 +22,8 @@ const LecturePlayer = (): ReactElement => {
 					} // 플레이어 초기 포스터 사진
 				/>
 			</div>
-		</LecturePlayerWrapper>
+		</div>
 	);
 };
-
-const LecturePlayerWrapper = styled.div`
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-`;
 
 export default LecturePlayer;
