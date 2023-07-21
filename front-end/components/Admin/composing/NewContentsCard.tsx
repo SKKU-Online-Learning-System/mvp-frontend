@@ -8,12 +8,11 @@ import { useNewCoursesFetch } from 'query/hooks/Admin/index';
 type PropsType = { title: string };
 
 const NewContentsCard = ({ title }: PropsType) => {
+	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
 	const { data: newContents, isLoading } = useNewCoursesFetch();
 
 	if (isLoading) return <h2>Loading . . .</h2>;
 	if (!newContents) return <div>Failed to retrieve data . . .</div>;
-
-	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
 
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const elementId = +e.currentTarget.id;
