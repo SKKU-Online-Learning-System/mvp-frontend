@@ -8,11 +8,10 @@ import CourseHeader from './CourseHeader';
 
 interface PropsType {
 	headerText: string;
-	headerColor: string;
 	order: number;
 }
 
-const CourseList = ({ headerText, headerColor, order }: PropsType) => {
+const CourseList = ({ headerText, order }: PropsType) => {
 	const router = useRouter();
 	const { data: recommendedCoursesList, isLoading } =
 		useRecommendedCoursesFetch(order);
@@ -41,7 +40,7 @@ const CourseList = ({ headerText, headerColor, order }: PropsType) => {
 
 	return (
 		<div>
-			<CourseHeader title={headerText} color={headerColor} />
+			<CourseHeader title={headerText} />
 			<div>
 				{recommendedCoursesList.length !== 0 ? (
 					<div className="grid gap-x-4 gap-y-4 py-5 px-[35px] grid-cols-5">

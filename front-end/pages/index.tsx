@@ -8,7 +8,6 @@ import CurationFloatingBar from '@components/Main/CurationFloatingBar';
 import { selectIsLoggined } from 'store/feature/common/commonSelector';
 import { userLoginAuthState } from 'constants/commonState';
 
-// Todo: CourseList 별 headerColor 값 바꿀 것
 const Index = (): ReactElement => {
 	const isLoggined = useSelector(selectIsLoggined);
 
@@ -20,26 +19,10 @@ const Index = (): ReactElement => {
 				{!!isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
 					<RecentLecture />
 				)}
-				<CourseList
-					headerText={'인기 컨텐츠'}
-					headerColor="#ff0000"
-					order={0}
-				/>
-				<CourseList
-					headerText={'신규 컨텐츠'}
-					headerColor="#ff0000"
-					order={1}
-				/>
-				<CourseList
-					headerText={'인공지능 컨텐츠'}
-					headerColor="#ff0000"
-					order={2}
-				/>
-				<CourseList
-					headerText={'교양 컨텐츠'}
-					headerColor="#ff0000"
-					order={3}
-				/>
+				<CourseList headerText={'인기 컨텐츠'} order={0} />
+				<CourseList headerText={'신규 컨텐츠'} order={1} />
+				<CourseList headerText={'인공지능 컨텐츠'} order={2} />
+				<CourseList headerText={'교양 컨텐츠'} order={3} />
 			</div>
 		</>
 	);
