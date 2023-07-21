@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import Header from './Header';
+import Header from './Header/Header';
 import Footer from './Footer';
 import ErrorManager from '../pages/ErrorManager';
 

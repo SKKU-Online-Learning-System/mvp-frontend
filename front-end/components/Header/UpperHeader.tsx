@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import { selectIsLoggined } from '../store/feature/common/commonSelector';
+import { selectIsLoggined } from '../../store/feature/common/commonSelector';
 import { commonActions } from 'store/feature/common/commonSlice';
-import { userLoginAuthState } from '../constants/commonState';
-import axiosInstance from '../apis/index';
+import { userLoginAuthState } from '../../constants/commonState';
+import axiosInstance from '../../apis/index';
 
 type PropsType = {
 	onOpenLoginModal: () => void;

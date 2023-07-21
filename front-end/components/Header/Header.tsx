@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import { useModal } from '../hooks/useModal';
-import UpperHeader from '@components/UpperHeader';
+import { useModal } from '../../hooks/useModal';
+import UpperHeader from './UpperHeader';
 
 const Header = () => {
 	const router = useRouter();
