@@ -23,6 +23,11 @@ const CardHeader = ({ title, objs }: PropsType) => {
 	};
 
 	const onSaveClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+		if (!objs || objs.length === 0) {
+			alert('순서 값을 입력해주시기 바랍니다.');
+			return;
+		}
+
 		const seen = new Set();
 		const duplicates = objs.filter(
 			(obj) => seen.size === seen.add(obj.sequence).size,
