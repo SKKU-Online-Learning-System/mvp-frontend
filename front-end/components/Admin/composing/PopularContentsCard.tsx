@@ -111,7 +111,7 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 				)}
 				<button
 					onClick={onSaveClick}
-					className="ml-6 p-2 text-lg font-semibold bg-[#b3df8c] rounded-lg hover:bg-[#b9c7ad] duration-150"
+					className="ml-6 p-2 px-4 text-lg font-semibold bg-[#b3df8c] rounded-lg hover:bg-[#b9c7ad] duration-150"
 				>
 					순서 저장
 				</button>
