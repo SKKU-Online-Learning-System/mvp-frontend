@@ -61,16 +61,15 @@ const LecturePlayer = (): ReactElement => {
 
 	return (
 		<>
-			<h2 className="select-none w-full bg-[var(--color-green-700)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
+			<h2 className="select-none w-full bg-[var(--color-Primary)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
 				온라인명륜당
 			</h2>
 			{courseId ? (
-				// <div className="font-['Noto Sans KR'] flex justify-center  h-full space-x-12">
 				<div className="font-['Noto Sans KR'] flex flex-row min-h-screen  ">
-					<div className="w-1/6 min-h-full bg-[var(--color-Primary)] min-w-[280px]">
+					<div className="">
 						{router.isReady && <LecturePicker courseId={courseId} />}
 					</div>
-					<div className="player-wrapper grid w-full min-h-full grid-cols-2 grid-rows-2 p-10 pb-24 mt-14 gap-x-20 gap-y-20">
+					<div className="player-wrapper w-full min-h-full p-10 pb-24 place-content-center justify-center">
 						<ReactPlayer
 							ref={ref}
 							className="react-player"
