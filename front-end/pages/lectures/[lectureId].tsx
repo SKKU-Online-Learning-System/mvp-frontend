@@ -61,9 +61,16 @@ const LecturePlayer = (): ReactElement => {
 
 	return (
 		<>
+			<h2 className="select-none w-full bg-[var(--color-green-700)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
+				온라인명륜당
+			</h2>
 			{courseId ? (
-				<div className="font-['Noto Sans KR'] flex justify-center items-center h-full">
-					<div className="player-wrapper">
+				// <div className="font-['Noto Sans KR'] flex justify-center  h-full space-x-12">
+				<div className="font-['Noto Sans KR'] flex flex-row min-h-screen  ">
+					<div className="w-1/6 min-h-full bg-[var(--color-Primary)] min-w-[280px]">
+						{router.isReady && <LecturePicker courseId={courseId} />}
+					</div>
+					<div className="player-wrapper grid w-full min-h-full grid-cols-2 grid-rows-2 p-10 pb-24 mt-14 gap-x-20 gap-y-20">
 						<ReactPlayer
 							ref={ref}
 							className="react-player"
@@ -83,7 +90,6 @@ const LecturePlayer = (): ReactElement => {
 							onEnded={onEnded}
 						/>
 					</div>
-					{router.isReady && <LecturePicker courseId={courseId} />}
 				</div>
 			) : (
 				<Error statusCode={HTTP_STATUS_CODE.NOT_FOUND} />
