@@ -25,7 +25,7 @@ const LectureCard = ({ course }: { course: ICourseInfo }): JSX.Element => {
 	return (
 		<div className="px-1">
 			<div
-				className="relative overflow-hidden rounded-lg transition hover:scale-[1.03] cursor-pointer bg-[var(--color-Surface)]"
+				className="relative overflow-hidden rounded-md transition hover:scale-[1.03] cursor-pointer bg-[var(--color-Surface)]"
 				onClick={() => handleClick(course.id)}
 				key={course.id}
 			>
@@ -38,15 +38,14 @@ const LectureCard = ({ course }: { course: ICourseInfo }): JSX.Element => {
 					alt="course thumbnail"
 				/>
 				{/* 썸네일 외 정보 */}
-				<div className="flex flex-col justify-between px-3 pt-2 pb-3 h-30 h-[92px]">
+				<div className="flex flex-col justify-between px-3 pt-2 pb-3 h-30 h-24">
 					<div className="font-bold">{course.title}</div>
 					<div className="flex justify-between items-center">
 						<div className="text-xs opacity-[0.6] mt-2 overflow-ellipsis">
 							{popularContents?.instructorName}
 						</div>
 						<div className="flex flex-col justify-center items-center text-xs opacity-[0.6] mt-2 overflow-ellipsis">
-							<span>담은 수</span>
-							<span>{popularContents?.enrollmentCount}</span>
+							<span>+{popularContents?.enrollmentCount}명</span>
 						</div>
 					</div>
 				</div>
