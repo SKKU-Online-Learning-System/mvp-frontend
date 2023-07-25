@@ -15,14 +15,18 @@ const MyPage = (): ReactElement | null => {
 
 	const routeComponent = (category: string) => {
 		switch (category) {
+			// 최근 시청 강의
 			case MYPAGE_PATH.HISTORY:
 				return <History />;
 			case MYPAGE_PATH.BOOKMARK:
 				return <Bookmark />;
+			// 수강 완료 강좌
 			case MYPAGE_PATH.COMPLETED:
 				return <Completed />;
+			// 수강 중인 강좌
 			case MYPAGE_PATH.LEARNING:
 				return <Learning />;
+			// 내 질문/답변
 			case MYPAGE_PATH.MY_QNA:
 				return <MyQnA />;
 			case MYPAGE_PATH.WISHLIST:

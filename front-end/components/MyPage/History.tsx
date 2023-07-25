@@ -45,13 +45,12 @@ const History = () => {
 
 	return (
 		<MyPageLayout>
-			<BreadCrumb
+			{/* <BreadCrumb
 				category={'MY PAGE'}
 				menu={menu}
 				containerPadding={'1rem 0'}
-			/>
+			/> */}
 			<MyPageTitle title={MYPAGE_MENU.RECENT_WATCHING_LECTURES} />
-
 			<div className="grid gap-x-4 gap-y-4 border-[1px] border-solid border-gray-700 grid-rows-3 grid-cols-4 p-5">
 				{latestLectures.slice(0, 20).map((elem, index) => {
 					const percentage = getProgressPercentage(

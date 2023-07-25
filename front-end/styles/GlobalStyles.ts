@@ -28,6 +28,39 @@ html, body, #root {
 
 /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); */
 :root {
+
+  --color-dark-0: #C1C2C5;
+  --color-dark-1: #A6A7AB;
+  --color-dark-2: #909296;
+  --color-dark-3: #5c5f66;
+  --color-dark-4: #373A40;
+  --color-dark-5: #2C2E33;
+  --color-dark-6: #25262b;
+  --color-dark-7: #1A1B1E;
+  --color-dark-8: #141517;
+  --color-dark-9: #101113;
+
+  --color-gray-0: #f1f3f5;
+  --color-gray-1: #f1f3f5;
+  --color-gray-2: #e9ecef;
+  --color-gray-3: #dee2e6;
+  --color-gray-4: #ced4da;
+  --color-gray-5: #adb5bd;
+  --color-gray-6: #868e96;
+
+
+  /* mrdang green 이라는 뜻 */
+  --color-mrgreen-0: #E5F9F1;
+  --color-mrgreen-1: #BFF0DB;
+  --color-mrgreen-2: #99E7C6;
+  --color-mrgreen-3: #78dab0;
+  --color-mrgreen-4: #67d5a7;
+  --color-mrgreen-5: #479875;
+  --color-mrgreen-6: #3a7a5f;
+  --color-mrgreen-7: #388061;
+  --color-mrgreen-8: #306a57;
+  --color-mrgreen-9: #2B6653;
+
   --color-Primary: #2B6653;
   --color-onPrimary: #FBFBFB;
   --color-onPrimary-100: #f4f4f4;
