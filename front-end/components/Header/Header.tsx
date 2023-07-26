@@ -36,7 +36,7 @@ const Header = () => {
 	};
 
 	return (
-		<div className="border-b-2">
+		<header className="border-b-2">
 			<UpperHeader
 				onOpenLoginModal={onOpenLoginModal}
 				onOpenSignUpModal={onOpenSignUp}
@@ -80,7 +80,7 @@ const Header = () => {
 				</div>
 				{showModal && renderModal()}
 			</div>
-		</div>
+		</header>
 	);
 };
 
