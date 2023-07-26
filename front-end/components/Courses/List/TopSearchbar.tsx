@@ -1,3 +1,4 @@
+// 강좌 리스트 페이지 검색창
 import React, { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { BiSearch } from 'react-icons/bi';
@@ -6,6 +7,7 @@ const TopSearchbar = () => {
 	``;
 	const router = useRouter();
 	const [text, setText] = useState('');
+	const [isClicked, setIsClicked] = useState(false);
 	const { keyword } = router.query as { keyword: string };
 
 	const handleSearchClick = async (e: FormEvent) => {
@@ -32,11 +34,17 @@ const TopSearchbar = () => {
 		keyword ? setText(keyword) : setText('');
 	}, [router.isReady, keyword]);
 
+	const handleInputFocus = () => {
+		setIsClicked(true);
+	};
+
 	return (
-		<div className="mt-16 mb-10">
-			<div className="flex gap-x-5 place-content-center ">
+		<div className="">
+			<div className="flex gap-x-5 place-content-center px-5 mt-8 mb-14">
 				<form
-					className=" rounded-[36px] min-w-[500px] h-16 flex border-solid border-2 "
+					className={`${
+						isClicked ? 'border-[var(--color-mrgreen-9)]  opacity-60' : ''
+					} rounded-[36px] min-w-[500px] h-12 flex border-solid border-2 `}
 					onSubmit={handleSearchClick}
 				>
 					<input
@@ -45,12 +53,19 @@ const TopSearchbar = () => {
 						value={text}
 						placeholder="강좌명 검색"
 						onChange={handleChangeInput}
+						onFocus={handleInputFocus}
+						onBlur={() => setIsClicked(false)}
 					/>
 					<button
 						className="w-full h-full px-4 py-1 cursor-pointer "
 						onClick={handleSearchClick}
 					>
-						<BiSearch className="opacity-60" size="36" />
+						<BiSearch
+							className={`${
+								isClicked ? 'text-[var(--color-mrgreen-9)]' : 'opacity-60'
+							} `}
+							size="30"
+						/>
 					</button>
 				</form>
 			</div>

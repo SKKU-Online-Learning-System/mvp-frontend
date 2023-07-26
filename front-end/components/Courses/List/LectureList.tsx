@@ -25,14 +25,16 @@ const LectureList = () => {
 	if (isLoading) return <div>Loading . . .</div>;
 
 	return (
-		<div className="grid grid-cols-4 py-8 mb-12 gap-x-5 gap-y-14">
-			{!!courseList?.length ? (
-				courseList?.map((course, index) => (
-					<LectureCard course={course} key={index} />
-				))
-			) : (
-				<div>검색 결과가 없습니다!!!</div>
-			)}
+		<div className="">
+			<div className="grid grid-cols-4 px-6 mb-12 gap-x-5 gap-y-14">
+				{!!courseList?.length ? (
+					courseList?.map((course, index) => (
+						<LectureCard course={course} key={index} />
+					))
+				) : (
+					<div>검색 결과가 없습니다!!!</div>
+				)}
+			</div>
 		</div>
 	);
 };

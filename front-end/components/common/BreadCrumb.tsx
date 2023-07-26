@@ -11,7 +11,7 @@ interface IBreadCrumb {
 const BreadCrumb = ({ category, menu = [], containerPadding }: IBreadCrumb) => {
 	return (
 		<div
-			className={`flex px-2 text-2xl text-[var(--color-onBackground-100)] ${containerPadding} `}
+			className={`flex mb-5 px-6 text-2xl text-[var(--color-onBackground-100)] ${containerPadding} `}
 		>
 			<div>{category}</div>
 			{menu.length > 0 &&

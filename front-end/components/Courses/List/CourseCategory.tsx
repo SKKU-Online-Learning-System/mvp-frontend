@@ -45,7 +45,7 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory) => {
 	if (isLoading) return <div>Loading . . .</div>;
 
 	return (
-		<div className="mb-12">
+		<>
 			{courseCategories?.map((content, index) => {
 				const isClicked = isClickedCategory[index];
 				return (
@@ -77,7 +77,7 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory) => {
 					</div>
 				);
 			})}
-		</div>
+		</>
 	);
 };
 

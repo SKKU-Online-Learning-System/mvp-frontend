@@ -45,13 +45,17 @@ const DifficultyList = ({ type }: ICardProps) => {
 	}, [checkedList]);
 
 	return (
-		// <div className="items-center justify-center flex relative">
-		<div className="py-4 px-2 rounded-md focus:outline-none  space-x-4">
+		// 가운데 정렬
+		// <div className="my-5 px-5 flex rounded-md focus:outline-none space-x-4">
+		<div className="my-5 px-2 flex place-content-center rounded-md focus:outline-none space-x-4">
 			{type.map((x, index) => (
 				<label
-					className={`border-[1.5px] rounded-full px-3 py-1 text-[var(--color-onBackground-300)] inline-flex items-center hover:bg-[var(--color-onPrimary-100)]
-					 ${checkedList[index] ? 'text-[var(--color-Primary)]' : ''} 
-					 ${checkedList[index] ? 'border-[var(--color-Primary)]' : ''}
+					className={`border-[1.5px] rounded-full px-3 py-1 inline-flex items-center 
+					 ${
+							checkedList[index]
+								? 'text-[var(--color-mrgreen-5)] border-[var(--color-mrgreen-5)] hover:bg-[var(--color-mrgreen-0)]'
+								: 'text-[var(--color-dark-2)] border-[var(--color-gray-3)] hover:bg-[var(--color-gray-1)]'
+						} 
 					`}
 					key={x}
 				>

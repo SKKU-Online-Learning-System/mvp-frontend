@@ -17,26 +17,28 @@ const CoursesListPage = () => {
 	return (
 		<>
 			{/* 화면 전체 */}
-			<div className='flex m-auto w-[1440px] font-["Noto Sans KR"]'>
-				{/* 왼쪽 sidebar 전체 */}
-				<div className="min-w-[300px] p-16">
-					<div>
-						<CourseCategory handleClickMenu={handleClickMenu} />
-						{/* <DifficultyList title={'난이도'} type={['초급', '중급', '고급']} /> */}
+			{/* <div className='flex m-auto w-[1440px] font-["Noto Sans KR"]'> */}
+			<div className="flex flex-1 max-w-[1200px] p-8 my-0 mx-auto font-['Noto Sans KR']">
+				<div className="flex ">
+					{/* 왼쪽 sidebar 전체 */}
+					<aside className="w-1/6 ">
+						<nav>
+							<CourseCategory handleClickMenu={handleClickMenu} />
+						</nav>
+					</aside>
+
+					{/* 오른쪽 전체, 그 안에서 위(검색창) 아래(강의 리스트) 나눔*/}
+					<div className="w-full">
+						<BreadCrumb
+							category={'강좌LIST'}
+							menu={menu}
+							containerPadding={'2rem 0'}
+						/>
+						<TopSearchbar />
+
+						{/* <DifficultyList type={['초급', '중급', '고급']} /> */}
+						<LectureList />
 					</div>
-				</div>
-
-				{/* 오른쪽 전체, 그 안에서 위(검색창) 아래(강의 리스트) 나눔*/}
-				<div className="w-full">
-					<TopSearchbar />
-
-					<BreadCrumb
-						category={'강좌LIST'}
-						menu={menu}
-						containerPadding={'2rem 0'}
-					/>
-					<DifficultyList type={['초급', '중급', '고급']} />
-					<LectureList />
 				</div>
 			</div>
 		</>
