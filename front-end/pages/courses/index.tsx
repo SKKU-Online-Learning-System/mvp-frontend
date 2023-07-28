@@ -29,11 +29,13 @@ const CoursesListPage = () => {
 
 					{/* 오른쪽 전체, 그 안에서 위(검색창) 아래(강의 리스트) 나눔*/}
 					<div className="w-full">
-						<BreadCrumb
-							category={'강좌LIST'}
-							menu={menu}
-							containerPadding={'2rem 0'}
-						/>
+						<div className="px-6 mb-5 ">
+							<BreadCrumb
+								category={'강좌LIST'}
+								menu={menu}
+								containerPadding={'2rem 0'}
+							/>
+						</div>
 						<TopSearchbar />
 
 						{/* <DifficultyList type={['초급', '중급', '고급']} /> */}
