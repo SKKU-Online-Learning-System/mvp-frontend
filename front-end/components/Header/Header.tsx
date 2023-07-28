@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { useModal } from '../../hooks/useModal';
 import UpperHeader from './UpperHeader';
+import { BiSearch } from 'react-icons/bi';
 
 const Header = () => {
 	const router = useRouter();
@@ -48,7 +49,7 @@ const Header = () => {
 							온라인 명륜당
 						</span>
 					</Link>
-					<ul className="flex pl-0 mx-32 list-none">
+					<ul className="flex pl-0 list-none mx-32 dt:mx-3">
 						<li className="mx-4 my-0 list-none">
 							<Link href="/courses">
 								<span className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]">
@@ -69,14 +70,16 @@ const Header = () => {
 						type="text"
 						ref={inputRef}
 						placeholder="배우고 싶은 지식을 입력하세요."
-						className="w-[300px] h-[35px] rounded-5 pr-10 pl-4 border-2 border-solid border-[black]/[0.7] rounded-xl"
+						className="opacity-75 rounded-3xl w-[300px] mbl:w-[100px] rounded-5 pr-10 pl-4 h-8 flex border-solid border-2"
 						onChange={handleInput}
 						onKeyPress={handleKeyPress}
 					/>
 					<button
-						className="focus:outline-none bg-cover bg-[url('/images/search_btn.png')] cursor-pointer p-0 -ml-10 border-none w-[30px] h-[30px] "
+						className=" h-full px-2 py-1 cursor-pointer -ml-12 "
 						onClick={handleClickSearchLectures}
-					/>
+					>
+						<BiSearch className="cursor-pointer " size="25" />
+					</button>
 				</div>
 				{showModal && renderModal()}
 			</div>
