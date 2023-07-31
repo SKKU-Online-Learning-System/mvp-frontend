@@ -30,9 +30,10 @@ const QuestionDetailPage = (): ReactElement => {
 
 	return (
 		<>
+			<div className="bg-[var(--color-mrgreen-9)] w-full py-4"></div>
 			<QuestionDetailQ question={question} />
-			<AnswerSet answers={question?.answers} />
 			<AnswerForm questionId={questionId}></AnswerForm>
+			<AnswerSet answers={question?.answers} />
 		</>
 	);
 };

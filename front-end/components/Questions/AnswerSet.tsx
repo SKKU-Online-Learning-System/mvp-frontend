@@ -22,10 +22,11 @@ const AnswerSet = ({ answers }: any) => {
 	}, [answers]);
 
 	return (
-		<div className="border-[1px] border-solid border-[#e9ecef] my-8 mx-auto bg-[#f8f9fa]">
-			<div className="w-[800px] m-auto">
+		<div className="w-[800px] mbl:w-[300px] m-auto my-8 border-t-2">
+			<div className="">
 				<div className="my-4 mx-auto font-bold pl-4 text-[1.2rem]">
-					총 {answers?.length}개의 답변이 달렸습니다.
+					답변{' '}
+					<span className="text-[var(--color-Primary)]">{answers?.length}</span>
 				</div>
 			</div>
 			{orderedAnswer?.map((answer: any) => {
