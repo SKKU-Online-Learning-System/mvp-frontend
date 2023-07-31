@@ -29,11 +29,11 @@ const SideMenu: React.FC = () => {
 	console.log(isClicked);
 	return (
 		<nav>
-			<h3 className="font-[Gugi] text-[var(--color-onPrimary)] m-auto flex place-content-center">
+			<h3 className="font-[Gugi] text-[var(--color-onPrimary)] m-auto flex place-content-center mt-9">
 				온라인 명륜당
 			</h3>
 			<p className="text-xs mb-3 ml-5 text-[var(--color-onPrimary)] mt-4">
-				학습
+				{/* 학습 */}
 			</p>
 			<ul>
 				{menus.map((menu, idx) => (
