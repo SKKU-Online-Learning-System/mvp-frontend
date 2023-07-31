@@ -25,32 +25,41 @@ const MyQnA = () => {
 
 	return (
 		<MyPageLayout>
-			<BreadCrumb
-				category={'MY PAGE'}
-				menu={menu}
-				containerPadding={'1rem 0'}
-			/>
-			<MyPageTitle title={MYPAGE_MENU.MY_QNA} />
-			<div>
-				{qna?.map((elem, index) => (
-					<li
-						className="hover:bg-[#f8f9fa] hover:duration-300 m-auto cursor-pointer p-5 border-b-[1px] border-solid border-[#dee2e6] flex w-[1000px] list-none text-ellipsis"
-						key={index}
-						onClick={handleClick(elem.id)}
-					>
-						<div className="w-[85%]">
-							<header className="font-bold">{elem.title || '제목없음'}</header>
-							<section className="text-[0.8rem] text-[#616568] my-[10px] mx-0 text-ellipsis overflow-hidden break-words line-clamp-3">
-								{elem.contents}
-							</section>
-							<div className="text-[0.8rem] text-[#858a8d]">
-								{`이름 · ${getTimeBefore(elem.createdAt)} · ${
-									elem.course.title
-								}`}
-							</div>
-						</div>
-					</li>
-				))}
+			<div className="bg-[var(--color-mrgreen-9)] w-full  py-4">
+				{/* <BreadCrumb
+					category={'MY PAGE'}
+					menu={menu}
+					containerPadding={'1rem 0'}
+				/> */}
+			</div>
+			{/* <MyPageTitle title={MYPAGE_MENU.MY_QNA} /> */}
+			<div className="bg-[var(--color-mrgreen-9)]  w-full ">
+				<div className="bg-[var(--color-Surface)] rounded-tl-lg">
+					{/* <div> */}
+					<div className="p-5 mx-56 mb-32 tbl:mx-auto gap-y-4">
+						{qna?.map((elem, index) => (
+							<li
+								className="rounded-md hover:bg-[#f8f9fa] hover:duration-300 m-auto cursor-pointer p-5 border-b-[1px] border-solid border-[#dee2e6] flex w-full list-none text-ellipsis"
+								key={index}
+								onClick={handleClick(elem.id)}
+							>
+								<div className="w-[85%]">
+									<header className="font-bold">
+										{elem.title || '제목없음'}
+									</header>
+									<section className="text-[0.8rem] text-[#616568] my-[10px] mx-0 text-ellipsis overflow-hidden break-words line-clamp-3">
+										{elem.contents}
+									</section>
+									<div className="text-[0.8rem] text-[#858a8d]">
+										{`이름 · ${getTimeBefore(elem.createdAt)} · ${
+											elem.course.title
+										}`}
+									</div>
+								</div>
+							</li>
+						))}
+					</div>
+				</div>
 			</div>
 		</MyPageLayout>
 	);

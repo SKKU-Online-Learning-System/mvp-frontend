@@ -23,8 +23,7 @@ const LectureList = ({
 
 	const { courseId } = router.query;
 	const { has_enrolled: isEnrolled, is_logged_in: isLoggined } = courseDetail;
-	
-	
+
 	const handleLectureClick = (id: number) => () => {
 		if (isEnrolled) {
 			router.push({ pathname: `/lectures/${id}`, query: { courseId } });
