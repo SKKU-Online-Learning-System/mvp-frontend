@@ -46,16 +46,16 @@ const History = () => {
 	return (
 		<MyPageLayout>
 			<div className="bg-[var(--color-mrgreen-9)] w-full py-4">
-				<BreadCrumb
+				{/* <BreadCrumb
 					category={'MY PAGE'}
 					menu={menu}
 					containerPadding={'1rem 0'}
-				/>
+				/> */}
 			</div>
 			{/* <MyPageTitle title={MYPAGE_MENU.RECENT_WATCHING_LECTURES} /> */}
 			<div className="bg-[var(--color-mrgreen-9)]  w-full ">
 				<div className="bg-[var(--color-Surface)] rounded-tl-lg">
-					<div className="grid grid-cols-4 mx-56 mb-32 tbl:mx-auto dt:grid-cols-3 tbl:grid-cols-3 mbl:grid-cols-1 gap-x-4 gap-y-4 p-5">
+					<div className="grid grid-cols-4 p-5 mx-56 mb-32 tbl:mx-auto dt:grid-cols-3 tbl:grid-cols-3 mbl:grid-cols-1 gap-x-4 gap-y-4">
 						{latestLectures.slice(0, 20).map((elem, index) => {
 							const percentage = getProgressPercentage(
 								elem.lastTime,
@@ -69,16 +69,16 @@ const History = () => {
 									key={index}
 								>
 									<img
-										className="aspect-video w-full"
+										className="w-full aspect-video"
 										src={elem.lecture.course.thumbnail}
-									></img>
+									/>
 									<p className="p-1">
 										<div className="absolute bottom-[50px] right-0 left-0 h-1 bg-[#717171]">
 											<div
 												className={`absolute w-[${percentage}%] h-full bg-[#ff0000]`}
 											></div>
 										</div>
-										<div className="text-base text-ellipsis overflow-hidden whitespace-nowrap">
+										<div className="overflow-hidden text-base text-ellipsis whitespace-nowrap">
 											{elem.lecture.title}
 										</div>
 										<div className="text-ellipsis overflow-hidden whitespace-nowrap text-black/[0.5]">
