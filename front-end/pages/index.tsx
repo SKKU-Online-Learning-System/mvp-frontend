@@ -13,9 +13,9 @@ const Index = (): ReactElement => {
 
 	return (
 		<>
-			<CurationFloatingBar />
 			<MainBanner />
-			<div className="relative w-[1280px] m-auto font-['Noto Sans KR'] my-24">
+			<CurationFloatingBar />
+			<div className="relative w-[1280px] m-auto font-['Noto Sans KR'] mb-24">
 				{!!isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
 					<RecentLecture />
 				)}
