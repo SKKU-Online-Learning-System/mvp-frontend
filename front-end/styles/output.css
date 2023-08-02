@@ -1398,6 +1398,10 @@ video {
   grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 
+.grid-rows-4 {
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -1616,6 +1620,14 @@ video {
 
 .rounded-tl-lg {
   border-top-left-radius: 0.5rem;
+}
+
+.rounded-tl-xl {
+  border-top-left-radius: 0.75rem;
+}
+
+.rounded-bl-lg {
+  border-bottom-left-radius: 0.5rem;
 }
 
 .border-0 {
@@ -1996,6 +2008,10 @@ video {
 
 .p-3 {
   padding: 0.75rem;
+}
+
+.p-20 {
+  padding: 5rem;
 }
 
 .px-0 {
