@@ -57,7 +57,7 @@ const AdminIndex = (): ReactElement => {
 			<h2 className="select-none w-full bg-[var(--color-green-700)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
 				온라인명륜당
 			</h2>
-			<div className="flex flex-row min-h-screen">
+			<div className="flex min-h-screen">
 				<div className="w-1/6 min-h-full bg-[var(--color-Primary)] min-w-[280px]">
 					<ul className="flex flex-col items-start justify-start h-full p-12">
 						<li className="relative w-full">
