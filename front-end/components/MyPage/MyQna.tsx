@@ -1,12 +1,9 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import MyPageLayout from '@components/MyPage/MyPageLayout';
-import BreadCrumb from '@components/common/BreadCrumb';
 import { getTimeBefore } from 'utils/getTimeBefore';
 import { useMyQnaFetch } from 'query/hooks/MyPage';
 import { MYPAGE_MENU } from 'constants/MyPage';
-import { MyPageTitle } from './MyPageTitle';
 
 const menu = [MYPAGE_MENU.MY_QNA];
 
@@ -23,15 +20,7 @@ const MyQnA = () => {
 	if (isLoading) return <div>Loading...</div>;
 
 	return (
-		<MyPageLayout>
-			<div className="bg-[var(--color-mrgreen-9)] w-full  py-4">
-				{/* <BreadCrumb
-					category={'MY PAGE'}
-					menu={menu}
-					containerPadding={'1rem 0'}
-				/> */}
-			</div>
-			{/* <MyPageTitle title={MYPAGE_MENU.MY_QNA} /> */}
+		<div>
 			<div className="bg-[var(--color-mrgreen-9)]  w-full ">
 				<div className="bg-[var(--color-Surface)] rounded-tl-lg">
 					{/* <div> */}
@@ -66,7 +55,7 @@ const MyQnA = () => {
 					</div>
 				</div>
 			</div>
-		</MyPageLayout>
+		</div>
 	);
 };
 

@@ -2,10 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { useCompletedCourseFetch } from 'query/hooks/MyPage';
-import MyPageLayout from '@components/MyPage/MyPageLayout';
-import BreadCrumb from '@components/common/BreadCrumb';
 import { MYPAGE_MENU } from 'constants/MyPage';
-import { MyPageTitle } from './MyPageTitle';
 
 const menu = [MYPAGE_MENU.COMPLETED_WATCHING_LECTURES];
 
@@ -21,19 +18,10 @@ const Completed = () => {
 	if (isLoading) return <div>isLoading...</div>;
 
 	return (
-		<MyPageLayout>
-			<div className="bg-[var(--color-mrgreen-9)] w-full py-4">
-				{/* <BreadCrumb
-					category={'MY PAGE'}
-					menu={menu}
-					containerPadding={'1rem 0'}
-				/> */}
-			</div>
-
-			{/* <MyPageTitle title={MYPAGE_MENU.COMPLETED_WATCHING_LECTURES} /> */}
+		<div>
 			<div className="bg-[var(--color-mrgreen-9)]  w-full ">
 				{/* <div className="grid gap-x-4 gap-y-4 border-[1px] border-solid border-gray-700 grid-rows-3 grid-cols-4 p-5"> */}
-				<div className="bg-[var(--color-Surface)] rounded-tl-lg">
+				<div className="bg-[var(--color-Surface)]">
 					<div className="grid grid-cols-4 p-5 mx-56 mb-32 tbl:mx-auto dt:grid-cols-3 tbl:grid-cols-3 mbl:grid-cols-1 gap-x-4 gap-y-4">
 						{!completedCourseList?.length ? (
 							<div>완료된 강의가 없습니다.</div>
@@ -59,7 +47,7 @@ const Completed = () => {
 					</div>
 				</div>
 			</div>
-		</MyPageLayout>
+		</div>
 	);
 };
 

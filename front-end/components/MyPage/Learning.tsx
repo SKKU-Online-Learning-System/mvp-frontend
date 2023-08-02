@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { useCurrentLeaningCourseListFetch } from 'query/hooks/MyPage';
-import MyPageLayout from '@components/MyPage/MyPageLayout';
-import BreadCrumb from '@components/common/BreadCrumb';
 import { MYPAGE_MENU } from 'constants/MyPage';
-import { MyPageTitle } from './MyPageTitle';
 
 const menu = [MYPAGE_MENU.CURRENT_WATCHING_LECTURES];
 
@@ -77,26 +74,19 @@ const Learning = () => {
 		return <div>강좌가 존재하지 않습니다</div>;
 
 	return (
-		<MyPageLayout>
-			<BreadCrumb
-				category={'MY PAGE'}
-				menu={menu}
-				containerPadding={'1rem 0'}
-			/>
-
-			<MyPageTitle title={MYPAGE_MENU.CURRENT_WATCHING_LECTURES} />
-			<div className="grid border-[1px] border-solid border-gray-700 gap-x-4 gap-y-4 grid-rows-3 grid-cols-4 p-5">
+		<div>
+			<div className="grid grid-cols-4 grid-rows-3 p-5 gap-x-4 gap-y-4">
 				{currentLearningCourseList.map((elem, index) => (
 					<div
-						className="w-full overflow-hidden relative cursor-pointer"
+						className="relative w-full overflow-hidden cursor-pointer"
 						onClick={handleClick(elem.course.id)}
 						key={index}
 					>
 						<img
-							className="aspect-video w-full"
+							className="w-full aspect-video"
 							src={elem.course.thumbnail}
 						></img>
-						<div className="text-base text-ellipsis overflow-hidden whitespace-nowrap">
+						<div className="overflow-hidden text-base text-ellipsis whitespace-nowrap">
 							{elem.course.title}
 						</div>
 						<div className="text-ellipsis overflow-hidden whitespace-nowrap text-black/[0.5]">
@@ -106,7 +96,7 @@ const Learning = () => {
 					</div>
 				))}
 			</div>
-		</MyPageLayout>
+		</div>
 	);
 };
 
