@@ -1,8 +1,11 @@
+// 강좌 상세페이지 하단의 질문란
 import React from 'react';
 import { useRouter } from 'next/router';
 
 import QnAItem from './QnAItem';
 import { IQna } from 'types/Course';
+
+import { AiFillCaretRight } from 'react-icons/ai';
 
 type PropsType = {
 	courseId: string;
@@ -19,18 +22,19 @@ const QnA = ({ courseId, qna }: PropsType) => {
 
 	return (
 		<div className="w-[80%] m-auto p-[25px] font-[var(--font-NotoSans)]">
-			<header className="m-0 mb-4 ml-[18px]">
+			<header className="m-0 mb-4 ">
 				<div className="text-[0.5rem] text-[#c2c1c1] font-bold">
 					Recent Questions
 				</div>
 				<div className="flex">
-					<h2 className="pr-[18px] font-bold text-3xl">최근 한 질문</h2>
+					<h2 className="pr-[18px] font-bold text-2xl">최근 한 질문</h2>
 					{recentQna.length > 0 && (
 						<div
-							className="font-semibold text-[#f2f4f6] bg-[#7dad47] rounded-[7px] py-2 px-3 cursor-pointer"
+							className="flex text-xs hover:opacity-90 font-medium my-auto text-[var(--color-onPrimary)] bg-[var(--color-Primary)] rounded-md py-1 px-2 cursor-pointer"
 							onClick={handleClick}
 						>
-							질문 더보기
+							더보기
+							<AiFillCaretRight className="my-auto" />
 						</div>
 					)}
 				</div>

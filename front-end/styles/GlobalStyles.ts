@@ -73,7 +73,7 @@ html, body, #root {
   --color-onSurface-300: #686868;
 
 
-  --color-Background: #FBFBFB;
+  --color-Background: #1b1b1b;
   --color-onBackground: #383838;
   --color-onBackground-100: #9A9A9A;
   --color-onBackground-200: #5A5B5C;

@@ -1,3 +1,4 @@
+// 강좌 상세페이지 하단의 질문란 - Q, A 부분
 import React from 'react';
 
 type PropsType = {
@@ -8,18 +9,20 @@ type PropsType = {
 const QnAItem = ({ questionTitle, answer }: PropsType) => {
 	return (
 		<div className="mb-5">
-			<div className="relative flex overflow-hidden">
-				<h1 className="m-0 font-['Gugi'] text-[#086ac5]">Q.</h1>
-				<div className="font-[var(--font-NotoSans)] pt-[15px] pr-0 pb-0 pl-[10px] text-[#848484] text-[0.8rem] mb-[35px]">
+			<div className="flex mb-3 overflow-hidden">
+				<div className="font-[Inter] text-[var(--color-onPrimary)] bg-[var(--color-Primary)] border border-[var(--color-Primary)] text-center rounded-sm p-1 w-8 h-0 pb-7">
+					Q{' '}
+				</div>
+				<div className="font-[var(--font-NotoSans)] pl-[10px] text-[#848484] my-auto">
 					{questionTitle}
 				</div>
-				<div className="absolute t-10 h-full border-l-[3px] border-solid border-[#e7e7e7] ml-3" />
 			</div>
-			<div className="flex">
-				<h1 className="m-0 font-['Gugi'] text-[#ea0000]">A.</h1>
-				<div className="font-[var(--font-NotoSans)] pt-[15px] pl-[10px] text-[#393939]">
-					{answer}
+			<div className="mb-2 border-b border-dashed "></div>
+			<div className="flex overflow-hidden">
+				<div className="font-[Inter] text-[var(--color-Primary)] border border-[var(--color-Primary)] text-center rounded-sm p-1 w-8 h-0 pb-7">
+					A
 				</div>
+				<div className="pl-[10px] text-[#848484] my-auto">{answer}</div>
 			</div>
 		</div>
 	);
