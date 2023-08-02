@@ -43,11 +43,6 @@ const MyPageLayout = ({ children }: PropsType) => {
 								<Link href={menu.path}>
 									<div
 										className={handleSidebarBtnStyle(isClicked === menu.title)}
-										// className={`${
-										// 	isClicked === menu.title
-										// 		? ' bg-white text-var[(--color-onSurface)]'
-										// 		: 'text-[var(--color-onPrimary)] hover:opacity-70'
-										// } ml-6 my-1 rounded-l-lg text-sm py-[0.7rem] px-3 list-none cursor-pointer`}
 									>
 										<span>{menu.title}</span>
 									</div>
