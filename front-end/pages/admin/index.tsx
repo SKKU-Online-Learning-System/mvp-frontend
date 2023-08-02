@@ -55,7 +55,7 @@ const AdminIndex = (): ReactElement => {
 	return (
 		<div className="min-h-full">
 			<h2 className="select-none w-full bg-[var(--color-green-700)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
-				온라인명륜당
+				{'온라인명륜당 > Admin'}
 			</h2>
 			<div className="flex min-h-screen">
 				<div className="w-1/6 min-h-full bg-[var(--color-Primary)] min-w-[280px]">
