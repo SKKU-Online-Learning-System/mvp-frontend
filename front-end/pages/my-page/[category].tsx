@@ -8,6 +8,7 @@ import History from '@components/MyPage/History';
 import Learning from '@components/MyPage/Learning';
 import MyQnA from '@components/MyPage/MyQna';
 import Wishlist from '@components/MyPage/wishlist';
+import MyPageLayout from '@components/MyPage/MyPageLayout';
 
 const MyPage = (): ReactElement | null => {
 	const router = useRouter();
@@ -36,7 +37,7 @@ const MyPage = (): ReactElement | null => {
 		}
 	};
 
-	return category ? routeComponent(category) : null;
+	return <MyPageLayout>{routeComponent(category)}</MyPageLayout>;
 };
 
 export default MyPage;
