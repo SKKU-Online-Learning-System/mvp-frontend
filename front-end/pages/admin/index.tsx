@@ -45,7 +45,7 @@ const AdminIndex = (): ReactElement => {
 		const notSelected =
 			' transition-all relative left-0 hover:left-0.5 hover:text-white';
 		let sidebarBtnBasicStyle =
-			'text-[var(--color-onPrimary-200)] rounded-2xl mb-12 px-4 py-2 text-xl font-bold w-full text-start';
+			'text-[var(--color-onPrimary-200)] rounded-xl mb-12 px-4 py-2 text-xl font-bold w-full text-start';
 		open
 			? (sidebarBtnBasicStyle += selected)
 			: (sidebarBtnBasicStyle += notSelected);
