@@ -47,7 +47,7 @@ const History = () => {
 					);
 					return (
 						<div
-							className="rounded-md w-full mt-5 overflow-hidden relative cursor-pointer transition hover:scale-[1.03]  bg-white"
+							className="rounded-md w-full overflow-hidden relative cursor-pointer transition hover:scale-[1.02] bg-white"
 							onClick={handleClick(elem.lecture.course.id, elem.lecture.id)}
 							key={index}
 						>
