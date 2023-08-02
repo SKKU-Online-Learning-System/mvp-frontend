@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { useCurrentLeaningCourseListFetch } from 'query/hooks/MyPage';
-import { MYPAGE_MENU } from 'constants/MyPage';
-
-const menu = [MYPAGE_MENU.CURRENT_WATCHING_LECTURES];
 
 interface ILectureStatusCount {
 	finishedLectureCount: number;
@@ -70,15 +67,15 @@ const Learning = () => {
 	}, [isLoading]);
 
 	if (isLoading) return <div>Loading...</div>;
-	if (!currentLearningCourseList?.length)
+	if (!currentLearningCourseList || !currentLearningCourseList.length)
 		return <div>강좌가 존재하지 않습니다</div>;
 
 	return (
-		<div>
-			<div className="grid grid-cols-4 grid-rows-3 p-5 gap-x-4 gap-y-4">
+		<div className="min-h-screen bg-white">
+			<div className="grid grid-cols-5 grid-rows-4 p-20 gap-x-20 gap-y-20">
 				{currentLearningCourseList.map((elem, index) => (
 					<div
-						className="relative w-full overflow-hidden cursor-pointer"
+						className="relative w-full overflow-hidden cursor-pointer hover:scale-[1.02] transition"
 						onClick={handleClick(elem.course.id)}
 						key={index}
 					>
