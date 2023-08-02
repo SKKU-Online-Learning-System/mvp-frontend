@@ -38,11 +38,11 @@ const MainBanner = () => {
 	};
 
 	return (
-		<div className="h-[680px] mb-24 w-full group bg-[#121212]">
+		<div className="h-[680px] mb-24 w-full group bg-[#031628]">
 			<div
 				style={{
 					// backgroundImage: `url(${slides[currentIndex].thumbnail})`, max-w-[1400px]
-					backgroundImage: "url('/images/banner_img.png')",
+					backgroundImage: "url('/images/banner_1.png')",
 				}}
 				className="relative h-full px-4 py-16 m-auto duration-500 bg-center bg-cover w-[80%]"
 			>
