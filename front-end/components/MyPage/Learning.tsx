@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { useCurrentLeaningCourseListFetch } from 'query/hooks/MyPage';
+import LearningCard from './LearningCard';
 
 interface ILectureStatusCount {
 	finishedLectureCount: number;
@@ -21,10 +22,6 @@ const Learning = () => {
 		result[3].data,
 	];
 	const isLoading = result.some((elem) => elem.isLoading);
-
-	const handleClick = (courseId: number) => () => {
-		router.push(`/courses/${courseId}`);
-	};
 
 	const showLectureProgressStatus = ({
 		finishedLectureCount,
@@ -73,25 +70,11 @@ const Learning = () => {
 	return (
 		<div className="min-h-screen bg-white">
 			<div className="grid grid-cols-5 grid-rows-4 p-20 gap-x-20 gap-y-20">
-				{currentLearningCourseList.map((elem, index) => (
-					<div
-						className="relative w-full overflow-hidden cursor-pointer hover:scale-[1.02] transition"
-						onClick={handleClick(elem.course.id)}
-						key={index}
-					>
-						<img
-							className="w-full aspect-video"
-							src={elem.course.thumbnail}
-						></img>
-						<div className="overflow-hidden text-base text-ellipsis whitespace-nowrap">
-							{elem.course.title}
-						</div>
-						<div className="text-ellipsis overflow-hidden whitespace-nowrap text-black/[0.5]">
-							{learningLectureCount &&
-								showLectureProgressStatus(learningLectureCount[index])}
-						</div>
-					</div>
-				))}
+				<LearningCard
+					courses={currentLearningCourseList}
+					learningLectureCount={learningLectureCount}
+					showLectureProgressStatus={showLectureProgressStatus}
+				/>
 			</div>
 		</div>
 	);
