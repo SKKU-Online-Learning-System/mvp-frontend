@@ -58,12 +58,11 @@ const Header = () => {
 							</Link>
 						</li>
 						<li className="mx-4 my-0 list-none">
-							<a
-								href=""
-								className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]"
-							>
-								공지사항
-							</a>
+							<Link href="/notification">
+								<span className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]">
+									공지사항
+								</span>
+							</Link>
 						</li>
 					</ul>
 					<input
