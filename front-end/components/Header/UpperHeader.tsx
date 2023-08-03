@@ -14,7 +14,7 @@ type PropsType = {
 };
 
 const upperHeaderStyle =
-	'mx-4 text-sm text-black font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
+	' text-[var(--color-onBackground-300)] mx-4 text-sm font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
 
 // const menuData = [
 // 	{ id: 1, name: 'Admin', path: '/admin' },
@@ -38,7 +38,7 @@ const UpperHeader = ({ onOpenLoginModal, onOpenSignUpModal }: PropsType) => {
 	};
 
 	return (
-		<div className="fixed top-0 z-10 flex items-center justify-end w-screen h-8 px-10 mr-8 bg-white">
+		<div className="fixed top-0 z-10 flex items-center justify-end w-screen h-8 px-10 mr-8 bg-white ">
 			<a className={upperHeaderStyle}>ENG</a>
 			{!!isLoggined &&
 				(isLoggined === userLoginAuthState.LOGGINED ? (
