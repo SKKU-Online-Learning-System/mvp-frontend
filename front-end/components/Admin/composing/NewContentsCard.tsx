@@ -38,7 +38,7 @@ const NewContentsCard = ({ title }: PropsType) => {
 			setObjs(arr);
 		} else {
 			const obj = {
-				courseId: newContents![+e.target.id].id,
+				courseId: newContents![elementId].id,
 				order: 1,
 				sequence: e.target.valueAsNumber,
 			};
