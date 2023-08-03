@@ -42,14 +42,14 @@ const Header = () => {
 				onOpenLoginModal={onOpenLoginModal}
 				onOpenSignUpModal={onOpenSignUp}
 			/>
-			<div className="dt:py-0 dt:px-[10px] mt-8 flex justify-around items-center mb-4">
+			<div className="dt:py-0 dt:px-[10px] mt-10 flex justify-around items-center mb-4 text-[var(--color-onBackground-300)]">
 				<div className="flex items-center justify-between">
 					<Link href="/">
-						<span className="text-[2rem] cursor-pointer font-['Gugi'] text-[#1b1b1b]">
+						<span className="text-[2rem] cursor-pointer font-['Gugi']">
 							온라인 명륜당
 						</span>
 					</Link>
-					<ul className="flex pl-0 list-none mx-32 dt:mx-3">
+					<ul className="flex pl-0 mx-32 list-none dt:mx-3">
 						<li className="mx-4 my-0 list-none">
 							<Link href="/courses">
 								<span className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]">
@@ -75,7 +75,7 @@ const Header = () => {
 						onKeyPress={handleKeyPress}
 					/>
 					<button
-						className=" h-full px-2 py-1 cursor-pointer -ml-12 "
+						className="h-full px-2 py-1 -ml-12 cursor-pointer "
 						onClick={handleClickSearchLectures}
 					>
 						<BiSearch className="cursor-pointer " size="25" />
