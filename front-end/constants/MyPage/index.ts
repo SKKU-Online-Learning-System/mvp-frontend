@@ -1,5 +1,5 @@
 export const MYPAGE_PATH = {
-	DASHBOARD: '',
+	PROFILE: 'profile',
 	HISTORY: 'history',
 	BOOKMARK: 'bookmark',
 	LEARNING: 'learning',
@@ -8,7 +8,7 @@ export const MYPAGE_PATH = {
 };
 
 export const MYPAGE_MENU = {
-	DASHBOARD: '프로필',
+	PROFILE: '프로필',
 	RECENT_WATCHING_LECTURES: '최근 시청 강의',
 	CURRENT_WATCHING_LECTURES: '수강 중인 강좌',
 	COMPLETED_WATCHING_LECTURES: '수강 완료 강좌',

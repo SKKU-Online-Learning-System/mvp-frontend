@@ -4,8 +4,8 @@ const root = '/my-page';
 
 const menus = [
 	{
-		title: MYPAGE_MENU.DASHBOARD,
-		path: `${root}/${MYPAGE_PATH.DASHBOARD}`,
+		title: MYPAGE_MENU.PROFILE,
+		path: `${root}/${MYPAGE_PATH.PROFILE}`,
 	},
 	{
 		title: MYPAGE_MENU.RECENT_WATCHING_LECTURES,
