@@ -4,6 +4,10 @@ const root = '/my-page';
 
 const menus = [
 	{
+		title: MYPAGE_MENU.DASHBOARD,
+		path: `${root}/${MYPAGE_PATH.DASHBOARD}`,
+	},
+	{
 		title: MYPAGE_MENU.RECENT_WATCHING_LECTURES,
 		path: `${root}/${MYPAGE_PATH.HISTORY}`,
 	},
@@ -18,6 +22,10 @@ const menus = [
 	{
 		title: MYPAGE_MENU.MY_QNA,
 		path: `${root}/${MYPAGE_PATH.MY_QNA}`,
+	},
+	{
+		title: MYPAGE_MENU.BOOKMARK,
+		path: `${root}/${MYPAGE_PATH.BOOKMARK}`,
 	},
 ];
 
