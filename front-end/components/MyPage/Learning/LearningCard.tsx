@@ -11,7 +11,7 @@ interface ILectureStatusCount {
 type PropsType = {
 	courses: ICourseInfo[];
 	learningLectureCount: ILectureStatusCount[] | undefined;
-	showLectureProgressStatus: Function;
+	showLectureProgressStatus: (obj: ILectureStatusCount) => string | undefined;
 };
 
 const LearningCard = ({
@@ -27,17 +27,22 @@ const LearningCard = ({
 
 	return courses.slice(0, 20).map((elem, index) => (
 		<div
-			className="relative w-full overflow-hidden cursor-pointer hover:scale-[1.02] transition"
+			className="relative w-full overflow-hidden cursor-pointer hover:scale-[1.01] transition"
 			onClick={handleClick(elem.course.id)}
 			key={index}
 		>
-			<img className="w-full aspect-video" src={elem.course.thumbnail}></img>
-			<div className="overflow-hidden text-base text-ellipsis whitespace-nowrap">
-				{elem.course.title}
-			</div>
-			<div className="text-ellipsis overflow-hidden whitespace-nowrap text-black/[0.5]">
-				{learningLectureCount &&
-					showLectureProgressStatus(learningLectureCount[index])}
+			<img
+				className="w-full rounded-tl-lg rounded-tr-lg aspect-video"
+				src={elem.course.thumbnail}
+			/>
+			<div className="px-4 py-2 pb-4 bg-[var(--color-Surface)] rounded-bl-lg rounded-br-lg">
+				<div className="mb-2 overflow-hidden text-xl font-semibold text-ellipsis whitespace-nowrap">
+					{elem.course.title}
+				</div>
+				<div className="text-ellipsis overflow-hidden whitespace-nowrap text-black/[0.5] font-semibold">
+					{learningLectureCount &&
+						showLectureProgressStatus(learningLectureCount[index])}
+				</div>
 			</div>
 		</div>
 	));
