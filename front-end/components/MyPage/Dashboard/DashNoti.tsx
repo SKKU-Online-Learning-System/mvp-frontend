@@ -3,14 +3,9 @@ import React from 'react';
 const DashNoti = () => {
 	return (
 		<div>
-			<div
-			// smallHeader="DASHBOARD"
-			// header="최근 알림보기"
-			// margin="5px"
-			// url="/my-page/notification"
-			>
+			<div>
 				<div className="flex text-[#393939] font-['Noto Sans KR'] text-[0.8rem] border-none">
-					<ul className="list-none p-0 w-full">
+					<ul className="w-full p-0 list-none">
 						<li className="w-full p-[0.3rem] border-solid border-[#e2e2e2] border-b-2">
 							<span className="overflow-hidden text-ellipsis">
 								질문에 대한 답변이 등록되었습니다. 프로필이 수정

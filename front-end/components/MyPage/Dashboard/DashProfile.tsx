@@ -3,12 +3,7 @@ import React from 'react';
 const DashProfile = () => {
 	return (
 		<div>
-			<div
-			// smallHeader="DASHBOARD"
-			// header="MY PROFILE"
-			// margin="5px"
-			// url="/my-page"
-			>
+			<div>
 				<div className="flex text-[#393939] font-['Noto Sans KR'] text-[0.8rem] border-none">
 					<img src="/images/auth_profile.png" className="w-[40%] mr-4" />
 					<ul className="list-disc">
