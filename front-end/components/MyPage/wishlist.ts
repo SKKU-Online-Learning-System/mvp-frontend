@@ -1,6 +1,4 @@
-import MyPageLayout from '@components/MyPage/MyPageLayout';
-import React from 'react';
-const wishlists = [
+export const wishlists = [
 	{
 		id: 1,
 		userId: 1,
@@ -2399,8 +2397,3 @@ const wishlists = [
 		},
 	},
 ];
-const Wishlist = () => {
-	return <MyPageLayout>찜한 강좌</MyPageLayout>;
-};
-
-export default Wishlist;
