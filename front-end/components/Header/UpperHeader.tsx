@@ -46,7 +46,7 @@ const UpperHeader = ({ onOpenLoginModal, onOpenSignUpModal }: PropsType) => {
 						<a href="" className={upperHeaderStyle} onClick={handleLogout}>
 							로그아웃
 						</a>
-						<Link href="/my-page/history">
+						<Link href="/my-page">
 							<span className={upperHeaderStyle}>마이페이지</span>
 						</Link>
 						<a className={upperHeaderStyle} onClick={handleClickAdminBtn}>
