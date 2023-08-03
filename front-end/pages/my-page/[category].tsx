@@ -4,13 +4,13 @@ import { useRouter } from 'next/router';
 import { MYPAGE_PATH } from 'constants/MyPage';
 import Bookmark from '@components/MyPage/Bookmark';
 import Completed from '@components/MyPage/Completed';
-import History from '@components/MyPage/History';
-import Learning from '@components/MyPage/Learning';
+import History from '@components/MyPage/History/History';
+import Learning from '@components/MyPage/Learning/Learning';
 import MyQnA from '@components/MyPage/MyQna';
-import Wishlist from '@components/MyPage/wishlist';
 import MyPageLayout from '@components/MyPage/MyPageLayout';
+import DashProfile from '@components/MyPage/Dashboard/DashProfile';
 
-const MyPage = (): ReactElement | null => {
+const MyPage = () => {
 	const router = useRouter();
 	const { category } = router.query as { category: string };
 
@@ -30,10 +30,8 @@ const MyPage = (): ReactElement | null => {
 			// 내 질문/답변
 			case MYPAGE_PATH.MY_QNA:
 				return <MyQnA />;
-			case MYPAGE_PATH.WISHLIST:
-				return <Wishlist />;
 			default:
-				return <History />;
+				return <DashProfile />;
 		}
 	};
 
