@@ -45,7 +45,7 @@ const AdminIndex = (): ReactElement => {
 		const notSelected =
 			' transition-all relative left-0 hover:left-0.5 hover:text-white';
 		let sidebarBtnBasicStyle =
-			'text-[var(--color-onPrimary-200)] rounded-xl mb-12 px-4 py-2 text-xl font-bold w-full text-start';
+			'text-[var(--color-onPrimary-200)] rounded-tl-lg rounded-bl-lg mb-12 px-4 py-2 text-xl font-bold w-full text-start';
 		open
 			? (sidebarBtnBasicStyle += selected)
 			: (sidebarBtnBasicStyle += notSelected);
@@ -59,7 +59,7 @@ const AdminIndex = (): ReactElement => {
 			</h2>
 			<div className="flex min-h-screen">
 				<div className="w-1/6 min-h-full bg-[var(--color-Primary)] min-w-[280px]">
-					<ul className="flex flex-col items-start justify-start h-full p-12">
+					<ul className="flex flex-col items-start justify-start h-full p-12 pr-0">
 						<li className="relative w-full">
 							<button
 								id="compose"
