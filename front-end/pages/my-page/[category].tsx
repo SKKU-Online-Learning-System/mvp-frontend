@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 
 import { MYPAGE_PATH } from 'constants/MyPage';
@@ -8,7 +8,6 @@ import History from '@components/MyPage/History/History';
 import Learning from '@components/MyPage/Learning/Learning';
 import MyQnA from '@components/MyPage/MyQna';
 import MyPageLayout from '@components/MyPage/MyPageLayout';
-import DashProfile from '@components/MyPage/Dashboard/DashProfile';
 
 const MyPage = () => {
 	const router = useRouter();
@@ -31,7 +30,7 @@ const MyPage = () => {
 			case MYPAGE_PATH.MY_QNA:
 				return <MyQnA />;
 			default:
-				return <DashProfile />;
+				return <History />;
 		}
 	};
 
