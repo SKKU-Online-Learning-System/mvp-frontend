@@ -17,6 +17,7 @@ const CurationFloatingBar = () => {
 							<FontAwesomeIcon
 								icon={info.logoIconImage}
 								className={`w-16 h-16 my-2 hover:scale-[1.08] transition`}
+								style={{ color: `${info.color}` }}
 							/>
 							<span>{info.category}</span>
 						</a>
