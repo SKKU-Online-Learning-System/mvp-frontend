@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 import { Notification } from 'types/Notification';
 import noticesAPI from '../../../apis/Notices/noticesAPI';
 import NewIndicator from '@components/Notices/NewIndicator';
 
 const NoticesManage = () => {
-	const router = useRouter();
-
 	const [notices, setNotices] = useState<Notification[]>();
 
 	useEffect(() => {
@@ -18,6 +16,11 @@ const NoticesManage = () => {
 		}
 		fetcher();
 	}, [notices]);
+
+	const onTitleClick = (
+		e: React.MouseEvent<HTMLHeadingElement>,
+		id: number,
+	) => {};
 
 	const onDeleteClick = async (id: number) => {
 		await noticesAPI.deleteNotice(id);
@@ -52,11 +55,17 @@ const NoticesManage = () => {
 										<div>
 											<div className="flex items-center justify-start mb-3">
 												{isNew ? <NewIndicator /> : null}
-												<Link href={`/notices/${notice.id}`}>
-													<h4 className="text-lg font-semibold cursor-pointer">
-														{notice.title}
-													</h4>
-												</Link>
+
+												<h4
+													onClick={(e) => onTitleClick(e, notice.id)}
+													className="text-lg font-semibold cursor-pointer"
+												>
+													{notice.title}
+													<FontAwesomeIcon
+														icon={faAngleDown}
+														className={`ml-2 transition`}
+													/>
+												</h4>
 											</div>
 											<div className="text-sm">
 												<span>No.{notice.id}</span>
