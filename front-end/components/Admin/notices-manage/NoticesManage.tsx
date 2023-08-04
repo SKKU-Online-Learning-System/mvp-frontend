@@ -20,7 +20,9 @@ const NoticesManage = () => {
 	const onTitleClick = (
 		e: React.MouseEvent<HTMLHeadingElement>,
 		id: number,
-	) => {};
+	) => {
+		return;
+	};
 
 	const onDeleteClick = async (id: number) => {
 		await noticesAPI.deleteNotice(id);
