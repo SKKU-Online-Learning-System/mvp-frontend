@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Profile = () => {
 	return (
-		<div className="p-20">
+		<div className="min-h-screen p-20 bg-white">
 			<div className="flex justify-center items-center text-[#393939] font-['Noto Sans KR']">
 				<div className="rounded-full shadow-xl border-solid border-[1px] border-[#393939]">
 					<Image
