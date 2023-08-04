@@ -1,21 +1,23 @@
-// 강좌 리스트 페이지 검색창
 import React, { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { BiSearch } from 'react-icons/bi';
 
 const TopSearchbar = () => {
-	``;
 	const router = useRouter();
 	const [text, setText] = useState('');
 	const [isClicked, setIsClicked] = useState(false);
 	const { keyword } = router.query as { keyword: string };
 
+	useEffect(() => {
+		if (!router.isReady) return;
+
+		keyword ? setText(keyword) : setText('');
+	}, [router.isReady, keyword]);
+
 	const handleSearchClick = async (e: FormEvent) => {
 		e.preventDefault();
 
-		if (!text) {
-			return;
-		}
+		if (!text) return;
 
 		const query = { ...router.query, keyword: text };
 		router.push({
@@ -28,47 +30,39 @@ const TopSearchbar = () => {
 		setText(e.target.value);
 	};
 
-	useEffect(() => {
-		if (!router.isReady) return;
-
-		keyword ? setText(keyword) : setText('');
-	}, [router.isReady, keyword]);
-
 	const handleInputFocus = () => {
 		setIsClicked(true);
 	};
 
 	return (
-		<div className="">
-			<div className="flex gap-x-5 place-content-center px-5 mt-8 mb-14">
-				<form
-					className={`${
-						isClicked ? 'border-[var(--color-mrgreen-9)]  opacity-60' : ''
-					} rounded-[36px] min-w-[500px] h-12 flex border-solid border-2 `}
-					onSubmit={handleSearchClick}
+		<div className="flex px-5 mt-8 gap-x-5 place-content-center mb-14">
+			<form
+				className={`${
+					isClicked ? 'border-[var(--color-mrgreen-9)] opacity-60' : ''
+				} rounded-[36px] min-w-[500px] h-12 flex border-solid border-2 `}
+				onSubmit={handleSearchClick}
+			>
+				<input
+					className="px-10 w-full h-full text-2xl focus:outline-0 min-w-[500px] rounded-[36px] bg-transparent "
+					type="text"
+					value={text}
+					placeholder="강좌명 검색"
+					onChange={handleChangeInput}
+					onFocus={handleInputFocus}
+					onBlur={() => setIsClicked(false)}
+				/>
+				<button
+					className="w-full h-full px-4 py-1 cursor-pointer "
+					onClick={handleSearchClick}
 				>
-					<input
-						className="px-10 w-full h-full text-2xl focus:outline-0 min-w-[500px] rounded-[36px] bg-transparent "
-						type="text"
-						value={text}
-						placeholder="강좌명 검색"
-						onChange={handleChangeInput}
-						onFocus={handleInputFocus}
-						onBlur={() => setIsClicked(false)}
+					<BiSearch
+						className={`${
+							isClicked ? 'text-[var(--color-mrgreen-9)]' : 'opacity-60'
+						} `}
+						size="30"
 					/>
-					<button
-						className="w-full h-full px-4 py-1 cursor-pointer "
-						onClick={handleSearchClick}
-					>
-						<BiSearch
-							className={`${
-								isClicked ? 'text-[var(--color-mrgreen-9)]' : 'opacity-60'
-							} `}
-							size="30"
-						/>
-					</button>
-				</form>
-			</div>
+				</button>
+			</form>
 		</div>
 	);
 };
