@@ -18,7 +18,7 @@ const upperHeaderStyle =
 
 // const menuData = [
 // 	{ id: 1, name: 'Admin', path: '/admin' },
-// 	{ id: 2, name: '마이페이지', path: '/my-page/history' },
+// 	{ id: 2, name: '마이페이지', path: '/my-page/profile' },
 // ];
 
 const UpperHeader = ({ onOpenLoginModal, onOpenSignUpModal }: PropsType) => {
