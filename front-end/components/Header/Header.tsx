@@ -58,7 +58,7 @@ const Header = () => {
 							</Link>
 						</li>
 						<li className="mx-4 my-0 list-none">
-							<Link href="/notification">
+							<Link href="/notices">
 								<span className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]">
 									공지사항
 								</span>
