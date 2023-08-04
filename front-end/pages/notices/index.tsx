@@ -42,7 +42,7 @@ const NotificationPage = ({ notices }: PropsType) => {
 									</Link>
 								</div>
 								<div className="text-sm">
-									<span>운영진</span>
+									<span>온라인명륜당 운영진</span>
 									<span className="mx-3">|</span>
 									<span>{createdAt}</span>
 									<span className="mx-3">|</span>
