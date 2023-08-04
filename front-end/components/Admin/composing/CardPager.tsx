@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faChevronRight,
@@ -6,17 +6,26 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 type BtnId = 'prev' | 'next';
+type PropsType = {
+	page: number;
+	setPage: (page: number) => void;
+	contentsCnt: number;
+	firstContentIdOnNextPage: number;
+};
 
-const CardPager = () => {
-	const [currPage, setCurrPage] = useState(1);
-
+const CardPager = ({
+	page,
+	setPage,
+	contentsCnt,
+	firstContentIdOnNextPage,
+}: PropsType) => {
 	const onPagerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		const btnId = e.currentTarget.id as BtnId;
 
 		if (btnId === 'next') {
-			setCurrPage((prev) => prev + 1);
+			firstContentIdOnNextPage <= contentsCnt ? setPage(page + 1) : null;
 		} else {
-			currPage !== 1 ? setCurrPage((prev) => prev - 1) : '';
+			page !== 1 ? setPage(page - 1) : null;
 		}
 	};
 
@@ -29,7 +38,7 @@ const CardPager = () => {
 			>
 				<FontAwesomeIcon icon={faChevronLeft} />
 			</button>
-			<span className="mx-8 text-2xl">{currPage}</span>
+			<span className="mx-8 text-2xl">{page}</span>
 			<button
 				id="next"
 				onClick={onPagerClick}

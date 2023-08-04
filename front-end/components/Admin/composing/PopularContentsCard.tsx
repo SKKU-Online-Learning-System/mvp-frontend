@@ -9,11 +9,16 @@ type PropsType = { title: string; order: number };
 
 const PopularContentsCard = ({ title, order }: PropsType) => {
 	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
+	const [currPage, setCurrPage] = useState(1);
+
 	const _title = title === '인기 컨텐츠' ? '' : title;
 	const { data: popularContents, isLoading } = usePopularCoursesFetch(_title);
 
 	if (isLoading) return <h2>Loading . . .</h2>;
 	if (!popularContents) return <div>Failed to retrieve data . . .</div>;
+
+	const contentsCnt = popularContents.length;
+	const firstContentIdOnNextPage = 10 * currPage;
 
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const elementId = +e.currentTarget.id;
@@ -49,6 +54,10 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 		}
 	};
 
+	const onPagerClick = (num: number) => {
+		setCurrPage(num);
+	};
+
 	return (
 		<div className="flex flex-col justify-between h-full p-10 bg-white shadow-xl rounded-xl">
 			<div>
@@ -65,35 +74,42 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 						</tr>
 					</thead>
 					<tbody className="flex flex-col">
-						{popularContents?.map((item, idx) => {
-							return (
-								<tr
-									key={idx}
-									className="flex items-center justify-center mt-6 text-center"
-								>
-									<td className="w-1/12">{idx + 1}</td>
-									<td className="w-1/5">
-										{item.courseCreatedAt.split('T')[0]}
-									</td>
-									<td className="w-1/3">{item.courseTitle}</td>
-									<td className="w-1/6 ">{item.instructorName}</td>
-									<td className="w-1/12">{item.enrollmentCount}</td>
-									<input
-										placeholder={`${idx + 1}`}
-										onChange={onOrderChange}
-										className="w-1/12 text-center rounded-lg outline-none border-[1px] border-solid border-[#aeaeae]"
-										id={`${idx}`}
-										type="number"
-										min="0"
-										max="5"
-									/>
-								</tr>
-							);
-						})}
+						{popularContents
+							.slice(10 * (currPage - 1), 10 * currPage)
+							.map((item, idx) => {
+								return (
+									<tr
+										key={idx}
+										className="flex items-center justify-center mt-6 text-center"
+									>
+										<td className="w-1/12">{idx + 1}</td>
+										<td className="w-1/5">
+											{item.courseCreatedAt.split('T')[0]}
+										</td>
+										<td className="w-1/3">{item.courseTitle}</td>
+										<td className="w-1/6 ">{item.instructorName}</td>
+										<td className="w-1/12">{item.enrollmentCount}</td>
+										<input
+											placeholder={`${idx + 1}`}
+											onChange={onOrderChange}
+											className="w-1/12 text-center rounded-lg outline-none border-[1px] border-solid border-[#aeaeae]"
+											id={`${idx}`}
+											type="number"
+											min="0"
+											max="5"
+										/>
+									</tr>
+								);
+							})}
 					</tbody>
 				</table>
 			</div>
-			<CardPager />
+			<CardPager
+				page={currPage}
+				setPage={onPagerClick}
+				contentsCnt={contentsCnt}
+				firstContentIdOnNextPage={firstContentIdOnNextPage}
+			/>
 		</div>
 	);
 };

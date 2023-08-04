@@ -9,10 +9,15 @@ type PropsType = { title: string };
 
 const NewContentsCard = ({ title }: PropsType) => {
 	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
+	const [currPage, setCurrPage] = useState(1);
+
 	const { data: newContents, isLoading } = useNewCoursesFetch();
 
 	if (isLoading) return <h2>Loading . . .</h2>;
 	if (!newContents) return <div>Failed to retrieve data . . .</div>;
+
+	const contentsCnt = newContents.length;
+	const firstContentIdOnNextPage = 10 * currPage;
 
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const elementId = +e.currentTarget.id;
@@ -46,6 +51,10 @@ const NewContentsCard = ({ title }: PropsType) => {
 			arr.push(obj);
 			setObjs(arr);
 		}
+	};
+
+	const onPagerClick = (num: number) => {
+		setCurrPage(num);
 	};
 
 	return (
@@ -87,7 +96,12 @@ const NewContentsCard = ({ title }: PropsType) => {
 					</tbody>
 				</table>
 			</div>
-			<CardPager />
+			<CardPager
+				page={currPage}
+				setPage={onPagerClick}
+				contentsCnt={contentsCnt}
+				firstContentIdOnNextPage={firstContentIdOnNextPage}
+			/>
 		</div>
 	);
 };
