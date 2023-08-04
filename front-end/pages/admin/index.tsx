@@ -4,37 +4,48 @@ import {
 	faChartSimple,
 	faBookOpen,
 	faRankingStar,
+	faBullhorn,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Compose from '../../components/Admin/composing/Compose';
 import UserRanking from '../../components/Admin/user-ranking/UserRanking';
+import NoticesManage from '@components/Admin/notices-manage/NoticesManage';
 import ContentsManage from '../../components/Admin/contents-manage/ContentsManage';
 
 const AdminIndex = (): ReactElement => {
 	const [isComposeOpen, setIsComposeOpen] = useState(true);
 	const [isUserRankingOpen, setIsUserRankingOpen] = useState(false);
 	const [isContentsManageOpen, setIsContentsManageOpen] = useState(false);
+	const [isNoticeManageOpen, setIsNoticeManageOpen] = useState(false);
 
 	const modeController = (
 		compose: boolean,
 		rank: boolean,
 		contents: boolean,
+		notices: boolean,
 	) => {
 		setIsComposeOpen(compose);
 		setIsUserRankingOpen(rank);
 		setIsContentsManageOpen(contents);
+		setIsNoticeManageOpen(notices);
 	};
 
 	const handleSidebarBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		switch (e.currentTarget.id) {
 			case 'compose':
-				modeController(true, false, false);
+				modeController(true, false, false, false);
 				break;
 			case 'user-ranking':
-				modeController(false, true, false);
+				modeController(false, true, false, false);
 				break;
 			case 'contents-manage':
-				modeController(false, false, true);
+				modeController(false, false, true, false);
+				break;
+			case 'notices-manage':
+				modeController(false, false, false, true);
+				break;
+			default:
+				modeController(true, false, false, false);
 				break;
 		}
 	};
@@ -90,6 +101,16 @@ const AdminIndex = (): ReactElement => {
 								강좌 관리
 							</button>
 						</li>
+						<li className="relative w-full">
+							<button
+								id="notices-manage"
+								className={handleSidebarBtnStyle(isNoticeManageOpen)}
+								onClick={handleSidebarBtnClick}
+							>
+								<FontAwesomeIcon icon={faBullhorn} className="mr-4" />
+								공지사항 관리
+							</button>
+						</li>
 					</ul>
 				</div>
 				{isComposeOpen ? (
@@ -98,6 +119,8 @@ const AdminIndex = (): ReactElement => {
 					<UserRanking />
 				) : isContentsManageOpen ? (
 					<ContentsManage />
+				) : isNoticeManageOpen ? (
+					<NoticesManage />
 				) : (
 					''
 				)}
