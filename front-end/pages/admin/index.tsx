@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faChartSimple,
@@ -7,12 +7,18 @@ import {
 	faBullhorn,
 } from '@fortawesome/free-solid-svg-icons';
 
-import Compose from '../../components/Admin/composing/Compose';
-import UserRanking from '../../components/Admin/user-ranking/UserRanking';
-import NoticesManage from '@components/Admin/notices-manage/NoticesManage';
 import ContentsManage from '../../components/Admin/contents-manage/ContentsManage';
+import NoticesManage from '@components/Admin/notices-manage/NoticesManage';
+import UserRanking from '../../components/Admin/user-ranking/UserRanking';
+import Compose from '../../components/Admin/composing/Compose';
+import noticesAPI from '../../apis/Notices/noticesAPI';
+import { Notification } from 'types/Notification';
 
-const AdminIndex = (): ReactElement => {
+type PropsType = {
+	notices: Notification[];
+};
+
+const AdminIndex = ({ notices }: PropsType) => {
 	const [isComposeOpen, setIsComposeOpen] = useState(true);
 	const [isUserRankingOpen, setIsUserRankingOpen] = useState(false);
 	const [isContentsManageOpen, setIsContentsManageOpen] = useState(false);
@@ -120,7 +126,7 @@ const AdminIndex = (): ReactElement => {
 				) : isContentsManageOpen ? (
 					<ContentsManage />
 				) : isNoticeManageOpen ? (
-					<NoticesManage />
+					<NoticesManage notices={notices} />
 				) : (
 					''
 				)}
@@ -128,5 +134,15 @@ const AdminIndex = (): ReactElement => {
 		</div>
 	);
 };
+
+export async function getStaticProps() {
+	const notices = await noticesAPI.fetchAllNotices();
+
+	return {
+		props: {
+			notices,
+		},
+	};
+}
 
 export default AdminIndex;
