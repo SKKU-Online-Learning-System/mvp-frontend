@@ -1873,6 +1873,10 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[var\(--color-mrgreen-7\)\] {
+  background-color: var(--color-mrgreen-7);
+}
+
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
