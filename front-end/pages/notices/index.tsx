@@ -15,7 +15,12 @@ const NotificationPage = ({ notices }: PropsType) => {
 	return (
 		<div className="flex items-center justify-center">
 			<div className="flex flex-col items-center justify-start w-[768px] h-full py-12">
-				<h1 className="mt-2 mb-8 text-4xl font-semibold">공지사항</h1>
+				<div className="w-full px-4 py-2">
+					<h1 className="relative mt-2 mb-4 text-4xl font-semibold ">
+						<div className="w-5 h-0.5 absolute left-1 bg-[var(--color-mrgreen-7)] -top-2"></div>
+						공지사항
+					</h1>
+				</div>
 				<ul className="w-full border-solid border-t-2 border-[#393939]">
 					{notices.map((notice, idx) => {
 						const createdAt = notice.createdAt.split('T')[0];
@@ -42,6 +47,8 @@ const NotificationPage = ({ notices }: PropsType) => {
 									</Link>
 								</div>
 								<div className="text-sm">
+									<span>No.{notice.id}</span>
+									<span className="mx-3">|</span>
 									<span>온라인명륜당 운영진</span>
 									<span className="mx-3">|</span>
 									<span>{createdAt}</span>
