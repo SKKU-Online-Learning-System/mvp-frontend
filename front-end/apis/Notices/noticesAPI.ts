@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios';
-
 import axiosInstance from 'apis';
 import { Notification } from 'types/Notification';
 
