@@ -11,14 +11,8 @@ import ContentsManage from '../../components/Admin/contents-manage/ContentsManag
 import NoticesManage from '@components/Admin/notices-manage/NoticesManage';
 import UserRanking from '../../components/Admin/user-ranking/UserRanking';
 import Compose from '../../components/Admin/composing/Compose';
-import noticesAPI from '../../apis/Notices/noticesAPI';
-import { Notification } from 'types/Notification';
 
-type PropsType = {
-	notices: Notification[];
-};
-
-const AdminIndex = ({ notices }: PropsType) => {
+const AdminIndex = () => {
 	const [isComposeOpen, setIsComposeOpen] = useState(true);
 	const [isUserRankingOpen, setIsUserRankingOpen] = useState(false);
 	const [isContentsManageOpen, setIsContentsManageOpen] = useState(false);
@@ -126,7 +120,7 @@ const AdminIndex = ({ notices }: PropsType) => {
 				) : isContentsManageOpen ? (
 					<ContentsManage />
 				) : isNoticeManageOpen ? (
-					<NoticesManage notices={notices} />
+					<NoticesManage />
 				) : (
 					''
 				)}
@@ -134,15 +128,5 @@ const AdminIndex = ({ notices }: PropsType) => {
 		</div>
 	);
 };
-
-export async function getStaticProps() {
-	const notices = await noticesAPI.fetchAllNotices();
-
-	return {
-		props: {
-			notices,
-		},
-	};
-}
 
 export default AdminIndex;
