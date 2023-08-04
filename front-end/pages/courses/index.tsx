@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 
 import CourseCategory from '@components/Courses/List/CourseCategory';
-import DifficultyList from '@components/Courses/List/DifficultyList';
 import TopSearchbar from '@components/Courses/List/TopSearchbar';
 import LectureList from '@components/Courses/List/LectureList';
-import BreadCrumb from '@components/common/BreadCrumb';
 
 // TODO. 검색을 했을경우 breadCrumb 카테고리가 맞지 않는 문제 해결
 const CoursesListPage = () => {
@@ -16,29 +14,28 @@ const CoursesListPage = () => {
 
 	return (
 		<>
-			{/* 화면 전체 */}
-			{/* <div className='flex m-auto w-[1440px] font-["Noto Sans KR"]'> */}
-			<div className="flex flex-1 max-w-[1200px] p-8 my-0 mx-auto font-['Noto Sans KR']">
+			{/* <div className="min-h-full">
+				<h2 className="select-none w-full bg-[var(--color-green-700)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
+					{'온라인명륜당 > 강좌 List'}
+				</h2>
+				<div className="flex min-h-screen">
+					<div className="w-1/6 min-h-full bg-[var(--color-Primary)] min-w-[280px]">
+						<ul className="flex flex-col items-start justify-start h-full p-12 pr-0">
+							<li className="relative w-full">
+								<button id="compose">편성</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div> */}
+			<div className="flex max-w-[1400px] p-8 mx-auto font-['Noto Sans KR']">
 				<div className="flex ">
-					{/* 왼쪽 sidebar 전체 */}
-					<aside className="w-1/6 ">
-						<nav>
-							<CourseCategory handleClickMenu={handleClickMenu} />
-						</nav>
-					</aside>
-
-					{/* 오른쪽 전체, 그 안에서 위(검색창) 아래(강의 리스트) 나눔*/}
+					<nav className="w-1/6">
+						<CourseCategory handleClickMenu={handleClickMenu} />
+					</nav>
 					<div className="w-full">
-						<div className="px-6 mb-5 ">
-							<BreadCrumb
-								category={'강좌LIST'}
-								menu={menu}
-								containerPadding={'2rem 0'}
-							/>
-						</div>
+						<div className="px-6 mb-5 "></div>
 						<TopSearchbar />
-
-						{/* <DifficultyList type={['초급', '중급', '고급']} /> */}
 						<LectureList />
 					</div>
 				</div>
