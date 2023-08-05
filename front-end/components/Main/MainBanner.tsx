@@ -2,19 +2,16 @@ import React, { useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
 
-import { useRecommendedCoursesFetch } from 'query/hooks/Main/index';
+import { MainCourse } from 'types/Main';
 
-const MainBanner = () => {
+type PropsType = {
+	contents: MainCourse[];
+};
+
+const MainBanner = ({ contents }: PropsType) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const { data: recommendedCoursesList, isLoading } =
-		useRecommendedCoursesFetch(0);
 
-	if (isLoading) return <div>Loading . . .</div>;
-
-	if (!recommendedCoursesList)
-		return <div>Main banner contents are being loaded . . .</div>;
-
-	const slides = recommendedCoursesList.map((course) => {
+	const slides = contents.map((course) => {
 		return {
 			thumbnail: course.thumbnail,
 			url: `/courses/${course.courseId}`,
