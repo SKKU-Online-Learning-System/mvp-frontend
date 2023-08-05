@@ -45,7 +45,7 @@ const QuestionsByCoursePage = () => {
 							<div>
 								<button
 									onClick={handleClickButton}
-									className=" bg-[var(--color-Primary)] p-2 text-[var(--color-onPrimary)] font-medium border-none rounded-md cursor-pointer duration-300 hover:bg-[var(--color-mrgreen-5)] hover:outline-none"
+									className="focus:outline-[var(--color-mrgreen-5)] focus:[var(--color-mrgreen-5)] bg-[var(--color-Primary)] p-2 text-[var(--color-onPrimary)] font-medium border-none rounded-md cursor-pointer duration-300 hover:bg-[var(--color-mrgreen-5)] hover:outline-none"
 								>
 									질문하기
 								</button>

@@ -48,7 +48,7 @@ const QuestionForm = ({ courseId }: IQuestionForm) => {
 				<div className="flex justify-end mt-3 text-lg">
 					<button
 						type="submit"
-						className="font-medium hover:opacity-90 text-[var(--color-onPrimary)] bg-[var(--color-Primary)] rounded-md py-1 px-2 cursor-pointer"
+						className="focus:outline-[var(--color-mrgreen-5)] focus:[var(--color-mrgreen-5)] font-medium hover:opacity-90 text-[var(--color-onPrimary)] bg-[var(--color-Primary)] rounded-md py-1 px-2 cursor-pointer"
 					>
 						등록
 					</button>
