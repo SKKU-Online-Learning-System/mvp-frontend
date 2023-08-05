@@ -28,7 +28,6 @@ html, body, #root {
 
 /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); */
 :root {
-
   --color-dark-0: #C1C2C5;
   --color-dark-1: #A6A7AB;
   --color-dark-2: #909296;
@@ -48,7 +47,7 @@ html, body, #root {
   --color-gray-5: #adb5bd;
   --color-gray-6: #868e96;
 
-
+  
   /* mrdang green 이라는 뜻 */
   --color-mrgreen-0: #E5F9F1;
   --color-mrgreen-1: #BFF0DB;
