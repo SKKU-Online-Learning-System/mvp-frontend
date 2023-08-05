@@ -28,12 +28,20 @@ const QnA = ({ courseId, qna }: PropsType) => {
 				</div>
 				<div className="flex">
 					<h2 className="pr-[18px] font-bold text-2xl">최근 한 질문</h2>
-					{recentQna.length > 0 && (
+					{recentQna.length > 0 ? (
 						<div
 							className="flex text-xs hover:opacity-90 font-medium my-auto text-[var(--color-onPrimary)] bg-[var(--color-Primary)] rounded-md py-1 px-2 cursor-pointer"
 							onClick={handleClick}
 						>
 							더보기
+							<AiFillCaretRight className="my-auto" />
+						</div>
+					) : (
+						<div
+							className="flex text-xs hover:opacity-90 font-medium my-auto text-[var(--color-onPrimary)] bg-[var(--color-Primary)] rounded-md py-1 px-2 cursor-pointer"
+							onClick={handleClick}
+						>
+							질문하기
 							<AiFillCaretRight className="my-auto" />
 						</div>
 					)}
@@ -42,14 +50,9 @@ const QnA = ({ courseId, qna }: PropsType) => {
 			{recentQna.length === 0 && (
 				<div className="flex items-center">
 					<div className="py-0 px-[18px]">첫 질문의 주인공이 되어보세요</div>
-					<div
-						className="font-semibold text-[#f2f4f6] bg-[#7dad47] rounded-[7px] py-2 px-3 cursor-pointer"
-						onClick={handleClick}
-					>
-						질문 올리기
-					</div>
 				</div>
 			)}
+			{/* 질문 및 답변 목록 표시 */}
 			{recentQna.map((ele) => {
 				return (
 					<QnAItem
