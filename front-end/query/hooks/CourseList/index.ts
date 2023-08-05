@@ -5,29 +5,7 @@ import {
 	UseQueryResult,
 } from '@tanstack/react-query';
 import API from 'apis/Courses/courseApi';
-import {
-	ICourseCategory,
-	ICourseListParams,
-	ICourseInfo,
-	IPopularCourse,
-} from 'types/Course';
-
-const selectCourseCategories = (data: ICourseCategory[]) => [
-	{ id: 0, name: '전체보기' },
-	...data,
-];
-
-export const useCourseCategoriesFetch = (): UseQueryResult<
-	ICourseCategory[]
-> => {
-	return useQuery<ICourseCategory[]>(
-		[QUERY_KEYS.FETCH_COURSE_CATEGORIES],
-		API.fetchAllCourseCategories,
-		{
-			select: selectCourseCategories,
-		},
-	);
-};
+import { ICourseListParams, ICourseInfo, IPopularCourse } from 'types/Course';
 
 export const useCourseListFetch = (
 	params: ICourseListParams,
