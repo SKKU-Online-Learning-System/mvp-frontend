@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import { ICourseCategory } from 'types/Course';
 
@@ -28,13 +29,6 @@ const CourseCategory = ({ categories }: PropsType) => {
 		setIsClickedCategory(clickedCategory);
 	};
 
-	const handleSubItemClick = (category2sId: number) => () => {
-		router.push({
-			pathname: '/courses',
-			query: { category2sId },
-		});
-	};
-
 	return (
 		<ul>
 			{categories.map((content, idx) => {
@@ -51,14 +45,11 @@ const CourseCategory = ({ categories }: PropsType) => {
 						{isClicked && (
 							<div>
 								{content.category2s?.map((elem, idx) => (
-									<div
-										className="bg-[var(--color-Surface] hover:bg-[var(--color-Surface)] cursor-pointer font-normal 
-											text-[#595959] border-[0.1px] border-b-[0.5px] border-[#e4e4e4] border-solid p-[0.8rem] pl-[1.5rem]"
-										onClick={handleSubItemClick(elem.id)}
-										key={idx}
-									>
-										{elem.name}
-									</div>
+									<Link href={`/course/${content.category2s}`} key={idx}>
+										<span className="bg-[var(--color-Surface] hover:bg-[var(--color-Surface)] cursor-pointer font-normal text-[#595959] border-[0.1px] border-b-[0.5px] border-[#e4e4e4] border-solid p-[0.8rem] pl-[1.5rem]">
+											{elem.name}
+										</span>
+									</Link>
 								))}
 							</div>
 						)}
