@@ -7,7 +7,8 @@ import { RecentLecture } from '@components/Main/RecentLecture';
 import { userLoginAuthState } from 'constants/commonState';
 import CourseList from '@components/Main/CourseList';
 import MainBanner from '@components/Main/MainBanner';
-import mainPageAPI from '../apis/Main/index';
+import { ILatestLecture } from 'types/MyPage';
+import mainAPI from '../apis/Main/index';
 import { MainCourse } from 'types/Main';
 
 type PropsType = {
@@ -47,7 +48,7 @@ const MainPage = ({ recommendedContents }: PropsType) => {
 };
 
 export async function getServerSideProps() {
-	const recommendedContents = await mainPageAPI.fetchRecommendedCourse();
+	const recommendedContents = await mainAPI.fetchRecommendedCourse();
 
 	return { props: { recommendedContents } };
 }
