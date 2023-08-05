@@ -19,7 +19,7 @@ const CourseList = ({ headerText, contents }: PropsType) => {
 	if (contents.length === 0) {
 		return (
 			<div className="flex items-center justify-center my-4">
-				<span className="rounded-lg bg-[var(--color-green-700)] text-white py-4 px-8 font-semibold text-xl">
+				<span className="px-8 py-4 text-xl font-semibold text-white rounded-lg bg-gradient-to-r from-green-700 to-green-800">
 					해당 카테고리 강좌 정보가 없습니다.
 				</span>
 			</div>
