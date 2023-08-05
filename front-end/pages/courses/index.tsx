@@ -12,14 +12,14 @@ type PropsType = {
 
 // TODO. 검색을 했을경우 breadCrumb 카테고리가 맞지 않는 문제 해결
 const CoursesListPage = ({ categories }: PropsType) => {
+	const categoryList = [{ id: 0, name: '전체보기' }, ...categories];
+
 	return (
-		<CourseListLayout categories={categories}>
-			<div className="flex max-w-[1400px] p-8 mx-auto font-['Noto Sans KR']">
-				<div className="flex ">
-					<div className="w-full">
-						<TopSearchbar />
-						<LectureList />
-					</div>
+		<CourseListLayout categories={categoryList}>
+			<div className="flex justify-center items-center bg-white max-w-[1400px] mx-auto p-10 pb-24 font-['Noto Sans KR']">
+				<div className="w-full">
+					<TopSearchbar />
+					<LectureList />
 				</div>
 			</div>
 		</CourseListLayout>
@@ -27,12 +27,8 @@ const CoursesListPage = ({ categories }: PropsType) => {
 };
 
 export async function getStaticProps() {
-	const res = await courseAPI.fetchAllCourseCategories();
-	return {
-		props: {
-			categories: res,
-		},
-	};
+	const categories = await courseAPI.fetchAllCourseCategories();
+	return { props: { categories } };
 }
 
 export default CoursesListPage;
