@@ -7,7 +7,6 @@ import { RecentLecture } from '@components/Main/RecentLecture';
 import { userLoginAuthState } from 'constants/commonState';
 import CourseList from '@components/Main/CourseList';
 import MainBanner from '@components/Main/MainBanner';
-import { ILatestLecture } from 'types/MyPage';
 import mainAPI from '../apis/Main/index';
 import { MainCourse } from 'types/Main';
 
