@@ -33,7 +33,7 @@ const CourseList = ({ headerText, contents }: PropsType) => {
 				<div className="grid gap-x-4 gap-y-4 py-5 px-[35px] grid-cols-5">
 					{contents.map((course, idx) => (
 						<Link href={`/courses/${course.courseId}`} key={idx}>
-							<div className="relative overflow-hidden rounded-lg transition hover:scale-[1.03] cursor-pointer bg-[var(--color-Surface)]">
+							<div className="relative overflow-hidden rounded-lg transition hover:scale-[1.02] cursor-pointer bg-[var(--color-Surface)]">
 								<Image
 									width={'300'}
 									height={'180'}
