@@ -37,13 +37,20 @@ const QuestionsByCoursePage = () => {
 						courseId={courseId}
 					/>
 
-					<div className="w-[1200px] m-auto flex flex-col items-center">
-						<button
-							onClick={handleClickButton}
-							className="w-[700px] bg-[#69c97f] text-white mt-[10px] mx-0 py-[0.4rem] px-[0.8rem] font-['Noto Sans KR'] text-base border-none rounded-[4px] cursor-pointer duration-300 hover:bg-[#34a84d] hover:outline-none"
-						>
-							질문하기
-						</button>
+					<div className="w-[85%] m-auto flex flex-col">
+						<div className="flex items-center justify-between my-6">
+							<h2 className="text-4xl font-bold text-[var(--color-onBackground)]">
+								질문 답변
+							</h2>
+							<div>
+								<button
+									onClick={handleClickButton}
+									className=" bg-[var(--color-Primary)] p-2 text-[var(--color-onPrimary)] font-medium border-none rounded-md cursor-pointer duration-300 hover:bg-[var(--color-mrgreen-5)] hover:outline-none"
+								>
+									질문하기
+								</button>
+							</div>
+						</div>
 						{openForm && <QuestionForm courseId={courseId} />}
 						<QuestionTable qna={qna} courseName={course.title} />
 					</div>

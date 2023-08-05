@@ -10,7 +10,7 @@ interface IQuestionTable {
 
 const QuestionTable = ({ courseName, qna }: IQuestionTable) => {
 	return (
-		<ul>
+		<ul className="mt-3 mb-24 border-y border-y-gray-400">
 			{qna.map((question) => {
 				return (
 					<QuestionBox
