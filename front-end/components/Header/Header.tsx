@@ -69,15 +69,18 @@ const Header = () => {
 						type="text"
 						ref={inputRef}
 						placeholder="배우고 싶은 지식을 입력하세요."
-						className="opacity-75 rounded-3xl w-[300px] mbl:w-[100px] rounded-5 pr-10 pl-4 h-8 flex border-solid border-2"
+						className=" focus:outline-none  focus:border-[var(--color-Primary)] opacity-75 rounded-3xl w-[300px] mbl:w-[100px] pr-10 pl-4 h-8 flex border-solid border-2"
 						onChange={handleInput}
 						onKeyPress={handleKeyPress}
 					/>
 					<button
-						className="h-full px-2 py-1 -ml-12 cursor-pointer "
+						className="z-10 h-full px-2 py-1 -ml-12 cursor-pointer rounded-3xl "
 						onClick={handleClickSearchLectures}
 					>
-						<BiSearch className="cursor-pointer " size="25" />
+						<BiSearch
+							className="opacity-70 focus:[var(--color-Primary)] cursor-pointer"
+							size="25"
+						/>
 					</button>
 				</div>
 				{showModal && renderModal()}
