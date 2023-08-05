@@ -15,7 +15,6 @@ export const RecentLecture = () => {
 			const recentLectures = await myPageAPI.fetchRecentLectures();
 			setLectures(recentLectures);
 		}
-
 		func();
 	}, []);
 
