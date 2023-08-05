@@ -1,23 +1,25 @@
-import React, { useState, useEffect, ReactElement } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import { useCourseCategoriesFetch } from 'query/hooks/CourseList/index';
+import { ICourseCategory } from 'types/Course';
 
-interface ICourseCategory {
-	handleClickMenu: (menu: string[]) => void;
-}
+type PropsType = {
+	categories: ICourseCategory[];
+};
 
-const CourseCategory = ({ handleClickMenu }: ICourseCategory) => {
+const CourseCategory = ({ categories }: PropsType) => {
 	const router = useRouter();
-	const { data: courseCategories, isLoading } = useCourseCategoriesFetch();
+
 	const [isClickedCategory, setIsClickedCategory] = useState<boolean[]>([]);
 
+	useEffect(() => {
+		const categoryLength = categories.length;
+
+		setIsClickedCategory(new Array(categoryLength).fill(false));
+	}, [categories]);
+
 	const handleCardClick = (clickedIndex: number) => () => {
-		if (!clickedIndex) {
-			handleClickMenu(['전체보기']);
-			router.push('/courses');
-			return;
-		}
+		if (!clickedIndex) router.push('/courses');
 
 		const clickedCategory = isClickedCategory.map((value, index) =>
 			clickedIndex === index ? !value : value,
@@ -26,58 +28,44 @@ const CourseCategory = ({ handleClickMenu }: ICourseCategory) => {
 		setIsClickedCategory(clickedCategory);
 	};
 
-	const handleSubItemClick = (category2sId: number, menu: string[]) => () => {
-		handleClickMenu(menu);
+	const handleSubItemClick = (category2sId: number) => () => {
 		router.push({
 			pathname: '/courses',
 			query: { category2sId },
 		});
 	};
 
-	useEffect(() => {
-		const categoryLength = courseCategories?.length;
-
-		if (!categoryLength) return;
-
-		setIsClickedCategory(new Array(categoryLength).fill(false));
-	}, [courseCategories]);
-
-	if (isLoading) return <div>Loading . . .</div>;
-
 	return (
-		<>
-			{courseCategories?.map((content, index) => {
-				const isClicked = isClickedCategory[index];
+		<ul>
+			{categories.map((content, idx) => {
+				const isClicked = isClickedCategory[idx];
 				return (
-					<div key={index}>
+					<li key={idx}>
 						<div
 							className="flex font-semibold transition text-[#585858] hover:text-[#121212] border-[1px] border-solid
 								border-[#e4e4e4] cursor-pointer p-[0.85rem] bg-[var(--color-Surface)]"
-							onClick={handleCardClick(index)}
+							onClick={handleCardClick(idx)}
 						>
 							{content.name}
 						</div>
 						{isClicked && (
 							<div>
-								{content.category2s?.map((elem, index) => (
+								{content.category2s?.map((elem, idx) => (
 									<div
 										className="bg-[var(--color-Surface] hover:bg-[var(--color-Surface)] cursor-pointer font-normal 
 											text-[#595959] border-[0.1px] border-b-[0.5px] border-[#e4e4e4] border-solid p-[0.8rem] pl-[1.5rem]"
-										onClick={handleSubItemClick(elem.id, [
-											content.name,
-											elem.name,
-										])}
-										key={index}
+										onClick={handleSubItemClick(elem.id)}
+										key={idx}
 									>
 										{elem.name}
 									</div>
 								))}
 							</div>
 						)}
-					</div>
+					</li>
 				);
 			})}
-		</>
+		</ul>
 	);
 };
 
