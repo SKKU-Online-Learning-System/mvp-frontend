@@ -4,9 +4,10 @@ import { BiSearch } from 'react-icons/bi';
 
 const TopSearchbar = () => {
 	const router = useRouter();
+	const { keyword } = router.query as { keyword: string };
+
 	const [text, setText] = useState('');
 	const [isClicked, setIsClicked] = useState(false);
-	const { keyword } = router.query as { keyword: string };
 
 	useEffect(() => {
 		if (!router.isReady) return;
@@ -39,11 +40,11 @@ const TopSearchbar = () => {
 			<form
 				className={`${
 					isClicked ? 'border-[var(--color-mrgreen-9)] opacity-60' : ''
-				} rounded-[36px] min-w-[500px] h-12 flex border-solid border-2 `}
+				} rounded-[36px] min-w-[500px] h-12 flex border-solid border-2`}
 				onSubmit={handleSearchClick}
 			>
 				<input
-					className="px-10 w-full h-full text-2xl focus:outline-0 min-w-[500px] rounded-[36px] bg-transparent "
+					className="px-10 w-full h-full text-2xl focus:outline-0 min-w-[500px] rounded-[36px] bg-transparent"
 					type="text"
 					value={text}
 					placeholder="강좌명 검색"
@@ -52,7 +53,7 @@ const TopSearchbar = () => {
 					onBlur={() => setIsClicked(false)}
 				/>
 				<button
-					className="w-full h-full px-4 py-1 cursor-pointer "
+					className="w-full h-full px-4 py-1 cursor-pointer"
 					onClick={handleSearchClick}
 				>
 					<BiSearch
@@ -67,4 +68,4 @@ const TopSearchbar = () => {
 	);
 };
 
-export default React.memo(TopSearchbar);
+export default TopSearchbar;
