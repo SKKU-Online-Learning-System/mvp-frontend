@@ -1,9 +1,7 @@
-// 강좌리스트 페이지: 모든 카드들 배열방식 지정
-// x행 4열
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import LectureCard from './LectureCard';
+import CourseCard from './CourseCard';
 import { useCourseListFetch } from 'query/hooks/CourseList';
 
 type RouterQueryString = {
@@ -11,6 +9,8 @@ type RouterQueryString = {
 	category2sId: string;
 	difficulty: string;
 };
+
+const skeleton_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const LectureList = () => {
 	const router = useRouter();
@@ -21,11 +21,10 @@ const LectureList = () => {
 		category2sId,
 		difficulty,
 	});
-	const skeleton_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 	if (!courseList || courseList.length === 0) return null;
 
-	// skeleton screen: 로딩 중에 회색화면으로 미리 나오는 거
+	// skeleton screen
 	if (isLoading)
 		return (
 			<div
@@ -59,11 +58,12 @@ const LectureList = () => {
 				<span className="sr-only">Loading...</span>
 			</div>
 		);
+
 	return (
-		<div className="grid grid-cols-4 px-6 mb-12 gap-x-5 gap-y-14">
+		<div className="grid grid-cols-4 gap-x-12 gap-y-12">
 			{!!courseList.length ? (
 				courseList.map((course, index) => (
-					<LectureCard course={course} key={index} />
+					<CourseCard course={course} key={index} />
 				))
 			) : (
 				<div>검색 결과가 없습니다!!!</div>
