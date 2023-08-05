@@ -12,7 +12,7 @@ const History = () => {
 
 	return (
 		<div className="min-h-screen bg-white">
-			<div className="grid w-full min-h-full grid-cols-5 grid-rows-4 p-20 gap-x-12 gap-y-20">
+			<div className="grid w-full min-h-full grid-cols-5 grid-rows-4 p-20 gap-x-12 gap-y-12">
 				<HistoryCard lectures={latestLectures} />
 			</div>
 		</div>

@@ -69,7 +69,7 @@ const Learning = () => {
 
 	return (
 		<div className="min-h-screen bg-white">
-			<div className="grid grid-cols-5 grid-rows-4 p-20 gap-x-12 gap-y-20">
+			<div className="grid grid-cols-5 grid-rows-4 p-20 gap-x-12 gap-y-12">
 				<LearningCard
 					courses={currentLearningCourseList}
 					learningLectureCount={learningLectureCount}
