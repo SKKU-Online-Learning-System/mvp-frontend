@@ -760,6 +760,11 @@ video {
   margin-bottom: auto;
 }
 
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .-ml-12 {
   margin-left: -3rem;
 }
@@ -930,6 +935,14 @@ video {
 
 .mt-\[50px\] {
   margin-top: 50px;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
 }
 
 .box-border {
@@ -1106,6 +1119,26 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-\[304px\] {
+  height: 304px;
+}
+
+.h-\[124px\] {
+  height: 124px;
+}
+
+.h-\[128px\] {
+  height: 128px;
+}
+
+.h-\[308px\] {
+  height: 308px;
+}
+
+.h-\[120px\] {
+  height: 120px;
 }
 
 .min-h-full {
@@ -2253,6 +2286,14 @@ video {
   padding-top: 60px;
 }
 
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2583,6 +2624,16 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-\[\#1b1b1b\] {
+  --tw-text-opacity: 1;
+  color: rgb(27 27 27 / var(--tw-text-opacity));
+}
+
+.text-\[\#cccccc\] {
+  --tw-text-opacity: 1;
+  color: rgb(204 204 204 / var(--tw-text-opacity));
+}
+
 .no-underline {
   -webkit-text-decoration-line: none;
           text-decoration-line: none;
@@ -2686,6 +2737,14 @@ input::-webkit-inner-spin-button {
 
 .hover\:left-0\.5:hover {
   left: 0.125rem;
+}
+
+.hover\:left-3:hover {
+  left: 0.75rem;
+}
+
+.hover\:left-3\.5:hover {
+  left: 0.875rem;
 }
 
 .hover\:rotate-45:hover {

@@ -1,8 +1,7 @@
-import React, { useState, ReactElement } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import menus from 'constants/MyPage/myPageMenus';
 import { ICourseCategory } from 'types/Course';
 
 type PropsType = {
@@ -13,28 +12,26 @@ type PropsType = {
 const CourseListLayout = ({ children, categories }: PropsType) => {
 	const router = useRouter();
 
-	const [isClicked, setIsClicked] = useState(menus[0].title);
+	const [isClicked, setIsClicked] = useState(categories[0].name);
 	const [isClickedCategory, setIsClickedCategory] = useState<boolean[]>([]);
+
+	useEffect(() => {
+		const categoryLength = categories.length;
+
+		setIsClickedCategory(new Array(categoryLength).fill(false));
+	}, [categories]);
 
 	const handleMenuClick = (event: string) => {
 		setIsClicked(event);
 	};
 
-	const handleCardClick = (clickedIndex: number) => () => {
+	const handleCardClick = (clickedIndex: number) => {
 		if (!clickedIndex) router.push('/courses');
 
-		const clickedCategory = isClickedCategory.map((value, index) =>
-			clickedIndex === index ? !value : value,
+		const clickedCategories = isClickedCategory.map((value, idx) =>
+			clickedIndex === idx ? true : false,
 		);
-
-		setIsClickedCategory(clickedCategory);
-	};
-
-	const handleSubItemClick = (category2sId: number) => () => {
-		router.push({
-			pathname: '/courses',
-			query: { category2sId },
-		});
+		setIsClickedCategory(clickedCategories);
 	};
 
 	const handleSidebarBtnStyle = (open: boolean) => {
@@ -55,29 +52,35 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 				{'온라인명륜당 > 강좌 List'}
 			</h2>
 			<div className="flex">
-				<div className="min-h-screen w-1/6 bg-[var(--color-Primary)] min-w-[280px]">
-					<ul>
+				<div className="min-h-screen w-1/6 bg-[var(--color-Primary)] min-w-[280px] ">
+					<ul className="flex flex-col justify-start h-full p-12 pr-0">
 						{categories.map((content, idx) => {
-							const isClicked = isClickedCategory[idx];
+							const isCategoryClicked = isClickedCategory[idx];
+
 							return (
-								<li key={idx}>
+								<li
+									className={`text-[var(--color-onPrimary-200)] ${handleSidebarBtnStyle(
+										isClicked === content.name,
+									)}`}
+									key={idx}
+									onClick={() => handleMenuClick(content.name)}
+								>
 									<div
-										className="flex font-semibold transition text-[#585858] hover:text-[#121212] cursor-pointer p-[0.85rem] bg-[var(--color-Surface)]"
-										onClick={handleCardClick(idx)}
+										className={`flex font-semibold transition cursor-pointer`}
+										onClick={() => handleCardClick(idx)}
 									>
 										{content.name}
 									</div>
-									{isClicked && (
-										<div>
+									{isCategoryClicked && (
+										<div className="mt-4">
 											{content.category2s?.map((elem, idx) => (
-												<div
-													className="bg-[var(--color-Surface] hover:bg-[var(--color-Surface)] cursor-pointer font-normal 
-                                                    text-[#595959] border-[0.1px] border-b-[0.5px] border-[#e4e4e4] border-solid p-[0.8rem] pl-[1.5rem]"
-													onClick={handleSubItemClick(elem.id)}
-													key={idx}
-												>
-													{elem.name}
-												</div>
+												<li className="mt-2">
+													<Link href={`courses/${elem.id}`} key={idx}>
+														<span className="text-base transition-all relative left-3 hover:left-3.5">
+															{elem.name}
+														</span>
+													</Link>
+												</li>
 											))}
 										</div>
 									)}
@@ -86,30 +89,10 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 						})}
 					</ul>
 				</div>
-				<div className="tbl:w-[80%] bg-[var(--color-Surface)]">{children}</div>
+				<div className="w-full bg-white">{children}</div>
 			</div>
 		</div>
 	);
 };
 
 export default CourseListLayout;
-
-{
-	/* <ul className="flex flex-col justify-start h-full p-12 pr-0">
-    {menus.map((menu, idx) => (
-        <li
-            key={idx}
-            className="relative w-full"
-            onClick={() => handleMenuClick(menu.title)}
-        >
-            <Link href={menu.path}>
-                <div
-                    className={handleSidebarBtnStyle(isClicked === menu.title)}
-                >
-                    <span>{menu.title}</span>
-                </div>
-            </Link>
-        </li>
-    ))}
-</ul> */
-}
