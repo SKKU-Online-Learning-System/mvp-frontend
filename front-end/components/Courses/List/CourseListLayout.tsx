@@ -21,14 +21,14 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 		setIsClickedCategory(new Array(categoryLength).fill(false));
 	}, [categories]);
 
-	const handleMenuClick = (event: string) => {
-		setIsClicked(event);
+	const handleMenuClick = (contentName: string) => {
+		setIsClicked(contentName);
 	};
 
 	const handleCardClick = (clickedIndex: number) => {
 		if (!clickedIndex) router.push('/courses');
 
-		const clickedCategories = isClickedCategory.map((value, idx) =>
+		const clickedCategories = isClickedCategory.map((_, idx) =>
 			clickedIndex === idx ? true : false,
 		);
 		setIsClickedCategory(clickedCategories);
@@ -75,7 +75,10 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 										<div className="mt-4">
 											{content.category2s?.map((elem, idx) => (
 												<li className="mt-2" key={idx}>
-													<Link href={`courses/${elem.id}`} key={idx}>
+													<Link
+														href={`courses?category2sId=${elem.id}`}
+														key={idx}
+													>
 														<span className="text-base transition-all relative left-3 hover:left-3.5">
 															{elem.name}
 														</span>
@@ -95,4 +98,4 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 	);
 };
 
-export default CourseListLayout;
+export default React.memo(CourseListLayout);
