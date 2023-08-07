@@ -62,11 +62,12 @@ const NotificationPage = ({ notices }: PropsType) => {
 	);
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const notices = await noticesAPI.fetchAllNotices();
 
 	return {
 		props: { notices },
+		revalidate: 5 * 60,
 	};
 }
 
