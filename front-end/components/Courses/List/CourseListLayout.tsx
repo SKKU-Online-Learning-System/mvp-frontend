@@ -74,7 +74,7 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 									{isCategoryClicked && (
 										<div className="mt-4">
 											{content.category2s?.map((elem, idx) => (
-												<li className="mt-2">
+												<li className="mt-2" key={idx}>
 													<Link href={`courses/${elem.id}`} key={idx}>
 														<span className="text-base transition-all relative left-3 hover:left-3.5">
 															{elem.name}
