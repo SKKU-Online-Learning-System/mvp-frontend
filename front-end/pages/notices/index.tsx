@@ -10,8 +10,6 @@ type PropsType = {
 };
 
 const NotificationPage = ({ notices }: PropsType) => {
-	if (!notices) return <div>Failed to retrieve notifications . . .</div>;
-
 	return (
 		<div className="flex items-center justify-center">
 			<div className="flex flex-col items-center justify-start w-[768px] h-full py-12">
@@ -64,14 +62,11 @@ const NotificationPage = ({ notices }: PropsType) => {
 	);
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const notices = await noticesAPI.fetchAllNotices();
 
 	return {
-		props: {
-			notices,
-		},
-		revalidate: 5 * 60,
+		props: { notices },
 	};
 }
 
