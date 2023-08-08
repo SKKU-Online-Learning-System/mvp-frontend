@@ -49,15 +49,22 @@ const Header = () => {
 							온라인 명륜당
 						</span>
 					</Link>
-					<ul className="flex pl-0 mx-32 list-none dt:mx-3">
-						<li className="mx-4 my-0 list-none">
+					<ul className="flex mx-40 list-none dt:mx-3">
+						<li className="mx-8 list-none">
 							<Link href="/courses">
 								<span className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]">
-									강좌 List
+									온라인명륜당 소개
 								</span>
 							</Link>
 						</li>
-						<li className="mx-4 my-0 list-none">
+						<li className="mx-8 list-none">
+							<Link href="/courses">
+								<span className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]">
+									강좌목록
+								</span>
+							</Link>
+						</li>
+						<li className="mx-8 list-none">
 							<Link href="/notices">
 								<span className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]">
 									공지사항
