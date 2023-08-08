@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Notification } from 'types/Notification';
 import noticesAPI from '../../apis/Notices/noticesAPI';
 import NewIndicator from '@components/Notices/NewIndicator';
+import NoticeMetaDataBar from '@components/Notices/NoticeMetaDataBar';
 
 type PropsType = {
 	notices: Notification[];
@@ -36,7 +37,7 @@ const NotificationPage = ({ notices }: PropsType) => {
 								className="border-solid border-b-[1px] border-[#aeaeae] py-3 px-6 w-full"
 								key={idx}
 							>
-								<div className="flex items-center justify-start mb-3">
+								<div className="flex items-center justify-start mb-2">
 									{isNew ? <NewIndicator /> : null}
 									<Link href={`/notices/${notice.id}`}>
 										<h4 className="text-lg font-semibold cursor-pointer">
@@ -44,15 +45,7 @@ const NotificationPage = ({ notices }: PropsType) => {
 										</h4>
 									</Link>
 								</div>
-								<div className="text-sm">
-									<span>No.{notice.id}</span>
-									<span className="mx-3">|</span>
-									<span>온라인명륜당 운영진</span>
-									<span className="mx-3">|</span>
-									<span>{createdAt}</span>
-									<span className="mx-3">|</span>
-									<span>조회수: {notice.views}</span>
-								</div>
+								<NoticeMetaDataBar notice={notice} />
 							</li>
 						);
 					})}
