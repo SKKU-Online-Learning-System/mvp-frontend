@@ -28,8 +28,8 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 	const handleCardClick = (clickedIndex: number) => {
 		if (!clickedIndex) router.push('/courses');
 
-		const clickedCategories = isClickedCategory.map((value, idx) =>
-			clickedIndex === idx ? !value : value,
+		const clickedCategories = isClickedCategory.map((_, idx) =>
+			clickedIndex === idx ? true : false,
 		);
 		setIsClickedCategory(clickedCategories);
 	};
