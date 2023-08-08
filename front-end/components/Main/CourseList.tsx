@@ -43,8 +43,8 @@ const CourseList = ({ headerText, contents }: PropsType) => {
 									layout="responsive"
 								/>
 								<div className="flex flex-col justify-between px-3 pt-2 pb-3">
-									<div className="font-bold">{course.title}</div>
-									<div className="text-xs opacity-[0.6] mt-2 overflow-ellipsis">
+									<div className="font-bold leading-5">{course.title}</div>
+									<div className="text-xs opacity-[0.6] mt-3 overflow-ellipsis">
 										{course.instructor}
 									</div>
 								</div>
