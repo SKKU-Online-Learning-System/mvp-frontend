@@ -770,6 +770,11 @@ video {
   margin-right: 1.5rem;
 }
 
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .-ml-12 {
   margin-left: -3rem;
 }
@@ -2250,6 +2255,14 @@ video {
   padding-top: 60px;
 }
 
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pt-3 {
+  padding-top: 0.75rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2420,6 +2433,18 @@ video {
 
 .leading-\[49px\] {
   line-height: 49px;
+}
+
+.leading-3 {
+  line-height: .75rem;
+}
+
+.leading-7 {
+  line-height: 1.75rem;
+}
+
+.leading-6 {
+  line-height: 1.5rem;
 }
 
 .text-\[\#086ac5\] {

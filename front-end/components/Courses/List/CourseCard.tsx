@@ -22,12 +22,12 @@ const CourseCard = ({ course }: { course: ICourseInfo }): JSX.Element => {
 						alt="course thumbnail"
 						layout="responsive"
 					/>
-					<div className="flex flex-col justify-around h-[120px] px-4 pt-1 pb-3">
-						<div className="text-lg font-semibold">{course.title}</div>
-						<div className="text-sm font-semibold">{course.summary}</div>
-						<div className="text-sm font-semibold">
-							{course.createdAt.split('T')[0]}
+					<div className="flex flex-col justify-around px-4 pt-3 pb-3">
+						<div className="text-base font-semibold leading-5">
+							{course.title}
 						</div>
+						<div className="my-3 text-sm font-semibold">{course.summary}</div>
+						<div className="text-sm font-semibold">{course.instructor}</div>
 					</div>
 				</div>
 			</Link>
