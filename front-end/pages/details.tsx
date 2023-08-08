@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import CurrentQnA from '@components/Details/ListContents/CurrentQnA/CurrentQnA';
 import Curriculum from '@components/Details/ListContents/Curriculum/Curriculum';
