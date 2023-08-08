@@ -45,19 +45,19 @@ const AnswerForm = ({ questionId }: any) => {
 				>
 					<textarea
 						name="contents"
-						// cols={130}
-						// rows={5}
+						cols={130}
+						rows={5}
 						placeholder="답변을 입력하세요."
 						required
 						className="p-2 w-full h-full border rounded-md resize-none focus:outline-[var(--color-mrgreen-5)] focus:[var(--color-mrgreen-5)] hover:border-[var(--color-mrgreen-5)]"
 					/>
+					<button
+						type="submit"
+						className="w-full left-3 bg-[var(--color-Primary)] rounded-lg px-2 py-1 text-[var(--color-onPrimary)] hover:bg-[var(--color-mrgreen-6)] focus:outline-[var(--color-mrgreen-9)]"
+					>
+						등록
+					</button>
 				</form>
-				<button
-					type="submit"
-					className="left-3 bg-[var(--color-Primary)] rounded-lg px-2 py-1 text-[var(--color-onPrimary)] hover:bg-[var(--color-mrgreen-6)] focus:outline-[var(--color-mrgreen-9)]"
-				>
-					등록
-				</button>
 				{showModal && renderModal()}
 			</div>
 		</div>
