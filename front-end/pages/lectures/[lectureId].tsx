@@ -69,10 +69,10 @@ const LecturePlayer = (): ReactElement => {
 					<div className="">
 						{router.isReady && <LecturePicker courseId={courseId} />}
 					</div>
-					<div className="player-wrapper w-full min-h-full p-10 pb-24 place-content-center justify-center">
+					{/* 640px 360px */}
+					<div className="flex w-full min-h-full p-10 pb-24 player-wrapper place-content-center">
 						<ReactPlayer
 							ref={ref}
-							className="react-player"
 							url={videoUrl} // 플레이어 url
 							style={{ minWidth: '1080px', minHeight: '768px' }}
 							playing={true} // 자동 재생 on

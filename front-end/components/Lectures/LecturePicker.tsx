@@ -21,8 +21,8 @@ export const LecturePicker = ({ courseId }: ILecturePicker) => {
 		setSidebaropen(!sidebarOpen);
 	};
 	const sidebarClass = sidebarOpen
-		? 'h-[768px] overflow-y-scroll left-0 bg-[var(--color-Primary)] min-w-[300px]'
-		: ' h-[768px] overflow-y-scroll w-0 transition ';
+		? 'h-screen overflow-y-scroll left-0 bg-[var(--color-Primary)] min-w-[300px]'
+		: 'h-screen overflow-y-scroll w-0 transition ';
 
 	const router = useRouter();
 
@@ -48,13 +48,13 @@ export const LecturePicker = ({ courseId }: ILecturePicker) => {
 	return (
 		<div className="flex flex-col bg-[var(--color-Primary)] ">
 			<button onClick={handleViewSidebar} className={`p-3 left-0`}>
-				<RxHamburgerMenu className="hover:opacity-50 text-white" size="25px" />
+				<RxHamburgerMenu className="text-white hover:opacity-50" size="25px" />
 			</button>
 			<div className={`${sidebarClass}`}>
 				{lectureList?.map((elem, idx) => {
 					return (
 						<div key={idx}>
-							<div className="font-bold px-3 py-1 text-xl text-white">
+							<div className="px-3 py-1 text-xl font-bold text-white">
 								{elem?.title}
 							</div>
 							<div className="p-2 ">
