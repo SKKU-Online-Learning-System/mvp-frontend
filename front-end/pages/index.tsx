@@ -46,10 +46,10 @@ const MainPage = ({ recommendedContents }: PropsType) => {
 	);
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const recommendedContents = await mainAPI.fetchRecommendedCourse();
 
-	return { props: { recommendedContents } };
+	return { props: { recommendedContents }, revalidate: 60 * 30 };
 }
 
 export default MainPage;
