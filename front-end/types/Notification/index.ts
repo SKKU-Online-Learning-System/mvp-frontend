@@ -4,5 +4,5 @@ export interface Notification {
 	content: string;
 	createdAt: string;
 	updatedAt: string;
-	visitCnt: number;
+	views: number;
 }
