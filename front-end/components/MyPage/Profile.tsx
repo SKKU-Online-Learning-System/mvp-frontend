@@ -7,10 +7,11 @@ const Profile = () => {
 			<div className="flex justify-center items-center text-[#393939] font-['Noto Sans KR']">
 				<div className="rounded-full shadow-xl border-solid border-[1px] border-[#393939]">
 					<Image
-						width={300}
-						height={300}
+						width={500}
+						height={500}
 						src="/images/auth_profile.png"
 						alt="User Profile Image"
+						layout="responsive"
 					/>
 				</div>
 				<ul className="ml-24 list-disc">

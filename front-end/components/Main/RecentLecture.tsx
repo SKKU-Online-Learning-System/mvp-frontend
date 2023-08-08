@@ -62,6 +62,7 @@ export const RecentLecture = () => {
 										alt="course thumbnail"
 										width={300}
 										height={180}
+										layout="responsive"
 									/>
 									<div
 										className={`w-[${percentage}] absolute bottom-[84px] right-0 left-0 h-1 bg-[#717171]`}

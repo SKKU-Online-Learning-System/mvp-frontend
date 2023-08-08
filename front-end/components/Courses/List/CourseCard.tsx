@@ -11,7 +11,7 @@ const CourseCard = ({ course }: { course: ICourseInfo }): JSX.Element => {
 	};
 
 	return (
-		<div className="w-[300px] h-[300px]">
+		<div>
 			<Link href={`/courses/${course.id}`}>
 				<div className="relative overflow-hidden rounded-md transition hover:scale-[1.02] cursor-pointer bg-[var(--color-Surface)]">
 					<Image
@@ -20,6 +20,7 @@ const CourseCard = ({ course }: { course: ICourseInfo }): JSX.Element => {
 						src={course.thumbnail}
 						onError={handleImgError}
 						alt="course thumbnail"
+						layout="responsive"
 					/>
 					<div className="flex flex-col justify-around h-[120px] px-4 pt-1 pb-3">
 						<div className="text-lg font-semibold">{course.title}</div>

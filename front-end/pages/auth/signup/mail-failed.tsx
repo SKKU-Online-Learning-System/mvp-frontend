@@ -7,9 +7,10 @@ const SignupMailFailed = (): ReactElement => {
 			<div className="flex flex-col justify-center items-center pb-[50px] w-[600px] h-[450px] bg-white rounded-[30px]">
 				<Image
 					src="/images/mail_failed.jpg"
-					width={200}
-					height={180}
+					width={400}
+					height={360}
 					alt="mail failed"
+					layout="responsive"
 				/>
 				<h1>이메일이 발송되지 않았습니다</h1>
 				<div>이메일 주소를 확인 후 다시 가입해주세요.</div>
