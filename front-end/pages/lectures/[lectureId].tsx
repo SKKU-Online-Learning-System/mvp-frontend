@@ -64,10 +64,12 @@ const LecturePlayer = (): ReactElement => {
 			<h2 className="select-none w-full bg-[var(--color-Primary)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
 				온라인명륜당
 			</h2>
-			{courseId ? (
+			{courseId && lectureId ? (
 				<div className="font-['Noto Sans KR'] flex flex-row min-h-screen  ">
 					<div className="">
-						{router.isReady && <LecturePicker courseId={courseId} />}
+						{router.isReady && (
+							<LecturePicker courseId={courseId} lectureId={lectureId} />
+						)}
 					</div>
 					{/* 640px 360px */}
 					<div className="flex w-full min-h-full p-10 pb-24 player-wrapper place-content-center">
@@ -76,17 +78,18 @@ const LecturePlayer = (): ReactElement => {
 							url={videoUrl} // 플레이어 url
 							style={{ minWidth: '1080px', minHeight: '768px' }}
 							playing={true} // 자동 재생 on
-							muted={true} // 자동 재생 on
+							muted={true} // 음소거 활성화
 							controls={true} // 플레이어 컨트롤 노출 여부
 							light={false} // 플레이어 모드
 							pip={true} // pip 모드(작은 화면 모달) 설정 여부
+							disablePictureInPicture={true} // pip 아이콘 비활성화
 							poster={
 								'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
 							} // 플레이어 초기 포스터 사진
-							progressInterval={10000}
-							onPause={onUpdateCurrentPlayTime}
-							onProgress={onUpdateCurrentPlayTime}
-							onEnded={onEnded}
+							progressInterval={10000} // 프로그레스 업데이트 간격 (ms)
+							onPause={onUpdateCurrentPlayTime} // 일시 정지 시 호출할 함수
+							onProgress={onUpdateCurrentPlayTime} // 재생 중 호출할 함수
+							onEnded={onEnded} // 재생 종료 시 호출할 함수
 						/>
 					</div>
 				</div>

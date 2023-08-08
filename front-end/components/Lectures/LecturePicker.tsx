@@ -5,16 +5,13 @@ import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { useCourseDetailLectureFetch } from 'query/hooks/CourseDetail/index';
 
 import { RxHamburgerMenu } from 'react-icons/rx';
+
 interface ILecturePicker {
-	courseId?: string;
-}
-interface ILecture {
-	id: number;
-	title: string;
-	duration: number;
+	courseId: string;
+	lectureId: string;
 }
 
-export const LecturePicker = ({ courseId }: ILecturePicker) => {
+export const LecturePicker = ({ courseId, lectureId }: ILecturePicker) => {
 	// 사이드바 접기 및 펼치기
 	const [sidebarOpen, setSidebaropen] = useState(true);
 	const handleViewSidebar = () => {
@@ -30,17 +27,18 @@ export const LecturePicker = ({ courseId }: ILecturePicker) => {
 		courseId,
 		{},
 	);
-	const [moveToAnotherLecture, setMoveToAnotherLecture] = useState<
-		number | null
-	>(null);
 
+	console.log(lectureId);
+	// 현재 보고 있는 강의
+	const [moveToAnotherLecture, setMoveToAnotherLecture] = useState(+lectureId);
 	const handleMoveToAnotherLecture = (lectureId: number) => {
 		router.push({ pathname: `/lectures/${lectureId}`, query: { courseId } });
 		setMoveToAnotherLecture(lectureId);
 	};
+	// console.log(moveToAntherLecture);
 
-	const getBackgroundColorClass = (item: ILecture) => {
-		return item.id === moveToAnotherLecture
+	const getBackgroundColorClass = (id: number) => {
+		return id === moveToAnotherLecture
 			? 'bg-[var(--color-onPrimary)] text-[var(--color-onSurface)] hover:text-[var(--color-onSurface)]'
 			: '';
 	};
@@ -62,7 +60,7 @@ export const LecturePicker = ({ courseId }: ILecturePicker) => {
 									return (
 										<div
 											className={`${getBackgroundColorClass(
-												item,
+												item.id,
 											)} text-[var(--color-onPrimary-200)] rounded-lg hover:text-white cursor-pointer flex justify-between list-none p-[10px] `}
 											key={_idx}
 											onClick={() => handleMoveToAnotherLecture(item.id)}
