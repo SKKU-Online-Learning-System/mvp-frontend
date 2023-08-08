@@ -51,7 +51,7 @@ const NotificationPage = ({ notices }: PropsType) => {
 									<span className="mx-3">|</span>
 									<span>{createdAt}</span>
 									<span className="mx-3">|</span>
-									<span>조회수: {notice.visitCnt}</span>
+									<span>조회수: {notice.views}</span>
 								</div>
 							</li>
 						);
