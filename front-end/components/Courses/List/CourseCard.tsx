@@ -22,7 +22,7 @@ const CourseCard = ({ course }: { course: ICourseInfo }): JSX.Element => {
 						alt="course thumbnail"
 						layout="responsive"
 					/>
-					<div className="flex flex-col justify-around px-4 pt-3 pb-3">
+					<div className="flex flex-col justify-around h-32 px-4 pt-3 pb-3">
 						<div className="text-base font-semibold leading-5">
 							{course.title}
 						</div>
