@@ -1960,6 +1960,42 @@ video {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
+.bg-\[var\(--color-green-500\)\] {
+  background-color: var(--color-green-500);
+}
+
+.bg-\[var\(--color-green-300\)\] {
+  background-color: var(--color-green-300);
+}
+
+.bg-\[var\(--color-green-200\)\] {
+  background-color: var(--color-green-200);
+}
+
+.bg-\[var\(--color-green-100\)\] {
+  background-color: var(--color-green-100);
+}
+
+.bg-teal-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 148 136 / var(--tw-bg-opacity));
+}
+
+.bg-teal-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 118 110 / var(--tw-bg-opacity));
+}
+
+.bg-teal-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(45 212 191 / var(--tw-bg-opacity));
+}
+
+.bg-teal-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(20 184 166 / var(--tw-bg-opacity));
+}
+
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
