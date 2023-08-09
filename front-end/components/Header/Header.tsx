@@ -51,13 +51,6 @@ const Header = () => {
 					</Link>
 					<ul className="flex mx-40 list-none dt:mx-3">
 						<li className="mx-8 list-none">
-							<Link href="/">
-								<span className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]">
-									온라인명륜당 소개
-								</span>
-							</Link>
-						</li>
-						<li className="mx-8 list-none">
 							<Link href="/courses">
 								<span className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]">
 									강좌목록
