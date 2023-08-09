@@ -951,6 +951,10 @@ video {
   margin-top: 50px;
 }
 
+.mt-\[18px\] {
+  margin-top: 18px;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -1123,6 +1127,18 @@ video {
   height: 100vh;
 }
 
+.h-5 {
+  height: 1.25rem;
+}
+
+.h-7 {
+  height: 1.75rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
 .min-h-full {
   min-height: 100%;
 }
@@ -1285,6 +1301,14 @@ video {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-0\.5 {
+  width: 0.125rem;
+}
+
+.w-\[2px\] {
+  width: 2px;
 }
 
 .min-w-\[130px\] {

@@ -72,9 +72,10 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 										{content.name}
 									</div>
 									{isCategoryClicked && (
-										<div className="mt-4">
+										<ul className="mt-4">
 											{content.category2s?.map((elem, idx) => (
-												<li className="mt-2" key={idx}>
+												<li className="flex" key={idx}>
+													<div className="h-6 w-[2px] bg-[var(--color-Primary)]"></div>
 													<Link
 														href={`courses?category2sId=${elem.id}`}
 														key={idx}
@@ -85,7 +86,7 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 													</Link>
 												</li>
 											))}
-										</div>
+										</ul>
 									)}
 								</li>
 							);
