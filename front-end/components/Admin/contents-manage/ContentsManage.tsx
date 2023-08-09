@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 import CourseRegisterCard from './CourseRegisterCard';
@@ -10,6 +10,7 @@ type PropsType = {
 
 const ContentsManage = ({ allCourses }: PropsType) => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
+
 	const [pageNumber, setPageNumber] = useState<number>(1);
 
 	if (!allCourses) {
@@ -67,7 +68,7 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 					onKeyPress={onKeyPress}
 				/>
 			</div>
-			{allCourses?.map((course, idx) => {
+			{allCourses.map((course, idx) => {
 				return <CourseRegisterCard key={idx} course={course} />;
 			})}
 
