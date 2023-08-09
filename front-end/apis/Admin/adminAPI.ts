@@ -37,6 +37,10 @@ const functions = {
 		const res = await axiosInstance.get('/courses/all');
 		return res.data;
 	},
+	changeOperation: async (id: number) => {
+		const res = await axiosInstance.put(`/courses/${id}/operate`);
+		return res.data;
+	},
 };
 
 export default functions;

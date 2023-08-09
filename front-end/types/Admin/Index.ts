@@ -55,6 +55,7 @@ export interface CourseInfo {
 	thumbnail: string;
 	difficulty: number;
 	lectureCnt: number;
+	operate: boolean;
 	createdAt: string;
 	enrollments: Enrollment[];
 	hashtags: Hashtag[];
