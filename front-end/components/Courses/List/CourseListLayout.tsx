@@ -63,12 +63,12 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 										isClicked === content.name,
 									)}`}
 									key={idx}
-									onClick={() => handleMenuClick(content.name)}
+									onClick={() => {
+										handleCardClick(idx);
+										handleMenuClick(content.name);
+									}}
 								>
-									<div
-										className={`flex font-semibold transition cursor-pointer`}
-										onClick={() => handleCardClick(idx)}
-									>
+									<div className="flex font-semibold transition cursor-pointer">
 										{content.name}
 									</div>
 									{isCategoryClicked && (
