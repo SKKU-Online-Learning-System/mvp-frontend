@@ -1,3 +1,4 @@
+// questions/course/{courseId}
 import React, { useState } from 'react';
 
 import CourseHeader from '@components/Courses/Details/CourseHeader';
