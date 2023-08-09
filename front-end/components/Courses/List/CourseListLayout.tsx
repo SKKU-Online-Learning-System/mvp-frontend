@@ -8,7 +8,7 @@ type PropsType = {
 	children: ReactElement[] | ReactElement<any, string> | string;
 	categories: ICourseCategory[];
 	title: string;
-	setTitle: Function;
+	setTitle: (title: string) => void;
 };
 
 const CourseListLayout = ({
