@@ -10,7 +10,6 @@ const LoginMailFailed = () => {
 					width={200}
 					height={180}
 					alt="mail failed"
-					layout="responsive"
 				/>
 				<h1>이메일이 발송되지 않았습니다</h1>
 				<div>이메일 주소를 확인 후 다시 진행해주세요.</div>
