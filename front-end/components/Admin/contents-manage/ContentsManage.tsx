@@ -2,13 +2,26 @@ import React, { useRef, useState, useEffect } from 'react';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 import CourseRegisterCard from './CourseRegisterCard';
-import { useAllCoursesFetch } from 'query/hooks/Admin';
+import { CourseInfo } from 'types/Admin/Index';
 
-const ContentsManage = () => {
+type PropsType = {
+	allCourses: CourseInfo[];
+};
+
+const ContentsManage = ({ allCourses }: PropsType) => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
 	const [pageNumber, setPageNumber] = useState<number>(1);
-	const { data: allCourses, isLoading } = useAllCoursesFetch();
-	const maxPageNumber = allCourses?.length;
+
+	if (!allCourses) {
+		return (
+			<div>
+				Failed to retrieve courses info. Please refresh to retrieve courses info
+				again . . .
+			</div>
+		);
+	}
+
+	const maxPageNumber = allCourses.length;
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { current } = inputRef;
@@ -42,10 +55,9 @@ const ContentsManage = () => {
 		}
 	};
 
-	if (isLoading) return <div>loading . . .</div>;
 	return (
 		<div className="flex flex-col items-center justify-start w-full p-10 mt-14">
-			<div className="w-1/2 mb-[2%] flex justify-between">
+			<div className="w-1/2 mb-[2%] flex justify-center">
 				<input
 					type="text"
 					ref={inputRef}
@@ -54,9 +66,6 @@ const ContentsManage = () => {
 					onChange={onInputChange}
 					onKeyPress={onKeyPress}
 				/>
-				<button className="transition text-xl font-semibold rounded-lg p-2 bg-[#b3df8c] hover:bg-[#b9c7ad]">
-					운영 정보 저장
-				</button>
 			</div>
 			{allCourses?.map((course, idx) => {
 				return <CourseRegisterCard key={idx} course={course} />;

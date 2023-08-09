@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -6,16 +6,19 @@ import { Notification } from 'types/Notification';
 import noticesAPI from '../../../apis/Notices/noticesAPI';
 import NewIndicator from '@components/Notices/NewIndicator';
 
-const NoticesManage = () => {
-	const [notices, setNotices] = useState<Notification[]>();
+type PropsType = {
+	notices: Notification[];
+};
 
-	useEffect(() => {
-		async function fetcher() {
-			const data = await noticesAPI.fetchAllNotices();
-			setNotices(data);
-		}
-		fetcher();
-	}, [notices]);
+const NoticesManage = ({ notices }: PropsType) => {
+	if (!notices) {
+		return (
+			<div>
+				Failed to retrieve notices information. Please refresh to retrieve
+				notices data again . . .
+			</div>
+		);
+	}
 
 	const onTitleClick = (
 		e: React.MouseEvent<HTMLHeadingElement>,
@@ -29,8 +32,6 @@ const NoticesManage = () => {
 		alert('해당 공지가 삭제 완료되었습니다.');
 		noticesAPI.fetchAllNotices();
 	};
-
-	if (!notices) return <div>Failed to retrieve notice data . . .</div>;
 
 	return (
 		<div className="w-full">
@@ -76,7 +77,7 @@ const NoticesManage = () => {
 												<span className="mx-3">|</span>
 												<span>{createdAt}</span>
 												<span className="mx-3">|</span>
-												<span>조회수: {notice.visitCnt}</span>
+												<span>조회수: {notice.views}</span>
 											</div>
 										</div>
 										<div className="text-sm">

@@ -5,9 +5,30 @@ import ContentsManage from '../../components/Admin/contents-manage/ContentsManag
 import NoticesManage from '@components/Admin/notices-manage/NoticesManage';
 import UserRanking from '../../components/Admin/user-ranking/UserRanking';
 import Compose from '../../components/Admin/composing/Compose';
+import noticesAPI from '../../apis/Notices/noticesAPI';
+import { Notification } from 'types/Notification';
+import adminAPI from '../../apis/Admin/adminAPI';
 import menus from '../../constants/Admin/index';
+import {
+	CourseInfo,
+	ICourseRetrieveInfo,
+	INewCourseInfo,
+} from 'types/Admin/Index';
 
-const AdminIndex = () => {
+type PropsType = {
+	coursesInfo: [
+		ICourseRetrieveInfo[],
+		INewCourseInfo[],
+		ICourseRetrieveInfo[],
+		ICourseRetrieveInfo[],
+	];
+	allCourses: CourseInfo[];
+	notices: Notification[];
+};
+
+const titles = ['인기 컨텐츠', '신규 컨텐츠', '인공지능', '교양'];
+
+const AdminIndex = ({ coursesInfo, allCourses, notices }: PropsType) => {
 	const [title, setTitle] = useState<string>(menus[0].title);
 	const [opens, setOpens] = useState<boolean[]>([true, false, false, false]);
 
@@ -71,17 +92,36 @@ const AdminIndex = () => {
 					</ul>
 				</div>
 				{opens[0] ? (
-					<Compose />
+					<Compose coursesInfo={coursesInfo} titles={titles} />
 				) : opens[1] ? (
 					<UserRanking />
 				) : opens[2] ? (
-					<ContentsManage />
+					<ContentsManage allCourses={allCourses} />
 				) : opens[3] ? (
-					<NoticesManage />
+					<NoticesManage notices={notices} />
 				) : null}
 			</div>
 		</div>
 	);
 };
+
+export async function getServerSideProps() {
+	const mostPopularCourses = await adminAPI.fetchPopularContentsInfo('');
+	const newCourses = await adminAPI.fetchNewContentsInfo();
+	const popularCourses1 = await adminAPI.fetchPopularContentsInfo(titles[2]);
+	const popularCourses2 = await adminAPI.fetchPopularContentsInfo(titles[3]);
+	const coursesInfo = [
+		mostPopularCourses,
+		newCourses,
+		popularCourses1,
+		popularCourses2,
+	];
+
+	const allCourses = await adminAPI.fetchAllCourses();
+
+	const notices = await noticesAPI.fetchAllNotices();
+
+	return { props: { coursesInfo, allCourses, notices } };
+}
 
 export default AdminIndex;

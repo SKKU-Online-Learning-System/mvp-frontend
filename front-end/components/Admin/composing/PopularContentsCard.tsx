@@ -2,22 +2,30 @@ import React, { useState } from 'react';
 
 import CardHeader from './CardHeader';
 import CardPager from './CardPager';
-import { usePopularCoursesFetch } from 'query/hooks/Admin/index';
-import { ICourseOrdersInfo } from '../../../types/Admin/Index';
+import {
+	ICourseOrdersInfo,
+	ICourseRetrieveInfo,
+} from '../../../types/Admin/Index';
 
-type PropsType = { title: string; order: number };
+type PropsType = {
+	order: number;
+	title: string;
+	courses: ICourseRetrieveInfo[];
+};
 
-const PopularContentsCard = ({ title, order }: PropsType) => {
+const PopularContentsCard = ({ order, title, courses }: PropsType) => {
 	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
 	const [currPage, setCurrPage] = useState(1);
 
-	const _title = title === '인기 컨텐츠' ? '' : title;
-	const { data: popularContents, isLoading } = usePopularCoursesFetch(_title);
+	if (!courses) {
+		return (
+			<div>
+				Failed to retrieve data. Please refresh to retrieve data again . . .
+			</div>
+		);
+	}
 
-	if (isLoading) return <h2>Loading . . .</h2>;
-	if (!popularContents) return <div>Failed to retrieve data . . .</div>;
-
-	const contentsCnt = popularContents.length;
+	const contentsCnt = courses.length;
 	const firstContentIdOnNextPage = 10 * currPage;
 
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,13 +46,13 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 
 		if (e.target.value === '') {
 			const remainedContent = objs.filter(
-				(obj) => obj.courseId !== popularContents[elementId].course.id,
+				(obj) => obj.courseId !== courses[elementId].course.id,
 			);
 			const arr = [...remainedContent];
 			setObjs(arr);
 		} else {
 			const obj = {
-				courseId: popularContents[elementId].course.id,
+				courseId: courses[elementId].course.id,
 				order,
 				sequence: e.target.valueAsNumber,
 			};
@@ -74,9 +82,9 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 						</tr>
 					</thead>
 					<tbody className="flex flex-col">
-						{popularContents
+						{courses
 							.slice(10 * (currPage - 1), 10 * currPage)
-							.map((item, idx) => {
+							.map((course, idx) => {
 								return (
 									<tr
 										key={idx}
@@ -84,11 +92,11 @@ const PopularContentsCard = ({ title, order }: PropsType) => {
 									>
 										<td className="w-1/12">{idx + 1}</td>
 										<td className="w-1/5">
-											{item.courseCreatedAt.split('T')[0]}
+											{course.courseCreatedAt.split('T')[0]}
 										</td>
-										<td className="w-1/3">{item.courseTitle}</td>
-										<td className="w-1/6 ">{item.instructorName}</td>
-										<td className="w-1/12">{item.enrollmentCount}</td>
+										<td className="w-1/3">{course.courseTitle}</td>
+										<td className="w-1/6 ">{course.instructorName}</td>
+										<td className="w-1/12">{course.enrollmentCount}</td>
 										<input
 											placeholder={`${idx + 1}`}
 											onChange={onOrderChange}

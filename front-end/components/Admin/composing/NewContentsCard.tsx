@@ -2,21 +2,17 @@ import React, { useState } from 'react';
 
 import CardPager from './CardPager';
 import CardHeader from './CardHeader';
-import { ICourseOrdersInfo } from '../../../types/Admin/Index';
-import { useNewCoursesFetch } from 'query/hooks/Admin/index';
+import { ICourseOrdersInfo, INewCourseInfo } from '../../../types/Admin/Index';
 
-type PropsType = { title: string };
+type PropsType = { title: string; courses: INewCourseInfo[] };
 
-const NewContentsCard = ({ title }: PropsType) => {
+const NewContentsCard = ({ title, courses }: PropsType) => {
 	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
 	const [currPage, setCurrPage] = useState(1);
 
-	const { data: newContents, isLoading } = useNewCoursesFetch();
+	if (!courses) return <div>Failed to retrieve data . . .</div>;
 
-	if (isLoading) return <h2>Loading . . .</h2>;
-	if (!newContents) return <div>Failed to retrieve data . . .</div>;
-
-	const contentsCnt = newContents.length;
+	const contentsCnt = courses.length;
 	const firstContentIdOnNextPage = 10 * currPage;
 
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,13 +33,13 @@ const NewContentsCard = ({ title }: PropsType) => {
 
 		if (e.target.value === '') {
 			const remainedContent = objs.filter(
-				(obj) => obj.courseId !== newContents[elementId].id,
+				(obj) => obj.courseId !== courses[elementId].id,
 			);
 			const arr = [...remainedContent];
 			setObjs(arr);
 		} else {
 			const obj = {
-				courseId: newContents![elementId].id,
+				courseId: courses[elementId].id,
 				order: 1,
 				sequence: e.target.valueAsNumber,
 			};
@@ -72,15 +68,15 @@ const NewContentsCard = ({ title }: PropsType) => {
 						</tr>
 					</thead>
 					<tbody className="flex flex-col">
-						{newContents?.map((item, idx) => {
+						{courses.map((course, idx) => {
 							return (
 								<tr
 									key={idx}
 									className="flex items-center justify-center mt-6 text-center"
 								>
-									<td className="w-1/5">{item.createdAt.split('T')[0]}</td>
-									<td className="w-1/3">{item.title}</td>
-									<td className="w-1/6 ">{item.instructor}</td>
+									<td className="w-1/5">{course.createdAt.split('T')[0]}</td>
+									<td className="w-1/3">{course.title}</td>
+									<td className="w-1/6 ">{course.instructor}</td>
 									<input
 										placeholder={`${idx + 1}`}
 										onChange={onOrderChange}
