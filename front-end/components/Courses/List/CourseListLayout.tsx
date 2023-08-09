@@ -7,9 +7,16 @@ import { ICourseCategory } from 'types/Course';
 type PropsType = {
 	children: ReactElement[] | ReactElement<any, string> | string;
 	categories: ICourseCategory[];
+	title: string;
+	setTitle: Function;
 };
 
-const CourseListLayout = ({ children, categories }: PropsType) => {
+const CourseListLayout = ({
+	children,
+	categories,
+	title,
+	setTitle,
+}: PropsType) => {
 	const router = useRouter();
 
 	const [isClicked, setIsClicked] = useState(categories[0].name);
@@ -46,10 +53,18 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 		return sidebarBtnBasicStyle;
 	};
 
+	const handleSubMenuClick = (title: string) => {
+		if (title === '전체보기') {
+			setTitle('전체보기');
+			return;
+		}
+		setTitle(title);
+	};
+
 	return (
 		<div className="w-full h-full flex flex-col my-0 mx-auto font-['Noto Sans KR']">
 			<h2 className="select-none w-full bg-[var(--color-Primary)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
-				{'온라인명륜당 > 강좌 List'}
+				{`온라인명륜당 > 강좌 List > ${title}`}
 			</h2>
 			<div className="flex">
 				<div className="min-h-screen w-1/6 bg-[var(--color-Primary)] min-w-[280px] ">
@@ -59,14 +74,17 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 
 							return (
 								<li
+									onClick={() => {
+										handleCardClick(idx);
+										handleMenuClick(content.name);
+										content.name === '전체보기'
+											? handleSubMenuClick('전체보기')
+											: '';
+									}}
 									className={`text-[var(--color-onPrimary-200)] ${handleSidebarBtnStyle(
 										isClicked === content.name,
 									)}`}
 									key={idx}
-									onClick={() => {
-										handleCardClick(idx);
-										handleMenuClick(content.name);
-									}}
 								>
 									<div className="flex font-semibold transition cursor-pointer">
 										{content.name}
@@ -74,7 +92,11 @@ const CourseListLayout = ({ children, categories }: PropsType) => {
 									{isCategoryClicked && (
 										<ul className="mt-4">
 											{content.category2s?.map((elem, idx) => (
-												<li className="flex" key={idx}>
+												<li
+													className="flex"
+													key={idx}
+													onClick={() => handleSubMenuClick(elem.name)}
+												>
 													<div className="h-6 w-[2px] bg-[var(--color-Primary)]"></div>
 													<Link
 														href={`courses?category2sId=${elem.id}`}
