@@ -1,7 +1,9 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React from 'react';
+import { useRouter } from 'next/router';
+
 const QuestionTableRow = ({ question }: any) => {
+	const router = useRouter();
+
 	const {
 		id,
 		author: { email: author },
@@ -9,8 +11,6 @@ const QuestionTableRow = ({ question }: any) => {
 		createdAt,
 		answers,
 	} = question;
-
-	const router = useRouter();
 
 	const handleClick = (questionId: number) => {
 		router.push(`/questions/${questionId}`);
@@ -20,12 +20,8 @@ const QuestionTableRow = ({ question }: any) => {
 		<tr>
 			<td>{id}</td>
 			<td>{author}</td>
-			<div onClick={(e: React.MouseEvent<HTMLElement>) => handleClick(id)}>
-				<td>
-					{/* <Link href={`/questions/${id}`}> */}
-					{contents}
-					{/* </Link> */}
-				</td>
+			<div onClick={() => handleClick(id)}>
+				<td>{contents}</td>
 			</div>
 			<td>{createdAt}</td>
 			<td>{answers.length}</td>
