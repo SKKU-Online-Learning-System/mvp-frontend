@@ -6,7 +6,6 @@ import MyPageLayout from '@components/MyPage/MyPageLayout';
 import History from '@components/MyPage/History/History';
 import Completed from '@components/MyPage/Completed';
 import Bookmark from '@components/MyPage/Bookmark';
-import Profile from '@components/MyPage/Profile';
 import { MYPAGE_PATH } from 'constants/MyPage';
 import MyQnA from '@components/MyPage/MyQna';
 
@@ -16,8 +15,6 @@ const MyPage = () => {
 
 	const routeComponent = (category: string) => {
 		switch (category) {
-			case MYPAGE_PATH.PROFILE:
-				return <Profile />;
 			// 최근 시청 강의
 			case MYPAGE_PATH.HISTORY:
 				return <History />;
@@ -33,7 +30,7 @@ const MyPage = () => {
 			case MYPAGE_PATH.MY_QNA:
 				return <MyQnA />;
 			default:
-				return <Profile />;
+				return <History />;
 		}
 	};
 
