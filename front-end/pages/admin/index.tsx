@@ -1,58 +1,40 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	faChartSimple,
-	faBookOpen,
-	faRankingStar,
-	faBullhorn,
-} from '@fortawesome/free-solid-svg-icons';
 
 import ContentsManage from '../../components/Admin/contents-manage/ContentsManage';
 import NoticesManage from '@components/Admin/notices-manage/NoticesManage';
 import UserRanking from '../../components/Admin/user-ranking/UserRanking';
 import Compose from '../../components/Admin/composing/Compose';
+import menus from '../../constants/Admin/index';
 
 const AdminIndex = () => {
-	const [isComposeOpen, setIsComposeOpen] = useState(true);
-	const [isUserRankingOpen, setIsUserRankingOpen] = useState(false);
-	const [isContentsManageOpen, setIsContentsManageOpen] = useState(false);
-	const [isNoticeManageOpen, setIsNoticeManageOpen] = useState(false);
-
-	const modeController = (
-		compose: boolean,
-		rank: boolean,
-		contents: boolean,
-		notices: boolean,
-	) => {
-		setIsComposeOpen(compose);
-		setIsUserRankingOpen(rank);
-		setIsContentsManageOpen(contents);
-		setIsNoticeManageOpen(notices);
-	};
+	const [title, setTitle] = useState<string>(menus[0].title);
+	const [opens, setOpens] = useState<boolean[]>([true, false, false, false]);
 
 	const handleSidebarBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		switch (e.currentTarget.id) {
-			case 'compose':
-				modeController(true, false, false, false);
+		switch (e.currentTarget.textContent) {
+			case menus[0].title:
+				setOpens([true, false, false, false]);
+				setTitle(menus[0].title);
 				break;
-			case 'user-ranking':
-				modeController(false, true, false, false);
+			case menus[1].title:
+				setOpens([false, true, false, false]);
+				setTitle(menus[1].title);
 				break;
-			case 'contents-manage':
-				modeController(false, false, true, false);
+			case menus[2].title:
+				setOpens([false, false, true, false]);
+				setTitle(menus[2].title);
 				break;
-			case 'notices-manage':
-				modeController(false, false, false, true);
-				break;
-			default:
-				modeController(true, false, false, false);
+			case menus[3].title:
+				setOpens([false, false, false, true]);
+				setTitle(menus[3].title);
 				break;
 		}
 	};
 
 	const handleSidebarBtnStyle = (open: boolean) => {
 		const selected =
-			' bg-[var(--color-onPrimary)] text-[var(--color-onSurface)]';
+			' bg-[var(--color-onPrimary)] text-[var(--color-onSurface)] select-none';
 		const notSelected =
 			' transition-all relative left-0 hover:left-0.5 hover:text-white';
 		let sidebarBtnBasicStyle =
@@ -66,64 +48,37 @@ const AdminIndex = () => {
 	return (
 		<div className="min-h-full">
 			<h2 className="select-none w-full bg-[var(--color-green-700)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
-				{'온라인명륜당 > Admin'}
+				{`온라인명륜당 > Admin > ${title}`}
 			</h2>
 			<div className="flex min-h-screen">
 				<div className="w-1/6 min-h-full bg-[var(--color-Primary)] min-w-[280px]">
 					<ul className="flex flex-col items-start justify-start h-full p-12 pr-0">
-						<li className="relative w-full">
-							<button
-								id="compose"
-								className={handleSidebarBtnStyle(isComposeOpen)}
-								onClick={handleSidebarBtnClick}
-							>
-								<FontAwesomeIcon icon={faChartSimple} className="mr-4" />
-								편성
-							</button>
-						</li>
-						<li className="relative w-full">
-							<button
-								id="user-ranking"
-								className={handleSidebarBtnStyle(isUserRankingOpen)}
-								onClick={handleSidebarBtnClick}
-							>
-								<FontAwesomeIcon icon={faRankingStar} className="mr-4" />
-								유저 랭킹
-							</button>
-						</li>
-						<li className="relative w-full">
-							<button
-								id="contents-manage"
-								className={handleSidebarBtnStyle(isContentsManageOpen)}
-								onClick={handleSidebarBtnClick}
-							>
-								<FontAwesomeIcon icon={faBookOpen} className="mr-4" />
-								강좌 관리
-							</button>
-						</li>
-						<li className="relative w-full">
-							<button
-								id="notices-manage"
-								className={handleSidebarBtnStyle(isNoticeManageOpen)}
-								onClick={handleSidebarBtnClick}
-							>
-								<FontAwesomeIcon icon={faBullhorn} className="mr-4" />
-								공지사항 관리
-							</button>
-						</li>
+						{menus.map((menu, idx) => {
+							const isClicked = opens[idx];
+
+							return (
+								<li id={idx.toString()} className="relative w-full" key={idx}>
+									<button
+										className={handleSidebarBtnStyle(isClicked)}
+										onClick={handleSidebarBtnClick}
+									>
+										<FontAwesomeIcon icon={menu.icon} className="mr-4" />
+										{menu.title}
+									</button>
+								</li>
+							);
+						})}
 					</ul>
 				</div>
-				{isComposeOpen ? (
+				{opens[0] ? (
 					<Compose />
-				) : isUserRankingOpen ? (
+				) : opens[1] ? (
 					<UserRanking />
-				) : isContentsManageOpen ? (
+				) : opens[2] ? (
 					<ContentsManage />
-				) : isNoticeManageOpen ? (
+				) : opens[3] ? (
 					<NoticesManage />
-				) : (
-					''
-				)}
+				) : null}
 			</div>
 		</div>
 	);
