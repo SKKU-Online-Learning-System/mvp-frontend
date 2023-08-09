@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { DEVICE_BREAKPOINT } from 'constants/breakpoint';
 
@@ -12,7 +13,12 @@ const Footer = () => {
 			>
 				<div className="m-[34px]">
 					<div className="flex mb-8">
-						<img src="/images/main_logo.png" alt="Main Logo Image" />
+						<Image
+							src="/images/main_logo.png"
+							alt="Main Logo Image"
+							width={158}
+							height={48}
+						/>
 						<div className="font-[Gugi] text-[2rem] my-0 ml-[20px] text-[#c7c6c6]">
 							온라인 명륜당
 						</div>

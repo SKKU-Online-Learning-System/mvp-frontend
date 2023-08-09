@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { sendLogInRequest } from 'apis/LogIn/logInApi';
 import { fetchEmailCheck } from 'apis/SignUp/signUpApi';
@@ -56,10 +57,11 @@ function LoginForm({ onClose, onOpenSignUp }: any) {
 		<>
 			{sendingMail ? (
 				<div className="flex justify-center items-center h-[300px]">
-					<img
-						src="https://mblogthumb-phinf.pstatic.net/MjAxODEwMjNfNjAg/MDAxNTQwMjg2OTk2NTcw.mfWKPtzKVO1mJaBBIFKIkVBlMQQIF1Vc-yrlbbGaoP0g.KNJWAgMmhsfQrZI3n0UT-LMi_qpHAZls4qPMvbNaJBcg.GIF.chingguhl/Spinner-1s-200px.gif?type=w800"
+					<Image
+						src="/images/loading.gif"
 						alt="loading"
-						className="w-[100px]"
+						width={100}
+						height={100}
 					/>
 				</div>
 			) : (
