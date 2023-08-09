@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 import CurationFloatingBar from '@components/Main/CurationFloatingBar';
 import { selectIsLoggined } from 'store/feature/common/commonSelector';
@@ -18,7 +20,7 @@ const MainPage = ({ recommendedContents }: PropsType) => {
 	const isLoggined = useSelector(selectIsLoggined);
 
 	return (
-		<>
+		<section className="relative">
 			<MainBanner contents={recommendedContents[0]} />
 			<CurationFloatingBar />
 			<div className="relative w-[1280px] m-auto font-['Noto Sans KR'] mb-24">
@@ -42,7 +44,15 @@ const MainPage = ({ recommendedContents }: PropsType) => {
 					contents={recommendedContents[3]}
 				/>
 			</div>
-		</>
+			<button
+				onClick={() => {
+					window.scrollTo(0, 0);
+				}}
+				className="fixed shadow-lg bottom-[50px] right-[50px] w-[50px] h-[50px] text-2xl text-white bg-black rounded-full flex justify-center items-center transition-all hover:text-3xl"
+			>
+				<FontAwesomeIcon icon={faAngleUp} />
+			</button>
+		</section>
 	);
 };
 
