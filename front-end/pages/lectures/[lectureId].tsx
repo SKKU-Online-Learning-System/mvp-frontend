@@ -29,7 +29,7 @@ const LecturePlayer = (): ReactElement => {
 		{
 			onSuccess: (lastTime: number) => {
 				if (ref.current) {
-					ref.current.seekTo(lastTime, 'seconds');
+					ref.current?.seekTo(lastTime, 'seconds');
 				}
 			},
 		},
