@@ -1,12 +1,14 @@
 import React, { useRef, useState } from 'react';
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 import CourseRegisterCard from './CourseRegisterCard';
 import { CourseInfo } from 'types/Admin/Index';
+import Pager from './Pager';
 
 type PropsType = {
 	allCourses: CourseInfo[];
 };
+
+const ContentsCntPerPage = 4;
 
 const ContentsManage = ({ allCourses }: PropsType) => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
@@ -22,7 +24,7 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 		);
 	}
 
-	const maxPageNumber = allCourses.length;
+	const courseCnt = allCourses.length;
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { current } = inputRef;
@@ -42,20 +44,6 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 		}
 	};
 
-	const onPageControllerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		if ((e.target as HTMLButtonElement).id === 'left-btn' && pageNumber > 1) {
-			setPageNumber((pageNumber) => pageNumber - 1);
-			// Todo: API 호출해서 (pageNumber * 5 - 4 ~ pageNumber * 5)까지 5개 강좌 정보 띄우기
-		} else if (
-			(e.target as HTMLButtonElement).id === 'right-btn' &&
-			maxPageNumber &&
-			pageNumber < maxPageNumber
-		) {
-			setPageNumber((pageNumber) => pageNumber + 1);
-			// Todo: API 호출해서 (pageNumber * 5 - 4 ~ pageNumber * 5)까지 5개 강좌 정보 띄우기
-		}
-	};
-
 	return (
 		<div className="flex flex-col items-center justify-start w-full p-10 mt-14">
 			<div className="w-1/2 mb-[2%] flex justify-center">
@@ -68,19 +56,20 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 					onKeyPress={onKeyPress}
 				/>
 			</div>
-			{allCourses.map((course, idx) => {
-				return <CourseRegisterCard key={idx} course={course} />;
-			})}
-
-			<div className="flex items-center justify-center text-3xl">
-				<button onClick={onPageControllerClick}>
-					<BsChevronLeft id="left-btn" />
-				</button>
-				<span className="mx-20 my-12">{pageNumber}</span>
-				<button onClick={onPageControllerClick}>
-					<BsChevronRight id="right-btn" />
-				</button>
-			</div>
+			{allCourses
+				.slice(
+					ContentsCntPerPage * (pageNumber - 1),
+					ContentsCntPerPage * pageNumber,
+				)
+				.map((course, idx) => (
+					<CourseRegisterCard key={idx} course={course} />
+				))}
+			<Pager
+				ContentsCntPerPage={ContentsCntPerPage}
+				pageNumber={pageNumber}
+				setPageNumber={setPageNumber}
+				courseCnt={courseCnt}
+			/>
 		</div>
 	);
 };
