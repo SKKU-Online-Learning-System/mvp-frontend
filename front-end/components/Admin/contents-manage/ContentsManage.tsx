@@ -8,12 +8,14 @@ type PropsType = {
 	allCourses: CourseInfo[];
 };
 
-const ContentsCntPerPage = 4;
+const ContentsCntPerPage = 5;
 
 const ContentsManage = ({ allCourses }: PropsType) => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const [pageNumber, setPageNumber] = useState<number>(1);
+
+	console.log(allCourses.slice(5 * (pageNumber - 1), 5 * pageNumber));
 
 	if (!allCourses) {
 		return (
@@ -45,13 +47,13 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 	};
 
 	return (
-		<div className="flex flex-col items-center justify-start w-full p-10 mt-14">
+		<section className="flex flex-col items-center justify-start w-full p-10 mt-14">
 			<div className="w-1/2 mb-[2%] flex justify-center">
 				<input
 					type="text"
 					ref={inputRef}
 					placeholder="강좌명 검색"
-					className="text-lg w-[300px] h-12 rounded-5 pr-10 pl-4 border-2 border-solid border-[var(--color-onSurface-100)] rounded-xl"
+					className="text-lg w-[500px] h-12 rounded-5 pr-10 pl-4 border-2 border-solid border-[var(--color-onSurface-100)] rounded-xl"
 					onChange={onInputChange}
 					onKeyPress={onKeyPress}
 				/>
@@ -61,8 +63,8 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 					ContentsCntPerPage * (pageNumber - 1),
 					ContentsCntPerPage * pageNumber,
 				)
-				.map((course, idx) => (
-					<CourseRegisterCard key={idx} course={course} />
+				.map((course) => (
+					<CourseRegisterCard key={course.id} course={course} />
 				))}
 			<Pager
 				ContentsCntPerPage={ContentsCntPerPage}
@@ -70,7 +72,7 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 				setPageNumber={setPageNumber}
 				courseCnt={courseCnt}
 			/>
-		</div>
+		</section>
 	);
 };
 
