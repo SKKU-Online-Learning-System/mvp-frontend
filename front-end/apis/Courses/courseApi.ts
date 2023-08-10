@@ -2,7 +2,7 @@ import axiosInstance from 'apis';
 import { AxiosResponse } from 'axios';
 
 import { ICourseDetail, ICourseCategory, ISearchedCourse } from 'types/Course';
-import { ILectureList } from 'types/Lecture';
+import { ILectureList, LectureProgress } from 'types/Lecture';
 import { IPopularCourse } from 'types/Course';
 
 const functions = {
@@ -10,12 +10,12 @@ const functions = {
 		const res = await axiosInstance.get(`/popular-courses/course/${courseId}`);
 		return res.data;
 	},
-	fetchCourseDetail: async (courseId: string): Promise<ICourseDetail> => {
+	fetchCourseDetail: async (courseId: number): Promise<ICourseDetail> => {
 		const res = await axiosInstance.get(`/courses/${courseId}`);
 		return res.data;
 	},
 	fetchCourseDetailLectures: async (
-		courseId?: string,
+		courseId?: number,
 	): Promise<ILectureList[]> => {
 		const res = await axiosInstance.get(`/courses/${courseId}/lectures`);
 		return res.data;
@@ -55,6 +55,20 @@ const functions = {
 		const res = await axiosInstance.post('/enrollment', {
 			courseId,
 		});
+		return res.data;
+	},
+	fetchProgress: async (
+		courseId: number,
+		cookies: string,
+	): Promise<LectureProgress[]> => {
+		const res = await axiosInstance.get(
+			`/history/lectures/course/${courseId}`,
+			{
+				headers: {
+					Cookie: cookies,
+				},
+			},
+		);
 		return res.data;
 	},
 };

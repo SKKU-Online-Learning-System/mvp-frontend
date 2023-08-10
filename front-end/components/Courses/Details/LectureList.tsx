@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { durationToHhMmSs } from 'utils/durationToHhMmSs';
-import { ICourseDetail } from 'types/Course';
 import { ILectureList, ILectureInfo } from 'types/Lecture/index';
+import { durationToHhMmSs } from 'utils/durationToHhMmSs';
+import { LectureProgress } from 'types/Lecture/index';
+import { ICourseDetail } from 'types/Course';
 
 type PropsType = {
 	onOpenLoginModal: () => void;
 	courseDetail: ICourseDetail;
 	lectures: ILectureList[];
+	progresses: LectureProgress[];
 };
 
 const LectureList = ({
 	onOpenLoginModal,
 	courseDetail,
 	lectures,
+	progresses,
 }: PropsType) => {
 	const router = useRouter();
 	const [isCollapsed, setIsCollapsed] = useState(
@@ -64,12 +67,14 @@ const LectureList = ({
 							{section.title}
 						</div>
 						<div className={show ? 'block' : 'hidden'}>
-							{section.lectures?.map((lecture: ILectureInfo, index: number) => {
+							{section.lectures.map((lecture, idx) => {
+								// console.log(idx);
+
 								return (
-									<div onClick={handleLectureClick(lecture.id)} key={index}>
+									<div onClick={handleLectureClick(lecture.id)} key={idx}>
 										<div className="flex items-center h-12 cursor-pointer hover:bg-[#eaeaea]">
 											<span className="w-[10%] text-center text-[#404040] text-base">
-												{index + 1}
+												{idx + 1}
 											</span>
 											<span className="w-[75%] pl-[5px] text-[#404040] text-base">
 												{lecture.title}
