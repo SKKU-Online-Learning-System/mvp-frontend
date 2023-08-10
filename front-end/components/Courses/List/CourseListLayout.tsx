@@ -121,4 +121,4 @@ const CourseListLayout = ({
 	);
 };
 
-export default React.memo(CourseListLayout);
+export default CourseListLayout;
