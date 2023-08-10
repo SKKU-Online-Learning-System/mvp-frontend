@@ -1,14 +1,13 @@
-// 강좌 상세페이지 하단의 질문란
 import React from 'react';
+import { AiFillCaretRight } from 'react-icons/ai';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import QnAItem from './QnAItem';
 import { IQna } from 'types/Course';
 
-import { AiFillCaretRight } from 'react-icons/ai';
-
 type PropsType = {
-	courseId: string;
+	courseId: number;
 	qna: IQna[];
 };
 
@@ -27,24 +26,13 @@ const QnA = ({ courseId, qna }: PropsType) => {
 					Recent Questions
 				</div>
 				<div className="flex">
-					<h2 className="pr-[18px] font-bold text-2xl">최근 한 질문</h2>
-					{recentQna.length > 0 ? (
-						<div
-							className="flex text-xs hover:opacity-90 font-medium my-auto text-[var(--color-onPrimary)] bg-[var(--color-Primary)] rounded-md py-1 px-2 cursor-pointer"
-							onClick={handleClick}
-						>
-							더보기
+					<h2 className="pr-[18px] font-semibold text-2xl">최근 한 질문</h2>
+					<Link href={`/questions/course/${courseId}`}>
+						<div className="flex text-xs hover:opacity-90 font-medium my-auto text-[var(--color-onPrimary)] bg-[var(--color-Primary)] rounded-md py-1 px-2 cursor-pointer">
+							{recentQna.length > 0 ? '더보기' : '질문하기'}
 							<AiFillCaretRight className="my-auto" />
 						</div>
-					) : (
-						<div
-							className="flex text-xs hover:opacity-90 font-medium my-auto text-[var(--color-onPrimary)] bg-[var(--color-Primary)] rounded-md py-1 px-2 cursor-pointer"
-							onClick={handleClick}
-						>
-							질문하기
-							<AiFillCaretRight className="my-auto" />
-						</div>
-					)}
+					</Link>
 				</div>
 			</header>
 			{recentQna.length === 0 && (
@@ -52,7 +40,6 @@ const QnA = ({ courseId, qna }: PropsType) => {
 					<div className="py-0 px-[18px]">첫 질문의 주인공이 되어보세요</div>
 				</div>
 			)}
-			{/* 질문 및 답변 목록 표시 */}
 			{recentQna.map((ele) => {
 				return (
 					<QnAItem
