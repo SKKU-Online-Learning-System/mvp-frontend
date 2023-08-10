@@ -15,7 +15,7 @@ const selectCourseQnaFetch = (data: IQna[]): IQna[] => {
 };
 
 export const useCourseDetailFetch = (
-	courseId: string,
+	courseId: number,
 ): UseQueryResult<ICourseDetail> => {
 	return useQuery<ICourseDetail>(
 		[QUERY_KEYS.FETCH_COURSE_DETAIL],
@@ -27,7 +27,7 @@ export const useCourseDetailFetch = (
 };
 
 export const useCourseDetailLectureFetch = (
-	courseId?: string,
+	courseId?: number,
 	options?: UseQueryOptions<ILectureList[]>,
 ): UseQueryResult<ILectureList[]> => {
 	return useQuery<ILectureList[]>(
@@ -41,7 +41,7 @@ export const useCourseDetailLectureFetch = (
 };
 
 export const useCourseQnaFetch = (
-	courseId?: string,
+	courseId?: number,
 ): UseQueryResult<IQna[]> => {
 	return useQuery<IQna[]>(
 		[QUERY_KEYS.FETCH_COURSE_QNA],

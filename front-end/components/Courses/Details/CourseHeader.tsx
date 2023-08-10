@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 type PropsType = {
 	courseDetail: ICourseDetail;
-	courseId: string;
+	courseId: number;
 	onOpenLoginModal: () => void;
 };
 

@@ -13,11 +13,12 @@ export const useCourseDetailInfo = () => {
 	const router = useRouter();
 
 	const { courseId } = router.query as RouterQueryString;
-	const { data: course, isLoading: isCourseLoading } =
-		useCourseDetailFetch(courseId);
-	const { data: qna, isLoading: isQnaLoading } = useCourseQnaFetch(courseId);
+	const { data: course, isLoading: isCourseLoading } = useCourseDetailFetch(
+		+courseId,
+	);
+	const { data: qna, isLoading: isQnaLoading } = useCourseQnaFetch(+courseId);
 	const { data: lecture, isLoading: isLectureLoading } =
-		useCourseDetailLectureFetch(courseId);
+		useCourseDetailLectureFetch(+courseId);
 
 	const { showModal, onOpenLoginModal, renderModal } = useModal();
 	const isLoading = isCourseLoading || isQnaLoading || isLectureLoading;
