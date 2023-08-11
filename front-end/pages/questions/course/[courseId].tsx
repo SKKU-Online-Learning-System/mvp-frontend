@@ -35,7 +35,7 @@ const QuestionsByCoursePage = () => {
 					<CourseHeader
 						onOpenLoginModal={onOpenLoginModal}
 						courseDetail={course}
-						courseId={courseId}
+						courseId={+courseId}
 					/>
 
 					<div className="w-[85%] m-auto flex flex-col">
