@@ -16,8 +16,9 @@ type PropsType = {
 const PopularContentsCard = ({ order, title, courses }: PropsType) => {
 	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
 	const [currPage, setCurrPage] = useState(1);
+	const [courseData, setCourseData] = useState<ICourseRetrieveInfo[]>(courses);
 
-	if (!courses) {
+	if (!courseData) {
 		return (
 			<div>
 				Failed to retrieve data. Please refresh to retrieve data again . . .
@@ -25,7 +26,7 @@ const PopularContentsCard = ({ order, title, courses }: PropsType) => {
 		);
 	}
 
-	const contentsCnt = courses.length;
+	const contentsCnt = courseData.length;
 	const firstContentIdOnNextPage = 10 * currPage;
 
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,13 +47,13 @@ const PopularContentsCard = ({ order, title, courses }: PropsType) => {
 
 		if (e.target.value === '') {
 			const remainedContent = objs.filter(
-				(obj) => obj.courseId !== courses[elementId].course.id,
+				(obj) => obj.courseId !== courseData[elementId].course.id,
 			);
 			const arr = [...remainedContent];
 			setObjs(arr);
 		} else {
 			const obj = {
-				courseId: courses[elementId].course.id,
+				courseId: courseData[elementId].course.id,
 				order,
 				sequence: e.target.valueAsNumber,
 			};
@@ -69,7 +70,11 @@ const PopularContentsCard = ({ order, title, courses }: PropsType) => {
 	return (
 		<div className="flex flex-col justify-between h-full p-10 bg-white shadow-xl rounded-xl">
 			<div>
-				<CardHeader title={title} objs={objs} />
+				<CardHeader
+					title={title}
+					objs={objs}
+					setCourses={(courses) => setCourseData(courses)}
+				/>
 				<table className="w-full h-fit">
 					<thead>
 						<tr className="flex justify-center text-lg select-none">
@@ -82,7 +87,7 @@ const PopularContentsCard = ({ order, title, courses }: PropsType) => {
 						</tr>
 					</thead>
 					<tbody className="flex flex-col">
-						{courses
+						{courseData
 							.slice(10 * (currPage - 1), 10 * currPage)
 							.map((course, idx) => {
 								return (

@@ -3,6 +3,7 @@ import { AxiosResponse } from 'axios';
 
 import { ICourseDetail, ICourseCategory, ISearchedCourse } from 'types/Course';
 import { ILectureList, LectureProgress } from 'types/Lecture';
+import { ICourseRetrieveInfo } from 'types/Admin/Index';
 import { IPopularCourse } from 'types/Course';
 
 const functions = {
@@ -69,6 +70,15 @@ const functions = {
 				},
 			},
 		);
+		return res.data;
+	},
+	updatePopularCourses: async (): Promise<ICourseRetrieveInfo[]> => {
+		await axiosInstance.post('/popular-courses/update', {});
+		const res = await axiosInstance.get('/popular-courses', {
+			params: {
+				limit: 65535,
+			},
+		});
 		return res.data;
 	},
 };

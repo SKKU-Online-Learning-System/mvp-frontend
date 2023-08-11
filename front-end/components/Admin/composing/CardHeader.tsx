@@ -2,24 +2,27 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRotateForward } from '@fortawesome/free-solid-svg-icons';
 
+import { ICourseRetrieveInfo } from 'types/Admin/Index';
 import { ICourseOrdersInfo } from 'types/Admin/Index';
 import adminAPI from '../../../apis/Admin/adminAPI';
+import courseAPI from '../../../apis/Courses/courseApi';
 
 type PropsType = {
 	title: string;
 	objs: ICourseOrdersInfo[];
+	setCourses: (courses: ICourseRetrieveInfo[]) => void;
 };
 
-const CardHeader = ({ title, objs }: PropsType) => {
+const CardHeader = ({ title, objs, setCourses }: PropsType) => {
 	const [disabled, setDisabled] = useState(false);
 
-	const onRefreshBtnClick = () => {
-		if (!disabled) {
-			setDisabled(true);
-			setTimeout(() => {
-				setDisabled(false);
-			}, 60 * 1000);
-		}
+	const onRefreshBtnClick = async () => {
+		const courses = await courseAPI.updatePopularCourses();
+		setCourses(courses);
+		setDisabled(true);
+		setTimeout(() => {
+			setDisabled(false);
+		}, 60 * 1000);
 	};
 
 	const onSaveClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
