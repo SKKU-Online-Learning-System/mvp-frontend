@@ -1,7 +1,7 @@
 // questions/course/{courseId}
 import React, { useState } from 'react';
 
-import CourseHeader from '@components/Courses/Details/CourseHeader';
+import CourseHeader from '@components/Courses/Details/CourseHeader/CourseHeader';
 import QuestionTable from '@components/Questions/QuestionTable';
 import QuestionForm from '@components/Questions/QuestionForm';
 import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
