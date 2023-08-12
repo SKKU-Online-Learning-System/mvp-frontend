@@ -58,18 +58,8 @@ const functions = {
 		});
 		return res.data;
 	},
-	fetchProgress: async (
-		courseId: number,
-		cookies: string,
-	): Promise<LectureProgress[]> => {
-		const res = await axiosInstance.get(
-			`/history/lectures/course/${courseId}`,
-			{
-				headers: {
-					Cookie: cookies,
-				},
-			},
-		);
+	fetchProgress: async (courseId: number): Promise<LectureProgress[]> => {
+		const res = await axiosInstance.get(`/history/lectures/course/${courseId}`);
 		return res.data;
 	},
 	updatePopularCourses: async (): Promise<ICourseRetrieveInfo[]> => {
