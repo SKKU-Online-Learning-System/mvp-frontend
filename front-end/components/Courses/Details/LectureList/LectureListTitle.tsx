@@ -20,9 +20,13 @@ const LectureListTitle = ({
 	const finishedLecturesCnt = progress?.filter(
 		(progress) => progress.isFinished,
 	).length;
-	const courseProgress = finishedLecturesCnt
+	const progressPercentage = finishedLecturesCnt
 		? finishedLecturesCnt / lecturesCnt
-		: 0;
+		: -1;
+	const courseProgress =
+		progressPercentage !== -1
+			? progressPercentage.toString() + '%'
+			: 'No Progress Data';
 
 	return (
 		<div
@@ -30,7 +34,7 @@ const LectureListTitle = ({
 			onClick={() => handleCollapseClick(idx)}
 		>
 			<h4>{lecture.title}</h4>
-			<span>{`${courseProgress}%`}</span>
+			<span>{`${courseProgress}`}</span>
 		</div>
 	);
 };
