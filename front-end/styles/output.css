@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
+! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -191,10 +191,6 @@ select,
 textarea {
   font-family: inherit;
   /* 1 */
-  font-feature-settings: inherit;
-  /* 1 */
-  font-variation-settings: inherit;
-  /* 1 */
   font-size: 100%;
   /* 1 */
   font-weight: inherit;
@@ -342,14 +338,6 @@ ul,
 menu {
   list-style: none;
   margin: 0;
-  padding: 0;
-}
-
-/*
-Reset default styling for dialogs.
-*/
-
-dialog {
   padding: 0;
 }
 
@@ -630,6 +618,22 @@ video {
   top: -2px;
 }
 
+.bottom-\[80px\] {
+  bottom: 80px;
+}
+
+.bottom-\[88px\] {
+  bottom: 88px;
+}
+
+.bottom-\[90px\] {
+  bottom: 90px;
+}
+
+.bottom-\[92px\] {
+  bottom: 92px;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -783,6 +787,11 @@ video {
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .-ml-12 {
@@ -965,8 +974,8 @@ video {
   margin-top: 1.75rem;
 }
 
-.mb-7 {
-  margin-bottom: 1.75rem;
+.mt-1 {
+  margin-top: 0.25rem;
 }
 
 .box-border {
@@ -1249,6 +1258,10 @@ video {
   width: 450px;
 }
 
+.w-\[500px\] {
+  width: 500px;
+}
+
 .w-\[50px\] {
   width: 50px;
 }
@@ -1305,8 +1318,16 @@ video {
   width: 100vw;
 }
 
-.w-\[500px\] {
-  width: 500px;
+.w-\[1080px\] {
+  width: 1080px;
+}
+
+.w-\[1000px\] {
+  width: 1000px;
+}
+
+.w-\[\] {
+  width: ;
 }
 
 .min-w-\[130px\] {
@@ -1513,11 +1534,6 @@ video {
 
 .gap-y-4 {
   row-gap: 1rem;
-}
-
-.gap-x-11 {
-  -moz-column-gap: 2.75rem;
-       column-gap: 2.75rem;
 }
 
 .gap-x-1 {
@@ -1994,6 +2010,10 @@ video {
   padding: 25px;
 }
 
+.p-6 {
+  padding: 1.5rem;
+}
+
 .px-0 {
   padding-left: 0px;
   padding-right: 0px;
@@ -2310,6 +2330,10 @@ video {
   font-family: Inter;
 }
 
+.font-\[\#dddddd\] {
+  font-family: #dddddd;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -2594,11 +2618,6 @@ video {
   color: rgb(0 0 0 / 0.5);
 }
 
-.text-gray-400 {
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
@@ -2609,22 +2628,24 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.text-gray-500 {
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
+.text-\[\#aaaaaa\] {
+  --tw-text-opacity: 1;
+  color: rgb(170 170 170 / var(--tw-text-opacity));
+}
+
 .no-underline {
-  text-decoration-line: none;
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
 }
 
 .decoration-black {
-  text-decoration-color: #000;
+  -webkit-text-decoration-color: #000;
+          text-decoration-color: #000;
 }
 
 .opacity-0 {
@@ -2645,6 +2666,14 @@ video {
 
 .opacity-\[0\.6\] {
   opacity: 0.6;
+}
+
+.opacity-\[0\.8\] {
+  opacity: 0.8;
+}
+
+.opacity-\[1\.0\] {
+  opacity: 1.0;
 }
 
 .shadow {
@@ -2675,9 +2704,9 @@ video {
 }
 
 .transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -2689,7 +2718,9 @@ video {
 }
 
 .transition-colors {
+  transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -2818,19 +2849,24 @@ input::-webkit-inner-spin-button {
   background-color: var(--color-mrgreen-6);
 }
 
-.hover\:bg-slate-400:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-slate-50:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-slate-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#b0ce69\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(176 206 105 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#9ece69\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(158 206 105 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#8dbd58\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(141 189 88 / var(--tw-bg-opacity));
 }
 
 .hover\:text-\[28px\]:hover {

@@ -32,7 +32,7 @@ const MainPage = ({ recommendedContents }: PropsType) => {
 					<CourseList
 						headerText={`${title} 컨텐츠`}
 						contents={recommendedContents[idx]}
-						key={idx}
+						key={title}
 					/>
 				))}
 			</div>

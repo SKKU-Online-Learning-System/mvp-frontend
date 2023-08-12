@@ -44,7 +44,7 @@ export const RecentLecture = () => {
 			<CourseHeader title={'최근 수강 강의'} />
 			<div className="grid gap-x-4 gap-y-4 grid-cols-5 py-5 px-[35px]">
 				{lectures ? (
-					lectures.slice(0, 5).map((elem, idx) => {
+					lectures.slice(0, 5).map((elem) => {
 						const percentage = getProgressPercentage(
 							elem.lastTime,
 							elem.lecture.duration,
@@ -53,7 +53,7 @@ export const RecentLecture = () => {
 						return (
 							<Link
 								href={`/lectures/${elem.lecture.course.id}?courseId=${elem.lecture.id}`}
-								key={idx}
+								key={elem.id}
 							>
 								<div className="relative w-full overflow-hidden cursor-pointer rounded-lg transition hover:scale-[1.03] bg-[var(--color-Surface)]">
 									<Image
@@ -64,18 +64,21 @@ export const RecentLecture = () => {
 										height={180}
 										layout="responsive"
 									/>
-									<div
-										className={`w-[${percentage}] absolute bottom-[84px] right-0 left-0 h-1 bg-[#717171]`}
-									>
-										<div className="absolute h-full bg-red-600"></div>
+									<div className={`w-full right-0 left-0 h-1 bg-[#717171]`}>
+										<div
+											className={`absolute h-1 w-[${percentage}] bg-red-600`}
+										></div>
 									</div>
-									<div className="flex flex-col justify-around h-20 px-3 pt-2 pb-3">
-										<div className="overflow-hidden text-base font-semibold text-ellipsis whitespace-nowrap">
+									<div className="flex flex-col justify-around px-3 pt-2 pb-3">
+										<span className="text-sm font-semibold overflow-ellipsis text-[#696969]">
+											{elem.lecture.course.title}
+										</span>
+										<span className="mb-2 overflow-hidden font-semibold text-ellipsis whitespace-nowrap">
 											{elem.lecture.title}
-										</div>
-										<div className="text-ellipsis overflow-hidden whitespace-nowrap text-black/[0.5]">
+										</span>
+										<span className="text-ellipsis text-sm overflow-hidden whitespace-nowrap text-black/[0.5]">
 											{showTimeProgress(elem.lastTime, elem.lecture.duration)}
-										</div>
+										</span>
 									</div>
 								</div>
 							</Link>
