@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
+import { LectureProgress } from 'types/Lecture/index';
 import { ILectureList } from 'types/Lecture/index';
 import LectureListTitle from './LectureListTitle';
 import LectureListBody from './LectureListBody';
@@ -10,6 +11,7 @@ type PropsType = {
 	courseId: number;
 	courseDetail: ICourseDetail;
 	lectures: ILectureList[];
+	progress: LectureProgress[] | undefined;
 	onOpenLoginModal: () => void;
 };
 
@@ -17,6 +19,7 @@ const LectureList = ({
 	courseId,
 	courseDetail,
 	lectures,
+	progress,
 	onOpenLoginModal,
 }: PropsType) => {
 	const router = useRouter();
@@ -40,7 +43,7 @@ const LectureList = ({
 		alert('강좌를 신청해주세요.');
 	};
 
-	const handleCollaseClick = (index: number) => {
+	const handleCollapseClick = (index: number) => {
 		setIsCollapsed(
 			isCollapsed.map((elem, idx) => (idx === index ? !elem : elem)),
 		);
@@ -54,7 +57,8 @@ const LectureList = ({
 						<LectureListTitle
 							idx={idx}
 							lecture={lecture}
-							handleCollaseClick={handleCollaseClick}
+							progress={progress}
+							handleCollapseClick={handleCollapseClick}
 						/>
 						<LectureListBody
 							show={isCollapsed[idx]}

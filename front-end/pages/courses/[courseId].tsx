@@ -44,6 +44,7 @@ const CourseDetailPage = ({ courseId, course, qna, lectures }: PropsType) => {
 					courseId={courseId}
 					lectures={lectures}
 					course={course}
+					progress={progress}
 					onOpenLoginModal={onOpenLoginModal}
 				/>
 				<hr className="w-[1080px] mx-auto my-6" />

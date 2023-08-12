@@ -2,12 +2,14 @@ import React from 'react';
 
 import { ILectureList } from 'types/Lecture';
 import { ICourseDetail } from 'types/Course';
+import { LectureProgress } from 'types/Lecture';
 import LectureList from './LectureList/LectureList';
 
 type PropsType = {
 	courseId: number;
 	lectures: ILectureList[];
 	course: ICourseDetail;
+	progress: LectureProgress[] | undefined;
 	onOpenLoginModal: () => void;
 };
 
@@ -15,6 +17,7 @@ const CourseBody = ({
 	courseId,
 	lectures,
 	course,
+	progress,
 	onOpenLoginModal,
 }: PropsType) => {
 	return (
@@ -28,9 +31,10 @@ const CourseBody = ({
 			{lectures && (
 				<LectureList
 					courseId={courseId}
-					lectures={lectures}
-					onOpenLoginModal={onOpenLoginModal}
 					courseDetail={course}
+					lectures={lectures}
+					progress={progress}
+					onOpenLoginModal={onOpenLoginModal}
 				/>
 			)}
 		</section>
