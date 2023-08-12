@@ -11,7 +11,7 @@ type PropsType = {
 	courseId: number;
 	courseDetail: ICourseDetail;
 	lectures: ILectureList[];
-	progress: LectureProgress[] | undefined;
+	progress: LectureProgress[];
 	onOpenLoginModal: () => void;
 };
 

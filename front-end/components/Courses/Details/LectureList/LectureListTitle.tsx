@@ -6,7 +6,7 @@ import { LectureProgress } from 'types/Lecture';
 type PropsType = {
 	idx: number;
 	lecture: ILectureList;
-	progress: LectureProgress[] | undefined;
+	progress: LectureProgress[];
 	handleCollapseClick: (idx: number) => void;
 };
 
@@ -17,16 +17,10 @@ const LectureListTitle = ({
 	handleCollapseClick,
 }: PropsType) => {
 	const lecturesCnt = lecture.lectures.length;
-	const finishedLecturesCnt = progress?.filter(
+	const finishedLecturesCnt = progress.filter(
 		(progress) => progress.isFinished,
 	).length;
-	const progressPercentage = finishedLecturesCnt
-		? finishedLecturesCnt / lecturesCnt
-		: -1;
-	const courseProgress =
-		progressPercentage !== -1
-			? progressPercentage.toString() + '%'
-			: 'No Progress Data';
+	const progressPercentage = finishedLecturesCnt / lecturesCnt;
 
 	return (
 		<div
@@ -34,7 +28,7 @@ const LectureListTitle = ({
 			onClick={() => handleCollapseClick(idx)}
 		>
 			<h4>{lecture.title}</h4>
-			<span>{`${courseProgress}`}</span>
+			<span>{`${progressPercentage}%`}</span>
 		</div>
 	);
 };

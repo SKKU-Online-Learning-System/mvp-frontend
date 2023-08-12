@@ -31,6 +31,7 @@ const CourseDetailPage = ({ courseId, course, qna, lectures }: PropsType) => {
 	}, []);
 
 	if (!course) return <div>Failed to retrieve course data . . .</div>;
+	if (!progress) return <div>Loading . . .</div>;
 
 	return (
 		<main>
