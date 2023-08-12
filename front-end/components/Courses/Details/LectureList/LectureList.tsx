@@ -56,6 +56,7 @@ const LectureList = ({
 					<section key={lecture.id}>
 						<LectureListTitle
 							idx={idx}
+							isEnrolled={isEnrolled}
 							lecture={lecture}
 							progress={progress}
 							handleCollapseClick={handleCollapseClick}
