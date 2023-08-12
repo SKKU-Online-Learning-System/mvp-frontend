@@ -42,9 +42,6 @@ const CourseHeader = ({
 		});
 	};
 
-	// url={courseDetail.thumbnail}
-	// Todo: 강좌신청 버튼 오류 해결하기
-
 	return (
 		<div className="flex h-[25rem] bg-[var(--color-Primary)] px-10 justify-center">
 			<div className="my-auto">
@@ -74,7 +71,7 @@ const CourseHeader = ({
 					</div>
 
 					<button
-						className={`bg-[#7dad47] text-white text-xl border-0 rounded w-[150px] h-10 opacity-[${
+						className={`transition-all bg-[#7dad47] hover:bg-[#8dbd58] text-white text-xl border-0 rounded w-[150px] h-10 opacity-[${
 							isEnrolled ? '0.6' : '1.0'
 						}] cursor-[${isEnrolled ? 'none' : 'pointer'}]`}
 						onClick={handleClick(isLoggedIn)}
@@ -89,19 +86,3 @@ const CourseHeader = ({
 };
 
 export default CourseHeader;
-
-// Todo: 아래 styled-component 구문 TailwindCSS 구문으로 변경할 것
-// const LectureImg = styled.div<UrlProps>`
-// 	background: linear-gradient(
-// 			to right,
-// 			rgba(6, 63, 128, 1) 0%,
-// 			rgba(6, 63, 128, 0.7) 5%,
-// 			rgba(6, 63, 128, 0.5) 10%,
-// 			rgba(6, 63, 128, 0) 15%,
-// 			rgba(6, 63, 128, 0) 85%,
-// 			rgba(6, 63, 128, 0.5) 90%,
-// 			rgba(6, 63, 128, 0.7) 95%,
-// 			rgba(6, 63, 128, 1) 100%
-// 		),
-// 		url(${(props) => props.url});
-// `;
