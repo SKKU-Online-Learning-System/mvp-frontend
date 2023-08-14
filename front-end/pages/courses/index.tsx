@@ -10,7 +10,6 @@ type PropsType = {
 	categories: ICourseCategory[];
 };
 
-// TODO. 검색을 했을경우 breadCrumb 카테고리가 맞지 않는 문제 해결
 const CoursesListPage = ({ categories }: PropsType) => {
 	const [clickedTitle, setClickedTitle] = useState('전체보기');
 
