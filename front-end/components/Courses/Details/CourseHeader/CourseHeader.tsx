@@ -17,7 +17,7 @@ const CourseHeader = ({
 	onOpenLoginModal,
 }: PropsType) => {
 	return (
-		<section className="w-full flex h-[25rem] bg-[var(--color-Primary)] px-10 justify-center">
+		<section className="w-full flex bg-[var(--color-Primary)] px-10 justify-center py-8">
 			<section className="my-auto">
 				<Image
 					src={courseDetail.thumbnail}
