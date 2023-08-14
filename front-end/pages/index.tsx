@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import CurationFloatingBar from '@components/Main/CurationFloatingBar';
@@ -19,6 +19,19 @@ const titles = ['인기', '신규', '인공지능', '교양'];
 
 const MainPage = ({ recommendedContents }: PropsType) => {
 	const isLoggined = useSelector(selectIsLoggined);
+	const [scrollY, setScrollY] = useState(0);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setScrollY(window.scrollY);
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
 
 	return (
 		<section className="relative">
@@ -36,7 +49,7 @@ const MainPage = ({ recommendedContents }: PropsType) => {
 					/>
 				))}
 			</div>
-			<ScrollToTopButton />
+			{!!scrollY && <ScrollToTopButton />}
 		</section>
 	);
 };
