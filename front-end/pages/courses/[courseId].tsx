@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GetServerSidePropsContext } from 'next';
+import { GetStaticPropsContext } from 'next';
 
 import CourseHeader from '@components/Courses/Details/CourseHeader/CourseHeader';
 import CourseBody from '@components/Courses/Details/CourseBody';
@@ -58,13 +58,15 @@ const CourseDetailPage = ({ courseId }: PropsType) => {
 	);
 };
 
-export async function getServerSideProps({
-	params,
-}: GetServerSidePropsContext) {
+export function getStaticProps({ params }: GetStaticPropsContext) {
 	if (!params || !params.courseId) return { props: {} };
 
 	const courseId = +params.courseId;
 	return { props: { courseId } };
+}
+
+export function getStaticPaths() {
+	return { paths: [], fallback: 'blocking' };
 }
 
 export default CourseDetailPage;
