@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import courseAPI from '../../../../apis/Courses/courseApi';
+import { useCourseEnrollmentUpdate } from 'query/hooks/QnA/index';
 import { HTTP_STATUS_CODE } from 'constants/http';
 import { ICourseDetail } from 'types/Course';
 
@@ -11,12 +11,18 @@ type PropsType = {
 	onOpenLoginModal: () => void;
 };
 
+type ResponseType = {
+	message: string;
+	statusCode: number;
+};
+
 const RegisterButton = ({
 	courseId,
 	courseDetail,
 	onOpenLoginModal,
 }: PropsType) => {
 	const router = useRouter();
+	const mutation = useCourseEnrollmentUpdate();
 	const { has_enrolled: isEnrolled, is_logged_in: isLoggedIn } = courseDetail;
 
 	const handleClick = async (isLoggedIn: boolean) => {
@@ -24,17 +30,24 @@ const RegisterButton = ({
 			onOpenLoginModal();
 			return;
 		}
-		// Todo: res.status인지 res.statusCode인지 log 찍어서 확인해볼 것
-		try {
-			const res = await courseAPI.enrollCourse(courseId);
-			if (res.status === HTTP_STATUS_CODE.CREATED) {
-				router.reload();
-			} else {
-				alert('강의 신청에 실패 했습니다. 다시 시도해주세요.');
-			}
-		} catch (err) {
-			alert('오류로 인해 신청에 실패했습니다. 다시 시도해주세요.');
-		}
+
+		mutation.mutate(courseId, {
+			onSuccess: (data) => {
+				if (
+					(data as unknown as ResponseType).statusCode ===
+					HTTP_STATUS_CODE.CREATED
+				) {
+					router.reload();
+				} else {
+					alert(
+						'알수없는 오류로 강의 신청에 실패 했습니다. 다시 시도해주세요.',
+					);
+				}
+			},
+			onError: () => {
+				alert('오류로 인해 신청에 실패했습니다. 다시 시도해주세요.');
+			},
+		});
 	};
 
 	const enrolledStyle = (isEnrolled: boolean) => {

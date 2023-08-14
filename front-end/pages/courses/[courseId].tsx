@@ -3,24 +3,26 @@ import { GetServerSidePropsContext } from 'next';
 
 import CourseHeader from '@components/Courses/Details/CourseHeader/CourseHeader';
 import CourseBody from '@components/Courses/Details/CourseBody';
-import courseAPI from '../../apis/Courses/courseApi';
-import { ICourseDetail, IQna } from 'types/Course';
-import QnA from '@components/Courses/Details/QnA';
+import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
 import { LectureProgress } from 'types/Lecture';
-import { ILectureList } from 'types/Lecture';
-import qnaAPI from '../../apis/QnA/qnaApi';
-import { useModal } from 'hooks/useModal';
+import courseAPI from '../../apis/Courses/courseApi';
+import QnA from '@components/Courses/Details/QnA';
 
 type PropsType = {
 	courseId: number;
-	course: ICourseDetail;
-	qna: IQna[];
-	lectures: ILectureList[];
 };
 
-const CourseDetailPage = ({ courseId, course, qna, lectures }: PropsType) => {
+const CourseDetailPage = ({ courseId }: PropsType) => {
 	const [progress, setProgress] = useState<LectureProgress[]>();
-	const { showModal, onOpenLoginModal, renderModal } = useModal();
+	const {
+		course,
+		qna,
+		lecture,
+		showModal,
+		onOpenLoginModal,
+		renderModal,
+		isLoading,
+	} = useCourseDetailInfo();
 
 	useEffect(() => {
 		async function func() {
@@ -30,8 +32,8 @@ const CourseDetailPage = ({ courseId, course, qna, lectures }: PropsType) => {
 		func();
 	}, []);
 
-	if (!course) return <div>Failed to retrieve course data . . .</div>;
-	if (!progress) return <div>Loading . . .</div>;
+	if (!progress || !course || !lecture) return <div>progress</div>;
+	if (isLoading) return <div>Loading...</div>;
 
 	return (
 		<main>
@@ -43,7 +45,7 @@ const CourseDetailPage = ({ courseId, course, qna, lectures }: PropsType) => {
 				/>
 				<CourseBody
 					courseId={courseId}
-					lectures={lectures}
+					lectures={lecture}
 					course={course}
 					progress={progress}
 					onOpenLoginModal={onOpenLoginModal}
@@ -62,11 +64,7 @@ export async function getServerSideProps({
 	if (!params || !params.courseId) return { props: {} };
 
 	const courseId = +params.courseId;
-	const course = await courseAPI.fetchCourseDetail(courseId);
-	const qna = await qnaAPI.fetchCourseDetailQna(courseId);
-	const lectures = await courseAPI.fetchCourseDetailLectures(courseId);
-
-	return { props: { courseId, course, qna, lectures } };
+	return { props: { courseId } };
 }
 
 export default CourseDetailPage;
