@@ -1,10 +1,15 @@
 import axiosInstance from 'apis';
 import { AxiosResponse } from 'axios';
 
-import { ICourseDetail, ICourseCategory, ISearchedCourse } from 'types/Course';
 import { ILectureList, LectureProgress } from 'types/Lecture';
 import { ICourseRetrieveInfo } from 'types/Admin/Index';
-import { IPopularCourse } from 'types/Course';
+import {
+	ICourseDetail,
+	ICourseCategory,
+	ISearchedCourse,
+	IPopularCourse,
+	ResponseType,
+} from 'types/Course';
 
 const functions = {
 	fetchPopularCourse: async (courseId?: number): Promise<IPopularCourse> => {
@@ -52,10 +57,14 @@ const functions = {
 			},
 		});
 	},
-	enrollCourse: async (courseId: number): Promise<AxiosResponse> => {
+	enrollCourse: async (courseId: number): Promise<ResponseType> => {
 		const res = await axiosInstance.post('/enrollment', {
 			courseId,
 		});
+		return res.data;
+	},
+	widthdrawCourse: async (courseId: number): Promise<ResponseType> => {
+		const res = await axiosInstance.delete(`/enrollment/course/${courseId}`);
 		return res.data;
 	},
 	fetchProgress: async (courseId: number): Promise<LectureProgress[]> => {

@@ -89,3 +89,8 @@ export interface IPopularCourse {
 	updatedAt: string;
 	course: ICourseInfo;
 }
+
+export interface ResponseType {
+	message: string;
+	statusCode: number;
+}
