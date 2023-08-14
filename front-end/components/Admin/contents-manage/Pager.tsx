@@ -23,8 +23,10 @@ const Pager = ({
 
 		if (id === 'prev' && pageNumber > 1) {
 			setPageNumber(pageNumber - 1);
+			window.scrollTo(0, 0);
 		} else if (id === 'next' && pageNumber * ContentsCntPerPage < courseCnt) {
 			setPageNumber(pageNumber + 1);
+			window.scrollTo(0, 0);
 		}
 	};
 
