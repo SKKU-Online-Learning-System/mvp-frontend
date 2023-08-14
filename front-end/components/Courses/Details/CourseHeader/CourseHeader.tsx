@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/dist/client/image';
 
 import MetaDataSection from './MetaDataSection';
-import RegisterButton from './RegisterButton';
+import RegisterButton from './Buttons/RegisterButton';
 import { ICourseDetail } from 'types/Course';
 
 type PropsType = {
@@ -17,7 +17,7 @@ const CourseHeader = ({
 	onOpenLoginModal,
 }: PropsType) => {
 	return (
-		<section className="w-full flex bg-[var(--color-Primary)] px-10 justify-center py-8">
+		<section className="w-full flex bg-[var(--color-Primary)] px-10 justify-center py-10">
 			<section className="my-auto">
 				<Image
 					src={courseDetail.thumbnail}
