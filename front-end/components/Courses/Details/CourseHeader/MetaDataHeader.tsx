@@ -15,9 +15,9 @@ const MetaDataHeader = ({ courseDetail }: PropsType) => {
 	return (
 		<header>
 			<h4 className="m-[5px] font-semibold text-sm text-[#dddddd]">{`${courseCategory1} > ${courseCategory2}`}</h4>
-			<div className="m-[5px] flex items-end mb-8">
+			<div className="m-[5px] flex flex-col items-start mb-8">
 				<h2 className="text-3xl font-bold">{title}</h2>
-				<p className="ml-6">{`강사: ${instructor} `}</p>
+				<p className="mt-2">{`강사: ${instructor} `}</p>
 			</div>
 		</header>
 	);
