@@ -27,7 +27,8 @@ const PopularContentsCard = ({ order, title, courses }: PropsType) => {
 	}
 
 	const contentsCnt = courseData.length;
-	const firstContentIdOnNextPage = 10 * currPage;
+	const startingIndex = 10 * (currPage - 1);
+	const endIndex = 10 * currPage;
 
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const elementId = +e.currentTarget.id;
@@ -87,33 +88,31 @@ const PopularContentsCard = ({ order, title, courses }: PropsType) => {
 						</tr>
 					</thead>
 					<tbody className="flex flex-col">
-						{courseData
-							.slice(10 * (currPage - 1), 10 * currPage)
-							.map((course, idx) => {
-								return (
-									<tr
-										key={idx}
-										className="flex items-center justify-center mt-6 text-center"
-									>
-										<td className="w-1/12">{idx + 1}</td>
-										<td className="w-1/5">
-											{course.courseCreatedAt.split('T')[0]}
-										</td>
-										<td className="w-1/3">{course.courseTitle}</td>
-										<td className="w-1/6 ">{course.instructorName}</td>
-										<td className="w-1/12">{course.enrollmentCount}</td>
-										<input
-											placeholder={`${idx + 1}`}
-											onChange={onOrderChange}
-											className="w-1/12 text-center rounded-lg outline-none border-[1px] border-solid border-[#aeaeae]"
-											id={`${idx}`}
-											type="number"
-											min="0"
-											max="5"
-										/>
-									</tr>
-								);
-							})}
+						{courseData.slice(startingIndex, endIndex).map((course, idx) => {
+							return (
+								<tr
+									key={idx}
+									className="flex items-center justify-center mt-6 text-center"
+								>
+									<td className="w-1/12">{idx + 1}</td>
+									<td className="w-1/5">
+										{course.courseCreatedAt.split('T')[0]}
+									</td>
+									<td className="w-1/3">{course.courseTitle}</td>
+									<td className="w-1/6 ">{course.instructorName}</td>
+									<td className="w-1/12">{course.enrollmentCount}</td>
+									<input
+										placeholder={`${idx + 1}`}
+										onChange={onOrderChange}
+										className="w-1/12 text-center rounded-lg outline-none border-[1px] border-solid border-[#aeaeae]"
+										id={`${idx}`}
+										type="number"
+										min="0"
+										max="5"
+									/>
+								</tr>
+							);
+						})}
 					</tbody>
 				</table>
 			</div>
@@ -121,7 +120,7 @@ const PopularContentsCard = ({ order, title, courses }: PropsType) => {
 				page={currPage}
 				setPage={onPagerClick}
 				contentsCnt={contentsCnt}
-				firstContentIdOnNextPage={firstContentIdOnNextPage}
+				firstContentIdOnNextPage={endIndex}
 			/>
 		</div>
 	);
