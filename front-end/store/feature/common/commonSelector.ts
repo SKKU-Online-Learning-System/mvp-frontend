@@ -6,6 +6,11 @@ export const selectIsLoggined = createSelector(
 	(isLoggined) => isLoggined,
 );
 
+export const selectUserType = createSelector(
+	(state: RootState) => state.common.userType,
+	(userType) => userType,
+);
+
 export const selectErrorInfo = createSelector(
 	(state: RootState) => state.common.errorInfo,
 	(errorInfo) => errorInfo,
