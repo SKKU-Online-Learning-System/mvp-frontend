@@ -11,9 +11,9 @@ type PropsType = {
 const MainBanner = ({ contents }: PropsType) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 
-	const slides = contents.map((course) => {
+	const slides = contents.map((course, idx) => {
 		return {
-			thumbnail: course.thumbnail,
+			thumbnail: `/images/banner-images/${idx}.jpg`,
 			url: `/courses/${course.courseId}`,
 		};
 	});
@@ -39,9 +39,9 @@ const MainBanner = ({ contents }: PropsType) => {
 			<div
 				style={{
 					// backgroundImage: `url(${slides[currentIndex].thumbnail})`, max-w-[1400px]
-					backgroundImage: "url('/images/banner_1.png')",
+					backgroundImage: `url(${slides[currentIndex].thumbnail})`,
 				}}
-				className="relative h-full px-4 py-16 m-auto duration-500 bg-center bg-cover w-[80%]"
+				className="relative h-full px-4 py-16 m-auto duration-500 bg-center w-[80%] bg-contain bg-no-repeat"
 			>
 				<a
 					href={slides[currentIndex].url}
