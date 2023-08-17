@@ -8,13 +8,13 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY yarn.lock ./
 
-RUN npm install
+RUN yarn install
 
 # 앱 소스 코드 복사
 COPY . .
 
 # 앱 빌드
-RUN npm run build
+RUN yarn build
 
 # 실행할 포트 번호 설정
 EXPOSE 3000
