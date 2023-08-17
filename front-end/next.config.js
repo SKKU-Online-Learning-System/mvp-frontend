@@ -4,7 +4,6 @@ const withImages = require('next-images');
 module.exports = withImages();
 
 module.exports = {
-
 	typescript: {
 		// TODO : 타입 다 채워서 이거 빼고도 빌드 되어야함.
 		ignoreBuildErrors: true,
@@ -20,7 +19,7 @@ module.exports = {
 	// },
 	images: {
 		default: 'fill',
-		domains: ["mrdang-lectures.s3.ap-northeast-2.amazonaws.com"],
+		domains: ['mrdang-lectures.s3.ap-northeast-2.amazonaws.com'],
 		disableStaticImages: true,
 	},
 	webpack(config, options) {
@@ -41,7 +40,7 @@ module.exports = {
 		};
 		return config;
 	},
-	
+
 	async redirects() {
 		return [
 			{
