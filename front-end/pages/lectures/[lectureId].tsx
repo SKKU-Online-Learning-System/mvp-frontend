@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react';
+import React, { useRef } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import { useRouter } from 'next/router';
 import Error from 'next/error';
@@ -17,7 +17,7 @@ type RouterQueryString = {
 	courseId: string;
 };
 
-const LecturePlayer = (): ReactElement => {
+const LecturePlayer = () => {
 	const router = useRouter();
 	const { lectureId, courseId } = router.query as RouterQueryString;
 	const ref = useRef<ReactPlayer | null>(null);
