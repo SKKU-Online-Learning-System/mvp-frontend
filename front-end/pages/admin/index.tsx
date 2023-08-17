@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Head from 'next/head';
 
 import ContentsManage from '../../components/Admin/contents-manage/ContentsManage';
 import NoticesManage from '@components/Admin/notices-manage/NoticesManage';
@@ -33,29 +34,35 @@ const AdminIndex = ({ coursesInfo, allCourses, notices }: PropsType) => {
 	const [opens, setOpens] = useState<boolean[]>([true, false, false, false]);
 
 	return (
-		<div className="min-h-full">
-			<h2 className="select-none w-full bg-[var(--color-Primary)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
-				{`온라인명륜당 > Admin > ${title}`}
-			</h2>
-			<div className="flex min-h-screen">
-				<div className="w-1/6 min-h-full bg-[var(--color-Primary)] min-w-[280px]">
-					<SideMenuButtonList
-						opens={opens}
-						setOpens={setOpens}
-						setTitle={setTitle}
-					/>
+		<section className="min-h-full">
+			<Head>
+				<title>온라인명륜당 | Admin</title>
+				<meta name="description" content="온라인명륜당 Admin 페이지" />
+			</Head>
+			<section>
+				<h2 className="select-none w-full bg-[var(--color-Primary)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
+					{`온라인명륜당 > Admin > ${title}`}
+				</h2>
+				<div className="flex min-h-screen">
+					<div className="w-1/6 min-h-full bg-[var(--color-Primary)] min-w-[280px]">
+						<SideMenuButtonList
+							opens={opens}
+							setOpens={setOpens}
+							setTitle={setTitle}
+						/>
+					</div>
+					{opens[0] ? (
+						<Compose coursesInfo={coursesInfo} titles={titles} />
+					) : opens[1] ? (
+						<UserRanking />
+					) : opens[2] ? (
+						<ContentsManage allCourses={allCourses} />
+					) : opens[3] ? (
+						<NoticesManage notices={notices} />
+					) : null}
 				</div>
-				{opens[0] ? (
-					<Compose coursesInfo={coursesInfo} titles={titles} />
-				) : opens[1] ? (
-					<UserRanking />
-				) : opens[2] ? (
-					<ContentsManage allCourses={allCourses} />
-				) : opens[3] ? (
-					<NoticesManage notices={notices} />
-				) : null}
-			</div>
-		</div>
+			</section>
+		</section>
 	);
 };
 

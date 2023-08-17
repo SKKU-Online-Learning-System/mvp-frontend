@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GetStaticPropsContext } from 'next';
+import Head from 'next/head';
 
 import CourseHeader from '@components/Courses/Details/CourseHeader/CourseHeader';
 import CourseBody from '@components/Courses/Details/CourseBody';
@@ -37,6 +38,10 @@ const CourseDetailPage = ({ courseId }: PropsType) => {
 
 	return (
 		<main>
+			<Head>
+				<title>온라인명륜당 | 강좌</title>
+				<meta name="description" content="온라인명륜당 강좌 페이지" />
+			</Head>
 			<section>
 				<CourseHeader
 					onOpenLoginModal={onOpenLoginModal}

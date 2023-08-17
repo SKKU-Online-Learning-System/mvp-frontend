@@ -63,7 +63,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Head>
-				<title>온라인 명륜당</title>
+				<title>온라인명륜당</title>
 			</Head>
 			<Provider store={store}>
 				<MyComponent>

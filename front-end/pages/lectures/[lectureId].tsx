@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import Head from 'next/head';
 import ReactPlayer from 'react-player/lazy';
 import { useRouter } from 'next/router';
 import Error from 'next/error';
@@ -60,7 +61,11 @@ const LecturePlayer = () => {
 	if (isLoading) return <div>Loading....</div>;
 
 	return (
-		<>
+		<section>
+			<Head>
+				<title>온라인명륜당 | 강의</title>
+				<meta name="description" content="온라인명륜당 강의 영상 시청 페이지" />
+			</Head>
 			<h2 className="select-none w-full bg-[var(--color-Primary)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
 				온라인명륜당
 			</h2>
@@ -95,7 +100,7 @@ const LecturePlayer = () => {
 			) : (
 				<Error statusCode={HTTP_STATUS_CODE.NOT_FOUND} />
 			)}
-		</>
+		</section>
 	);
 };
 

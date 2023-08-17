@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 
 import Learning from '@components/MyPage/Learning/Learning';
 import MyPageLayout from '@components/MyPage/MyPageLayout';
@@ -31,7 +32,15 @@ const MyPage = ({ category }: PropsType) => {
 		}
 	};
 
-	return <MyPageLayout>{routeComponent(category)}</MyPageLayout>;
+	return (
+		<section>
+			<Head>
+				<title>온라인명륜당 | 마이페이지</title>
+				<meta name="description" content="온라인명륜당 마이페이지" />
+			</Head>
+			<MyPageLayout>{routeComponent(category)}</MyPageLayout>;
+		</section>
+	);
 };
 
 export async function getStaticProps({ params }: GetServerSidePropsContext) {

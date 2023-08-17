@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Head from 'next/head';
 
 import CourseListLayout from '@components/Courses/List/CourseListLayout';
 import TopSearchbar from '@components/Courses/List/TopSearchbar';
@@ -16,18 +17,24 @@ const CoursesListPage = ({ categories }: PropsType) => {
 	const categoryList = [{ id: 0, name: '전체보기' }, ...categories];
 
 	return (
-		<CourseListLayout
-			categories={categoryList}
-			title={clickedTitle}
-			setTitle={setClickedTitle}
-		>
-			<div className="flex justify-center items-center bg-white max-w-[1400px] mx-auto p-10 pb-24 font-['Noto Sans KR']">
-				<div className="w-full">
-					<TopSearchbar />
-					<LectureList />
+		<section>
+			<Head>
+				<title>온라인명륜당 | 강좌</title>
+				<meta name="description" content="온라인명륜당 강좌 페이지" />
+			</Head>
+			<CourseListLayout
+				categories={categoryList}
+				title={clickedTitle}
+				setTitle={setClickedTitle}
+			>
+				<div className="flex justify-center items-center bg-white max-w-[1400px] mx-auto p-10 pb-24 font-['Noto Sans KR']">
+					<div className="w-full">
+						<TopSearchbar />
+						<LectureList />
+					</div>
 				</div>
-			</div>
-		</CourseListLayout>
+			</CourseListLayout>
+		</section>
 	);
 };
 
