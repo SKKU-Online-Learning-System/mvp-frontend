@@ -51,9 +51,9 @@ const Footer = () => {
 						</span>
 					</Link>
 					<span className="m-4">|</span>
-					<Link href="">
-						<span className="text-[#fefefe] no-underline cursor-pointer">
-							Contact us
+					<Link href="/">
+						<span className="text-[#fefefe] no-underline cursor-pointer uppercase">
+							contact us
 						</span>
 					</Link>
 				</div>
