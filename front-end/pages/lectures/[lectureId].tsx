@@ -71,25 +71,24 @@ const LecturePlayer = (): ReactElement => {
 							<LecturePicker courseId={courseId} lectureId={lectureId} />
 						)}
 					</div>
-					{/* 640px 360px */}
 					<div className="flex w-full min-h-full p-10 pb-24 player-wrapper place-content-center">
 						<ReactPlayer
 							ref={ref}
-							url={videoUrl} // 플레이어 url
+							url={videoUrl}
 							style={{ minWidth: '1080px', minHeight: '768px' }}
-							playing={true} // 자동 재생 on
-							muted={true} // 음소거 활성화
-							controls={true} // 플레이어 컨트롤 노출 여부
-							light={false} // 플레이어 모드
-							pip={true} // pip 모드(작은 화면 모달) 설정 여부
-							disablePictureInPicture={true} // pip 아이콘 비활성화
+							playing={true}
+							muted={true}
+							controls={true}
+							light={false}
+							pip={true}
+							disablePictureInPicture={true}
 							poster={
 								'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
-							} // 플레이어 초기 포스터 사진
-							progressInterval={10000} // 프로그레스 업데이트 간격 (ms)
-							onPause={onUpdateCurrentPlayTime} // 일시 정지 시 호출할 함수
-							onProgress={onUpdateCurrentPlayTime} // 재생 중 호출할 함수
-							onEnded={onEnded} // 재생 종료 시 호출할 함수
+							}
+							progressInterval={10000}
+							onPause={onUpdateCurrentPlayTime}
+							onProgress={onUpdateCurrentPlayTime}
+							onEnded={onEnded}
 						/>
 					</div>
 				</div>
