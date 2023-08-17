@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { AxiosResponse } from 'axios';
 
+import { userLoginAuthState, userState } from 'constants/commonState';
 import { fetchSignUpCallback } from 'apis/SignUp/signUpApi';
-import { userLoginAuthState } from 'constants/commonState';
 import { commonActions } from 'store/feature/common/commonSlice';
 
 const SignUpCallback = (): ReactElement => {
@@ -19,6 +19,7 @@ const SignUpCallback = (): ReactElement => {
 				.then((res: AxiosResponse) => {
 					if (res.status === 200) {
 						dispatch(commonActions.setIsLoggined(userLoginAuthState.LOGGINED));
+						dispatch(commonActions.setUserType(userState.USER));
 						router.replace('/');
 					} else {
 						router.replace('/auth/callbackError', '/');

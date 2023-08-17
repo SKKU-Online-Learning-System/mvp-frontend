@@ -6,12 +6,15 @@ import { AppProps } from 'next/app';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
-import { selectIsLoggined } from 'store/feature/common/commonSelector';
+import { userLoginAuthState, userState } from '../constants/commonState';
+import {
+	selectIsLoggined,
+	selectUserType,
+} from 'store/feature/common/commonSelector';
 import { commonActions } from 'store/feature/common/commonSlice';
-import { userLoginAuthState } from '../constants/commonState';
 import { HTTP_STATUS_CODE } from '../constants/http';
-import { store } from 'store/app/store';
 import GlobalStyles from 'styles/GlobalStyles';
+import { store } from 'store/app/store';
 import Layout from '@components/Layout';
 import axiosInstance from 'apis';
 import '../styles/output.css';
@@ -31,15 +34,22 @@ const queryClient = new QueryClient({
 
 function MyComponent({ children }: { children: ReactElement }) {
 	const dispatch = useDispatch();
+
 	const isLoggined = useSelector(selectIsLoggined);
+	const userType = useSelector(selectUserType);
 
 	useEffect(() => {
-		if (isLoggined === userLoginAuthState.NOT_CHECKED_YET) {
+		if (
+			isLoggined === userLoginAuthState.NOT_CHECKED_YET ||
+			userType >= userState.USER
+		) {
 			axiosInstance
-				.get('auth/profile')
+				.get('/auth/profile')
 				.then((res: AxiosResponse) => {
 					if (res.status === HTTP_STATUS_CODE.OK) {
 						dispatch(commonActions.setIsLoggined(userLoginAuthState.LOGGINED));
+						dispatch(commonActions.setUserType(res.data.role));
+						console.log(res);
 					}
 				})
 				.catch((e: AxiosError) => {
@@ -51,6 +61,7 @@ function MyComponent({ children }: { children: ReactElement }) {
 						dispatch(
 							commonActions.setIsLoggined(userLoginAuthState.NOT_LOGGINED),
 						);
+						dispatch(commonActions.setUserType(userState.NOT_LOGGED_IN));
 					}
 				});
 		}

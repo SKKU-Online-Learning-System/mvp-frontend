@@ -3,12 +3,13 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { AxiosResponse } from 'axios';
 
+import { userLoginAuthState, userState } from 'constants/commonState';
 import { fetchLogInCallback } from 'apis/LogIn/logInApi';
-import { userLoginAuthState } from 'constants/commonState';
 import { commonActions } from 'store/feature/common/commonSlice';
 
 const LogInCallback = (): void | ReactElement => {
 	const router = useRouter();
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -19,6 +20,7 @@ const LogInCallback = (): void | ReactElement => {
 				.then((res: AxiosResponse) => {
 					if (res.status === 200) {
 						dispatch(commonActions.setIsLoggined(userLoginAuthState.LOGGINED));
+						dispatch(commonActions.setUserType(userState.USER));
 						router.replace('/');
 					} else {
 						router.replace('/auth/callbackError', '/');

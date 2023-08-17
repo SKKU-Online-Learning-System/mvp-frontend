@@ -30,6 +30,7 @@ const UpperHeader = ({ onOpenLoginModal, onOpenSignUpModal }: PropsType) => {
 	const handleLogout = () => {
 		axiosInstance.get('/auth/logout').then(() => {
 			dispatch(commonActions.setIsLoggined(userLoginAuthState.NOT_LOGGINED));
+			dispatch(commonActions.setUserType(userState.NOT_LOGGED_IN));
 			router.replace('/');
 		});
 	};
