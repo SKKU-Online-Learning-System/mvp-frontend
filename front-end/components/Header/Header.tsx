@@ -46,7 +46,7 @@ const Header = () => {
 				<div className="flex items-center justify-between">
 					<Link href="/">
 						<span className="text-[2rem] cursor-pointer font-['Gugi']">
-							온라인 명륜당
+							온라인명륜당
 						</span>
 					</Link>
 					<ul className="flex mx-40 list-none dt:mx-3">
