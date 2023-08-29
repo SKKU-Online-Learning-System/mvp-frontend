@@ -52,7 +52,7 @@ export const RecentLecture = () => {
 
 						return (
 							<Link
-								href={`/lectures/${elem.lecture.course.id}?courseId=${elem.lecture.id}`}
+								href={`/lectures/${elem.lecture.id}?courseId=${elem.lecture.course.id}`}
 								key={elem.id}
 							>
 								<div className="relative w-full overflow-hidden cursor-pointer rounded-lg transition hover:scale-[1.03] bg-[var(--color-Surface)]">
