@@ -11,6 +11,11 @@ export const selectUserType = createSelector(
 	(userType) => userType,
 );
 
+export const selectUserNickname = createSelector(
+	(state: RootState) => state.common.userNickname,
+	(userNickname) => userNickname,
+);
+
 export const selectErrorInfo = createSelector(
 	(state: RootState) => state.common.errorInfo,
 	(errorInfo) => errorInfo,

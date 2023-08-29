@@ -1,30 +1,19 @@
 // questions/{questionId}
-// import { useRouter } from 'next/router';
-import React, { ReactElement } from 'react';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUserNickname } from 'store/feature/common/commonSelector';
+
 // import QuestionDeleteModal from './QuestionDeleteModal';
 const QuestionDetailQ = ({ question }: any) => {
 	// console.log(question.answers.length);
 	const date = new Date(question?.createdAt);
-	// const router = useRouter();
+	const router = useRouter();
+	const currentURL = router.asPath;
+	console.log(currentURL);
+	const userName = useSelector(selectUserNickname);
+	console.log(userName);
 
-	// try {
-	// 	const res = await API.postAnswer({
-	// 		questionId: +questionId,
-	// 	});
-
-	// 	if (res.data.statusCode === HTTP_STATUS_CODE.CREATED) {
-	// 		router.reload();
-	// 	}
-	// } catch (e: unknown | AxiosError) {
-	// 	if (
-	// 		axios.isAxiosError(e) &&
-	// 		e.response?.status === HTTP_STATUS_CODE.FORBIDDEN
-	// 	) {
-	// 		onOpenLoginModal();
-	// 	} else {
-	// 		console.warn(e);
-	// 	}
-	// }
 	return (
 		<div className="w-[800px] mbl:w-[300px] mt-5 mx-auto rounded-md mb-3">
 			<div className="p-4">
@@ -36,7 +25,8 @@ const QuestionDetailQ = ({ question }: any) => {
 					{question?.author.nickname} · {date.toLocaleString()}
 				</div>
 				<div className="leading-[1.7]">{question?.contents || '내용없음'}</div>
-				{question?.answers.length == 0 ? (
+				{question?.answers.length == 0 &&
+				userName == question?.author.nickname ? (
 					<div className="flex gap-x-1 mt-7">
 						<button
 							// onClick={QuestionDeleteModal}

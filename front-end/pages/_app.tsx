@@ -49,6 +49,7 @@ function MyComponent({ children }: { children: ReactElement }) {
 					if (res.status === HTTP_STATUS_CODE.OK) {
 						dispatch(commonActions.setIsLoggined(userLoginAuthState.LOGGINED));
 						dispatch(commonActions.setUserType(res.data.role));
+						dispatch(commonActions.setUserNickname(res.data.nickname));
 						console.log(res);
 					}
 				})
