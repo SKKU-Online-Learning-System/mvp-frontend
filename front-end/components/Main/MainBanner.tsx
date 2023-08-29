@@ -39,7 +39,8 @@ const MainBanner = ({ contents }: PropsType) => {
 			<div
 				style={{
 					// backgroundImage: `url(${slides[currentIndex].thumbnail})`, max-w-[1400px]
-					backgroundImage: `url(${slides[currentIndex].thumbnail})`,
+					// backgroundImage: `url(${slides[currentIndex].thumbnail})`,
+					backgroundImage: `url('/images/banner_1.png')`,
 				}}
 				className="relative h-full px-4 py-16 m-auto duration-500 bg-center w-[80%] bg-contain bg-no-repeat"
 			>

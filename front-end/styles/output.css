@@ -623,10 +623,6 @@ video {
   inset: 0px;
 }
 
-.-top-2 {
-  top: -0.5rem;
-}
-
 .bottom-\[50px\] {
   bottom: 50px;
 }
@@ -837,8 +833,8 @@ video {
   margin-bottom: auto;
 }
 
-.-ml-12 {
-  margin-left: -3rem;
+.-ml-10 {
+  margin-left: -2.5rem;
 }
 
 .mb-1 {
@@ -999,14 +995,6 @@ video {
 
 .mt-\[50px\] {
   margin-top: 50px;
-}
-
-.ml-4 {
-  margin-left: 1rem;
-}
-
-.-ml-10 {
-  margin-left: -2.5rem;
 }
 
 .box-border {
@@ -1967,16 +1955,8 @@ video {
   --tw-gradient-to: #166534 var(--tw-gradient-to-position);
 }
 
-.bg-cover {
-  background-size: cover;
-}
-
 .bg-contain {
   background-size: contain;
-}
-
-.bg-auto {
-  background-size: auto;
 }
 
 .bg-center {

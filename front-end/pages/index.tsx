@@ -15,6 +15,7 @@ type PropsType = {
 	recommendedContents: MainCourse[][];
 };
 
+const scroll = 'scroll';
 const titles = ['인기', '신규', '인공지능', '교양'];
 
 const MainPage = ({ recommendedContents }: PropsType) => {
@@ -26,10 +27,10 @@ const MainPage = ({ recommendedContents }: PropsType) => {
 			setScrollY(window.scrollY);
 		};
 
-		window.addEventListener('scroll', handleScroll);
+		window.addEventListener(scroll, handleScroll);
 
 		return () => {
-			window.removeEventListener('scroll', handleScroll);
+			window.removeEventListener(scroll, handleScroll);
 		};
 	}, []);
 
