@@ -60,7 +60,7 @@ const LectureList = () => {
 		);
 
 	return (
-		<div className="grid grid-cols-4 gap-x-12 gap-y-12">
+		<div className="grid grid-cols-5 gap-x-10 gap-y-10">
 			{!!courseList.length ? (
 				courseList.map((course, index) => (
 					<CourseCard course={course} key={index} />
