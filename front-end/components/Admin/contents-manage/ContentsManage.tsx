@@ -15,7 +15,7 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 
 	const [pageNumber, setPageNumber] = useState<number>(1);
 
-	console.log(allCourses.slice(5 * (pageNumber - 1), 5 * pageNumber));
+	// console.log(allCourses.slice(5 * (pageNumber - 1), 5 * pageNumber));
 
 	if (!allCourses) {
 		return (

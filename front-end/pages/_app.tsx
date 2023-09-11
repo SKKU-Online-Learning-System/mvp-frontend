@@ -50,7 +50,6 @@ function MyComponent({ children }: { children: ReactElement }) {
 						dispatch(commonActions.setIsLoggined(userLoginAuthState.LOGGINED));
 						dispatch(commonActions.setUserType(res.data.role));
 						dispatch(commonActions.setUserNickname(res.data.nickname));
-						console.log(res);
 					}
 				})
 				.catch((e: AxiosError) => {
