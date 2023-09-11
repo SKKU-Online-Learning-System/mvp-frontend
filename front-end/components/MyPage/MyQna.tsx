@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { getTimeBefore } from 'utils/getTimeBefore';
 import { useMyQnaFetch } from 'query/hooks/MyPage';
@@ -9,7 +10,15 @@ const MyQnA = () => {
 
 	const { data: qna, isLoading } = useMyQnaFetch();
 
-	if (isLoading) return <div>Loading...</div>;
+	if (isLoading)
+		return (
+			<Image
+				src={'/images/sky_2.gif'}
+				width={300}
+				height={300}
+				alt="loading gif"
+			/>
+		);
 	if (!qna) return <div>Failed to retrieve Q&A info . . .</div>;
 	if (qna.length === 0)
 		return <div className="min-h-screen bg-white">질문이 없습니다.</div>;

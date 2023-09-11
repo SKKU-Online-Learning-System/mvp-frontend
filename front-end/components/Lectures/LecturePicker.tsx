@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
 import { useCourseDetailLectureFetch } from 'query/hooks/CourseDetail/index';
@@ -7,12 +8,11 @@ import { useCourseDetailLectureFetch } from 'query/hooks/CourseDetail/index';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
 interface ILecturePicker {
-	courseId: string;
+	courseId: number;
 	lectureId: string;
 }
 
 export const LecturePicker = ({ courseId, lectureId }: ILecturePicker) => {
-	// 사이드바 접기 및 펼치기
 	const [sidebarOpen, setSidebaropen] = useState(true);
 	const handleViewSidebar = () => {
 		setSidebaropen(!sidebarOpen);
@@ -23,26 +23,29 @@ export const LecturePicker = ({ courseId, lectureId }: ILecturePicker) => {
 
 	const router = useRouter();
 
-	const { data: lectureList, isLoading } = useCourseDetailLectureFetch(
-		courseId,
-		{},
-	);
+	const { data: lectureList, isLoading } =
+		useCourseDetailLectureFetch(courseId);
 
-	console.log(lectureId);
-	// 현재 보고 있는 강의
 	const [moveToAnotherLecture, setMoveToAnotherLecture] = useState(+lectureId);
 	const handleMoveToAnotherLecture = (lectureId: number) => {
 		router.push({ pathname: `/lectures/${lectureId}`, query: { courseId } });
 		setMoveToAnotherLecture(lectureId);
 	};
-	// console.log(moveToAntherLecture);
 
 	const getBackgroundColorClass = (id: number) => {
 		return id === moveToAnotherLecture
 			? 'bg-[var(--color-onPrimary)] text-[var(--color-onSurface)] hover:text-[var(--color-onSurface)]'
 			: '';
 	};
-	if (isLoading) return <div>Loading...</div>;
+	if (isLoading)
+		return (
+			<Image
+				src={'/images/sky_2.gif'}
+				width={300}
+				height={300}
+				alt="loading gif"
+			/>
+		);
 	return (
 		<div className="flex flex-col bg-[var(--color-Primary)] ">
 			<button onClick={handleViewSidebar} className={`p-3 left-0`}>

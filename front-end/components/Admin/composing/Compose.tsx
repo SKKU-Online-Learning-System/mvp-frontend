@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 import NewContentsCard from './NewContentsCard';
 import PopularContentsCard from './PopularContentsCard';
@@ -15,7 +16,15 @@ type PropsType = {
 };
 
 const Compose = ({ coursesInfo, titles }: PropsType) => {
-	if (!coursesInfo) return <div>Loading . . .</div>;
+	if (!coursesInfo)
+		return (
+			<Image
+				src={'/images/sky_2.gif'}
+				width={300}
+				height={300}
+				alt="loading gif"
+			/>
+		);
 
 	return (
 		<div className="grid w-full min-h-full grid-cols-2 grid-rows-2 p-10 pb-24 mt-14 gap-x-20 gap-y-20">

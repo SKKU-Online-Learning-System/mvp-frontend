@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { AxiosResponse } from 'axios';
 
@@ -32,8 +33,14 @@ const SignUpCallback = (): ReactElement => {
 	}, [dispatch, router]);
 
 	return (
-		<div>
-			<h3>redirecting to server...</h3>
+		<div className="w-full h-full m-auto">
+			<Image
+				src="/images/sky_2.gif"
+				width={300}
+				height={300}
+				alt="Loading Image"
+			/>
+			<h4>Redirecting to Server . . .</h4>
 		</div>
 	);
 };

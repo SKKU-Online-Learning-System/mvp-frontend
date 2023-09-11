@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import Image from 'next/image';
 import Head from 'next/head';
 import ReactPlayer from 'react-player/lazy';
 import { useRouter } from 'next/router';
@@ -58,7 +59,15 @@ const LecturePlayer = () => {
 		onUpdateLectureComplete();
 	};
 
-	if (isLoading) return <div>Loading....</div>;
+	if (isLoading)
+		return (
+			<Image
+				src={'/images/sky_2.gif'}
+				width={300}
+				height={300}
+				alt="loading gif"
+			/>
+		);
 
 	return (
 		<section>
@@ -73,7 +82,7 @@ const LecturePlayer = () => {
 				<div className="font-['Noto Sans KR'] flex flex-row min-h-screen  ">
 					<div className="">
 						{router.isReady && (
-							<LecturePicker courseId={courseId} lectureId={lectureId} />
+							<LecturePicker courseId={+courseId} lectureId={lectureId} />
 						)}
 					</div>
 					<div className="flex w-full min-h-full p-10 pb-24 player-wrapper place-content-center">

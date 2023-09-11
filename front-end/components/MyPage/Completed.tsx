@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { useCompletedCourseFetch } from 'query/hooks/MyPage';
 
@@ -8,7 +9,15 @@ const Completed = () => {
 
 	const { data: completedCourseList, isLoading } = useCompletedCourseFetch();
 
-	if (isLoading) return <div>Loading...</div>;
+	if (isLoading)
+		return (
+			<Image
+				src={'/images/sky_2.gif'}
+				width={300}
+				height={300}
+				alt="loading gif"
+			/>
+		);
 	if (!completedCourseList)
 		return <div>Failed to retrieve completed course data . . .</div>;
 	if (completedCourseList.length === 0)

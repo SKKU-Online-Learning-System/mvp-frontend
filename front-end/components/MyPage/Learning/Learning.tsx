@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { useCurrentLeaningCourseListFetch } from 'query/hooks/MyPage';
 import LearningCard from './LearningCard';
@@ -10,8 +10,6 @@ interface ILectureStatusCount {
 }
 
 const Learning = () => {
-	const router = useRouter();
-
 	const [learningLectureCount, setLearningLectureCount] =
 		useState<ILectureStatusCount[]>();
 
@@ -63,7 +61,15 @@ const Learning = () => {
 		setLearningLectureCount(learningLectureCount);
 	}, [isLoading]);
 
-	if (isLoading) return <div>Loading...</div>;
+	if (isLoading)
+		return (
+			<Image
+				src={'/images/sky_2.gif'}
+				width={300}
+				height={300}
+				alt="loading gif"
+			/>
+		);
 	if (!currentLearningCourseList || !currentLearningCourseList.length)
 		return <div>강좌가 존재하지 않습니다</div>;
 

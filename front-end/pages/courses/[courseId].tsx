@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GetStaticPropsContext } from 'next';
+import Image from 'next/image';
 import Head from 'next/head';
 
 import CourseHeader from '@components/Courses/Details/CourseHeader/CourseHeader';
@@ -34,8 +35,15 @@ const CourseDetailPage = ({ courseId }: PropsType) => {
 	}, []);
 
 	if (!progress || !course || !lecture) return <div>progress</div>;
-	if (isLoading) return <div>Loading...</div>;
-
+	if (isLoading)
+		return (
+			<Image
+				src={'/images/sky_2.gif'}
+				width={300}
+				height={300}
+				alt="loading gif"
+			/>
+		);
 	return (
 		<main>
 			<Head>
