@@ -23,6 +23,7 @@ const NoticeCardList = ({ notices }: PropsType) => {
 
 				return (
 					<NoticeCard
+						key={notice.id}
 						notice={notice}
 						idx={idx}
 						isNew={isNew}

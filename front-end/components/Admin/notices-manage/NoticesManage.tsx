@@ -17,7 +17,9 @@ const NoticesManage = ({ notices }: PropsType) => {
 		);
 	}
 
-	const onNoticeGenerateClick = () => {};
+	const onNoticeGenerateClick = () => {
+		return;
+	};
 
 	return (
 		<div className="w-full">

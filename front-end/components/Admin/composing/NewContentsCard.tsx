@@ -56,7 +56,13 @@ const NewContentsCard = ({ title, courses }: PropsType) => {
 	return (
 		<div className="flex flex-col justify-between h-full p-10 bg-white shadow-xl rounded-xl">
 			<div>
-				<CardHeader title={title} objs={objs} setCourses={() => {}} />
+				<CardHeader
+					title={title}
+					objs={objs}
+					setCourses={() => {
+						return;
+					}}
+				/>
 				<table className="w-full h-fit">
 					<thead>
 						<tr className="flex justify-center text-lg select-none">
