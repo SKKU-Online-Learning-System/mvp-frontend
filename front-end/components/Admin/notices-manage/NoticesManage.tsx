@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Notification } from 'types/Notification';
+import NoticeWritePage from './NoticeWritingPage';
 import NoticeCardList from './NoticeCardList';
 
 type PropsType = {
@@ -8,6 +9,8 @@ type PropsType = {
 };
 
 const NoticesManage = ({ notices }: PropsType) => {
+	const [isWriting, setIsWriting] = useState(false);
+
 	if (!notices) {
 		return (
 			<div>
@@ -18,10 +21,12 @@ const NoticesManage = ({ notices }: PropsType) => {
 	}
 
 	const onNoticeGenerateClick = () => {
-		return;
+		setIsWriting(true);
 	};
 
-	return (
+	return isWriting ? (
+		<NoticeWritePage setWriting={setIsWriting} />
+	) : (
 		<div className="w-full">
 			<div className="flex items-center justify-center">
 				<div className="flex flex-col items-end w-[768px] h-full py-12">
