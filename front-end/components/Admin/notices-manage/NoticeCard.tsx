@@ -1,33 +1,44 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 import { Notification } from 'types/Notification';
 import noticesAPI from '../../../apis/Notices/noticesAPI';
 import NewIndicator from '@components/Notices/NewIndicator';
-import { BsCheckLg } from 'react-icons/bs';
 
 type PropsType = {
 	notice: Notification;
 	idx: number;
 	isNew: boolean;
 	createdAt: string;
+	onNoticeChangeClick: (id: number) => void;
 };
 
-const NoticeCard = ({ notice, idx, isNew, createdAt }: PropsType) => {
-	const onTitleClick = async (
-		e: React.MouseEvent<HTMLHeadingElement>,
-		id: number,
-	) => {
-		const noticeInfo = await noticesAPI.fetchNotice(id);
-		console.log(noticeInfo);
+const NoticeCard = ({
+	notice,
+	idx,
+	isNew,
+	createdAt,
+	onNoticeChangeClick,
+}: PropsType) => {
+	const router = useRouter();
+
+	const onTitleClick = async () => {
+		const title = notice.title;
+		const content = notice.content;
+		//Todo: 카드 공간 아래로 slide 되면서 content 확인할 수 있도록 구현
+		console.log(title, content);
 	};
 
 	const onDeleteClick = async (id: number) => {
 		if (confirm('해당 공지사항을 정말 삭제하시겠습니까?')) {
-			await noticesAPI.deleteNotice(id);
-			alert('해당 공지가 삭제 완료되었습니다.');
-			noticesAPI.fetchAllNotices();
+			try {
+				await noticesAPI.deleteNotice(id);
+			} catch (err: any) {
+				alert('공지 삭제 과정에서 알 수 없는 에러가 발생했습니다.');
+			}
+			router.reload();
 		}
 	};
 
@@ -41,7 +52,7 @@ const NoticeCard = ({ notice, idx, isNew, createdAt }: PropsType) => {
 					<div className="flex items-center justify-start mb-3">
 						{isNew ? <NewIndicator /> : null}
 						<h4
-							onClick={(e) => onTitleClick(e, notice.id)}
+							onClick={() => onTitleClick()}
 							className="text-lg font-semibold cursor-pointer"
 						>
 							{notice.title}
@@ -62,7 +73,7 @@ const NoticeCard = ({ notice, idx, isNew, createdAt }: PropsType) => {
 					</div>
 				</div>
 				<div className="text-sm">
-					<button>수정</button>
+					<button onClick={() => onNoticeChangeClick(notice.id)}>수정</button>
 					<span className="mx-2">|</span>
 					<button onClick={() => onDeleteClick(notice.id)}>삭제</button>
 				</div>

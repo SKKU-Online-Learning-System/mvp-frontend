@@ -1,24 +1,41 @@
-import React, { useRef } from 'react';
-import { Dispatch, SetStateAction } from 'react';
+import React, { useRef, Dispatch, SetStateAction } from 'react';
+import { useRouter } from 'next/router';
+
+import noticeAPI from '../../../apis/Notices/noticesAPI';
+import { Notification } from 'types/Notification';
 
 type PropsType = {
-	setWriting: Dispatch<SetStateAction<boolean>>;
+	onCancelClick: () => void;
+	notice: Notification | undefined;
 };
 
-const NoticeWritingPage = ({ setWriting }: PropsType) => {
+const NoticeWritingPage = ({ onCancelClick, notice }: PropsType) => {
+	const router = useRouter();
+
+	// Todo: notice 객체의 title과 content로 useRef 객체 초기화 하기
+	console.log(notice);
+
 	const titleRef = useRef(null);
 	const contentRef = useRef(null);
 
-	const onCancelClick = () => {
-		setWriting(false);
-	};
-
-	const onSubmitClick = (e: React.FormEvent) => {
+	const onSubmitClick = async (e: React.FormEvent) => {
 		e.preventDefault();
 
 		if (titleRef.current && contentRef.current) {
 			const { value: title } = titleRef.current;
 			const { value: content } = contentRef.current;
+
+			if (title === '' || content === '') {
+				alert('제목과 내용을 모두 입력해주세요.');
+				return;
+			}
+
+			try {
+				await noticeAPI.postNotice(title, content);
+				router.reload();
+			} catch (err: any) {
+				alert(err.message);
+			}
 		}
 	};
 
