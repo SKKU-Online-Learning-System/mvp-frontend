@@ -17,6 +17,7 @@ const MainBanner = ({ contents }: PropsType) => {
 				playing={true}
 				muted={true}
 				controls={false}
+				loop={true}
 				disablePictureInPicture={true}
 				// poster={
 				// 	'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
