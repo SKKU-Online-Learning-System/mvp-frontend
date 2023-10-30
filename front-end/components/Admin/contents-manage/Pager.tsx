@@ -33,7 +33,9 @@ const Pager = ({
 	return (
 		<div className="flex items-center justify-center text-3xl">
 			<PagerButton id="prev" onBtnClick={onBtnClick} icon={faAngleLeft} />
-			<span className="mx-20 my-12">{pageNumber}</span>
+			<span className="mx-10 my-12 ml-16">{pageNumber}</span>
+			<span className="my-12">/</span>
+			<span className="mx-10 my-12 mr-16">{Math.floor(courseCnt / 5 + 1)}</span>
 			<PagerButton id="next" onBtnClick={onBtnClick} icon={faAngleRight} />
 		</div>
 	);
