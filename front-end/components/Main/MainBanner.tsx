@@ -9,7 +9,7 @@ type PropsType = {
 
 const MainBanner = ({ contents }: PropsType) => {
 	return (
-		<div>
+		<div className="border-t-2 border-b-2">
 			<ReactPlayer
 				url="/videos/main_banner.mp4"
 				width="100%"
