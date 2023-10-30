@@ -26,7 +26,7 @@ const LearningCard = ({
 	};
 
 	return (
-		<div>
+		<div className="grid w-full min-h-full grid-cols-5 grid-rows-4 p-20 gap-x-12 gap-y-12">
 			{courses.slice(0, 20).map((elem, index) => (
 				<div
 					className="relative w-full overflow-hidden cursor-pointer hover:scale-[1.01] transition"

@@ -37,7 +37,7 @@ const HistoryCard = ({ lectures }: PropsType) => {
 	};
 
 	return (
-		<div>
+		<div className="grid w-full min-h-full grid-cols-5 grid-rows-4 p-20 gap-x-12 gap-y-12">
 			{lectures.slice(0, 20).map((elem, idx) => {
 				const percentage = getProgressPercentage(
 					elem.lastTime,

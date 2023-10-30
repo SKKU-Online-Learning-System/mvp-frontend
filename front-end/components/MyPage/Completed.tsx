@@ -34,7 +34,6 @@ const Completed = () => {
 					<div className="grid grid-cols-4 p-5 mx-56 mb-32 tbl:mx-auto dt:grid-cols-3 tbl:grid-cols-3 mbl:grid-cols-1 gap-x-4 gap-y-4">
 						{completedCourseList?.map((elem, index) => (
 							<div
-								// className="relative w-full overflow-hidden cursor-pointer"
 								className="rounded-md w-full mt-5 overflow-hidden relative cursor-pointer transition hover:scale-[1.03] bg-white"
 								onClick={handleClick(elem.course.id)}
 								key={index}
