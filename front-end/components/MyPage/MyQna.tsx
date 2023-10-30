@@ -21,7 +21,20 @@ const MyQnA = () => {
 		);
 	if (!qna) return <div>Failed to retrieve Q&A info . . .</div>;
 	if (qna.length === 0)
-		return <div className="min-h-screen bg-white">질문이 없습니다.</div>;
+		return (
+			<div className="flex flex-col items-center justify-center w-full h-full bg-white">
+				<div className="shadow-xl text-white bg-[var(--color-mrgreen-5)] rounded-lg text-3xl py-4 px-6 mb-10">
+					첫 질문을 올려주세요 !
+				</div>
+				<Image
+					className="opacity-25"
+					src={'/images/confucian.jpeg'}
+					width={500}
+					height={500}
+					alt="Maple img"
+				/>
+			</div>
+		);
 
 	const handleClick = (questionId: number) => () => {
 		if (!questionId) return;
