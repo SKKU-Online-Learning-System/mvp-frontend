@@ -6,7 +6,7 @@ import { curations } from 'constants/mainCuration';
 const CurationFloatingBar = () => {
 	return (
 		<>
-			<ul className="my-4 flex text-[#232323] rounded-xl items-center justify-center text-center text-[var(--color-Background)] px-2">
+			<ul className="mt-12 flex text-[#232323] rounded-xl items-center justify-center text-center text-[var(--color-Background)] px-2">
 				{curations.map((info, index) => (
 					<li key={index} className="min-w-[130px] mx-3">
 						<a
