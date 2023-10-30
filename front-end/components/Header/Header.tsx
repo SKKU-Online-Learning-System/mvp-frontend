@@ -37,7 +37,7 @@ const Header = () => {
 	};
 
 	return (
-		<header className="border-b-2">
+		<header>
 			<UpperHeader
 				onOpenLoginModal={onOpenLoginModal}
 				onOpenSignUpModal={onOpenSignUp}

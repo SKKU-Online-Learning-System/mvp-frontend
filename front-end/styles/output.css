@@ -671,6 +671,10 @@ video {
   z-index: 2;
 }
 
+.z-50 {
+  z-index: 50;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -811,6 +815,11 @@ video {
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.mx-6 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .-ml-10 {
@@ -1372,6 +1381,11 @@ video {
 
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.translate-x-5 {
+  --tw-translate-x: 1.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 @-webkit-keyframes pulse {
@@ -2664,6 +2678,18 @@ video {
 
 .opacity-\[1\.0\] {
   opacity: 1.0;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-90 {
+  opacity: 0.9;
+}
+
+.opacity-10 {
+  opacity: 0.1;
 }
 
 .shadow {
