@@ -15,8 +15,6 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 
 	const [pageNumber, setPageNumber] = useState<number>(1);
 
-	// console.log(allCourses.slice(5 * (pageNumber - 1), 5 * pageNumber));
-
 	if (!allCourses) {
 		return (
 			<div>
@@ -48,7 +46,7 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 
 	return (
 		<section className="flex flex-col items-center justify-start w-full p-10 mt-14">
-			<div className="w-1/2 mb-[2%] flex justify-center">
+			<div className="flex justify-center w-1/2 mb-14">
 				<input
 					type="text"
 					ref={inputRef}

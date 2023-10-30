@@ -11,6 +11,7 @@ type PropsType = {
 
 const CourseRegisterCard = ({ course }: PropsType) => {
 	const [courseInfo, setCourseInfo] = useState<CourseInfo>(course);
+	const [isShow, setIsShow] = useState<boolean>(false);
 
 	const handleOperationChange = async () => {
 		await adminAPI.changeOperation(courseInfo.id);
@@ -18,19 +19,27 @@ const CourseRegisterCard = ({ course }: PropsType) => {
 		setCourseInfo(newCourse);
 	};
 
+	const onCardHeaderClick = () => {
+		setIsShow(!isShow);
+	};
+
 	return (
-		<div className="w-1/2 mb-[4%]">
+		<div className="w-1/2 mb-[3%] shadow-xl rounded-lg">
 			<CardHeader
+				isShow={isShow}
 				title={courseInfo.title}
 				instructor={courseInfo.instructor}
 				operation={courseInfo.operate}
 				onChangeOperation={handleOperationChange}
+				onCardHeaderClick={onCardHeaderClick}
 			/>
-			<CardBody
-				description={courseInfo.description}
-				category={courseInfo.category1}
-				numberOfLectures={courseInfo.lectureCnt}
-			/>
+			{isShow ? (
+				<CardBody
+					description={courseInfo.description}
+					category={courseInfo.category1}
+					numberOfLectures={courseInfo.lectureCnt}
+				/>
+			) : null}
 		</div>
 	);
 };

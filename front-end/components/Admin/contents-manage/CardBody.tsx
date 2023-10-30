@@ -10,7 +10,7 @@ type PropType = {
 
 const CardBody = ({ description, category, numberOfLectures }: PropType) => {
 	return (
-		<div className="h-fit bg-[var(--color-Surface)] px-[7%] py-[4%] flex justify-between items-center">
+		<div className="rounded-b-lg h-fit bg-[var(--color-Surface)] px-[7%] py-[4%] flex justify-between items-center">
 			<div className="flex flex-col w-[60%]">
 				<h5 className="mb-2 text-xl font-semibold">강좌 소개</h5>
 				<span className="text-justify">{description}</span>
