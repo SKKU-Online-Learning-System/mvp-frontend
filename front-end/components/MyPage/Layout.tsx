@@ -57,9 +57,3 @@ const Layout = ({ children }: LayoutProps) => {
 };
 
 export default Layout;
-// const LayoutBox = styled.div`
-// 	@media only screen and (min-width: 1400px) {
-// 		margin: 0 auto;
-// 		width: 1400px;
-// 	}
-// `;
