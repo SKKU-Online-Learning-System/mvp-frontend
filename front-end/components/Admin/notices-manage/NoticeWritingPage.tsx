@@ -25,7 +25,10 @@ const NoticeWritingPage = ({ onCancelClick, notice }: PropsType) => {
 			const { value: title } = titleRef.current;
 			const { value: content } = contentRef.current;
 
-			if (title === '' || content === '') {
+			if (
+				(title as string).trim() === '' ||
+				(content as string).trim() === ''
+			) {
 				alert('제목과 내용을 모두 입력해주세요.');
 				return;
 			}
@@ -77,7 +80,7 @@ const NoticeWritingPage = ({ onCancelClick, notice }: PropsType) => {
 							onClick={onSubmitClick}
 							className="mt-8 text-xl font-semibold rounded-lg bg-[#b3df8c] py-2 px-4 shadow-lg transition hover:bg-[#b9c7ad]"
 						>
-							제출
+							업로드
 						</button>
 					</form>
 				</div>
@@ -87,3 +90,5 @@ const NoticeWritingPage = ({ onCancelClick, notice }: PropsType) => {
 };
 
 export default NoticeWritingPage;
+
+// Todo: 공지사항 섹션에서 수정 버튼 클릭 시 기존 정보 기록된 채로 화면 띄울 것
