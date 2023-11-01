@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import { getTimeBefore } from 'utils/getTimeBefore';
 import { useMyQnaFetch } from 'query/hooks/MyPage';
+import NoContent from '@components/NoContent';
 
 const MyQnA = () => {
 	const router = useRouter();
@@ -19,22 +20,9 @@ const MyQnA = () => {
 				alt="loading gif"
 			/>
 		);
-	if (!qna) return <div>Failed to retrieve Q&A info . . .</div>;
-	if (qna.length === 0)
-		return (
-			<div className="flex flex-col items-center justify-center w-full h-full bg-white">
-				<div className="px-6 py-4 mb-10 text-3xl text-black rounded-lg">
-					첫 질문을 올려주세요 !
-				</div>
-				<Image
-					className="opacity-25"
-					src={'/images/confucian.jpeg'}
-					width={500}
-					height={500}
-					alt="Maple img"
-				/>
-			</div>
-		);
+
+	if (!qna || qna.length === 0)
+		return <NoContent text="첫 질문을 올려주세요 !" />;
 
 	const handleClick = (questionId: number) => () => {
 		if (!questionId) return;
@@ -43,7 +31,7 @@ const MyQnA = () => {
 
 	return (
 		<div className="min-h-screen bg-white">
-			<div className="p-5 mx-56 mb-32 tbl:mx-auto gap-y-4">
+			<div className="tbl:mx-auto gap-y-4">
 				<ul>
 					{qna.map((elem, idx) => (
 						<li

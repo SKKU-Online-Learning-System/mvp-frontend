@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import { useCurrentLeaningCourseListFetch } from 'query/hooks/MyPage';
+import NoContent from '@components/NoContent';
 import LearningCard from './LearningCard';
 
 interface ILectureStatusCount {
@@ -70,8 +71,8 @@ const Learning = () => {
 				alt="loading gif"
 			/>
 		);
-	if (!currentLearningCourseList || !currentLearningCourseList.length)
-		return <div>강좌가 존재하지 않습니다</div>;
+	if (!currentLearningCourseList || currentLearningCourseList.length === 0)
+		return <NoContent text="현재 수강 중인 강좌가 없습니다." />;
 
 	return (
 		<div className="min-h-screen bg-white">

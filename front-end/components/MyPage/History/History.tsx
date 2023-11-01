@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import { useRecentLecturesFetch } from 'query/hooks/Main/index';
+import NoContent from '@components/NoContent';
 import HistoryCard from './HistoryCard';
 
 const History = () => {
@@ -17,7 +18,7 @@ const History = () => {
 			/>
 		);
 	if (!latestLectures || latestLectures.length === 0)
-		return <div>강의가 존재하지 않습니다</div>;
+		return <NoContent text="최근 시청한 강의 내역이 없습니다." />;
 
 	return (
 		<div className="min-h-screen bg-white">

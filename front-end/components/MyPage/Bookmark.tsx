@@ -1,7 +1,9 @@
 import React from 'react';
 
+import NoContent from '@components/NoContent';
+
 const Bookmark = () => {
-	return <div className="min-h-screen bg-white">Bookmark</div>;
+	return <NoContent text="저장된 북마크 내역이 없습니다." />;
 };
 
 export default Bookmark;
