@@ -1635,6 +1635,16 @@ video {
   border-top-right-radius: 0.5rem;
 }
 
+.rounded-t-md {
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+}
+
+.rounded-b-md {
+  border-bottom-right-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+}
+
 .rounded-bl-lg {
   border-bottom-left-radius: 0.5rem;
 }
@@ -1883,10 +1893,6 @@ video {
   background-color: var(--color-Surface);
 }
 
-.bg-\[var\(--color-mrgreen-5\)\] {
-  background-color: var(--color-mrgreen-5);
-}
-
 .bg-\[var\(--color-mrgreen-7\)\] {
   background-color: var(--color-mrgreen-7);
 }
@@ -1939,6 +1945,34 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-\[var\(--color-onPrimary-10\)\] {
+  background-color: var(--color-onPrimary-10);
+}
+
+.bg-\[var\(--color-onPrimary-100\)\] {
+  background-color: var(--color-onPrimary-100);
+}
+
+.bg-\[var\(--color-onPrimary-200\)\] {
+  background-color: var(--color-onPrimary-200);
+}
+
+.bg-\[var\(--color-onBackground-100\)\] {
+  background-color: var(--color-onBackground-100);
+}
+
+.bg-\[var\(--color-Background\)\] {
+  background-color: var(--color-Background);
+}
+
+.bg-\[var\(--color-onBackground-300\)\] {
+  background-color: var(--color-onBackground-300);
+}
+
+.bg-\[var\(--color-grey-100\)\] {
+  background-color: var(--color-grey-100);
 }
 
 .bg-gradient-to-r {
@@ -2183,6 +2217,11 @@ video {
 .py-\[7px\] {
   padding-top: 7px;
   padding-bottom: 7px;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pb-24 {
@@ -2599,11 +2638,6 @@ video {
 
 .text-\[var\(--color-onSurface\)\] {
   color: var(--color-onSurface);
-}
-
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .text-black\/\[0\.5\] {
