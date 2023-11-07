@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { DEVICE_BREAKPOINT } from 'constants/breakpoint';
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
 	return (
 		<footer className="flex justify-center items-center min-w-[desktop] bg-[#323232] text-[#fefefe] p-4">
 			<div
@@ -33,25 +33,25 @@ const Footer = () => {
 					</p>
 				</div>
 				<div className="m-[34px] mt-11">
-					<Link href="https://www.skku.edu/skku/etc/pop_email.do">
+					<Link href="https://www.skku.edu/skku/etc/pop_email.do" passHref>
 						<span className="text-[#fefefe] no-underline cursor-pointer">
 							이메일
 						</span>
 					</Link>
 					<span className="m-4">|</span>
-					<Link href="https://www.skku.edu/skku/etc/pop_email.do">
+					<Link href="https://www.skku.edu/skku/etc/pop_email.do" passHref>
 						<span className="text-[#fefefe] no-underline cursor-pointer">
 							무단수집거부
 						</span>
 					</Link>
 					<span className="m-4">|</span>
-					<Link href="https://www.skku.edu/skku/etc/private.do">
+					<Link href="https://www.skku.edu/skku/etc/private.do" passHref>
 						<span className="text-[#fefefe] no-underline cursor-pointer">
 							개인정보처리방침
 						</span>
 					</Link>
 					<span className="m-4">|</span>
-					<Link href="/">
+					<Link href="/" passHref>
 						<span className="text-[#fefefe] no-underline cursor-pointer uppercase">
 							contact us
 						</span>

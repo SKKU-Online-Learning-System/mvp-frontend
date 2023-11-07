@@ -4,7 +4,7 @@ import Link from 'next/dist/client/link';
 import menus from 'constants/MyPage/myPageMenus';
 
 type PropsType = {
-	children: ReactElement[] | ReactElement<any, string> | string;
+	children: ReactElement[] | ReactElement<string> | string;
 };
 
 const MyPageLayout = ({ children }: PropsType): JSX.Element => {

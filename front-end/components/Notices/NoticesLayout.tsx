@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 
 type PropsType = {
-	children: ReactElement[] | ReactElement<any, string> | string;
+	children: ReactElement[] | ReactElement<string> | string;
 };
 
 const NoticesLayout = ({ children }: PropsType): JSX.Element => {

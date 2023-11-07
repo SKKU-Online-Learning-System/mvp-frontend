@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const listStyle =
 	'border-solid border-[#dfdfdf] text-[#393939] text-[0.95rem] my-[3px] mx-0';
@@ -18,7 +19,12 @@ const LectureIntroduction = (): JSX.Element => {
 				설계하고 개발합니다. 이 과정을 통해{' '}
 			</p>
 			<div className="my-[10px] mx-0">
-				<img src="/images/check.png"></img>
+				<Image
+					src="/images/check.png"
+					width={300}
+					height={300}
+					alt="Check Img"
+				/>
 				<span className="text-[#393939] font-bold text-[1.4rem]">
 					이런걸 배워요
 				</span>

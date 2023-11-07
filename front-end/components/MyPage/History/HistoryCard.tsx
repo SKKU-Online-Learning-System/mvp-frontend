@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { ILatestLecture } from 'types/MyPage';
 import { durationToHhMmSs } from 'utils/durationToHhMmSs';
@@ -8,7 +9,7 @@ type PropsType = {
 	lectures: ILatestLecture[];
 };
 
-const HistoryCard = ({ lectures }: PropsType) => {
+const HistoryCard = ({ lectures }: PropsType): JSX.Element => {
 	const router = useRouter();
 
 	const isValid = (curTime: number, duration: number) => {
@@ -50,9 +51,12 @@ const HistoryCard = ({ lectures }: PropsType) => {
 						onClick={handleClick(elem.lecture.course.id, elem.lecture.id)}
 						key={idx}
 					>
-						<img
+						<Image
 							className="w-full rounded-tl-lg rounded-tr-lg aspect-video"
 							src={elem.lecture.course.thumbnail}
+							width={300}
+							height={300}
+							alt="Thumbnail Img"
 						/>
 						<div className="px-4 py-2 pb-4 bg-[var(--color-Surface)] rounded-bl-lg rounded-br-lg">
 							<div className="mb-2 overflow-hidden text-xl font-semibold text-ellipsis whitespace-nowrap">

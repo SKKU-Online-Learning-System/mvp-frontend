@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useCompletedCourseFetch } from 'query/hooks/MyPage';
 import NoContent from '@components/NoContent';
 
-const Completed = () => {
+const Completed = (): JSX.Element => {
 	const router = useRouter();
 
 	const { data: completedCourseList, isLoading } = useCompletedCourseFetch();
@@ -36,10 +36,12 @@ const Completed = () => {
 							onClick={handleClick(elem.course.id)}
 							key={index}
 						>
-							<img
+							<Image
 								className="aspect-video"
-								width={'100%'}
 								src={elem.course.thumbnail}
+								width={300}
+								height={300}
+								alt="Thumbnail Img"
 							/>
 							<div className="overflow-hidden text-base text-ellipsis whitespace-nowrap">
 								{elem.course.title}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { ICourseInfo } from 'types/MyPage';
 
@@ -18,7 +19,7 @@ const LearningCard = ({
 	courses,
 	learningLectureCount,
 	showLectureProgressStatus,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	const router = useRouter();
 
 	const handleClick = (courseId: number) => () => {
@@ -33,9 +34,12 @@ const LearningCard = ({
 					onClick={handleClick(elem.course.id)}
 					key={index}
 				>
-					<img
+					<Image
 						className="w-full rounded-tl-lg rounded-tr-lg aspect-video"
 						src={elem.course.thumbnail}
+						width={300}
+						height={300}
+						alt="Learning Card Img"
 					/>
 					<div className="px-4 py-2 pb-4 bg-[var(--color-Surface)] rounded-bl-lg rounded-br-lg">
 						<div className="mb-2 overflow-hidden text-xl font-semibold text-ellipsis whitespace-nowrap">
