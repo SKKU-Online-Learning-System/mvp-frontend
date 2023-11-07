@@ -65,7 +65,7 @@ function MyComponent({ children }: { children: ReactElement }) {
 					}
 				});
 		}
-	}, [dispatch, isLoggined]);
+	}, [dispatch, isLoggined, userType]);
 
 	return <>{children}</>;
 }

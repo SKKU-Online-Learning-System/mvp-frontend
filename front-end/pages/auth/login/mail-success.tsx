@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-const LoginMailSuccess = () => {
+const LoginMailSuccess = (): JSX.Element => {
 	return (
 		<div className="w-full h-full flex justify-center items-center bg-[#f0f0f0]">
 			<div className="flex flex-col justify-center items-center pb-[50px] w-[600px] h-[450px] bg-white rounded-[30px]">

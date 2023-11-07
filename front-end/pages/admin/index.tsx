@@ -29,7 +29,11 @@ type PropsType = {
 
 const titles = ['인기 컨텐츠', '신규 컨텐츠', '인공지능', '교양'];
 
-const AdminIndex = ({ coursesInfo, allCourses, notices }: PropsType) => {
+const AdminIndex = ({
+	coursesInfo,
+	allCourses,
+	notices,
+}: PropsType): JSX.Element => {
 	const [title, setTitle] = useState<string>(menus[0].title);
 	const [opens, setOpens] = useState<boolean[]>([true, false, false, false]);
 
@@ -66,7 +70,13 @@ const AdminIndex = ({ coursesInfo, allCourses, notices }: PropsType) => {
 	);
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(): Promise<{
+	props: {
+		coursesInfo: (ICourseRetrieveInfo[] | INewCourseInfo[])[];
+		allCourses: CourseInfo[];
+		notices: Notification[];
+	};
+}> {
 	const mostPopularCourses = await adminAPI.fetchPopularContentsInfo('');
 	const newCourses = await adminAPI.fetchNewContentsInfo();
 	const popularCourses1 = await adminAPI.fetchPopularContentsInfo(titles[2]);

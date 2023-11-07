@@ -1,12 +1,10 @@
 // questions/{questionId}
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectUserNickname } from 'store/feature/common/commonSelector';
 
-// import QuestionDeleteModal from './QuestionDeleteModal';
-const QuestionDetailQ = ({ question }: any) => {
-	// console.log(question.answers.length);
+const QuestionDetailQ = ({ question }: any): JSX.Element => {
 	const date = new Date(question?.createdAt);
 	const router = useRouter();
 	const currentURL = router.asPath;

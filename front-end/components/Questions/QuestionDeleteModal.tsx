@@ -2,7 +2,7 @@
 // 삭제하기 api 추가
 import React from 'react';
 
-const QuestionDeleteModal = () => {
+const QuestionDeleteModal = (): JSX.Element => {
 	return (
 		<div>
 			<header>

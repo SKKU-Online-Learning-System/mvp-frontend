@@ -7,13 +7,17 @@ interface IQuestionForm {
 	courseId: string;
 }
 
-const QuestionForm = ({ courseId }: IQuestionForm) => {
+const QuestionForm = ({ courseId }: IQuestionForm): JSX.Element => {
 	const router = useRouter();
-	const handleSubmit = (e: any) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const title = e.target.title.value;
-		const contents = e.target.contents.value;
+		const title = (
+			e.currentTarget.elements.namedItem('title') as HTMLInputElement
+		).value;
+		const contents = (
+			e.currentTarget.elements.namedItem('contents') as HTMLInputElement
+		).value;
 
 		API.postQuestion({ courseId: +courseId, title, contents });
 		router.reload();

@@ -9,7 +9,7 @@ import axiosInstance from 'apis';
 /*
 - 강의를 수강중인 유저만 댓글을 달 수 잇어야 함. 서버에서 403 응답주는중.
 */
-const QuestionDetailPage = () => {
+const QuestionDetailPage = (): JSX.Element => {
 	const router = useRouter();
 	const { questionId } = router.query;
 	const [question, setQuestion] = useState<{

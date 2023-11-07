@@ -9,7 +9,11 @@ interface PropsType {
 	onOpenSignUp: () => void;
 }
 
-const LoginModal = ({ show, onClose, onOpenSignUp }: PropsType) => {
+const LoginModal = ({
+	show,
+	onClose,
+	onOpenSignUp,
+}: PropsType): JSX.Element | null => {
 	const [isBrowser, setIsBrowser] = useState(false);
 
 	useEffect(() => {
@@ -40,7 +44,7 @@ const LoginModal = ({ show, onClose, onOpenSignUp }: PropsType) => {
 	) : null;
 
 	if (isBrowser) {
-		const portalDiv = document.getElementById('modal-root')!;
+		const portalDiv = document.getElementById('modal-root') as HTMLElement;
 		return ReactDOM.createPortal(modalContent, portalDiv);
 	} else {
 		return null;

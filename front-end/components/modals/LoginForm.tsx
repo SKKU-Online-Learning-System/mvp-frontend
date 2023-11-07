@@ -7,7 +7,7 @@ import { fetchEmailCheck } from 'apis/SignUp/signUpApi';
 
 //이메일 값 받기
 //값없으면 disabled
-function LoginForm({ onClose, onOpenSignUp }: any) {
+function LoginForm({ onClose, onOpenSignUp }: any): JSX.Element {
 	const router = useRouter();
 
 	const [sendingMail, setSendingMail] = useState(false);

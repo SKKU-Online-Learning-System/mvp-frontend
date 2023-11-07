@@ -5,7 +5,7 @@ interface HeaderProps {
 	cat2?: string;
 	lineColor?: string;
 }
-const CommonHeader = ({ lineColor, cat1, cat2 }: HeaderProps) => {
+const CommonHeader = ({ lineColor, cat1, cat2 }: HeaderProps): JSX.Element => {
 	return (
 		<div className="relative pr-10 text-2xl">
 			<div

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-const QuestionTableRow = ({ question }: any) => {
+const QuestionTableRow = ({ question }: any): JSX.Element => {
 	const router = useRouter();
 
 	const {

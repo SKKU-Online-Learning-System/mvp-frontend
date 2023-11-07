@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import {
 	fetchEmailCheck,
@@ -15,7 +16,7 @@ enum CHECK_STATUS {
 
 //이메일 닉네임 값 받기
 //값없으면 disabled
-function SignUpForm({ onClose }: any) {
+function SignUpForm({ onClose }: any): JSX.Element {
 	const router = useRouter();
 
 	// 0: 중복, 1: 중복확인 통과, 2: 초기 상태
@@ -100,8 +101,10 @@ function SignUpForm({ onClose }: any) {
 		<>
 			{sendingMail ? (
 				<div className="flex justify-center items-center h-[400px]">
-					<img
+					<Image
 						className="w-[100px]"
+						width={300}
+						height={300}
 						src="https://mblogthumb-phinf.pstatic.net/MjAxODEwMjNfNjAg/MDAxNTQwMjg2OTk2NTcw.mfWKPtzKVO1mJaBBIFKIkVBlMQQIF1Vc-yrlbbGaoP0g.KNJWAgMmhsfQrZI3n0UT-LMi_qpHAZls4qPMvbNaJBcg.GIF.chingguhl/Spinner-1s-200px.gif?type=w800"
 						alt="loading"
 					/>
