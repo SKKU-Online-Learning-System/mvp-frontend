@@ -14,7 +14,7 @@ type PropsType = {
 	courseId: number;
 };
 
-const CourseDetailPage = ({ courseId }: PropsType) => {
+const CourseDetailPage = ({ courseId }: PropsType): JSX.Element => {
 	const [progress, setProgress] = useState<LectureProgress[]>();
 	const {
 		course,
@@ -78,7 +78,10 @@ export function getStaticProps({ params }: GetStaticPropsContext) {
 	return { props: { courseId } };
 }
 
-export function getStaticPaths() {
+export function getStaticPaths(): {
+	paths: never[];
+	fallback: string;
+} {
 	return { paths: [], fallback: 'blocking' };
 }
 

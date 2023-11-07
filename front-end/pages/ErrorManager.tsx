@@ -6,7 +6,11 @@ import { selectErrorInfo } from 'store/feature/common/commonSelector';
 import { commonActions } from 'store/feature/common/commonSlice';
 import ErrorPage from './ErrorPage';
 
-const ErrorManager = ({ children }: { children?: ReactElement }) => {
+const ErrorManager = ({
+	children,
+}: {
+	children?: ReactElement;
+}): JSX.Element => {
 	const errorInfo = useSelector(selectErrorInfo);
 	const router = useRouter();
 	const dispatch = useDispatch();

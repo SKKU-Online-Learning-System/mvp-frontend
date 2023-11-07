@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import ReactPlayer from 'react-player/lazy';
 
-const LecturePlayer = () => {
+const LecturePlayer = (): JSX.Element => {
 	return (
 		<section>
 			<Head>

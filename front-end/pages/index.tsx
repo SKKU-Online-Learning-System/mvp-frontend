@@ -14,7 +14,7 @@ type PropsType = {
 const scroll = 'scroll';
 const titles = ['나를 위한 추천👍', '신규 컨텐츠'];
 
-const MainPage = ({ recommendedContents }: PropsType) => {
+const MainPage = ({ recommendedContents }: PropsType): JSX.Element => {
 	const [scrollY, setScrollY] = useState(0);
 
 	useEffect(() => {
@@ -31,7 +31,7 @@ const MainPage = ({ recommendedContents }: PropsType) => {
 
 	return (
 		<section className="relative">
-			<MainBanner contents={recommendedContents[0]} />
+			<MainBanner />
 			<CurationFloatingBar />
 			<div className="relative w-[1280px] m-auto font-['Noto Sans KR'] mb-32">
 				{titles.map((title, idx) => (
@@ -47,7 +47,9 @@ const MainPage = ({ recommendedContents }: PropsType) => {
 	);
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(): Promise<{
+	props: { recommendedContents: MainCourse[][] };
+}> {
 	const recommendedContents = await mainAPI.fetchRecommendedCourse();
 
 	return { props: { recommendedContents } };

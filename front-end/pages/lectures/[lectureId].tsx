@@ -19,7 +19,7 @@ type RouterQueryString = {
 	courseId: string;
 };
 
-const LecturePlayer = () => {
+const LecturePlayer = (): JSX.Element => {
 	const router = useRouter();
 	const { lectureId, courseId } = router.query as RouterQueryString;
 	const ref = useRef<ReactPlayer | null>(null);

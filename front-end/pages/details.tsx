@@ -5,7 +5,7 @@ import Curriculum from '@components/Details/ListContents/Curriculum/Curriculum';
 import LearningStatus from '@components/Details/ListContents/LearningStatus/LearningStatus';
 import LectureIntroduction from '@components/Details/ListContents/LectureIntroduction/LectureIntroduction';
 
-const DetailsPage = () => (
+const DetailsPage = (): JSX.Element => (
 	<>
 		<div className="mx-auto my-0">
 			<div className="flex my-[63px] mx-auto">
