@@ -1,14 +1,26 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
+import { userLoginAuthState } from 'constants/commonState';
+import { selectIsLoggined } from 'store/feature/common/commonSelector';
 import { useModal } from '../../hooks/useModal';
 import UpperHeader from './UpperHeader';
 
+const btnStyle =
+	'text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]';
+
 const Header = (): JSX.Element => {
+	const router = useRouter();
+	const isLoggedIn = useSelector(selectIsLoggined);
 	const { showModal, renderModal } = useModal();
 
-	const btnStyle =
-		'text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]';
+	const onMyPageClick = () => {
+		if (isLoggedIn === userLoginAuthState.LOGGINED)
+			router.push('/my-page/profile');
+		else router.push('/login');
+	};
 
 	return (
 		<header>
@@ -32,9 +44,9 @@ const Header = (): JSX.Element => {
 							</Link>
 						</li>
 						<li className="mx-8 list-none">
-							<Link href="/my-page/profile" passHref>
+							<button onClick={onMyPageClick}>
 								<span className={btnStyle}>마이페이지</span>
-							</Link>
+							</button>
 						</li>
 					</ul>
 				</div>
