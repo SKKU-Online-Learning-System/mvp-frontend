@@ -16,7 +16,8 @@ type PropsType = {
 };
 
 const scroll = 'scroll';
-const titles = ['인기', '신규', '인공지능', '교양'];
+const titles = ['인기', '신규'];
+// const titles = ['인기', '신규', '인공지능', '교양'];
 
 const MainPage = ({ recommendedContents }: PropsType) => {
 	const isLoggined = useSelector(selectIsLoggined);
@@ -38,7 +39,7 @@ const MainPage = ({ recommendedContents }: PropsType) => {
 		<section className="relative">
 			<MainBanner contents={recommendedContents[0]} />
 			<CurationFloatingBar />
-			<div className="relative w-[1280px] m-auto font-['Noto Sans KR'] mb-24">
+			<div className="relative w-[1280px] m-auto font-['Noto Sans KR'] mb-32">
 				{!!isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
 					<RecentLecture />
 				)}
