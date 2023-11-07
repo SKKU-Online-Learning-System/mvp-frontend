@@ -8,7 +8,7 @@ type PropsType = {
 	notices: Notification[];
 };
 
-const NoticesManage = ({ notices }: PropsType) => {
+const NoticesManage = ({ notices }: PropsType): JSX.Element => {
 	const [isWriting, setIsWriting] = useState(false);
 	const [notice, setNotice] = useState<Notification>();
 

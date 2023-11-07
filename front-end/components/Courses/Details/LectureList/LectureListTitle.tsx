@@ -17,7 +17,7 @@ const LectureListTitle = ({
 	lecture,
 	progress,
 	handleCollapseClick,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	const lecturesCnt = lecture.lectures.length;
 	const finishedLecturesCnt = progress.filter(
 		(progress) => progress.isFinished,

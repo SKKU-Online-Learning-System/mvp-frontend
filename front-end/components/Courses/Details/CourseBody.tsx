@@ -19,7 +19,7 @@ const CourseBody = ({
 	course,
 	progress,
 	onOpenLoginModal,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	return (
 		<section className="w-[1080px] mx-auto my-6 p-6 font-[var(--font-NotoSans)]">
 			<header>

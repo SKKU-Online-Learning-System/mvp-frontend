@@ -8,7 +8,7 @@ type PropsType = {
 	courseDetail: ICourseDetail;
 };
 
-const MetaDataSection = ({ courseDetail }: PropsType) => {
+const MetaDataSection = ({ courseDetail }: PropsType): JSX.Element => {
 	const courseDescription = courseDetail.description;
 
 	return (

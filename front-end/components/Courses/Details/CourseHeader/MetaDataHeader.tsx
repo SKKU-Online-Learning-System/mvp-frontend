@@ -6,7 +6,7 @@ type PropsType = {
 	courseDetail: ICourseDetail;
 };
 
-const MetaDataHeader = ({ courseDetail }: PropsType) => {
+const MetaDataHeader = ({ courseDetail }: PropsType): JSX.Element => {
 	const title = courseDetail.title;
 	const instructor = courseDetail.instructor;
 	const courseCategory1 = courseDetail.category1.name;

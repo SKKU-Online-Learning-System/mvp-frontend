@@ -21,7 +21,7 @@ const LectureList = ({
 	lectures,
 	progress,
 	onOpenLoginModal,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	const router = useRouter();
 	const [isCollapsed, setIsCollapsed] = useState<boolean[]>(
 		Array(lectures.length).fill(true),

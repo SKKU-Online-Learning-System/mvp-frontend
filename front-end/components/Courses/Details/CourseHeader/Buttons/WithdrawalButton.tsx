@@ -8,7 +8,7 @@ type PropsType = {
 	courseId: number;
 };
 
-const WithdrawalButton = ({ courseId }: PropsType) => {
+const WithdrawalButton = ({ courseId }: PropsType): JSX.Element => {
 	const router = useRouter();
 
 	const handleWithdrawalBtnClick = async () => {

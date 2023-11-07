@@ -6,7 +6,7 @@ type PropsType = {
 	courseDetail: ICourseDetail;
 };
 
-const CourseHashtags = ({ courseDetail }: PropsType) => {
+const CourseHashtags = ({ courseDetail }: PropsType): JSX.Element => {
 	return (
 		<ul>
 			{courseDetail.hashtags?.map((ele) => {

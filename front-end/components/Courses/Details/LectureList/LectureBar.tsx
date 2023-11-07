@@ -8,7 +8,7 @@ type PropsType = {
 	lecture: ILectureInfo;
 };
 
-const LectureBar = ({ idx, lecture }: PropsType) => {
+const LectureBar = ({ idx, lecture }: PropsType): JSX.Element => {
 	return (
 		<div className="flex items-center h-12 cursor-pointer hover:bg-[#eaeaea]">
 			<span className="w-[10%] text-center text-[#404040] text-base">

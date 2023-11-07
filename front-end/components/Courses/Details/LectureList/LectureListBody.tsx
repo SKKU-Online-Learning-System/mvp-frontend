@@ -9,7 +9,11 @@ type PropsType = {
 	handleLectureClick: (idx: number) => void;
 };
 
-const LectureListBody = ({ show, lecture, handleLectureClick }: PropsType) => {
+const LectureListBody = ({
+	show,
+	lecture,
+	handleLectureClick,
+}: PropsType): JSX.Element => {
 	return (
 		<section className={show ? 'block' : 'hidden'}>
 			<ul>

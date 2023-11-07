@@ -6,7 +6,7 @@ type PropsType = {
 	answer: string;
 };
 
-const QnAItem = ({ questionTitle, answer }: PropsType) => {
+const QnAItem = ({ questionTitle, answer }: PropsType): JSX.Element => {
 	return (
 		<div className="mb-5">
 			<div className="flex mb-3 overflow-hidden">

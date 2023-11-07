@@ -15,7 +15,7 @@ const CourseHeader = ({
 	courseDetail,
 	courseId,
 	onOpenLoginModal,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	return (
 		<section className="w-full flex bg-[var(--color-Primary)] px-10 justify-center py-10">
 			<section className="my-auto">

@@ -14,7 +14,7 @@ const RegisterButton = ({
 	courseId,
 	courseDetail,
 	onOpenLoginModal,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	const { has_enrolled: isEnrolled, is_logged_in: isLoggedIn } = courseDetail;
 
 	return (

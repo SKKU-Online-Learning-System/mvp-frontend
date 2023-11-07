@@ -16,7 +16,7 @@ const EnrollButton = ({
 	isLoggedIn,
 	isEnrolled,
 	onOpenLoginModal,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	const router = useRouter();
 	const mutation = useCourseEnrollmentUpdate();
 
