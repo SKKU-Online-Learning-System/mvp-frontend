@@ -14,7 +14,7 @@ import axiosInstance from '../../apis/index';
 const upperHeaderStyle =
 	'text-[var(--color-onBackground-300)] text-sm font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
 
-const UpperHeader = () => {
+const UpperHeader = (): JSX.Element => {
 	const router = useRouter();
 
 	const dispatch = useDispatch();
@@ -31,26 +31,23 @@ const UpperHeader = () => {
 	};
 
 	return (
-		<div className="fixed top-0 z-10 flex items-center justify-end w-screen h-8 px-10 mr-8 bg-white">
+		<div className="fixed top-0 z-10 ml-4 flex items-center justify-end w-screen h-8 px-10 mr-8 bg-white">
 			{!!isLoggined &&
 				(isLoggined === userLoginAuthState.LOGGINED ? (
 					<div>
-						<Link href="/my-page/profile">
-							<span className={upperHeaderStyle}>마이페이지</span>
-						</Link>
 						<button className={upperHeaderStyle} onClick={handleLogout}>
 							로그아웃
 						</button>
 						{userType <= userState.MANAGER ? (
-							<Link href="/admin">
+							<Link href="/admin" passHref>
 								<span className={upperHeaderStyle}>Admin</span>
 							</Link>
 						) : null}
 					</div>
 				) : (
 					<div>
-						<Link href="/login">
-							<span className={upperHeaderStyle}>로그인</span>
+						<Link href="/login" passHref>
+							<span className={upperHeaderStyle}>KINGO ID LOGIN</span>
 						</Link>
 					</div>
 				))}
