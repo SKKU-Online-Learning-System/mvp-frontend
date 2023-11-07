@@ -9,7 +9,8 @@ import { BiSearch } from 'react-icons/bi';
 const Header = () => {
 	const router = useRouter();
 	const inputRef = useRef<HTMLInputElement | null>(null);
-	const { showModal, onOpenLoginModal, onOpenSignUp, renderModal } = useModal();
+	// const { showModal, onOpenLoginModal, onOpenSignUp, renderModal } = useModal();
+	const { showModal, onOpenSignUp, renderModal } = useModal();
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { current } = inputRef;
@@ -39,17 +40,17 @@ const Header = () => {
 	return (
 		<header>
 			<UpperHeader
-				onOpenLoginModal={onOpenLoginModal}
+				// onOpenLoginModal={onOpenLoginModal}
 				onOpenSignUpModal={onOpenSignUp}
 			/>
 			<div className="dt:py-0 dt:px-[10px] mt-10 flex justify-around items-center mb-4 text-[var(--color-onBackground-300)]">
-				<div className="flex items-center justify-between">
+				<div className="flex items-center justify-between w-full px-[10%]">
 					<Link href="/">
 						<span className="text-[2rem] cursor-pointer font-['Gugi']">
 							온라인명륜당
 						</span>
 					</Link>
-					<ul className="flex mx-40 list-none dt:mx-3">
+					<ul className="flex list-none dt:mx-3">
 						<li className="mx-8 list-none">
 							<Link href="/courses">
 								<span className="text-lg font-semibold cursor-pointer no-underline decoration-black transition-colors hover:text-[var(--color-green-300)]">
@@ -65,23 +66,6 @@ const Header = () => {
 							</Link>
 						</li>
 					</ul>
-					<input
-						type="text"
-						ref={inputRef}
-						placeholder="수강하고 싶은 강좌를 입력하세요."
-						className=" focus:outline-none focus:border-[var(--color-Primary)] opacity-75 rounded-3xl w-[300px] mbl:w-[100px] pr-10 pl-4 py-4 h-8 flex border-solid border-2"
-						onChange={handleInput}
-						onKeyPress={handleKeyPress}
-					/>
-					<button
-						className="z-10 h-full px-2 py-1 -ml-10 cursor-pointer rounded-3xl "
-						onClick={handleClickSearchLectures}
-					>
-						<BiSearch
-							className="opacity-70 focus:[var(--color-Primary)] cursor-pointer"
-							size="25"
-						/>
-					</button>
 				</div>
 				{showModal && renderModal()}
 			</div>
