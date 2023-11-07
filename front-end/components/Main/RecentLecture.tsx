@@ -7,7 +7,7 @@ import myPageAPI from '../../apis/MyPage/index';
 import { ILatestLecture } from 'types/MyPage';
 import CourseHeader from './CourseHeader';
 
-export const RecentLecture = () => {
+export const RecentLecture = (): JSX.Element => {
 	const [lectures, setLectures] = useState<ILatestLecture[]>();
 
 	useEffect(() => {
@@ -54,6 +54,7 @@ export const RecentLecture = () => {
 							<Link
 								href={`/lectures/${elem.lecture.id}?courseId=${elem.lecture.course.id}`}
 								key={elem.id}
+								passHref
 							>
 								<div className="relative w-full overflow-hidden cursor-pointer rounded-lg transition hover:scale-[1.03] bg-[var(--color-Surface)]">
 									<Image

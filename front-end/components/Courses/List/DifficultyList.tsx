@@ -6,7 +6,7 @@ interface ICardProps {
 	type: string[];
 }
 
-const DifficultyList = ({ type }: ICardProps) => {
+const DifficultyList = ({ type }: ICardProps): JSX.Element => {
 	const router = useRouter();
 	const initialRenderRef = useRef(false);
 	const [checkedList, setCheckedList] = useState([false, false, false]);
@@ -42,7 +42,7 @@ const DifficultyList = ({ type }: ICardProps) => {
 			pathname: '/courses',
 			query,
 		});
-	}, [checkedList]);
+	}, [checkedList, router]);
 
 	return (
 		// 가운데 정렬

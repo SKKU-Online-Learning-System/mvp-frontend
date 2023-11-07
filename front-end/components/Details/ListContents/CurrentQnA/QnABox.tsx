@@ -1,11 +1,11 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 interface QnAProps {
 	question: string;
 	answer: string;
 }
 
-const QnABox = ({ question, answer }: QnAProps) => {
+const QnABox = ({ question, answer }: QnAProps): JSX.Element => {
 	return (
 		<div className="mb-20">
 			<div className="relative flex overflow-hidden">

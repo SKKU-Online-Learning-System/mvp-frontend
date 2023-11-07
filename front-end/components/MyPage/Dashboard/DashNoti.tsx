@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DashNoti = () => {
+const DashNoti = (): JSX.Element => {
 	return (
 		<div>
 			<div>

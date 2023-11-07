@@ -12,7 +12,10 @@ interface ILecturePicker {
 	lectureId: string;
 }
 
-export const LecturePicker = ({ courseId, lectureId }: ILecturePicker) => {
+export const LecturePicker = ({
+	courseId,
+	lectureId,
+}: ILecturePicker): JSX.Element => {
 	const [sidebarOpen, setSidebaropen] = useState(true);
 	const handleViewSidebar = () => {
 		setSidebaropen(!sidebarOpen);

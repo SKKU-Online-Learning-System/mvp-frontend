@@ -1,13 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 
-import { MainCourse } from 'types/Main';
-
-type PropsType = {
-	contents: MainCourse[];
-};
-
-const MainBanner = ({ contents }: PropsType) => {
+const MainBanner = (): JSX.Element => {
 	return (
 		<div className="border-t-2 border-b-2">
 			<ReactPlayer
@@ -19,9 +13,6 @@ const MainBanner = ({ contents }: PropsType) => {
 				controls={false}
 				loop={true}
 				disablePictureInPicture={true}
-				// poster={
-				// 	'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
-				// }
 			/>
 		</div>
 	);

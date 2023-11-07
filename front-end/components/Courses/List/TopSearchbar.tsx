@@ -2,7 +2,7 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { BiSearch } from 'react-icons/bi';
 
-const TopSearchbar = () => {
+const TopSearchbar = (): JSX.Element => {
 	const router = useRouter();
 	const { keyword } = router.query as { keyword: string };
 

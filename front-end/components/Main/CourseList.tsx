@@ -11,7 +11,7 @@ type PropsType = {
 	contents: MainCourse[];
 };
 
-const CourseList = ({ headerText, contents }: PropsType) => {
+const CourseList = ({ headerText, contents }: PropsType): JSX.Element => {
 	const handleImgError = (e: SyntheticEvent<HTMLImageElement>) => {
 		(e.target as HTMLImageElement).src = defaultErrorImage;
 	};
@@ -32,7 +32,7 @@ const CourseList = ({ headerText, contents }: PropsType) => {
 			<div>
 				<div className="grid gap-x-4 gap-y-4 py-5 px-[35px] grid-cols-5">
 					{contents.map((course, idx) => (
-						<Link href={`/courses/${course.courseId}`} key={idx}>
+						<Link href={`/courses/${course.courseId}`} key={idx} passHref>
 							<div className="relative overflow-hidden rounded-lg transition hover:scale-[1.02] cursor-pointer bg-[var(--color-Surface)]">
 								<Image
 									width={'300'}

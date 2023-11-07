@@ -8,7 +8,7 @@ type PropsType = {
 	categories: ICourseCategory[];
 };
 
-const CourseCategory = ({ categories }: PropsType) => {
+const CourseCategory = ({ categories }: PropsType): JSX.Element => {
 	const router = useRouter();
 
 	const [isClickedCategory, setIsClickedCategory] = useState<boolean[]>([]);
@@ -45,7 +45,11 @@ const CourseCategory = ({ categories }: PropsType) => {
 						{isClicked && (
 							<div>
 								{content.category2s?.map((elem, idx) => (
-									<Link href={`/course/${content.category2s}`} key={idx}>
+									<Link
+										href={`/course/${content.category2s}`}
+										key={idx}
+										passHref
+									>
 										<span className="bg-[var(--color-Surface] hover:bg-[var(--color-Surface)] cursor-pointer font-normal text-[#595959] border-[0.1px] border-b-[0.5px] border-[#e4e4e4] border-solid p-[0.8rem] pl-[1.5rem]">
 											{elem.name}
 										</span>

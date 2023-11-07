@@ -3,7 +3,7 @@ import React from 'react';
 const listStyle =
 	'border-solid border-[#dfdfdf] text-[#393939] text-[0.95rem] my-[3px] mx-0';
 
-const LectureIntroduction = () => {
+const LectureIntroduction = (): JSX.Element => {
 	return (
 		<div className='w-full py-[18px] px-[23px] font-["Noto Sans KR"] border-solid border-[#dfdfdf]'>
 			<div className="text-[0.5rem] text-[#c2c1c1] font-bold">OVERVIEW</div>

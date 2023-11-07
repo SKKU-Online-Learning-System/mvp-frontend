@@ -5,7 +5,7 @@ import { useRecentLecturesFetch } from 'query/hooks/Main/index';
 import NoContent from '@components/NoContent';
 import HistoryCard from './HistoryCard';
 
-const History = () => {
+const History = (): JSX.Element => {
 	const { data: latestLectures, isLoading } = useRecentLecturesFetch();
 
 	if (isLoading)

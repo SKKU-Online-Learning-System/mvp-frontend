@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import QnABox from './QnABox';
 import axiosInstance from 'apis';
 
-const CurrentQnA = () => {
+const CurrentQnA = (): JSX.Element => {
 	const courceId = 1;
 	const [qna, setQna] = useState([
 		{ id: 0, contents: '', answers: [{ contents: '' }] },

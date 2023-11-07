@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { curations } from 'constants/mainCuration';
 
-const CurationFloatingBar = () => {
+const CurationFloatingBar = (): JSX.Element => {
 	return (
 		<>
 			<ul className="mt-12 flex text-[#232323] rounded-xl items-center justify-center text-center text-[var(--color-Background)] px-2">
