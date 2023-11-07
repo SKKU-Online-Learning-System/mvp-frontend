@@ -1,7 +1,7 @@
 import React from 'react';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
-import PagerButton from './PageButton';
+import PageButton from './PageButton';
 
 type PropsType = {
 	ContentsCntPerPage: number;
@@ -32,11 +32,11 @@ const Pager = ({
 
 	return (
 		<div className="flex items-center justify-center text-3xl">
-			<PagerButton id="prev" onBtnClick={onBtnClick} icon={faAngleLeft} />
+			<PageButton id="prev" onBtnClick={onBtnClick} icon={faAngleLeft} />
 			<span className="mx-10 my-12 ml-16">{pageNumber}</span>
 			<span className="my-12">/</span>
 			<span className="mx-10 my-12 mr-16">{Math.floor(courseCnt / 5 + 1)}</span>
-			<PagerButton id="next" onBtnClick={onBtnClick} icon={faAngleRight} />
+			<PageButton id="next" onBtnClick={onBtnClick} icon={faAngleRight} />
 		</div>
 	);
 };

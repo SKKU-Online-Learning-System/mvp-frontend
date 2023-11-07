@@ -8,7 +8,7 @@ type PropsType = {
 	icon: IconDefinition;
 };
 
-const PagerButton = ({ id, onBtnClick, icon }: PropsType) => {
+const PageButton = ({ id, onBtnClick, icon }: PropsType) => {
 	return (
 		<button id={id} onClick={onBtnClick}>
 			<FontAwesomeIcon icon={icon} />
@@ -16,4 +16,4 @@ const PagerButton = ({ id, onBtnClick, icon }: PropsType) => {
 	);
 };
 
-export default PagerButton;
+export default PageButton;
