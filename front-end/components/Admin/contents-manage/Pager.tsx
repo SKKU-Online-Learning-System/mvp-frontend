@@ -1,42 +1,71 @@
 import React from 'react';
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import {
+	faAngleLeft,
+	faAngleRight,
+	faAnglesLeft,
+	faAnglesRight,
+} from '@fortawesome/free-solid-svg-icons';
 
 import PageButton from './PageButton';
 
 type PropsType = {
 	ContentsCntPerPage: number;
 	pageNumber: number;
-	setPageNumber: (pageNumber: number) => void;
+	changePageNumber: (page: number) => void;
 	courseCnt: number;
 };
 
-type ButtonId = 'prev' | 'next';
+type ButtonId = 'prev' | 'next' | 'first' | 'last';
 
 const Pager = ({
 	ContentsCntPerPage,
 	pageNumber,
-	setPageNumber,
+	changePageNumber,
 	courseCnt,
 }: PropsType) => {
-	const onBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+	const maxPageNum = Math.floor(courseCnt / 5 + 1);
+
+	const onSingleAngleBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		const id = e.currentTarget.id as ButtonId;
 
-		if (id === 'prev' && pageNumber > 1) {
-			setPageNumber(pageNumber - 1);
-			window.scrollTo(0, 0);
-		} else if (id === 'next' && pageNumber * ContentsCntPerPage < courseCnt) {
-			setPageNumber(pageNumber + 1);
-			window.scrollTo(0, 0);
-		}
+		if (id === 'prev' && pageNumber > 1) changePageNumber(pageNumber - 1);
+		else if (id === 'next' && pageNumber * ContentsCntPerPage < courseCnt)
+			changePageNumber(pageNumber + 1);
+	};
+
+	const onDoubleAngleBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+		const id = e.currentTarget.id as ButtonId;
+
+		if (id === 'first' && pageNumber !== 1) changePageNumber(1);
+		else if (id === 'last' && pageNumber !== maxPageNum)
+			changePageNumber(maxPageNum);
 	};
 
 	return (
 		<div className="flex items-center justify-center text-3xl">
-			<PageButton id="prev" onBtnClick={onBtnClick} icon={faAngleLeft} />
+			<PageButton
+				id="first"
+				onBtnClick={onDoubleAngleBtnClick}
+				icon={faAnglesLeft}
+			/>
+			<PageButton
+				id="prev"
+				onBtnClick={onSingleAngleBtnClick}
+				icon={faAngleLeft}
+			/>
 			<span className="mx-10 my-12 ml-16">{pageNumber}</span>
 			<span className="my-12">/</span>
-			<span className="mx-10 my-12 mr-16">{Math.floor(courseCnt / 5 + 1)}</span>
-			<PageButton id="next" onBtnClick={onBtnClick} icon={faAngleRight} />
+			<span className="mx-10 my-12 mr-16">{maxPageNum}</span>
+			<PageButton
+				id="next"
+				onBtnClick={onSingleAngleBtnClick}
+				icon={faAngleRight}
+			/>
+			<PageButton
+				id="last"
+				onBtnClick={onDoubleAngleBtnClick}
+				icon={faAnglesRight}
+			/>
 		</div>
 	);
 };

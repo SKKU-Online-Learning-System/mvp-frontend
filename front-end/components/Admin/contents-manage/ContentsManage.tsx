@@ -44,6 +44,10 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 		}
 	};
 
+	const changePageNumber = (page: number) => {
+		setPageNumber(page);
+	};
+
 	return (
 		<section className="flex flex-col items-center justify-start w-full p-10 mt-14">
 			<div className="flex justify-center w-1/2 mb-14">
@@ -67,7 +71,7 @@ const ContentsManage = ({ allCourses }: PropsType) => {
 			<Pager
 				ContentsCntPerPage={ContentsCntPerPage}
 				pageNumber={pageNumber}
-				setPageNumber={setPageNumber}
+				changePageNumber={changePageNumber}
 				courseCnt={courseCnt}
 			/>
 		</section>

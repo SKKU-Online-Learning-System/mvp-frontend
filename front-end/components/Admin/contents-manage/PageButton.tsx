@@ -10,7 +10,7 @@ type PropsType = {
 
 const PageButton = ({ id, onBtnClick, icon }: PropsType) => {
 	return (
-		<button id={id} onClick={onBtnClick}>
+		<button id={id} onClick={onBtnClick} className="mx-4">
 			<FontAwesomeIcon icon={icon} />
 		</button>
 	);
