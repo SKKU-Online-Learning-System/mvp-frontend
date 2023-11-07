@@ -8,7 +8,11 @@ type PropType = {
 	numberOfLectures: number;
 };
 
-const CardBody = ({ description, category, numberOfLectures }: PropType) => {
+const CardBody = ({
+	description,
+	category,
+	numberOfLectures,
+}: PropType): JSX.Element => {
 	return (
 		<div className="rounded-b-lg h-fit bg-[var(--color-Surface)] px-[7%] py-[4%] flex justify-between items-center">
 			<div className="flex flex-col w-[60%]">

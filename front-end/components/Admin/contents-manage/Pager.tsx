@@ -22,7 +22,7 @@ const Pager = ({
 	pageNumber,
 	changePageNumber,
 	courseCnt,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	const maxPageNum = Math.floor(courseCnt / 5 + 1);
 
 	const onSingleAngleBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {

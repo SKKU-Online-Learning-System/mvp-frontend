@@ -8,7 +8,7 @@ type PropsType = {
 	icon: IconDefinition;
 };
 
-const PageButton = ({ id, onBtnClick, icon }: PropsType) => {
+const PageButton = ({ id, onBtnClick, icon }: PropsType): JSX.Element => {
 	return (
 		<button id={id} onClick={onBtnClick} className="mx-4">
 			<FontAwesomeIcon icon={icon} />

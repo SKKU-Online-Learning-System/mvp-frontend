@@ -9,7 +9,11 @@ type PropsType = {
 	setTitle: (title: string) => void;
 };
 
-const SideMenuButtonList = ({ opens, setOpens, setTitle }: PropsType) => {
+const SideMenuButtonList = ({
+	opens,
+	setOpens,
+	setTitle,
+}: PropsType): JSX.Element => {
 	const handleSidebarBtnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		switch (e.currentTarget.textContent) {
 			case menus[0].title:

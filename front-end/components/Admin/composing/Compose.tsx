@@ -15,7 +15,7 @@ type PropsType = {
 	titles: string[];
 };
 
-const Compose = ({ coursesInfo, titles }: PropsType) => {
+const Compose = ({ coursesInfo, titles }: PropsType): JSX.Element => {
 	if (!coursesInfo)
 		return (
 			<Image

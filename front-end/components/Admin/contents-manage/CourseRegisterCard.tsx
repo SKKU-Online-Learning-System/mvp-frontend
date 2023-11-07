@@ -9,7 +9,7 @@ type PropsType = {
 	course: CourseInfo;
 };
 
-const CourseRegisterCard = ({ course }: PropsType) => {
+const CourseRegisterCard = ({ course }: PropsType): JSX.Element => {
 	const [courseInfo, setCourseInfo] = useState<CourseInfo>(course);
 	const [isShow, setIsShow] = useState<boolean>(false);
 

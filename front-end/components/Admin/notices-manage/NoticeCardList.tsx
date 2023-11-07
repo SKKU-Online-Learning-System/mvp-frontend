@@ -9,7 +9,10 @@ type PropsType = {
 	onNoticeChangeClick: (id: number) => void;
 };
 
-const NoticeCardList = ({ notices, onNoticeChangeClick }: PropsType) => {
+const NoticeCardList = ({
+	notices,
+	onNoticeChangeClick,
+}: PropsType): JSX.Element => {
 	if (!notices || notices.length === 0) {
 		return (
 			<div className="mt-[4%] shadow-xl flex flex-col items-center justify-center w-full pt-8 border-4 rounded-lg border-[var(--color-mrgreen-7)]">

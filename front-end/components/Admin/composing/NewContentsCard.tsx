@@ -6,7 +6,7 @@ import { ICourseOrdersInfo, INewCourseInfo } from '../../../types/Admin/Index';
 
 type PropsType = { title: string; courses: INewCourseInfo[] };
 
-const NewContentsCard = ({ title, courses }: PropsType) => {
+const NewContentsCard = ({ title, courses }: PropsType): JSX.Element => {
 	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
 	const [currPage, setCurrPage] = useState(1);
 

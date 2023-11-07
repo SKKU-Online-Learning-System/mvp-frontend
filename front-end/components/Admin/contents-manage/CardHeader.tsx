@@ -18,7 +18,7 @@ const CardHeader = ({
 	operation,
 	onChangeOperation,
 	onCardHeaderClick,
-}: PropType) => {
+}: PropType): JSX.Element => {
 	const roundStyle = isShow ? 'rounded-t-lg' : 'rounded-lg';
 
 	return (

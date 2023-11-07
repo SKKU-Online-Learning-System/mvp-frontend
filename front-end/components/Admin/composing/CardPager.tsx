@@ -18,7 +18,7 @@ const CardPager = ({
 	setPage,
 	contentsCnt,
 	firstContentIdOnNextPage,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	const onPagerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		const btnId = e.currentTarget.id as BtnId;
 

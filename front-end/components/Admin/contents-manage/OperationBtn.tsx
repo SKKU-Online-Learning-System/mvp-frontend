@@ -5,7 +5,7 @@ type PropsType = {
 	onChangeOper: () => void;
 };
 
-const OperationBtn = ({ oper, onChangeOper }: PropsType) => {
+const OperationBtn = ({ oper, onChangeOper }: PropsType): JSX.Element => {
 	return (
 		<button
 			onClick={onChangeOper}

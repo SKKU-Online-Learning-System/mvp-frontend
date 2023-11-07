@@ -18,7 +18,7 @@ const NoticeCard = ({
 	isNew,
 	createdAt,
 	onNoticeChangeClick,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	const [isClicked, setIsClicked] = useState(false);
 
 	const onCardClick = () => {

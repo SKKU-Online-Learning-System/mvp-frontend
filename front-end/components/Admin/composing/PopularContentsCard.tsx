@@ -13,7 +13,11 @@ type PropsType = {
 	courses: ICourseRetrieveInfo[];
 };
 
-const PopularContentsCard = ({ order, title, courses }: PropsType) => {
+const PopularContentsCard = ({
+	order,
+	title,
+	courses,
+}: PropsType): JSX.Element => {
 	const [objs, setObjs] = useState<Array<ICourseOrdersInfo>>([]);
 	const [currPage, setCurrPage] = useState(1);
 	const [courseData, setCourseData] = useState<ICourseRetrieveInfo[]>(courses);

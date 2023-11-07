@@ -10,7 +10,7 @@ type PropsType = {
 
 const ContentsCntPerPage = 5;
 
-const ContentsManage = ({ allCourses }: PropsType) => {
+const ContentsManage = ({ allCourses }: PropsType): JSX.Element => {
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const [pageNumber, setPageNumber] = useState<number>(1);
