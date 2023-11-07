@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 import CourseCard from './CourseCard';
 import { useCourseListFetch } from 'query/hooks/CourseList';
+import NoContent from '@components/NoContent';
 
 type RouterQueryString = {
 	keyword: string;
@@ -12,7 +13,7 @@ type RouterQueryString = {
 
 const skeleton_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-const LectureList = () => {
+const LectureList = (): JSX.Element => {
 	const router = useRouter();
 	const { keyword, category2sId, difficulty } =
 		router.query as RouterQueryString;
@@ -22,7 +23,8 @@ const LectureList = () => {
 		difficulty,
 	});
 
-	if (!courseList || courseList.length === 0) return null;
+	if (!courseList || courseList.length === 0)
+		return <NoContent text="컨텐츠를 불러오는데 실패하였습니다." />;
 
 	// skeleton screen
 	if (isLoading)

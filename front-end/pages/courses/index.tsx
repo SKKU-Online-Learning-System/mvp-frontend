@@ -11,7 +11,7 @@ type PropsType = {
 	categories: ICourseCategory[];
 };
 
-const CoursesListPage = ({ categories }: PropsType) => {
+const CoursesListPage = ({ categories }: PropsType): JSX.Element => {
 	const [clickedTitle, setClickedTitle] = useState('전체보기');
 
 	const categoryList = [{ id: 0, name: '전체보기' }, ...categories];
@@ -38,7 +38,9 @@ const CoursesListPage = ({ categories }: PropsType) => {
 	);
 };
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<{
+	props: { categories: ICourseCategory[] };
+}> {
 	const categories = await courseAPI.fetchAllCourseCategories();
 	return { props: { categories } };
 }
