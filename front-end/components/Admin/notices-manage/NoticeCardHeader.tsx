@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 import noticesAPI from '../../../apis/Notices/noticesAPI';
 import NewIndicator from '@components/Notices/NewIndicator';
@@ -53,7 +53,12 @@ const NoticeCardHeader = ({
 						className="text-lg font-semibold cursor-pointer"
 					>
 						{notice.title}
-						<FontAwesomeIcon icon={faAngleDown} className={`ml-2 transition`} />
+						<FontAwesomeIcon
+							icon={faAngleDown}
+							className={`ml-2 transition ${
+								isClicked ? '-rotate-180' : 'rotate-0'
+							}`}
+						/>
 					</h4>
 				</div>
 				<div className="text-sm">
