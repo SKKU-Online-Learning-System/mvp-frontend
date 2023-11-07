@@ -31,7 +31,7 @@ const AnswerSet = ({ answers }: any): JSX.Element => {
 				</div>
 			</div>
 			{orderedAnswer?.map((answer: Answer) => {
-				return <AnswerDetail key={answer?.id} answers={answer} />;
+				return <AnswerDetail key={answer?.id} answer={answer} />;
 			})}
 		</div>
 	);
