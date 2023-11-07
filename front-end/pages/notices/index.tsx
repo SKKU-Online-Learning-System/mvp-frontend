@@ -60,7 +60,7 @@ const NotificationPage = ({ notices }: PropsType): JSX.Element => {
 	);
 };
 
-export async function getStaticProps(): Promise<{
+export async function getServerSideProps(): Promise<{
 	props: { notices: Notification[] };
 	revalidate: number;
 }> {
