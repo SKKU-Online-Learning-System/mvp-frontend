@@ -13,7 +13,7 @@ type PropsType = {
 	setCourses: (courses: ICourseRetrieveInfo[]) => void;
 };
 
-const CardHeader = ({ title, objs, setCourses }: PropsType) => {
+const CardHeader = ({ title, objs, setCourses }: PropsType): JSX.Element => {
 	const [disabled, setDisabled] = useState(false);
 
 	const onRefreshBtnClick = async () => {
@@ -25,7 +25,7 @@ const CardHeader = ({ title, objs, setCourses }: PropsType) => {
 		}, 60 * 1000);
 	};
 
-	const onSaveClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+	const onSaveClick = async () => {
 		if (!objs || objs.length === 0) {
 			alert('순서 값을 입력해주시기 바랍니다.');
 			return;

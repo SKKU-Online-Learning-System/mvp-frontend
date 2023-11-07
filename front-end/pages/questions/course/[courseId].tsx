@@ -8,7 +8,7 @@ import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
 /*
 로그인 && 강의 등록이 되어있어야 등록 가능.
 */
-const QuestionsByCoursePage = () => {
+const QuestionsByCoursePage = (): JSX.Element => {
 	const { courseId, qna, course, showModal, onOpenLoginModal, renderModal } =
 		useCourseDetailInfo();
 	const [openForm, setOpenForm] = useState(false);

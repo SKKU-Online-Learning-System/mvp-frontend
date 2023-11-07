@@ -1,16 +1,17 @@
 // questions/{questionId}
-import { useRouter } from 'next/router';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectUserNickname } from 'store/feature/common/commonSelector';
 
-const QuestionDetailQ = ({ question }: any): JSX.Element => {
+import { selectUserNickname } from 'store/feature/common/commonSelector';
+import { Question } from 'types/Course';
+
+type PropsType = {
+	question: Question;
+};
+
+const QuestionDetailQ = ({ question }: PropsType): JSX.Element => {
 	const date = new Date(question?.createdAt);
-	const router = useRouter();
-	const currentURL = router.asPath;
-	console.log(currentURL);
 	const userName = useSelector(selectUserNickname);
-	console.log(userName);
 
 	return (
 		<div className="w-[800px] mbl:w-[300px] mt-5 mx-auto rounded-md mb-3">

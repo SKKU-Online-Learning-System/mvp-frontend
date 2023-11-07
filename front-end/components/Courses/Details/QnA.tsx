@@ -10,7 +10,7 @@ type PropsType = {
 	qna: IQna[] | undefined;
 };
 
-const QnA = ({ courseId, qna }: PropsType) => {
+const QnA = ({ courseId, qna }: PropsType): JSX.Element => {
 	if (!qna) return <div>There is no Q&A data . . .</div>;
 
 	const recentQna = qna.slice(0, 3);
@@ -24,7 +24,7 @@ const QnA = ({ courseId, qna }: PropsType) => {
 				</div>
 				<div className="flex">
 					<h3 className="pr-[18px] font-semibold text-3xl">최근 한 질문</h3>
-					<Link href={`/questions/course/${courseId}`}>
+					<Link href={`/questions/course/${courseId}`} passHref>
 						<div className="flex text-xs hover:opacity-90 font-medium my-auto text-[var(--color-onPrimary)] bg-[var(--color-Primary)] rounded-md py-1 px-2 cursor-pointer">
 							{qnaCnt > 0 ? '더보기' : '질문하기'}
 							<AiFillCaretRight className="my-auto" />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 import noticesAPI from '../../../apis/Notices/noticesAPI';
 import NewIndicator from '@components/Notices/NewIndicator';
@@ -23,14 +23,14 @@ const NoticeCardHeader = ({
 	createdAt,
 	onNoticeChangeClick,
 	onCardClick,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	const router = useRouter();
 
 	const onDeleteClick = async (id: number) => {
 		if (confirm('해당 공지사항을 정말 삭제하시겠습니까?')) {
 			try {
 				await noticesAPI.deleteNotice(id);
-			} catch (err: any) {
+			} catch (err) {
 				alert('공지 삭제 과정에서 알 수 없는 에러가 발생했습니다.');
 			}
 			router.reload();

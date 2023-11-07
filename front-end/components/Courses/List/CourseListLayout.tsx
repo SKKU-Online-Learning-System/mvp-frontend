@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ICourseCategory } from 'types/Course';
 
 type PropsType = {
-	children: ReactElement[] | ReactElement<any, string> | string;
+	children: ReactElement[] | ReactElement<string> | string;
 	categories: ICourseCategory[];
 	title: string;
 	setTitle: (title: string) => void;
@@ -16,7 +16,7 @@ const CourseListLayout = ({
 	categories,
 	title,
 	setTitle,
-}: PropsType) => {
+}: PropsType): JSX.Element => {
 	const router = useRouter();
 
 	const [isClicked, setIsClicked] = useState(categories[0].name);
@@ -101,6 +101,7 @@ const CourseListLayout = ({
 													<Link
 														href={`courses?category2sId=${elem.id}`}
 														key={idx}
+														passHref
 													>
 														<span className="text-base transition-all relative left-3 hover:left-3.5">
 															{elem.name}

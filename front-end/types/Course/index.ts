@@ -50,22 +50,34 @@ export interface ICourseDetail {
 	is_logged_in: boolean;
 	has_enrolled: boolean;
 }
+
+export interface Question {
+	id: number;
+	title: string;
+	contents: string;
+	createdAt: Date;
+	author: { email: string; nickname: string };
+	answers: Answer[];
+}
+
+export interface Answer {
+	authorId: number;
+	contents: string;
+	createdAt: string;
+	id: number;
+	questionId: number;
+	author: {
+		id: number;
+		nickname: string;
+		joinedAt: string;
+		role: number;
+		email: string;
+	};
+}
+
 export interface IQna {
 	answercount: number;
-	answers: {
-		authorId: number;
-		contents: string;
-		createdAt: string;
-		id: number;
-		questionId: number;
-		author: {
-			id: number;
-			nickname: string;
-			joinedAt: string;
-			role: number;
-			email: string;
-		};
-	}[];
+	answers: Answer[];
 	author: { id: number; nickname: string };
 	contents: string;
 	createdAt: string;

@@ -1,4 +1,4 @@
-import React, { useRef, Dispatch, SetStateAction } from 'react';
+import React, { useRef } from 'react';
 import { useRouter } from 'next/router';
 
 import noticeAPI from '../../../apis/Notices/noticesAPI';
@@ -9,7 +9,10 @@ type PropsType = {
 	notice: Notification | undefined;
 };
 
-const NoticeWritingPage = ({ onCancelClick, notice }: PropsType) => {
+const NoticeWritingPage = ({
+	onCancelClick,
+	notice,
+}: PropsType): JSX.Element => {
 	const router = useRouter();
 
 	// Todo: notice 객체의 title과 content로 useRef 객체 초기화 하기
@@ -36,8 +39,8 @@ const NoticeWritingPage = ({ onCancelClick, notice }: PropsType) => {
 			try {
 				await noticeAPI.postNotice(title, content);
 				router.reload();
-			} catch (err: any) {
-				alert(err.message);
+			} catch (err) {
+				alert('공지사항을 업로드하는 과정에서 에러가 발생하였습니다.');
 			}
 		}
 	};

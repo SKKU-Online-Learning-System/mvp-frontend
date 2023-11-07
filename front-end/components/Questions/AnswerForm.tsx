@@ -1,19 +1,23 @@
-import React, { ReactElement } from 'react';
-import axios, { AxiosError } from 'axios';
+import React from 'react';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import { HTTP_STATUS_CODE } from 'constants/http';
 import { useModal } from 'hooks/useModal';
 import API from 'apis/QnA/qnaApi';
 
-const AnswerForm = ({ questionId }: any) => {
+type PropsType = {
+	questionId: string;
+};
+
+const AnswerForm = ({ questionId }: PropsType): JSX.Element => {
 	const router = useRouter();
 	const { showModal, onOpenLoginModal, renderModal } = useModal();
 
-	const handleSubmit = async (e: any) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const contents = e.target.contents.value;
+		const contents = e.currentTarget.contents.value;
 
 		try {
 			const res = await API.postAnswer({
@@ -24,15 +28,13 @@ const AnswerForm = ({ questionId }: any) => {
 			if (res.data.statusCode === HTTP_STATUS_CODE.CREATED) {
 				router.reload();
 			}
-		} catch (e: unknown | AxiosError) {
+		} catch (e: unknown) {
 			if (
 				axios.isAxiosError(e) &&
 				e.response?.status === HTTP_STATUS_CODE.FORBIDDEN
-			) {
+			)
 				onOpenLoginModal();
-			} else {
-				console.warn(e);
-			}
+			else console.warn(e);
 		}
 	};
 

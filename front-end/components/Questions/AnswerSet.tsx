@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 
 import AnswerDetail from './AnswerDetail';
+import { Answer } from 'types/Course';
 
 interface Type {
 	id: number;
 	contents: string;
 	createdAt: Date;
 	author: { email: string };
-	answers: any[];
+	answers: Answer[];
 }
 
-const AnswerSet = ({ answers }: any) => {
-	const [orderedAnswer, setorderedAnswer] = useState<any[]>([]);
+const AnswerSet = ({ answers }: any): JSX.Element => {
+	const [orderedAnswer, setorderedAnswer] = useState<Answer[]>([]);
 
 	useEffect(() => {
 		const orderedDate = answers?.sort(
@@ -29,7 +30,7 @@ const AnswerSet = ({ answers }: any) => {
 					<span className="text-[var(--color-Primary)]">{answers?.length}</span>
 				</div>
 			</div>
-			{orderedAnswer?.map((answer: any) => {
+			{orderedAnswer?.map((answer: Answer) => {
 				return <AnswerDetail key={answer?.id} answers={answer} />;
 			})}
 		</div>

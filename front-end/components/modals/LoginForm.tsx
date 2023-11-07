@@ -5,17 +5,22 @@ import Image from 'next/image';
 import { sendLogInRequest } from 'apis/LogIn/logInApi';
 import { fetchEmailCheck } from 'apis/SignUp/signUpApi';
 
+type PropsType = {
+	onClose: () => void;
+	onOpenSignUp: () => void;
+};
+
 //이메일 값 받기
 //값없으면 disabled
-function LoginForm({ onClose, onOpenSignUp }: any): JSX.Element {
+function LoginForm({ onClose, onOpenSignUp }: PropsType): JSX.Element {
 	const router = useRouter();
 
 	const [sendingMail, setSendingMail] = useState(false);
 
-	const handleSubmit = async (e: any) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const email: string = e.target.email.value;
+		const email: string = e.currentTarget.email.value;
 
 		if (!email) {
 			alert('이메일 주소를 입력하세요');
@@ -29,8 +34,8 @@ function LoginForm({ onClose, onOpenSignUp }: any): JSX.Element {
 				alert('가입되지 않은 이메일 입니다.');
 				return;
 			} else throw new Error('Wrong status code from response or no response');
-		} catch (e: any) {
-			console.log(e.message);
+		} catch (e: unknown) {
+			console.log('Error');
 		}
 
 		try {
@@ -42,12 +47,12 @@ function LoginForm({ onClose, onOpenSignUp }: any): JSX.Element {
 				router.push('/auth/login/mail-failed');
 				onClose();
 			}
-		} catch (e: any) {
-			console.log(e.message);
+		} catch (e: unknown) {
+			console.log('Error');
 		}
 	};
 
-	const handleOpenSignUpClick = (e: any) => {
+	const handleOpenSignUpClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 		onClose();
 		onOpenSignUp();
