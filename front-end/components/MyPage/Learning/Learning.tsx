@@ -10,7 +10,7 @@ interface ILectureStatusCount {
 	maxLectureCount: number;
 }
 
-const Learning = () => {
+const Learning = (): JSX.Element => {
 	const [learningLectureCount, setLearningLectureCount] =
 		useState<ILectureStatusCount[]>();
 
@@ -60,7 +60,12 @@ const Learning = () => {
 		);
 
 		setLearningLectureCount(learningLectureCount);
-	}, [isLoading]);
+	}, [
+		isLoading,
+		currentLearningCourseList,
+		finishedLectureList,
+		lectureCountList,
+	]);
 
 	if (isLoading)
 		return (

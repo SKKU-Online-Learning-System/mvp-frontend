@@ -8,7 +8,7 @@ interface PropsType {
 	onClose: () => void;
 }
 
-const SignUpModal = ({ show, onClose }: PropsType) => {
+const SignUpModal = ({ show, onClose }: PropsType): JSX.Element | null => {
 	const [isBrowser, setIsBrowser] = useState(false);
 
 	useEffect(() => {

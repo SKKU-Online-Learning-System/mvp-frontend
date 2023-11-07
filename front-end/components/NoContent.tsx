@@ -5,7 +5,7 @@ type PropsType = {
 	text: string;
 };
 
-const NoContent = ({ text }: PropsType) => {
+const NoContent = ({ text }: PropsType): JSX.Element => {
 	return (
 		<div className="flex flex-col items-center justify-center w-full h-full bg-white">
 			<div className="px-6 py-4 mb-10 text-3xl rounded-lg">{text}</div>

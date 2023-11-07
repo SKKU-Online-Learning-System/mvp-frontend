@@ -6,7 +6,7 @@ import { getTimeBefore } from 'utils/getTimeBefore';
 import { useMyQnaFetch } from 'query/hooks/MyPage';
 import NoContent from '@components/NoContent';
 
-const MyQnA = () => {
+const MyQnA = (): JSX.Element => {
 	const router = useRouter();
 
 	const { data: qna, isLoading } = useMyQnaFetch();

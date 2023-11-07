@@ -6,7 +6,7 @@ type PropsType = {
 	notice: Notification;
 };
 
-const NoticeMetaDataBar = ({ notice }: PropsType) => {
+const NoticeMetaDataBar = ({ notice }: PropsType): JSX.Element => {
 	if (!notice) return <div>Failed to retrieve the notice . . .</div>;
 
 	const date = notice.createdAt.split('T')[0];

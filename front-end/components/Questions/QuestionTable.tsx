@@ -8,7 +8,7 @@ interface IQuestionTable {
 	qna: IQna[];
 }
 
-const QuestionTable = ({ courseName, qna }: IQuestionTable) => {
+const QuestionTable = ({ courseName, qna }: IQuestionTable): JSX.Element => {
 	return (
 		<ul className="mt-3 mb-24 border-y border-y-gray-400">
 			{qna.map((question) => {

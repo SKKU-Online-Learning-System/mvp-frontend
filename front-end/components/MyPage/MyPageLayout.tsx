@@ -7,7 +7,7 @@ type PropsType = {
 	children: ReactElement[] | ReactElement<any, string> | string;
 };
 
-const MyPageLayout = ({ children }: PropsType) => {
+const MyPageLayout = ({ children }: PropsType): JSX.Element => {
 	const [isClicked, setIsClicked] = useState(menus[0].title);
 
 	const handleMenuClick = (event: string) => {
