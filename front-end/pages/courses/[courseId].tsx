@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { GetStaticPropsContext } from 'next';
+import {
+	GetStaticProps,
+	GetStaticPropsContext,
+	GetStaticPropsResult,
+} from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
+import { ParsedUrlQuery } from 'querystring';
 
 import CourseHeader from '@components/Courses/Details/CourseHeader/CourseHeader';
 import CourseBody from '@components/Courses/Details/CourseBody';
@@ -10,8 +15,12 @@ import { LectureProgress } from 'types/Lecture';
 import courseAPI from '../../apis/Courses/courseApi';
 import QnA from '@components/Courses/Details/QnA';
 
+interface IParams extends ParsedUrlQuery {
+	courseId: string;
+}
+
 type PropsType = {
-	courseId: number;
+	courseId?: number;
 };
 
 const CourseDetailPage = ({ courseId }: PropsType): JSX.Element => {
@@ -28,11 +37,11 @@ const CourseDetailPage = ({ courseId }: PropsType): JSX.Element => {
 
 	useEffect(() => {
 		async function func() {
-			const progress = await courseAPI.fetchProgress(courseId);
+			const progress = await courseAPI.fetchProgress(courseId as number);
 			setProgress(progress);
 		}
 		func();
-	}, []);
+	}, [courseId]);
 
 	if (!progress || !course || !lecture) return <div>progress</div>;
 	if (isLoading)
@@ -54,29 +63,35 @@ const CourseDetailPage = ({ courseId }: PropsType): JSX.Element => {
 				<CourseHeader
 					onOpenLoginModal={onOpenLoginModal}
 					courseDetail={course}
-					courseId={courseId}
+					courseId={courseId as number}
 				/>
 				<CourseBody
-					courseId={courseId}
+					courseId={courseId as number}
 					lectures={lecture}
 					course={course}
 					progress={progress}
 					onOpenLoginModal={onOpenLoginModal}
 				/>
 				<hr className="w-[1080px] mx-auto my-6" />
-				<QnA courseId={courseId} qna={qna} />
+				<QnA courseId={courseId as number} qna={qna} />
 			</section>
 			{showModal && renderModal()}
 		</main>
 	);
 };
 
-export function getStaticProps({ params }: GetStaticPropsContext) {
-	if (!params || !params.courseId) return { props: {} };
+export const getStaticProps: GetStaticProps<PropsType, IParams> = async (
+	context: GetStaticPropsContext<IParams>,
+): Promise<GetStaticPropsResult<PropsType>> => {
+	const { params } = context;
 
-	const courseId = +params.courseId;
+	if (!params || !params.courseId) {
+		return { props: {} };
+	}
+
+	const courseId = parseInt(params.courseId, 10);
 	return { props: { courseId } };
-}
+};
 
 export function getStaticPaths(): {
 	paths: never[];

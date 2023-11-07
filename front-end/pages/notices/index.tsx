@@ -12,7 +12,7 @@ type PropsType = {
 	notices: Notification[];
 };
 
-const NotificationPage = ({ notices }: PropsType) => {
+const NotificationPage = ({ notices }: PropsType): JSX.Element => {
 	return (
 		<section>
 			<Head>
@@ -42,7 +42,7 @@ const NotificationPage = ({ notices }: PropsType) => {
 									>
 										<div className="flex items-center justify-start mb-2">
 											{isNew ? <NewIndicator /> : null}
-											<Link href={`/notices/${notice.id}`}>
+											<Link href={`/notices/${notice.id}`} passHref>
 												<h4 className="text-lg font-semibold cursor-pointer">
 													{notice.title}
 												</h4>
@@ -60,7 +60,10 @@ const NotificationPage = ({ notices }: PropsType) => {
 	);
 };
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<{
+	props: { notices: Notification[] };
+	revalidate: number;
+}> {
 	const notices = await noticesAPI.fetchAllNotices();
 
 	return {
