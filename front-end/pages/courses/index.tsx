@@ -38,7 +38,7 @@ const CoursesListPage = ({ categories }: PropsType): JSX.Element => {
 	);
 };
 
-export async function getStaticProps(): Promise<{
+export async function getServerSideProps(): Promise<{
 	props: { categories: ICourseCategory[] };
 }> {
 	const categories = await courseAPI.fetchAllCourseCategories();
