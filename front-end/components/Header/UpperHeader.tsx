@@ -12,7 +12,7 @@ import { userLoginAuthState, userState } from '../../constants/commonState';
 import axiosInstance from '../../apis/index';
 
 const upperHeaderStyle =
-	'text-[var(--color-onBackground-300)] text-sm font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
+	'text-[var(--color-onBackground-300)] ml-4 text-sm font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
 
 const UpperHeader = (): JSX.Element => {
 	const router = useRouter();

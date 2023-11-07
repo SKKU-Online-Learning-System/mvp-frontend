@@ -31,7 +31,7 @@ const Header = (): JSX.Element => {
 								<span className={btnStyle}>공지사항</span>
 							</Link>
 						</li>
-						<li>
+						<li className="mx-8 list-none">
 							<Link href="/my-page/profile" passHref>
 								<span className={btnStyle}>마이페이지</span>
 							</Link>
