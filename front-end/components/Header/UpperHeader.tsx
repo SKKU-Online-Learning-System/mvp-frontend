@@ -11,15 +11,10 @@ import { commonActions } from 'store/feature/common/commonSlice';
 import { userLoginAuthState, userState } from '../../constants/commonState';
 import axiosInstance from '../../apis/index';
 
-type PropsType = {
-	// onOpenLoginModal: () => void;
-	onOpenSignUpModal: () => void;
-};
-
 const upperHeaderStyle =
-	'text-[var(--color-onBackground-300)] mx-6 text-sm font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
+	'text-[var(--color-onBackground-300)] text-sm font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
 
-const UpperHeader = ({ onOpenSignUpModal }: PropsType) => {
+const UpperHeader = () => {
 	const router = useRouter();
 
 	const dispatch = useDispatch();
@@ -54,17 +49,9 @@ const UpperHeader = ({ onOpenSignUpModal }: PropsType) => {
 					</div>
 				) : (
 					<div>
-						<button
-							className={upperHeaderStyle}
-							onClick={() => {
-								router.push('/login');
-							}}
-						>
-							로그인
-						</button>
-						<button className={upperHeaderStyle} onClick={onOpenSignUpModal}>
-							회원가입
-						</button>
+						<Link href="/login">
+							<span className={upperHeaderStyle}>로그인</span>
+						</Link>
 					</div>
 				))}
 		</div>
