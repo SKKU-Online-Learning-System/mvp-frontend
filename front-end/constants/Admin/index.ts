@@ -11,10 +11,6 @@ const menus = [
 		icon: faChartSimple,
 	},
 	{
-		title: '유저 랭킹',
-		icon: faRankingStar,
-	},
-	{
 		title: '강좌 관리',
 		icon: faBookOpen,
 	},
@@ -22,6 +18,10 @@ const menus = [
 		title: '공지사항 관리',
 		icon: faBullhorn,
 	},
+	// {
+	// 	title: '통계 분석',
+	// 	icon: faRankingStar,
+	// },
 ];
 
 export default menus;

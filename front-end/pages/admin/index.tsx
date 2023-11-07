@@ -54,11 +54,11 @@ const AdminIndex = ({ coursesInfo, allCourses, notices }: PropsType) => {
 					{opens[0] ? (
 						<Compose coursesInfo={coursesInfo} titles={titles} />
 					) : opens[1] ? (
-						<UserRanking />
-					) : opens[2] ? (
 						<ContentsManage allCourses={allCourses} />
-					) : opens[3] ? (
+					) : opens[2] ? (
 						<NoticesManage notices={notices} />
+					) : opens[3] ? (
+						<UserRanking />
 					) : null}
 				</div>
 			</section>
