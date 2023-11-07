@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 import CurationFloatingBar from '@components/Main/CurationFloatingBar';
-import { selectIsLoggined } from 'store/feature/common/commonSelector';
-import { RecentLecture } from '@components/Main/RecentLecture';
 import ScrollToTopButton from '@components/ScrollToTopButton';
-import { userLoginAuthState } from 'constants/commonState';
 import CourseList from '@components/Main/CourseList';
 import MainBanner from '@components/Main/MainBanner';
 import mainAPI from '../apis/Main/index';
@@ -16,11 +12,9 @@ type PropsType = {
 };
 
 const scroll = 'scroll';
-const titles = ['인기', '신규'];
-// const titles = ['인기', '신규', '인공지능', '교양'];
+const titles = ['나를 위한 추천👍', '신규 컨텐츠'];
 
 const MainPage = ({ recommendedContents }: PropsType) => {
-	const isLoggined = useSelector(selectIsLoggined);
 	const [scrollY, setScrollY] = useState(0);
 
 	useEffect(() => {
@@ -40,12 +34,9 @@ const MainPage = ({ recommendedContents }: PropsType) => {
 			<MainBanner contents={recommendedContents[0]} />
 			<CurationFloatingBar />
 			<div className="relative w-[1280px] m-auto font-['Noto Sans KR'] mb-32">
-				{!!isLoggined && isLoggined === userLoginAuthState.LOGGINED && (
-					<RecentLecture />
-				)}
 				{titles.map((title, idx) => (
 					<CourseList
-						headerText={`${title} 컨텐츠`}
+						headerText={`${title}`}
 						contents={recommendedContents[idx]}
 						key={title}
 					/>
