@@ -12,7 +12,7 @@ type PropsType = {
 };
 
 const scroll = 'scroll';
-const titles = ['나를 위한 추천👍', '신규 컨텐츠'];
+const titles = ['나를 위한 추천 👍', '신규 컨텐츠 😃'];
 
 const MainPage = ({ recommendedContents }: PropsType): JSX.Element => {
 	const [scrollY, setScrollY] = useState(0);
