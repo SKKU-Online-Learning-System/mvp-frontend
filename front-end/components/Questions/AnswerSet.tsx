@@ -3,20 +3,16 @@ import React, { useEffect, useState } from 'react';
 import AnswerDetail from './AnswerDetail';
 import { Answer } from 'types/Course';
 
-interface Type {
-	id: number;
-	contents: string;
-	createdAt: Date;
-	author: { email: string };
+type PropsType = {
 	answers: Answer[];
-}
+};
 
-const AnswerSet = ({ answers }: any): JSX.Element => {
+const AnswerSet = ({ answers }: PropsType): JSX.Element => {
 	const [orderedAnswer, setorderedAnswer] = useState<Answer[]>([]);
 
 	useEffect(() => {
 		const orderedDate = answers?.sort(
-			(a: Type, b: Type) =>
+			(a: Answer, b: Answer) =>
 				new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
 		);
 		setorderedAnswer(orderedDate);
