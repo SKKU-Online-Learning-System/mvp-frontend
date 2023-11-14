@@ -16,10 +16,12 @@ export const useModal = () => {
 	};
 
 	const onOpenSignUp = () => {
+		if (showLogInModal) setShowLogInModal(false);
 		setShowSignUpModal(true);
 	};
 
 	const onOpenLoginModal = () => {
+		if (showSignUpModal) setShowSignUpModal(false);
 		setShowLogInModal(true);
 	};
 
@@ -29,9 +31,9 @@ export const useModal = () => {
 		return (
 			<>
 				<LoginModal
+					show={showLogInModal}
 					onClose={onCloseLoginModal}
 					onOpenSignUp={onOpenSignUp}
-					show={showLogInModal}
 				/>
 				<SignUpModal onClose={onCloseSignUpModal} show={showSignUpModal} />
 			</>
