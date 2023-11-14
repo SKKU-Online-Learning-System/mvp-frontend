@@ -1,14 +1,22 @@
-import React, { ReactElement } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import { GetStaticPropsContext } from 'next';
+import Image from 'next/image';
+import Head from 'next/head';
 
-import QnA from '@components/Courses/Details/QnA';
-import LectureList from '@components/Courses/Details/LectureList';
-import CourseHeader from '@components/Courses/Details/CourseHeader';
+import CourseHeader from '@components/Courses/Details/CourseHeader/CourseHeader';
+import CourseBody from '@components/Courses/Details/CourseBody';
 import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
+import { LectureProgress } from 'types/Lecture';
+import courseAPI from '../../apis/Courses/courseApi';
+import QnA from '@components/Courses/Details/QnA';
 
-const CourseDetailPage = (): ReactElement => {
+type PropsType = {
+	courseId: number;
+};
+
+const CourseDetailPage = ({ courseId }: PropsType) => {
+	const [progress, setProgress] = useState<LectureProgress[]>();
 	const {
-		courseId,
 		course,
 		qna,
 		lecture,
@@ -18,37 +26,60 @@ const CourseDetailPage = (): ReactElement => {
 		isLoading,
 	} = useCourseDetailInfo();
 
-	if (isLoading) return <div>Loading...</div>;
+	useEffect(() => {
+		async function func() {
+			const progress = await courseAPI.fetchProgress(courseId);
+			setProgress(progress);
+		}
+		func();
+	}, []);
 
+	if (!progress || !course || !lecture) return <div>progress</div>;
+	if (isLoading)
+		return (
+			<Image
+				src={'/images/sky_2.gif'}
+				width={300}
+				height={300}
+				alt="loading gif"
+			/>
+		);
 	return (
-		<>
-			{course && (
-				<>
-					<CourseHeader
-						onOpenLoginModal={onOpenLoginModal}
-						courseDetail={course}
-						courseId={courseId}
-					/>
-					<Container>
-						{lecture && (
-							<LectureList
-								lectures={lecture}
-								onOpenLoginModal={onOpenLoginModal}
-								courseDetail={course}
-							/>
-						)}
-						{qna && <QnA courseId={courseId as string} qna={qna} />}
-					</Container>
-				</>
-			)}
+		<main>
+			<Head>
+				<title>온라인명륜당 | 강좌</title>
+				<meta name="description" content="온라인명륜당 강좌 페이지" />
+			</Head>
+			<section>
+				<CourseHeader
+					onOpenLoginModal={onOpenLoginModal}
+					courseDetail={course}
+					courseId={courseId}
+				/>
+				<CourseBody
+					courseId={courseId}
+					lectures={lecture}
+					course={course}
+					progress={progress}
+					onOpenLoginModal={onOpenLoginModal}
+				/>
+				<hr className="w-[1080px] mx-auto my-6" />
+				<QnA courseId={courseId} qna={qna} />
+			</section>
 			{showModal && renderModal()}
-		</>
+		</main>
 	);
 };
 
-export default CourseDetailPage;
+export function getStaticProps({ params }: GetStaticPropsContext) {
+	if (!params || !params.courseId) return { props: {} };
 
-const Container = styled.div`
-	width: 1200px;
-	margin: 30px auto;
-`;
+	const courseId = +params.courseId;
+	return { props: { courseId } };
+}
+
+export function getStaticPaths() {
+	return { paths: [], fallback: 'blocking' };
+}
+
+export default CourseDetailPage;

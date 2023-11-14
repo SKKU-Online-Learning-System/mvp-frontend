@@ -1,18 +1,20 @@
-import React, { ReactElement } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
+import Head from 'next/head';
 
-import { MYPAGE_PATH } from 'constants/MyPage';
-import Bookmark from '@components/MyPage/Bookmark';
+import Learning from '@components/MyPage/Learning/Learning';
+import MyPageLayout from '@components/MyPage/MyPageLayout';
+import History from '@components/MyPage/History/History';
 import Completed from '@components/MyPage/Completed';
-import History from '@components/MyPage/History';
-import Learning from '@components/MyPage/Learning';
+import Bookmark from '@components/MyPage/Bookmark';
+import { GetServerSidePropsContext } from 'next';
+import { MYPAGE_PATH } from 'constants/MyPage';
 import MyQnA from '@components/MyPage/MyQna';
-import Wishlist from '@components/MyPage/wishlist';
 
-const MyPage = (): ReactElement | null => {
-	const router = useRouter();
-	const { category } = router.query as { category: string };
+type PropsType = {
+	category: string;
+};
 
+const MyPage = ({ category }: PropsType) => {
 	const routeComponent = (category: string) => {
 		switch (category) {
 			case MYPAGE_PATH.HISTORY:
@@ -25,14 +27,29 @@ const MyPage = (): ReactElement | null => {
 				return <Learning />;
 			case MYPAGE_PATH.MY_QNA:
 				return <MyQnA />;
-			case MYPAGE_PATH.WISHLIST:
-				return <Wishlist />;
 			default:
 				return <History />;
 		}
 	};
 
-	return category ? routeComponent(category) : null;
+	return (
+		<section>
+			<Head>
+				<title>온라인명륜당 | 마이페이지</title>
+				<meta name="description" content="온라인명륜당 마이페이지" />
+			</Head>
+			<MyPageLayout>{routeComponent(category)}</MyPageLayout>;
+		</section>
+	);
 };
+
+export async function getStaticProps({ params }: GetServerSidePropsContext) {
+	const category = params!.category;
+	return { props: { category } };
+}
+
+export async function getStaticPaths() {
+	return { paths: [], fallback: 'blocking' };
+}
 
 export default MyPage;
