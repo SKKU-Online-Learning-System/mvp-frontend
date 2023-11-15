@@ -12,9 +12,17 @@ import { userLoginAuthState, userState } from '../../constants/commonState';
 import axiosInstance from '../../apis/index';
 
 const upperHeaderStyle =
-	'text-[var(--color-onBackground-300)] ml-4 text-sm font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
+	'text-[var(--color-onBackground-300)] ml-8 text-sm font-semibold no-underline cursor-pointer transition-colors duration-150 hover:text-[var(--color-green-300)]';
 
-const UpperHeader = (): JSX.Element => {
+type PropsType = {
+	onOpenLoginModal: () => void;
+	onOpenSignUpModal: () => void;
+};
+
+const UpperHeader = ({
+	onOpenLoginModal,
+	onOpenSignUpModal,
+}: PropsType): JSX.Element => {
 	const router = useRouter();
 
 	const dispatch = useDispatch();
@@ -31,7 +39,7 @@ const UpperHeader = (): JSX.Element => {
 	};
 
 	return (
-		<div className="fixed top-0 z-10 ml-4 flex items-center justify-end w-screen h-8 px-10 mr-8 bg-white">
+		<div className="fixed top-0 z-10 flex items-center justify-end w-screen h-8 px-10 bg-white">
 			{!!isLoggined &&
 				(isLoggined === userLoginAuthState.LOGGINED ? (
 					<div>
@@ -46,9 +54,12 @@ const UpperHeader = (): JSX.Element => {
 					</div>
 				) : (
 					<div>
-						<Link href="/login" passHref>
-							<span className={upperHeaderStyle}>KINGO ID LOGIN</span>
-						</Link>
+						<button className={upperHeaderStyle} onClick={onOpenLoginModal}>
+							로그인
+						</button>
+						<button className={upperHeaderStyle} onClick={onOpenSignUpModal}>
+							회원가입
+						</button>
 					</div>
 				))}
 		</div>
