@@ -14,7 +14,7 @@ const btnStyle =
 const Header = (): JSX.Element => {
 	const router = useRouter();
 	const isLoggedIn = useSelector(selectIsLoggined);
-	const { showModal, renderModal } = useModal();
+	const { showModal, onOpenLoginModal, onOpenSignUp, renderModal } = useModal();
 
 	const onMyPageClick = () => {
 		if (isLoggedIn === userLoginAuthState.LOGGINED)
@@ -24,7 +24,10 @@ const Header = (): JSX.Element => {
 
 	return (
 		<header>
-			<UpperHeader />
+			<UpperHeader
+				onOpenLoginModal={onOpenLoginModal}
+				onOpenSignUpModal={onOpenSignUp}
+			/>
 			<div className="dt:py-0 dt:px-[10px] mt-10 flex justify-around items-center mb-4 text-[var(--color-onBackground-300)]">
 				<div className="flex items-center justify-between w-full px-[10%]">
 					<Link href="/" passHref>
