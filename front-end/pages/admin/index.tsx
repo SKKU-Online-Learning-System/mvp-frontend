@@ -27,7 +27,12 @@ type PropsType = {
 	notices: Notification[];
 };
 
-const titles = ['인기 컨텐츠', '신규 컨텐츠', '인공지능', '교양'];
+const titles = [
+	'나를 위한 추천 👍',
+	'신규 컨텐츠 추천 😃',
+	'인턴십 후기 공유 🧑‍🤝‍🧑',
+	'외부 컨텐츠 추천 🎯',
+];
 
 const AdminIndex = ({
 	coursesInfo,
