@@ -62,14 +62,10 @@ const NotificationPage = ({ notices }: PropsType): JSX.Element => {
 
 export async function getServerSideProps(): Promise<{
 	props: { notices: Notification[] };
-	revalidate: number;
 }> {
 	const notices = await noticesAPI.fetchAllNotices();
 
-	return {
-		props: { notices },
-		revalidate: 5 * 60,
-	};
+	return { props: { notices } };
 }
 
 export default NotificationPage;
