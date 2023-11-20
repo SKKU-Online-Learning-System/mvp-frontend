@@ -19,7 +19,10 @@ module.exports = {
 	// },
 	images: {
 		default: 'fill',
-		domains: ['mrdang-lectures.s3.ap-northeast-2.amazonaws.com'],
+		domains: [
+			'mrdang-lectures.s3.ap-northeast-2.amazonaws.com',
+			'mblogthumb-phinf.pstatic.net',
+		],
 		disableStaticImages: true,
 	},
 	webpack(config, options) {
