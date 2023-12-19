@@ -11,6 +11,8 @@ type PropsType = {
 	setTitle: (title: string) => void;
 };
 
+let selectedCategory;
+
 const CourseListLayout = ({
 	children,
 	categories,
@@ -18,13 +20,23 @@ const CourseListLayout = ({
 	setTitle,
 }: PropsType): JSX.Element => {
 	const router = useRouter();
+	const selectedSubCategory = parseInt(router.query.category2sId as string);
+	if (!selectedSubCategory) selectedCategory = categories[0].name;
+	else if (selectedSubCategory === 1 || selectedSubCategory === 2)
+		selectedCategory = categories[1].name;
+	else if (selectedSubCategory === 3 || selectedSubCategory === 4)
+		selectedCategory = categories[2].name;
+	else if (selectedSubCategory === 5 || selectedSubCategory === 6)
+		selectedCategory = categories[3].name;
+	else if (selectedSubCategory === 7 || selectedSubCategory === 8)
+		selectedCategory = categories[4].name;
+	else selectedCategory = categories[5].name;
 
-	const [isClicked, setIsClicked] = useState(categories[0].name);
+	const [isClicked, setIsClicked] = useState(selectedCategory);
 	const [isClickedCategory, setIsClickedCategory] = useState<boolean[]>([]);
 
 	useEffect(() => {
 		const categoryLength = categories.length;
-
 		setIsClickedCategory(new Array(categoryLength).fill(false));
 	}, [categories]);
 
@@ -34,7 +46,6 @@ const CourseListLayout = ({
 
 	const handleCardClick = (clickedIndex: number) => {
 		if (!clickedIndex) router.push('/courses');
-
 		const clickedCategories = isClickedCategory.map((_, idx) =>
 			clickedIndex === idx ? true : false,
 		);
@@ -54,10 +65,6 @@ const CourseListLayout = ({
 	};
 
 	const handleSubMenuClick = (title: string) => {
-		if (title === '전체보기') {
-			setTitle('전체보기');
-			return;
-		}
 		setTitle(title);
 	};
 
@@ -69,29 +76,28 @@ const CourseListLayout = ({
 			<div className="flex">
 				<div className="min-h-screen w-1/6 bg-[var(--color-Primary)] min-w-[280px] ">
 					<ul className="flex flex-col justify-start h-full p-12 pr-0">
-						{categories.map((content, idx) => {
+						{categories.map((category, idx) => {
 							const isCategoryClicked = isClickedCategory[idx];
-
 							return (
 								<li
 									onClick={() => {
 										handleCardClick(idx);
-										handleMenuClick(content.name);
-										content.name === '전체보기'
+										handleMenuClick(category.name);
+										category.name === '전체보기'
 											? handleSubMenuClick('전체보기')
 											: '';
 									}}
 									className={`text-[var(--color-onPrimary-200)] ${handleSidebarBtnStyle(
-										isClicked === content.name,
+										isClicked === category.name,
 									)}`}
 									key={idx}
 								>
 									<div className="flex font-semibold transition cursor-pointer">
-										{content.name}
+										{category.name}
 									</div>
 									{isCategoryClicked && (
 										<ul className="mt-4">
-											{content.category2s?.map((elem, idx) => (
+											{category.category2s?.map((elem, idx) => (
 												<li
 													className="flex"
 													key={idx}
