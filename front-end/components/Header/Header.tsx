@@ -19,7 +19,7 @@ const Header = (): JSX.Element => {
 	const onMyPageClick = () => {
 		if (isLoggedIn === userLoginAuthState.LOGGINED)
 			router.push('/my-page/profile');
-		else router.push('/login');
+		else onOpenLoginModal();
 	};
 
 	return (
