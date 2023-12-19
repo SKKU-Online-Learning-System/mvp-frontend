@@ -11,7 +11,7 @@ type PropsType = {
 	setTitle: (title: string) => void;
 };
 
-let selectedCategory;
+let selectedCategory: string;
 
 const CourseListLayout = ({
 	children,
@@ -30,7 +30,7 @@ const CourseListLayout = ({
 		selectedCategory = categories[3].name;
 	else if (selectedSubCategory === 7 || selectedSubCategory === 8)
 		selectedCategory = categories[4].name;
-	else selectedCategory = categories[5].name;
+	else if (selectedSubCategory === 9) selectedCategory = categories[5].name;
 
 	const [isClicked, setIsClicked] = useState(selectedCategory);
 	const [isClickedCategory, setIsClickedCategory] = useState<boolean[]>([]);
