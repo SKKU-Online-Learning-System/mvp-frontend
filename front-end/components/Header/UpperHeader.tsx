@@ -47,7 +47,7 @@ const UpperHeader = ({
 							로그아웃
 						</button>
 						{userType <= userState.MANAGER ? (
-							<Link href="/admin" passHref>
+							<Link href="/admin/management" passHref>
 								<span className={upperHeaderStyle}>Admin</span>
 							</Link>
 						) : null}
