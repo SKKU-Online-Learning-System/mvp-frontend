@@ -25,7 +25,7 @@ const AdminLayout = ({ children }: PropsType): JSX.Element => {
 		const notSelected =
 			' transition-all relative left-0 hover:left-0.5 hover:text-white';
 		let sidebarBtnBasicStyle =
-			'text-[var(--color-onPrimary-200)] rounded-tl-lg rounded-bl-lg mb-12 px-4 py-2 text-xl font-bold w-full text-start';
+			'text-[var(--color-onPrimary-200)] rounded-tl-lg rounded-bl-lg mb-12 px-4 py-2 text-xl font-bold w-full text-start cursor-pointer';
 		open
 			? (sidebarBtnBasicStyle += selected)
 			: (sidebarBtnBasicStyle += notSelected);
