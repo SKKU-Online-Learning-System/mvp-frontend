@@ -66,9 +66,9 @@ const NewContentsCard = ({ title, courses }: PropsType): JSX.Element => {
 				<table className="w-full h-fit">
 					<thead>
 						<tr className="flex justify-center text-lg select-none">
-							<th className="w-1/5">등록일자</th>
-							<th className="w-1/3">강좌명</th>
-							<th className="w-1/6 ">강사명</th>
+							<th className="text-base w-1/5">등록일자</th>
+							<th className="text-base w-1/3">강좌명</th>
+							<th className="text-base w-1/6 ">강사명</th>
 
 							<th className="w-1/12">순서</th>
 						</tr>

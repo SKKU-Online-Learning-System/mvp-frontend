@@ -73,7 +73,7 @@ const PopularContentsCard = ({
 	};
 
 	return (
-		<div className="flex flex-col justify-between h-full p-10 bg-white shadow-xl rounded-xl">
+		<div className="flex flex-col justify-between p-8 bg-white shadow-xl rounded-xl">
 			<div>
 				<CardHeader
 					title={title}
@@ -83,12 +83,12 @@ const PopularContentsCard = ({
 				<table className="w-full h-fit">
 					<thead>
 						<tr className="flex justify-center text-lg select-none">
-							<th className="w-1/12">순위</th>
-							<th className="w-1/5">등록일자</th>
-							<th className="w-1/3">강좌명</th>
-							<th className="w-1/6 ">강사명</th>
-							<th className="w-1/12">수강생</th>
-							<th className="w-1/12">순서</th>
+							<th className="text-base w-1/12">순위</th>
+							<th className="text-base w-1/5">등록일자</th>
+							<th className="text-base w-1/3">강좌명</th>
+							<th className="text-base w-1/6 ">강사명</th>
+							<th className="text-base w-1/12">수강생</th>
+							<th className="text-base w-1/12">순서</th>
 						</tr>
 					</thead>
 					<tbody className="flex flex-col">

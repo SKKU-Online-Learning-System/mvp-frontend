@@ -41,7 +41,7 @@ const AdminIndex = ({ coursesInfo }: PropsType): JSX.Element => {
 				<title>온라인명륜당 | Admin</title>
 				<meta name="description" content="온라인명륜당 Admin 페이지" />
 			</Head>
-			<div className="grid w-full min-h-full grid-cols-2 grid-rows-2 p-10 pb-24 mt-14 gap-x-20 gap-y-20">
+			<div className="grid w-full min-h-full grid-cols-2 grid-rows-2 px-12 pb-24 mt-14 gap-x-10 gap-y-10">
 				<PopularContentsCard
 					order={0}
 					title={titles[0]}
