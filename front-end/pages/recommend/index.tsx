@@ -2,10 +2,8 @@
 // TODO: PropsType 설정
 
 import React from 'react';
-type PropsType = {
-	recommend: null;
-};
-const RecommendPage = ({ recommend }: PropsType): JSX.Element => {
+
+const RecommendPage = (): JSX.Element => {
 	return <div>RecommendPage</div>;
 };
 
