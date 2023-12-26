@@ -9,7 +9,7 @@ type PropsType = {
 	lectures: ILatestLecture[];
 };
 
-const HistoryCard = ({ lectures }: PropsType): JSX.Element => {
+const HistoryCards = ({ lectures }: PropsType): JSX.Element => {
 	const router = useRouter();
 
 	const isValid = (curTime: number, duration: number) => {
@@ -78,4 +78,4 @@ const HistoryCard = ({ lectures }: PropsType): JSX.Element => {
 	);
 };
 
-export default HistoryCard;
+export default HistoryCards;
