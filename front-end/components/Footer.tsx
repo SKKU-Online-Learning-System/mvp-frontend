@@ -31,6 +31,8 @@ const Footer = (): JSX.Element => {
 						소프트웨어융합대학 Copyrght ⓒ 2022 SUNGKYUNKWAN UNIVERSITY ALL
 						RIGHTS RESERVED.
 					</p>
+					<br />
+					<p>문의 메일: ssa.official@skku.edu </p>
 				</div>
 				<div className="m-[34px] mt-11">
 					<Link href="https://www.skku.edu/skku/etc/pop_email.do" passHref>
