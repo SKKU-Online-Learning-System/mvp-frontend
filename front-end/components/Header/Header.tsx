@@ -47,6 +47,11 @@ const Header = (): JSX.Element => {
 							</Link>
 						</li>
 						<li className="mx-8 list-none">
+							<Link href="/internship" passHref>
+								<span className={btnStyle}>인턴십</span>
+							</Link>
+						</li>
+						<li className="mx-8 list-none">
 							<button onClick={onMyPageClick}>
 								<span className={btnStyle}>마이페이지</span>
 							</button>
