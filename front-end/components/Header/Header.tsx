@@ -38,17 +38,27 @@ const Header = (): JSX.Element => {
 					<ul className="flex list-none dt:mx-3">
 						<li className="mx-8 list-none">
 							<Link href="/courses" passHref>
-								<span className={btnStyle}>강좌목록</span>
+								<span className={btnStyle}>Courses</span>
 							</Link>
 						</li>
 						<li className="mx-8 list-none">
 							<Link href="/notices" passHref>
-								<span className={btnStyle}>공지사항</span>
+								<span className={btnStyle}>Notices</span>
+							</Link>
+						</li>
+						<li className="mx-8 list-none">
+							<Link href="/internship" passHref>
+								<span className={btnStyle}>Internship</span>
+							</Link>
+						</li>
+						<li className="mx-8 list-none">
+							<Link href="/recommend" passHref>
+								<span className={btnStyle}>Recommend</span>
 							</Link>
 						</li>
 						<li className="mx-8 list-none">
 							<button onClick={onMyPageClick}>
-								<span className={btnStyle}>마이페이지</span>
+								<span className={btnStyle}>Mypage</span>
 							</button>
 						</li>
 					</ul>

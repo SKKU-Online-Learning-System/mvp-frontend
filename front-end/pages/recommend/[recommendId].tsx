@@ -1,7 +1,7 @@
 import React from 'react';
 
-const LectureId = (): JSX.Element => {
-	return <div>LectureId</div>;
+const RecommendId = (): JSX.Element => {
+	return <div>RecommendId</div>;
 };
 
-export default LectureId;
+export default RecommendId;

@@ -10,6 +10,7 @@ import Completed from '@components/MyPage/Completed';
 import Bookmark from '@components/MyPage/Bookmark';
 import { MYPAGE_PATH } from 'constants/MyPage';
 import MyQnA from '@components/MyPage/MyQna';
+import MyRecommend from '@components/MyPage/MyRecommend';
 
 interface IParams extends ParsedUrlQuery {
 	category: string;
@@ -32,6 +33,8 @@ const MyPage = ({ category }: PropsType): JSX.Element => {
 				return <Learning />;
 			case MYPAGE_PATH.MY_QNA:
 				return <MyQnA />;
+			case MYPAGE_PATH.MY_RECOMMEND:
+				return <MyRecommend />;
 			default:
 				return <History />;
 		}
