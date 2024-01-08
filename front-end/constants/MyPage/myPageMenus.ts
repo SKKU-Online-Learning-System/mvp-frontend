@@ -23,6 +23,10 @@ const menus = [
 		title: MYPAGE_MENU.BOOKMARK,
 		path: `${root}/${MYPAGE_PATH.BOOKMARK}`,
 	},
+	{
+		title: MYPAGE_MENU.MY_RECOMMEND,
+		path: `${root}/${MYPAGE_PATH.MY_RECOMMEND}`,
+	},
 ];
 
 export default menus;
