@@ -13,6 +13,8 @@ type PropsType = {
 	courses: ICourseRetrieveInfo[];
 };
 
+const shownContentsCnt = 10;
+
 const PopularContentsCard = ({
 	order,
 	title,
@@ -30,23 +32,21 @@ const PopularContentsCard = ({
 		);
 	}
 
-	const contentsCnt = courseData.length;
-	const startingIndex = 10 * (currPage - 1);
-	const endIndex = 10 * currPage;
+	const startingIndex = shownContentsCnt * (currPage - 1);
+	const endIndex = shownContentsCnt * currPage;
 
 	const onOrderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const elementId = +e.currentTarget.id;
 
 		if (
-			e.target.valueAsNumber !== 1 &&
-			e.target.valueAsNumber !== 2 &&
-			e.target.valueAsNumber !== 3 &&
-			e.target.valueAsNumber !== 4 &&
-			e.target.valueAsNumber !== 5 &&
-			e.target.value !== ''
+			e.currentTarget.valueAsNumber !== 1 &&
+			e.currentTarget.valueAsNumber !== 2 &&
+			e.currentTarget.valueAsNumber !== 3 &&
+			e.currentTarget.valueAsNumber !== 4 &&
+			e.currentTarget.valueAsNumber !== 5 &&
+			e.currentTarget.value !== ''
 		) {
-			alert('강좌 순서 값은 1에서 5 사이 값으로 입력해주시기 바랍니다.');
-			e.target.value = '';
+			e.currentTarget.value = '';
 			return;
 		}
 
@@ -123,7 +123,7 @@ const PopularContentsCard = ({
 			<CardPager
 				page={currPage}
 				setPage={onPagerClick}
-				contentsCnt={contentsCnt}
+				contentsCnt={courseData.length}
 				firstContentIdOnNextPage={endIndex}
 			/>
 		</div>

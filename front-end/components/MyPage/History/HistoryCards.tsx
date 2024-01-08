@@ -9,7 +9,7 @@ type PropsType = {
 	lectures: ILatestLecture[];
 };
 
-const HistoryCard = ({ lectures }: PropsType): JSX.Element => {
+const HistoryCards = ({ lectures }: PropsType): JSX.Element => {
 	const router = useRouter();
 
 	const isValid = (curTime: number, duration: number) => {
@@ -38,7 +38,7 @@ const HistoryCard = ({ lectures }: PropsType): JSX.Element => {
 	};
 
 	return (
-		<div className="grid w-full min-h-full grid-cols-5 grid-rows-4 p-20 gap-x-12 gap-y-12">
+		<div className="grid w-full min-h-full grid-cols-5 grid-rows-4 p-14 gap-x-8 gap-y-8">
 			{lectures.slice(0, 20).map((elem, idx) => {
 				const percentage = getProgressPercentage(
 					elem.lastTime,
@@ -54,19 +54,19 @@ const HistoryCard = ({ lectures }: PropsType): JSX.Element => {
 						<Image
 							className="w-full rounded-tl-lg rounded-tr-lg aspect-video"
 							src={elem.lecture.course.thumbnail}
-							width={300}
-							height={300}
+							width={230}
+							height={138}
 							alt="Thumbnail Img"
 						/>
-						<div className="px-4 py-2 pb-4 bg-[var(--color-Surface)] rounded-bl-lg rounded-br-lg">
-							<div className="mb-2 overflow-hidden text-xl font-semibold text-ellipsis whitespace-nowrap">
+						<div className="px-4 py-2 bg-[var(--color-Surface)] rounded-bl-lg rounded-br-lg relative bottom-[5px]">
+							<div className="overflow-hidden text-lg font-semibold text-ellipsis whitespace-nowrap">
 								{elem.lecture.title}
 							</div>
-							<div className="text-ellipsis overflow-hidden whitespace-nowrap text-black/[0.5] font-semibold">
+							<div className="text-ellipsis overflow-hidden whitespace-nowrap text-black/[0.5] font-semibold text-base">
 								{showTimeProgress(elem.lastTime, elem.lecture.duration)}
 							</div>
 						</div>
-						<div className="absolute bottom-[84px] right-0 left-0 h-1 bg-[#717171]">
+						<div className="absolute bottom-[72px] right-0 left-0 h-1 bg-[#717171]">
 							<div
 								className={`absolute w-[${percentage}%] h-full bg-[#ff0000]`}
 							></div>
@@ -78,4 +78,4 @@ const HistoryCard = ({ lectures }: PropsType): JSX.Element => {
 	);
 };
 
-export default HistoryCard;
+export default HistoryCards;

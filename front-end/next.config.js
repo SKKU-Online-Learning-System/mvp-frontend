@@ -9,14 +9,6 @@ module.exports = {
 		ignoreBuildErrors: true,
 	},
 	reactStrictMode: true,
-	// async rewrites() {
-	// 	return [
-	// 		{
-	// 			source: process.env.API_SOURCE,
-	// 			destination: `${process.env.API_SERVER}/:path*`,
-	// 		},
-	// 	];
-	// },
 	images: {
 		default: 'fill',
 		domains: [
@@ -26,13 +18,6 @@ module.exports = {
 		disableStaticImages: true,
 	},
 	webpack(config, options) {
-		// config.plugins = [
-		// 	// 환경 변수 등록/관리 설정
-		// 	new webpack.EnvironmentPlugin({
-		// 		API_SERVER: 'process.env.API_SERVER',
-		// 		API_SOURCE: 'process.env.API_SOURCE',
-		// 	}),
-		// ];
 		config.resolve = {
 			alias: {
 				'@apis': path.join(__dirname, 'apis'),
@@ -48,7 +33,7 @@ module.exports = {
 		return [
 			{
 				source: '/my-page',
-				destination: '/my-page/history', // Matched parameters can be used in the destination
+				destination: '/my-page/history',
 				permanent: true,
 			},
 		];

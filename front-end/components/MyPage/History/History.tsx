@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { useRecentLecturesFetch } from 'query/hooks/Main/index';
 import NoContent from '@components/NoContent';
-import HistoryCard from './HistoryCard';
+import HistoryCards from './HistoryCards';
 
 const History = (): JSX.Element => {
 	const { data: latestLectures, isLoading } = useRecentLecturesFetch();
@@ -22,7 +22,7 @@ const History = (): JSX.Element => {
 
 	return (
 		<div className="min-h-screen bg-white">
-			<HistoryCard lectures={latestLectures} />
+			<HistoryCards lectures={latestLectures} />
 		</div>
 	);
 };
