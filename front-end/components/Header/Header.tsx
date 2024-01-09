@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import { userLoginAuthState } from 'constants/commonState';
 import { selectIsLoggined } from 'store/feature/common/commonSelector';
-import { useModal } from '../../hooks/useModal';
+import { useModal } from '../../query/hooks/useModal';
 import UpperHeader from './UpperHeader';
 
 const btnStyle =

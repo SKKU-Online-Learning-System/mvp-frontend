@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import CourseHeader from '@components/Courses/Details/CourseHeader/CourseHeader';
 import QuestionTable from '@components/Questions/QuestionTable';
 import QuestionForm from '@components/Questions/QuestionForm';
-import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
+import { useCourseDetailInfo } from 'query/hooks/useCourseDetailInfo';
 /*
 로그인 && 강의 등록이 되어있어야 등록 가능.
 */

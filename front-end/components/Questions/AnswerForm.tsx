@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import { HTTP_STATUS_CODE } from 'constants/http';
-import { useModal } from 'hooks/useModal';
+import { useModal } from 'query/hooks/useModal';
 import API from 'apis/QnA/qnaApi';
 
 type PropsType = {

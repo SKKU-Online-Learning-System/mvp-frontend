@@ -5,7 +5,7 @@ import {
 	useCourseDetailFetch,
 	useCourseDetailLectureFetch,
 	useCourseQnaFetch,
-} from 'query/hooks/CourseDetail/index';
+} from './CourseDetail/index';
 
 type RouterQueryString = { courseId: string };
 

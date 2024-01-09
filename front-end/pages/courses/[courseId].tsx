@@ -10,7 +10,7 @@ import { ParsedUrlQuery } from 'querystring';
 
 import CourseHeader from '@components/Courses/Details/CourseHeader/CourseHeader';
 import CourseBody from '@components/Courses/Details/CourseBody';
-import { useCourseDetailInfo } from 'hooks/useCourseDetailInfo';
+import { useCourseDetailInfo } from 'query/hooks/useCourseDetailInfo';
 import { LectureProgress } from 'types/Lecture';
 import courseAPI from '../../apis/Courses/courseApi';
 import QnA from '@components/Courses/Details/QnA';
