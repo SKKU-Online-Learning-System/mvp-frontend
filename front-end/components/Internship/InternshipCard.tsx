@@ -10,12 +10,12 @@ type PropsType = {
 const InternshipCard = ({ company }: PropsType): JSX.Element => {
 	return (
 		<div>
-			<Image
+			{/* <Image
 				width={280}
 				height={140}
 				alt="company image"
 				src={company.company_img}
-			/>
+			/> */}
 			<div>
 				<span>{company.name}</span>
 				<span>영상개수</span>
