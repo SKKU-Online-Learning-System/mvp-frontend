@@ -1,27 +1,27 @@
 import React from 'react';
+import Image from 'next/image';
 
-import InternshipCard from '@components/Internship/InternshipCard';
 import { Company } from 'types/Internship';
 
-const company: Company = {
-	id: 1,
-	name: 'Samsung',
-	company_img: 'hi',
-	location: 'Suwon',
-	link: 'https://',
+type PropsType = {
+	company: Company;
 };
 
-const InternshipPage = (): JSX.Element => {
+const InternshipCard = ({ company }: PropsType): JSX.Element => {
 	return (
-		<section className="min-h-full">
-			<h2 className="select-none w-full bg-[var(--color-Primary)] p-8 font-['Gugi'] text-2xl text-white border-b-2 border-solid border-[var(--color-Background)]">
-				인턴십
-			</h2>
+		<div>
+			{/* <Image
+				width={280}
+				height={140}
+				alt="company image"
+				src={company.company_img}
+			/> */}
 			<div>
-				<InternshipCard company={company} />
+				{/* <span>{company.name}</span> */}
+				<span>영상개수</span>
 			</div>
-		</section>
+		</div>
 	);
 };
 
-export default InternshipPage;
+export default InternshipCard;
